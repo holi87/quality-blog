@@ -1,0 +1,43 @@
+---
+import { t, type Locale } from '../i18n/translations';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const strings = t(locale);
+---
+
+<footer>
+  <span>{strings.footer.madeBy} <a href="https://qualitycat.pl" target="_blank" rel="noopener">Quality Cat</a></span>
+  <span>&copy; {new Date().getFullYear()}</span>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--bg-card);
+    padding: 30px 40px;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  footer a {
+    color: var(--accent);
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    footer {
+      padding: 20px;
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+</style>
