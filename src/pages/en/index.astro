@@ -1,0 +1,123 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { t } from '../../i18n/translations';
+
+const locale = 'en';
+const strings = t(locale);
+
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .filter((post) => post.data.lang === locale)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 6);
+
+// Glob loader uses file path as id: "en/home-assistant-2026"
+// Strip the locale prefix so URL becomes /en/blog/home-assistant-2026/
+function getSlug(postId: string): string {
+  return postId.replace(/^[a-z]{2}\//, '');
+}
+
+const tags = ['Home Assistant', 'Claude/ChatGPT', 'Automation', 'IoT', 'Prompt Engineering'];
+---
+
+<BaseLayout title="Home" locale={locale} currentPath="/">
+  <section class="hero">
+    <h1>
+      {strings.hero.title}{' '}
+      <span class="highlight">{strings.hero.highlight1}</span>{' '}
+      {strings.hero.and}{' '}
+      <span class="highlight">{strings.hero.highlight2}</span>
+    </h1>
+    <div class="hero-divider"></div>
+    <p>{strings.hero.description}</p>
+    <div class="tags">
+      {tags.map((tag) => <span class="tag">{tag}</span>)}
+    </div>
+  </section>
+
+  <section class="posts">
+    <p class="section-title">{strings.posts.latest}</p>
+    <div class="posts-grid">
+      {posts.map((post) => (
+        <PostCard
+          title={post.data.title}
+          description={post.data.description}
+          date={post.data.date}
+          readingTime={post.data.readingTime}
+          tags={post.data.tags}
+          slug={getSlug(post.id)}
+          locale={locale}
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 80px 40px 60px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .hero h1 {
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--text-heading);
+    letter-spacing: -1px;
+    line-height: 1.2;
+  }
+  .highlight { color: var(--accent); }
+  .hero-divider {
+    width: 50px;
+    height: 3px;
+    background: var(--accent);
+    margin: 30px auto;
+    border-radius: 2px;
+  }
+  .hero p {
+    font-size: 18px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+  .tags {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 13px;
+    color: var(--text-primary);
+  }
+  .posts {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 40px 40px 60px;
+  }
+  .section-title {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 768px) {
+    .hero { padding: 40px 20px 30px; }
+    .hero h1 { font-size: 28px; }
+    .posts { padding: 20px; }
+    .posts-grid { grid-template-columns: 1fr; }
+  }
+</style>
