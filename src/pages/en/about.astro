@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About" locale="en" currentPath="/about">
+  <section class="about">
+    <h1>About</h1>
+    <div class="about-divider"></div>
+
+    <div class="about-content">
+      <p>
+        <strong>qualitycat / wiedza</strong> is a place where we share practical knowledge
+        about smart home and artificial intelligence. No marketing fluff, no paywalls —
+        just useful content.
+      </p>
+
+      <h2>Topics</h2>
+      <ul>
+        <li><strong>Smart Home</strong> — Home Assistant, Zigbee, automations, IoT</li>
+        <li><strong>AI</strong> — prompt engineering, AI tools, practical applications</li>
+        <li><strong>Automation</strong> — from home to business processes</li>
+      </ul>
+
+      <h2>Who's behind this?</h2>
+      <p>
+        This project is run by
+        <a href="https://qualitycat.pl" target="_blank" rel="noopener">Quality Cat</a>
+        — a company that believes good knowledge should be accessible to everyone.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+  h1 {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--text-heading);
+    letter-spacing: -1px;
+  }
+  .about-divider {
+    width: 50px;
+    height: 3px;
+    background: var(--accent);
+    margin: 24px 0 32px;
+    border-radius: 2px;
+  }
+  .about-content {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .about-content p {
+    margin-bottom: 20px;
+  }
+  .about-content h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-top: 36px;
+    margin-bottom: 12px;
+  }
+  .about-content ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+  .about-content li {
+    margin-bottom: 8px;
+  }
+  .about-content a {
+    color: var(--accent);
+  }
+  .about-content a:hover {
+    text-decoration: underline;
+  }
+  .about-content strong {
+    color: var(--text-heading);
+  }
+
+  @media (max-width: 768px) {
+    .about {
+      padding: 30px 20px;
+    }
+    h1 {
+      font-size: 28px;
+    }
+  }
+</style>
