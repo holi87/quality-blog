@@ -1,0 +1,76 @@
+---
+import TagBadge from './TagBadge.astro';
+import type { Locale } from '../i18n/translations';
+import { t } from '../i18n/translations';
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  readingTime: number;
+  tags: string[];
+  slug: string;
+  locale: Locale;
+}
+
+const { title, description, date, readingTime, tags, slug, locale } = Astro.props;
+const strings = t(locale);
+
+const formattedDate = date.toLocaleDateString(locale === 'pl' ? 'pl-PL' : 'en-US', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+});
+---
+
+<a href={`/${locale}/blog/${slug}/`} class="post-card">
+  <div class="post-meta">
+    <span>{formattedDate}</span>
+    <span>{readingTime} {strings.posts.readingTime}</span>
+  </div>
+  <h3>{title}</h3>
+  <p>{description}</p>
+  <div class="post-tags">
+    {tags.slice(0, 2).map((tag) => <TagBadge tag={tag} />)}
+  </div>
+</a>
+
+<style>
+  .post-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+    display: block;
+  }
+  .post-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .post-meta {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    gap: 12px;
+  }
+  h3 {
+    font-size: 17px;
+    color: var(--text-heading);
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .post-tags {
+    margin-top: 12px;
+    display: flex;
+    gap: 6px;
+  }
+</style>
