@@ -1,0 +1,192 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import TagBadge from '../components/TagBadge.astro';
+import { t, type Locale } from '../i18n/translations';
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  readingTime: number;
+  tags: string[];
+  locale: Locale;
+}
+
+const { title, description, date, readingTime, tags, locale } = Astro.props;
+const strings = t(locale);
+
+const formattedDate = date.toLocaleDateString(locale === 'pl' ? 'pl-PL' : 'en-US', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<BaseLayout title={title} description={description} locale={locale} currentPath="/blog">
+  <article class="post">
+    <header class="post-header">
+      <div class="post-meta">
+        <span>{formattedDate}</span>
+        <span>{readingTime} {strings.posts.readingTime}</span>
+      </div>
+      <h1>{title}</h1>
+      <p class="post-description">{description}</p>
+      <div class="post-tags">
+        {tags.map((tag) => <TagBadge tag={tag} />)}
+      </div>
+    </header>
+    <div class="post-content">
+      <slot />
+    </div>
+    <footer class="post-footer">
+      <a href={`/${locale}/blog/`}>&larr; {strings.posts.allPosts}</a>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .post {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 40px 80px;
+  }
+
+  .post-header {
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border-card);
+  }
+
+  .post-meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .post-header h1 {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--text-heading);
+    letter-spacing: -1px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .post-description {
+    font-size: 18px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .post-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .post-footer {
+    margin-top: 60px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-card);
+  }
+
+  .post-footer a {
+    font-size: 14px;
+    color: var(--accent);
+    transition: opacity 0.2s;
+  }
+
+  .post-footer a:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-width: 768px) {
+    .post {
+      padding: 30px 20px 60px;
+    }
+    .post-header h1 {
+      font-size: 26px;
+    }
+  }
+</style>
+
+<style is:global>
+  .post-content h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-top: 48px;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+  }
+
+  .post-content h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-heading);
+    margin-top: 36px;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+
+  .post-content p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+
+  .post-content ul,
+  .post-content ol {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    padding-left: 28px;
+  }
+
+  .post-content li {
+    margin-bottom: 8px;
+  }
+
+  .post-content strong {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .post-content em {
+    font-style: italic;
+    color: var(--text-secondary);
+  }
+
+  .post-content code {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 14px;
+    font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+    color: var(--accent);
+  }
+
+  .post-content pre {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 8px;
+    padding: 20px 24px;
+    overflow-x: auto;
+    margin-bottom: 24px;
+  }
+
+  .post-content pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+    color: var(--text-primary);
+  }
+</style>
