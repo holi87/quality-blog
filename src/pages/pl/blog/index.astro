@@ -1,0 +1,102 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PostCard from '../../../components/PostCard.astro';
+import { t } from '../../../i18n/translations';
+
+const locale = 'pl';
+const strings = t(locale);
+
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .filter((post) => post.data.lang === locale)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Glob loader uses file path as id: "pl/home-assistant-2026"
+// Strip the locale prefix so URL becomes /pl/blog/home-assistant-2026/
+function getSlug(postId: string): string {
+  return postId.replace(/^[a-z]{2}\//, '');
+}
+
+// Extract unique tags from all posts
+const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
+---
+
+<BaseLayout title="Blog" locale={locale} currentPath="/blog">
+  <div class="blog-header">
+    <h1>Blog</h1>
+    <p>{strings.posts.allPosts}</p>
+    <div class="tag-filters">
+      {allTags.map((tag) => (
+        <button class="tag-filter">{tag}</button>
+      ))}
+    </div>
+  </div>
+
+  <div class="blog-list">
+    <div class="posts-grid">
+      {posts.map((post) => (
+        <PostCard
+          title={post.data.title}
+          description={post.data.description}
+          date={post.data.date}
+          readingTime={post.data.readingTime}
+          tags={post.data.tags}
+          slug={getSlug(post.id)}
+          locale={locale}
+        />
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .blog-header {
+    text-align: center;
+    padding: 60px 40px 40px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .blog-header h1 {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--text-heading);
+    letter-spacing: -1px;
+  }
+  .blog-header p { color: var(--text-secondary); margin-top: 8px; }
+  .tag-filters {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .tag-filter {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 13px;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-family: inherit;
+    transition: border-color 0.2s;
+  }
+  .tag-filter:hover { border-color: var(--accent); }
+  .blog-list {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 40px 60px;
+  }
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 768px) {
+    .blog-header { padding: 30px 20px 20px; }
+    .blog-header h1 { font-size: 28px; }
+    .blog-list { padding: 0 20px 40px; }
+    .posts-grid { grid-template-columns: 1fr; }
+  }
+</style>
