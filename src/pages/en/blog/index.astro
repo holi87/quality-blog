@@ -7,9 +7,10 @@ import { t } from '../../../i18n/translations';
 const locale = 'en';
 const strings = t(locale);
 
+const now = new Date();
 const allPosts = await getCollection('blog');
 const posts = allPosts
-  .filter((post) => post.data.lang === locale)
+  .filter((post) => post.data.lang === locale && post.data.date <= now)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 // Glob loader uses file path as id: "en/home-assistant-2026"
