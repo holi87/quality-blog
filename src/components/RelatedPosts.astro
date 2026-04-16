@@ -1,0 +1,74 @@
+---
+import { getCollection } from 'astro:content';
+import PostCard from './PostCard.astro';
+import type { Locale } from '../i18n/translations';
+
+interface Props {
+  currentSlug: string;
+  currentTags: string[];
+  locale: Locale;
+  limit?: number;
+}
+
+const { currentSlug, currentTags, locale, limit = 3 } = Astro.props;
+
+const now = new Date();
+const allPosts = await getCollection('blog');
+
+function getSlug(postId: string): string {
+  return postId.replace(/^[a-z]{2}\//, '');
+}
+
+const candidates = allPosts
+  .filter((post) => post.data.lang === locale && post.data.date <= now && getSlug(post.id) !== currentSlug)
+  .map((post) => {
+    const overlap = post.data.tags.filter((t) => currentTags.includes(t)).length;
+    return { post, overlap };
+  })
+  .sort((a, b) => {
+    if (b.overlap !== a.overlap) return b.overlap - a.overlap;
+    return b.post.data.date.valueOf() - a.post.data.date.valueOf();
+  })
+  .slice(0, limit)
+  .map(({ post }) => post);
+
+const label = locale === 'pl' ? 'Powiązane wpisy' : 'Related posts';
+---
+
+{candidates.length > 0 && (
+  <section class="related">
+    <p class="eyebrow">{label}</p>
+    <div class="related-grid">
+      {candidates.map((post, i) => (
+        <PostCard
+          index={i + 1}
+          title={post.data.title}
+          description={post.data.description}
+          date={post.data.date}
+          readingTime={post.data.readingTime}
+          tags={post.data.tags}
+          slug={getSlug(post.id)}
+          locale={locale}
+        />
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .related {
+    margin-top: 72px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-soft);
+  }
+  .related .eyebrow {
+    margin-bottom: 20px;
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 900px) { .related-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+</style>

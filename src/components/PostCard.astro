@@ -1,5 +1,5 @@
 ---
-import TagBadge from './TagBadge.astro';
+import Tag from './Tag.astro';
 import type { Locale } from '../i18n/translations';
 import { t } from '../i18n/translations';
 
@@ -11,9 +11,10 @@ interface Props {
   tags: string[];
   slug: string;
   locale: Locale;
+  index?: number;
 }
 
-const { title, description, date, readingTime, tags, slug, locale } = Astro.props;
+const { title, description, date, readingTime, tags, slug, locale, index } = Astro.props;
 const strings = t(locale);
 
 const formattedDate = date.toLocaleDateString(locale === 'pl' ? 'pl-PL' : 'en-US', {
@@ -21,56 +22,145 @@ const formattedDate = date.toLocaleDateString(locale === 'pl' ? 'pl-PL' : 'en-US
   month: 'short',
   year: 'numeric',
 });
+
+// Primary category drives the accent
+const primary = (tags[0] ?? 'default')
+  .toLowerCase()
+  .replace(/\//g, '-')
+  .replace(/[^a-z0-9-]+/g, '-')
+  .replace(/^-+|-+$/g, '');
 ---
 
-<a href={`/${locale}/blog/${slug}/`} class="post-card">
-  <div class="post-meta">
-    <span>{formattedDate}</span>
-    <span>{readingTime} {strings.posts.readingTime}</span>
+<a href={`/${locale}/blog/${slug}/`} class="post-card" data-cat={primary}>
+  <div class="post-card__bar" aria-hidden="true"></div>
+
+  <div class="post-card__meta">
+    {typeof index === 'number' && (
+      <span class="idx">{String(index).padStart(2, '0')}</span>
+    )}
+    <span class="date">{formattedDate}</span>
+    <span class="dot-sep">·</span>
+    <span class="rt">{readingTime} {strings.posts.readingTime}</span>
   </div>
-  <h3>{title}</h3>
-  <p>{description}</p>
-  <div class="post-tags">
-    {tags.slice(0, 2).map((tag) => <TagBadge tag={tag} />)}
+
+  <h3 class="post-card__title">{title}</h3>
+  <p class="post-card__desc">{description}</p>
+
+  <div class="post-card__footer">
+    <div class="post-card__tags">
+      {tags.slice(0, 2).map((tag) => <Tag label={tag} variant="ghost" />)}
+    </div>
+    <span class="arrow" aria-hidden="true">→</span>
   </div>
 </a>
 
 <style>
   .post-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-card);
-    border-radius: 12px;
-    padding: 24px;
-    transition: border-color 0.2s, transform 0.2s;
-    cursor: pointer;
-    display: block;
-  }
-  .post-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-2px);
-  }
-  .post-meta {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-bottom: 10px;
+    --card-accent: var(--cat, var(--fg-muted));
+    position: relative;
     display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 22px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: border-color 240ms ease, transform 240ms ease, background 240ms ease;
+    box-shadow: var(--shadow-card);
+    isolation: isolate;
+  }
+  .post-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(120% 80% at 0% 0%, color-mix(in oklab, var(--card-accent) 16%, transparent), transparent 60%);
+    opacity: 0;
+    transition: opacity 300ms ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .post-card > * { position: relative; z-index: 1; }
+
+  .post-card__bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--card-accent), transparent 85%);
+    opacity: 0.7;
+    transition: opacity 260ms ease, width 260ms ease;
+  }
+
+  .post-card:hover {
+    border-color: color-mix(in oklab, var(--card-accent) 60%, var(--border));
+    transform: translateY(-3px);
+  }
+  .post-card:hover::before { opacity: 1; }
+  .post-card:hover .post-card__bar { width: 4px; opacity: 1; }
+  .post-card:hover .arrow {
+    transform: translateX(4px);
+    color: var(--card-accent);
+  }
+
+  .post-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--fg-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .idx {
+    color: var(--card-accent);
+    font-weight: 600;
+    margin-right: 4px;
+  }
+  .dot-sep { opacity: 0.4; }
+
+  .post-card__title {
+    font-family: var(--font-display);
+    font-size: clamp(19px, 1.5vw + 12px, 24px);
+    font-weight: 500;
+    color: var(--fg);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    font-variation-settings: 'SOFT' 30, 'opsz' 72;
+    margin-top: 4px;
+  }
+
+  .post-card__desc {
+    font-size: 14px;
+    color: var(--fg-muted);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .post-card__footer {
+    margin-top: auto;
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 12px;
   }
-  h3 {
-    font-size: 17px;
-    color: var(--text-heading);
-    font-weight: 600;
-    margin-bottom: 8px;
-    line-height: 1.4;
-  }
-  p {
-    font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-  .post-tags {
-    margin-top: 12px;
+  .post-card__tags {
     display: flex;
     gap: 6px;
+    flex-wrap: wrap;
+    min-width: 0;
+  }
+  .arrow {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    color: var(--fg-subtle);
+    transition: transform 240ms ease, color 240ms ease;
+    flex-shrink: 0;
   }
 </style>

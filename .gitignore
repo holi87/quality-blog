@@ -25,3 +25,9 @@ pnpm-debug.log*
 
 # claude code superpowers
 .superpowers/
+
+# playwright mcp artifacts + local screenshots
+.playwright-mcp/
+qb-*.png
+test-results/
+

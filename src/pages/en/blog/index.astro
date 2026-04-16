@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import PostCard from '../../../components/PostCard.astro';
+import Tag from '../../../components/Tag.astro';
 import { t } from '../../../i18n/translations';
 
 const locale = 'en';
@@ -13,91 +14,200 @@ const posts = allPosts
   .filter((post) => post.data.lang === locale && post.data.date <= now)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-// Glob loader uses file path as id: "en/home-assistant-2026"
-// Strip the locale prefix so URL becomes /en/blog/home-assistant-2026/
 function getSlug(postId: string): string {
   return postId.replace(/^[a-z]{2}\//, '');
 }
 
-// Extract unique tags from all posts
 const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
 ---
 
 <BaseLayout title="Blog" locale={locale} currentPath="/blog">
-  <div class="blog-header">
-    <h1>Blog</h1>
-    <p>{strings.posts.allPosts}</p>
-    <div class="tag-filters">
-      {allTags.map((tag) => (
-        <button class="tag-filter">{tag}</button>
-      ))}
-    </div>
-  </div>
+  <section class="blog-hero">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="container blog-hero__inner">
+      <p class="eyebrow">/ blog</p>
+      <h1 class="display">{strings.posts.allPosts}</h1>
+      <p class="lede">Articles on Home Assistant, IoT, Claude, ChatGPT, prompts and automations. From zero to your first working flow.</p>
 
-  <div class="blog-list">
-    <div class="posts-grid">
-      {posts.map((post) => (
-        <PostCard
-          title={post.data.title}
-          description={post.data.description}
-          date={post.data.date}
-          readingTime={post.data.readingTime}
-          tags={post.data.tags}
-          slug={getSlug(post.id)}
-          locale={locale}
-        />
+      <div class="tag-bar" role="tablist" aria-label="Filter by tag">
+        <button class="tag-chip is-active" data-tag="all" role="tab" aria-selected="true">
+          <span class="dot" data-cat="default" aria-hidden="true"></span>
+          <span>all</span>
+          <span class="count">{posts.length}</span>
+        </button>
+        {allTags.map((tag) => {
+          const count = posts.filter((p) => p.data.tags.includes(tag)).length;
+          return (
+            <button class="tag-chip" data-tag={tag} role="tab" aria-selected="false">
+              <span class="dot" data-cat={tag.toLowerCase().replace(/\//g, '-').replace(/[^a-z0-9-]+/g, '-')} aria-hidden="true"></span>
+              <span>{tag}</span>
+              <span class="count">{count}</span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="blog-list container">
+    <div class="posts-grid" id="posts-grid">
+      {posts.map((post, i) => (
+        <div class="post-wrap" data-tags={post.data.tags.join('|')}>
+          <PostCard
+            index={i + 1}
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.date}
+            readingTime={post.data.readingTime}
+            tags={post.data.tags}
+            slug={getSlug(post.id)}
+            locale={locale}
+          />
+        </div>
       ))}
     </div>
-  </div>
+    <p class="empty" id="empty-state" hidden>No posts for this tag.</p>
+  </section>
 </BaseLayout>
 
+<script>
+  function setupBlogFilter() {
+    const grid = document.getElementById('posts-grid');
+    const empty = document.getElementById('empty-state');
+    if (!grid) return;
+
+    const chips = document.querySelectorAll<HTMLButtonElement>('.tag-chip');
+    const params = new URLSearchParams(window.location.search);
+    const initial = params.get('tag') ?? 'all';
+
+    const apply = (tag: string) => {
+      const items = grid.querySelectorAll<HTMLElement>('.post-wrap');
+      let visible = 0;
+      items.forEach((item) => {
+        const tags = (item.dataset.tags ?? '').split('|');
+        const match = tag === 'all' || tags.includes(tag);
+        item.style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+      if (empty) empty.hidden = visible > 0;
+
+      chips.forEach((chip) => {
+        const isActive = chip.dataset.tag === tag;
+        chip.classList.toggle('is-active', isActive);
+        chip.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      const url = new URL(window.location.href);
+      if (tag === 'all') url.searchParams.delete('tag');
+      else url.searchParams.set('tag', tag);
+      history.replaceState(null, '', url.toString());
+    };
+
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => apply(chip.dataset.tag ?? 'all'));
+    });
+
+    apply(initial);
+  }
+  setupBlogFilter();
+  document.addEventListener('astro:page-load', setupBlogFilter);
+</script>
+
 <style>
-  .blog-header {
-    text-align: center;
-    padding: 60px 40px 40px;
-    max-width: 700px;
-    margin: 0 auto;
+  .blog-hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(40px, 6vw, 80px) clamp(24px, 3vw, 40px);
+    border-bottom: 1px solid var(--border-soft);
   }
-  .blog-header h1 {
-    font-size: 36px;
-    font-weight: 800;
-    color: var(--text-heading);
-    letter-spacing: -1px;
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 60% 50% at 20% 40%, black 50%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 60% 50% at 20% 40%, black 50%, transparent 100%);
+    pointer-events: none;
   }
-  .blog-header p { color: var(--text-secondary); margin-top: 8px; }
-  .tag-filters {
+  .blog-hero__inner { position: relative; max-width: 920px; }
+  .blog-hero h1 {
+    font-size: var(--step-5);
+    color: var(--fg);
+    margin-top: 8px;
+  }
+  .blog-hero .lede {
+    margin-top: 16px;
+    color: var(--fg-muted);
+    font-size: var(--step-1);
+    max-width: 60ch;
+    line-height: 1.55;
+  }
+
+  .tag-bar {
+    margin-top: 36px;
     display: flex;
     gap: 8px;
-    justify-content: center;
-    margin-top: 20px;
     flex-wrap: wrap;
   }
-  .tag-filter {
+  .tag-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: lowercase;
+    color: var(--fg-muted);
+    background: color-mix(in oklab, var(--bg-elev) 85%, transparent);
+    border: 1px solid var(--border-soft);
+    border-radius: 999px;
+    padding: 7px 12px 7px 10px;
+    transition: color 180ms, border-color 180ms, background 180ms, transform 180ms;
+  }
+  .tag-chip .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--cat, var(--fg-muted));
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--cat, var(--fg-muted)) 22%, transparent);
+  }
+  .tag-chip .count {
+    font-size: 10px;
+    color: var(--fg-subtle);
+    background: color-mix(in oklab, var(--bg) 50%, transparent);
+    padding: 2px 6px;
+    border-radius: 999px;
+    margin-left: 2px;
+  }
+  .tag-chip:hover {
+    color: var(--fg);
+    border-color: var(--border);
+    transform: translateY(-1px);
+  }
+  .tag-chip.is-active {
+    color: var(--fg);
     background: var(--bg-card);
-    border: 1px solid var(--border-card);
-    border-radius: 20px;
-    padding: 6px 14px;
-    font-size: 13px;
-    color: var(--text-primary);
-    cursor: pointer;
-    font-family: inherit;
-    transition: border-color 0.2s;
+    border-color: color-mix(in oklab, var(--cat, var(--accent)) 55%, var(--border));
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--cat, var(--accent)) 10%, transparent);
   }
-  .tag-filter:hover { border-color: var(--accent); }
-  .blog-list {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 40px 60px;
-  }
+
+  .blog-list { padding-block: clamp(32px, 5vw, 56px); }
   .posts-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 16px;
   }
-  @media (max-width: 768px) {
-    .blog-header { padding: 30px 20px 20px; }
-    .blog-header h1 { font-size: 28px; }
-    .blog-list { padding: 0 20px 40px; }
-    .posts-grid { grid-template-columns: 1fr; }
+  .post-wrap { display: flex; }
+  .post-wrap > * { flex: 1; }
+  .empty {
+    text-align: center;
+    color: var(--fg-muted);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    padding: 60px 20px;
   }
+  @media (max-width: 900px) { .posts-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .posts-grid { grid-template-columns: 1fr; } }
 </style>

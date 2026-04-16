@@ -1,3 +1,250 @@
 ---
-return Astro.redirect('/pl/');
+/*
+  Root `/` — serves the PL homepage directly (no visible redirect).
+  The same content is also reachable at /pl/ for canonical i18n consistency.
+*/
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import Tag from '../components/Tag.astro';
+import { t } from '../i18n/translations';
+
+const locale = 'pl' as const;
+const strings = t(locale);
+
+const now = new Date();
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .filter((post) => post.data.lang === locale && post.data.date <= now)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 6);
+
+function getSlug(postId: string): string {
+  return postId.replace(/^[a-z]{2}\//, '');
+}
+
+const topics = ['Home Assistant', 'Claude/ChatGPT', 'Automatyzacja', 'IoT', 'Prompt Engineering'];
+const totalPosts = allPosts.filter((p) => p.data.lang === locale && p.data.date <= now).length;
+const lastUpdate = posts[0]?.data.date;
 ---
+
+<BaseLayout title="Strona główna" locale={locale} currentPath="/">
+  <section class="hero">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
+
+    <div class="hero-inner container">
+      <div class="hero-meta eyebrow rise">
+        <span class="dot" aria-hidden="true"></span>
+        <span>quality blog</span>
+        <span class="sep">/</span>
+        <span>edycja {new Date().getFullYear()}</span>
+      </div>
+
+      <h1 class="hero-title display rise" style="animation-delay: 80ms;">
+        {strings.hero.title}{' '}
+        <em class="hl hl-1">{strings.hero.highlight1}</em>{' '}
+        <span class="amp">{strings.hero.and}</span>{' '}
+        <em class="hl hl-2">{strings.hero.highlight2}</em>.
+      </h1>
+
+      <p class="hero-lede rise" style="animation-delay: 160ms;">
+        {strings.hero.description}
+      </p>
+
+      <div class="hero-topics rise" style="animation-delay: 240ms;">
+        {topics.map((tag) => <Tag label={tag} variant="outline" />)}
+      </div>
+
+      <dl class="hero-stats rise" style="animation-delay: 320ms;">
+        <div>
+          <dt>Artykułów</dt>
+          <dd><span class="num">{String(totalPosts).padStart(2, '0')}</span></dd>
+        </div>
+        <div>
+          <dt>Języki</dt>
+          <dd><span class="num">PL · EN</span></dd>
+        </div>
+        <div>
+          <dt>Ostatni wpis</dt>
+          <dd><span class="num">{lastUpdate ? lastUpdate.toLocaleDateString('pl-PL', { day: '2-digit', month: 'short' }) : '—'}</span></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="posts container">
+    <header class="posts-header">
+      <p class="eyebrow">{strings.posts.latest}</p>
+      <a class="see-all" href="/pl/blog/">{strings.posts.allPosts} →</a>
+    </header>
+    <div class="posts-grid">
+      {posts.map((post, i) => (
+        <PostCard
+          index={i + 1}
+          title={post.data.title}
+          description={post.data.description}
+          date={post.data.date}
+          readingTime={post.data.readingTime}
+          tags={post.data.tags}
+          slug={getSlug(post.id)}
+          locale={locale}
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(56px, 10vw, 140px) clamp(48px, 8vw, 96px);
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: clamp(40px, 6vw, 72px) clamp(40px, 6vw, 72px);
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 50%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 50%, transparent 100%);
+    pointer-events: none;
+  }
+  .hero-glow {
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    width: 80%;
+    height: 70%;
+    transform: translateX(-50%);
+    background:
+      radial-gradient(closest-side, color-mix(in oklab, var(--accent) 35%, transparent), transparent 70%),
+      radial-gradient(closest-side at 75% 60%, color-mix(in oklab, var(--accent-2) 25%, transparent), transparent 70%);
+    filter: blur(80px);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; max-width: 960px; }
+  .hero-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px;
+    background: color-mix(in oklab, var(--bg-elev) 80%, transparent);
+    border: 1px solid var(--border-soft);
+    border-radius: 999px;
+    color: var(--fg-muted);
+    margin-bottom: 28px;
+  }
+  .hero-meta .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+  }
+  .hero-meta .sep { color: var(--border); }
+
+  .hero-title {
+    font-size: var(--step-6);
+    color: var(--fg);
+    max-width: 18ch;
+  }
+  .hero-title .hl {
+    font-style: italic;
+    font-variation-settings: 'SOFT' 100, 'opsz' 144;
+    background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-title .hl-2 {
+    background: linear-gradient(135deg, var(--accent-2), var(--accent-2-soft));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-title .amp {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--fg-subtle);
+    font-weight: 400;
+  }
+  .hero-lede {
+    margin-top: 28px;
+    max-width: 56ch;
+    font-size: var(--step-1);
+    color: var(--fg-muted);
+    line-height: 1.55;
+  }
+  .hero-topics {
+    margin-top: 28px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .hero-stats {
+    margin-top: 52px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 220px));
+    padding-top: 24px;
+    border-top: 1px solid var(--border-soft);
+    max-width: 700px;
+  }
+  .hero-stats > div { padding-right: 24px; border-right: 1px solid var(--border-soft); }
+  .hero-stats > div:last-child { border-right: 0; padding-left: 24px; padding-right: 0; }
+  .hero-stats > div:nth-child(2) { padding-left: 24px; }
+  .hero-stats dt {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--fg-subtle);
+    margin-bottom: 6px;
+  }
+  .hero-stats dd .num {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--fg);
+    font-variation-settings: 'opsz' 48;
+  }
+  .posts { padding-block: clamp(40px, 6vw, 80px); }
+  .posts-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .see-all {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--fg-muted);
+    transition: color 180ms;
+  }
+  .see-all:hover { color: var(--accent); }
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 900px) { .posts-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) {
+    .posts-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr; max-width: none; }
+    .hero-stats > div,
+    .hero-stats > div:last-child,
+    .hero-stats > div:nth-child(2) {
+      border-right: 0;
+      padding: 0 0 16px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .hero-stats > div:last-child { border-bottom: 0; padding-bottom: 0; }
+  }
+</style>

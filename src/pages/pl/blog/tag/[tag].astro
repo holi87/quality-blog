@@ -1,0 +1,98 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import PostCard from '../../../../components/PostCard.astro';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  const now = new Date();
+  const plPosts = allPosts.filter((p) => p.data.lang === 'pl' && p.data.date <= now);
+  const tags = [...new Set(plPosts.flatMap((p) => p.data.tags))];
+
+  return tags.map((tag) => {
+    const filtered = plPosts
+      .filter((p) => p.data.tags.includes(tag))
+      .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+    return {
+      params: { tag: tag.toLowerCase().replace(/\//g, '-').replace(/[^a-z0-9-]+/g, '-') },
+      props: { tag, posts: filtered },
+    };
+  });
+}
+
+const { tag, posts } = Astro.props;
+
+function getSlug(postId: string): string {
+  return postId.replace(/^[a-z]{2}\//, '');
+}
+---
+
+<BaseLayout title={`Tag: ${tag}`} locale="pl" currentPath="/blog">
+  <section class="tag-hero container">
+    <p class="eyebrow">/ blog / tag</p>
+    <h1 class="display"><span class="hash">#</span>{tag}</h1>
+    <p class="count">{posts.length} {posts.length === 1 ? 'wpis' : posts.length < 5 ? 'wpisy' : 'wpisów'}</p>
+    <a class="all-link" href="/pl/blog/">← wszystkie wpisy</a>
+  </section>
+
+  <section class="blog-list container">
+    <div class="posts-grid">
+      {posts.map((post, i) => (
+        <PostCard
+          index={i + 1}
+          title={post.data.title}
+          description={post.data.description}
+          date={post.data.date}
+          readingTime={post.data.readingTime}
+          tags={post.data.tags}
+          slug={getSlug(post.id)}
+          locale="pl"
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .tag-hero {
+    padding-block: clamp(40px, 6vw, 72px) clamp(24px, 3vw, 32px);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .tag-hero h1 {
+    font-size: var(--step-5);
+    color: var(--fg);
+    margin-top: 8px;
+  }
+  .tag-hero .hash {
+    color: var(--accent);
+    font-style: italic;
+    margin-right: 0.1em;
+  }
+  .tag-hero .count {
+    margin-top: 12px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--fg-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .all-link {
+    display: inline-block;
+    margin-top: 20px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--fg-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 180ms;
+  }
+  .all-link:hover { color: var(--accent); }
+  .blog-list { padding-block: clamp(32px, 5vw, 56px); }
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 900px) { .posts-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .posts-grid { grid-template-columns: 1fr; } }
+</style>

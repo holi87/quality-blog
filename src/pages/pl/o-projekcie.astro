@@ -4,89 +4,165 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 <BaseLayout title="O projekcie" locale="pl" currentPath="/o-projekcie">
   <section class="about">
-    <h1>O projekcie</h1>
-    <div class="about-divider"></div>
+    <div class="about-hero">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="container about-inner">
+        <p class="eyebrow">/ o projekcie</p>
+        <h1 class="display">Wiedza, która <em>faktycznie</em> działa.</h1>
+        <p class="lede">
+          <strong>quality blog</strong> to miejsce, w którym dzielimy się praktyczną wiedzą
+          o smart home i sztucznej inteligencji. Bez marketingowego szumu, bez paywalli —
+          po prostu przydatne treści.
+        </p>
+      </div>
+    </div>
 
-    <div class="about-content">
-      <p>
-        <strong>quality blog</strong> to miejsce, w którym dzielimy się praktyczną wiedzą
-        o smart home i sztucznej inteligencji. Bez marketingowego szumu, bez paywalli —
-        po prostu przydatne treści.
-      </p>
+    <div class="container about-body">
+      <div class="col">
+        <p class="eyebrow">Tematyka</p>
+        <ul class="topic-list">
+          <li>
+            <span class="dot" style="--c: var(--accent-2)"></span>
+            <div>
+              <strong>Smart Home</strong>
+              <p>Home Assistant, Zigbee, automatyzacje, IoT</p>
+            </div>
+          </li>
+          <li>
+            <span class="dot" style="--c: var(--accent)"></span>
+            <div>
+              <strong>AI</strong>
+              <p>prompt engineering, narzędzia AI, praktyczne zastosowania</p>
+            </div>
+          </li>
+          <li>
+            <span class="dot" style="--c: var(--accent-3)"></span>
+            <div>
+              <strong>Automatyzacja</strong>
+              <p>od domu po procesy biznesowe</p>
+            </div>
+          </li>
+        </ul>
+      </div>
 
-      <h2>Tematyka</h2>
-      <ul>
-        <li><strong>Smart Home</strong> — Home Assistant, Zigbee, automatyzacje, IoT</li>
-        <li><strong>AI</strong> — prompt engineering, narzędzia AI, praktyczne zastosowania</li>
-        <li><strong>Automatyzacja</strong> — od domu po procesy biznesowe</li>
-      </ul>
-
-      <h2>Kto za tym stoi?</h2>
-      <p>
-        Ten projekt jest prowadzony przez
-        <a href="https://qualitycat.pl" target="_blank" rel="noopener">Quality Cat</a>
-        — firmę, która wierzy, że dobra wiedza powinna być dostępna dla każdego.
-      </p>
+      <div class="col">
+        <p class="eyebrow">Kto za tym stoi</p>
+        <p class="who">
+          Ten projekt jest prowadzony przez
+          <a href="https://qualitycat.pl" target="_blank" rel="noopener">Quality Cat</a>
+          — firmę, która wierzy, że dobra wiedza powinna być dostępna dla każdego.
+        </p>
+        <p class="eyebrow manifest-label">Manifest</p>
+        <blockquote>
+          <p>Żadnych paywalli. Żadnych clickbaitów. Żadnych „10 powodów, dla których…”. Tylko solidna wiedza, napisana po ludzku.</p>
+        </blockquote>
+      </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .about {
-    max-width: 650px;
-    margin: 0 auto;
-    padding: 60px 40px;
+  .about-hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(48px, 7vw, 96px) clamp(32px, 4vw, 48px);
+    border-bottom: 1px solid var(--border-soft);
   }
-  h1 {
-    font-size: 36px;
-    font-weight: 800;
-    color: var(--text-heading);
-    letter-spacing: -1px;
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 70% 50% at 30% 40%, black 50%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 50% at 30% 40%, black 50%, transparent 100%);
   }
-  .about-divider {
-    width: 50px;
-    height: 3px;
-    background: var(--accent);
-    margin: 24px 0 32px;
-    border-radius: 2px;
+  .about-inner { position: relative; max-width: 860px; }
+  .about-inner h1 {
+    font-size: var(--step-5);
+    color: var(--fg);
+    margin-top: 8px;
+    max-width: 16ch;
   }
-  .about-content {
-    font-size: 16px;
-    line-height: 1.8;
-  }
-  .about-content p {
-    margin-bottom: 20px;
-  }
-  .about-content h2 {
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--text-heading);
-    margin-top: 36px;
-    margin-bottom: 12px;
-  }
-  .about-content ul {
-    padding-left: 20px;
-    margin-bottom: 20px;
-  }
-  .about-content li {
-    margin-bottom: 8px;
-  }
-  .about-content a {
+  .about-inner h1 em {
+    font-style: italic;
     color: var(--accent);
+    font-variation-settings: 'SOFT' 100, 'opsz' 144;
   }
-  .about-content a:hover {
-    text-decoration: underline;
+  .lede {
+    margin-top: 24px;
+    font-size: var(--step-1);
+    color: var(--fg-muted);
+    line-height: 1.55;
+    max-width: 60ch;
   }
-  .about-content strong {
-    color: var(--text-heading);
+  .lede strong { color: var(--fg); }
+
+  .about-body {
+    padding-block: clamp(40px, 6vw, 72px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 5vw, 72px);
+    max-width: 1040px;
+  }
+  .col .eyebrow { color: var(--fg-subtle); margin-bottom: 18px; }
+  .manifest-label { margin-top: 36px; }
+
+  .topic-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+  .topic-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .topic-list .dot {
+    width: 8px;
+    height: 8px;
+    margin-top: 9px;
+    border-radius: 50%;
+    background: var(--c);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--c) 22%, transparent);
+    flex-shrink: 0;
+  }
+  .topic-list strong {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--fg);
+    font-weight: 500;
+  }
+  .topic-list p {
+    color: var(--fg-muted);
+    font-size: 14px;
+    margin-top: 2px;
   }
 
-  @media (max-width: 768px) {
-    .about {
-      padding: 30px 20px;
-    }
-    h1 {
-      font-size: 28px;
-    }
+  .who {
+    color: var(--fg);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .who a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: color-mix(in oklab, var(--accent) 35%, transparent);
+  }
+  .who a:hover { text-decoration-color: var(--accent); }
+
+  blockquote {
+    margin-top: 12px;
+    padding: 18px 20px;
+    border-left: 3px solid var(--accent);
+    background: color-mix(in oklab, var(--accent) 6%, var(--bg-elev));
+    border-radius: 0 10px 10px 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--fg);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 720px) {
+    .about-body { grid-template-columns: 1fr; }
   }
 </style>

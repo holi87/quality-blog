@@ -1,27 +1,126 @@
+/* ──────────────────────────────────────────────────────────────────
+   quality blog — editorial tech-craft theme
+   Fraunces (display serif) · Manrope (body) · JetBrains Mono (code)
+   ────────────────────────────────────────────────────────────────── */
+
+@import '@fontsource-variable/fraunces';
+@import '@fontsource-variable/fraunces/wght-italic.css';
+@import '@fontsource-variable/manrope';
+@import '@fontsource-variable/jetbrains-mono';
+
+/* ─── Design tokens ──────────────────────────────────────────────── */
 :root {
-  --bg-primary: #18181b;
-  --bg-card: #27272a;
-  --border-card: #3f3f46;
-  --accent: #f97316;
-  --text-heading: #fafafa;
-  --text-primary: #d4d4d8;
-  --text-secondary: #a1a1aa;
-  --text-muted: #71717a;
-  --font-sans: -apple-system, 'Segoe UI', system-ui, sans-serif;
-  --max-width: 1100px;
+  /* Dark theme (default) — warm black with cyan/amber accents */
+  --bg:            #0e0f11;
+  --bg-elev:       #17181c;
+  --bg-card:       #1b1c20;
+  --bg-code:       #141519;
+  --border:        #2a2b31;
+  --border-soft:   #222328;
+  --fg:            #ecebe6;
+  --fg-muted:      #a8a59d;
+  --fg-subtle:     #767268;
+  --accent:        #ff7a1a;      /* amber */
+  --accent-soft:   #ffb37a;
+  --accent-2:      #64d4ff;      /* electric cyan — category accent */
+  --accent-2-soft: #9ae3ff;
+  --accent-3:      #b9ff66;      /* lime — third category hue */
+  --shadow-card:   0 1px 0 rgba(255,255,255,0.04) inset, 0 20px 40px -24px rgba(0,0,0,0.6);
+  --grid-line:     rgba(255,255,255,0.035);
+  --noise-opacity: 0.04;
+
+  /* Fonts */
+  --font-display: 'Fraunces Variable', 'Fraunces', ui-serif, Georgia, serif;
+  --font-body:    'Manrope Variable', 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Typographic scale (fluid) */
+  --step--1: clamp(0.80rem, 0.78rem + 0.10vw, 0.875rem);
+  --step-0:  clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  --step-1:  clamp(1.12rem, 1.06rem + 0.30vw, 1.25rem);
+  --step-2:  clamp(1.28rem, 1.18rem + 0.50vw, 1.5rem);
+  --step-3:  clamp(1.55rem, 1.34rem + 1.05vw, 2rem);
+  --step-4:  clamp(2rem, 1.55rem + 2.25vw, 3rem);
+  --step-5:  clamp(2.5rem, 1.70rem + 4.00vw, 4.5rem);
+  --step-6:  clamp(3rem, 1.90rem + 5.50vw, 5.75rem);
+
+  /* Rhythm */
+  --max-width:  1180px;
+  --max-read:   720px;
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  16px;
+
+  color-scheme: dark;
 }
 
-*, *::before, *::after {
+[data-theme='light'] {
+  --bg:            #f8f5ee;   /* warm paper */
+  --bg-elev:       #fefbf3;
+  --bg-card:       #ffffff;
+  --bg-code:       #f1ede3;
+  --border:        #dfd8c7;
+  --border-soft:   #eae3d1;
+  --fg:            #1a1a1d;
+  --fg-muted:      #55524a;
+  --fg-subtle:     #8a867b;
+  --accent:        #d35400;
+  --accent-soft:   #b24400;
+  --accent-2:      #0e7490;
+  --accent-2-soft: #0891b2;
+  --accent-3:      #4d7c0f;
+  --grid-line:     rgba(0,0,0,0.05);
+  --noise-opacity: 0.025;
+  --shadow-card:   0 1px 0 rgba(255,255,255,0.8) inset, 0 10px 30px -20px rgba(60,50,20,0.25);
+
+  color-scheme: light;
+}
+
+/* ─── Reset ──────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: var(--font-sans);
-  line-height: 1.6;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  font-weight: 400;
+  line-height: 1.65;
+  font-feature-settings: 'ss01', 'cv11';
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Global subtle grain overlay — lives above background, below content */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/></svg>");
+  opacity: var(--noise-opacity);
+  mix-blend-mode: overlay;
+}
+
+body > * {
+  position: relative;
+  z-index: 2;
 }
 
 a {
@@ -29,7 +128,119 @@ a {
   text-decoration: none;
 }
 
-img {
+img,
+svg {
   max-width: 100%;
   height: auto;
+  display: block;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+::selection {
+  background: var(--accent);
+  color: #0e0f11;
+}
+
+/* ─── Typography primitives ──────────────────────────────────────── */
+.display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  font-variation-settings: 'SOFT' 30, 'opsz' 144;
+}
+
+.mono,
+code,
+kbd,
+samp {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  font-feature-settings: 'calt', 'ss02';
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--fg-subtle);
+}
+
+/* ─── Layout helpers ─────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 48px);
+}
+
+.rule {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+  border: 0;
+}
+
+/* ─── Reading progress bar (global) ──────────────────────────────── */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(to right, var(--accent), var(--accent-2));
+  z-index: 100;
+  transition: width 80ms linear;
+  pointer-events: none;
+}
+
+/* ─── Category color helpers ─────────────────────────────────────── */
+[data-cat='smart-home']       { --cat: var(--accent-2); }
+[data-cat='home-assistant']   { --cat: var(--accent-2); }
+[data-cat='ai']               { --cat: var(--accent); }
+[data-cat='prompt-engineering'] { --cat: var(--accent); }
+[data-cat='automation']       { --cat: var(--accent-3); }
+[data-cat='automatyzacja']    { --cat: var(--accent-3); }
+[data-cat='iot']              { --cat: var(--accent-2); }
+[data-cat='claude-chatgpt']   { --cat: var(--accent); }
+[data-cat='default']          { --cat: var(--fg-muted); }
+
+/* ─── Motion ─────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .rise {
+    animation: rise 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .fade {
+    animation: fade 800ms ease both;
+  }
+}
+
+/* ─── Print ──────────────────────────────────────────────────────── */
+@media print {
+  body::before,
+  .reading-progress,
+  nav,
+  footer { display: none !important; }
 }

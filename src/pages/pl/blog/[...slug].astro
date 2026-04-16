@@ -7,17 +7,15 @@ export async function getStaticPaths() {
   const plPosts = allPosts.filter((post) => post.data.lang === 'pl');
 
   return plPosts.map((post) => {
-    // Glob loader id is e.g. "pl/home-assistant-2026"
-    // Strip the locale prefix to get the URL slug
     const slug = post.id.replace(/^[a-z]{2}\//, '');
     return {
       params: { slug },
-      props: { post },
+      props: { post, slug },
     };
   });
 }
 
-const { post } = Astro.props;
+const { post, slug } = Astro.props;
 const { Content } = await render(post);
 ---
 
@@ -28,6 +26,7 @@ const { Content } = await render(post);
   readingTime={post.data.readingTime}
   tags={post.data.tags}
   locale="pl"
+  slug={slug}
 >
   <Content />
 </BlogPost>
