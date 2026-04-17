@@ -92,6 +92,16 @@ const copiedLabel = locale === 'pl' ? 'Skopiowano' : 'Copied';
   </article>
 
   <script>
+    function shortenTocLabel(text: string): string {
+      const lvl = text.match(/^Poziom\s+(\d+)\s*[—–-]\s*(.+)$/i)
+        ?? text.match(/^Level\s+(\d+)\s*[—–-]\s*(.+)$/i);
+      if (lvl) return `${lvl[1]} · ${lvl[2]}`;
+      const phase = text.match(/^Faza\s+[\d\s–-]+:\s*(.+)$/i)
+        ?? text.match(/^Phase\s+[\d\s–-]+:\s*(.+)$/i);
+      if (phase) return phase[1];
+      return text;
+    }
+
     function buildTOC() {
       const content = document.getElementById('post-content');
       const list = document.getElementById('toc-list');
@@ -104,7 +114,6 @@ const copiedLabel = locale === 'pl' ? 'Skopiowano' : 'Copied';
         return;
       }
 
-      list.innerHTML = '';
       headings.forEach((h) => {
         if (!h.id) {
           h.id = h.textContent
@@ -114,34 +123,90 @@ const copiedLabel = locale === 'pl' ? 'Skopiowano' : 'Copied';
             .replace(/[^a-z0-9]+/g, '-')
             .replace(/^-+|-+$/g, '') ?? '';
         }
+      });
+
+      while (list.firstChild) list.removeChild(list.firstChild);
+      let currentSub: HTMLOListElement | null = null;
+
+      headings.forEach((h) => {
         const li = document.createElement('li');
         li.className = 'toc-' + h.tagName.toLowerCase();
         const a = document.createElement('a');
         a.href = '#' + h.id;
-        a.textContent = h.textContent;
+        a.textContent = shortenTocLabel(h.textContent ?? '');
         li.appendChild(a);
-        list.appendChild(li);
+
+        if (h.tagName === 'H2') {
+          list.appendChild(li);
+          const sub = document.createElement('ol');
+          sub.className = 'toc-sub';
+          li.appendChild(sub);
+          currentSub = sub;
+        } else if (h.tagName === 'H3' && currentSub) {
+          currentSub.appendChild(li);
+        } else {
+          list.appendChild(li);
+        }
       });
 
-      // Highlight active heading on scroll
+      // Highlight active heading on scroll + expand parent group
       const links = list.querySelectorAll<HTMLAnchorElement>('a');
       const byId = new Map<string, HTMLAnchorElement>();
       links.forEach((a) => byId.set(a.getAttribute('href')!.slice(1), a));
+      const subs = list.querySelectorAll<HTMLOListElement>('.toc-sub');
       const io = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
             const id = (entry.target as HTMLElement).id;
             const link = byId.get(id);
             if (!link) return;
-            if (entry.isIntersecting) {
-              links.forEach((l) => l.classList.remove('is-active'));
-              link.classList.add('is-active');
+            links.forEach((l) => l.classList.remove('is-active'));
+            link.classList.add('is-active');
+
+            subs.forEach((s) => s.classList.remove('is-expanded'));
+            const parentGroup = link.closest('li.toc-h2') as HTMLLIElement | null;
+            if (parentGroup) {
+              parentGroup.querySelector<HTMLOListElement>('.toc-sub')?.classList.add('is-expanded');
+            } else {
+              link.closest<HTMLOListElement>('.toc-sub')?.classList.add('is-expanded');
             }
           });
         },
         { rootMargin: '-20% 0px -60% 0px', threshold: 0 },
       );
       headings.forEach((h) => io.observe(h));
+    }
+
+    function wrapTables() {
+      const content = document.getElementById('post-content');
+      if (!content) return;
+      content.querySelectorAll<HTMLTableElement>('table').forEach((table) => {
+        if (table.parentElement?.classList.contains('table-wrap')) return;
+        const wrap = document.createElement('div');
+        wrap.className = 'table-wrap';
+        table.parentNode?.insertBefore(wrap, table);
+        wrap.appendChild(table);
+
+        // Merge consecutive duplicates in the first column
+        const tbody = table.tBodies[0];
+        if (!tbody) return;
+        let prev = '';
+        let prevCell: HTMLTableCellElement | null = null;
+        Array.from(tbody.rows).forEach((row) => {
+          const cell = row.cells[0];
+          if (!cell) return;
+          const txt = cell.textContent?.trim() ?? '';
+          if (txt && txt === prev) {
+            cell.classList.add('is-duplicate');
+            row.classList.add('is-continuation');
+            prevCell?.classList.add('is-group-head');
+          } else {
+            prevCell = cell;
+          }
+          prev = txt;
+        });
+      });
     }
 
     function addCopyButtons() {
@@ -176,6 +241,7 @@ const copiedLabel = locale === 'pl' ? 'Skopiowano' : 'Copied';
     function init() {
       buildTOC();
       addCopyButtons();
+      wrapTables();
     }
     init();
     document.addEventListener('astro:page-load', init);
@@ -284,7 +350,7 @@ const copiedLabel = locale === 'pl' ? 'Skopiowano' : 'Copied';
     font-size: 12px;
   }
   .toc li a:hover { color: var(--fg); }
-  .toc li.toc-h3 a { padding-left: 26px; color: var(--fg-subtle); }
+  .toc li.toc-h3 a { padding-left: 26px; color: var(--fg-subtle); font-size: 11.5px; }
   .toc li a.is-active {
     color: var(--fg);
     border-left-color: var(--card-accent);
@@ -487,5 +553,101 @@ const copiedLabel = locale === 'pl' ? 'Skopiowano' : 'Copied';
   .post-content img {
     border-radius: 10px;
     border: 1px solid var(--border-soft);
+  }
+
+  /* TOC — nested groups (JS-created, needs global scope) */
+  .toc ol#toc-list { list-style: none; padding: 0; margin: 0; }
+  .toc .toc-sub {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 320ms ease, opacity 200ms ease;
+  }
+  .toc .toc-sub.is-expanded {
+    max-height: 600px;
+    opacity: 1;
+  }
+  .toc li.toc-h2 > a {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 10.5px;
+    color: var(--fg-subtle);
+    font-weight: 600;
+    margin-top: 10px;
+  }
+  .toc li.toc-h2:first-child > a { margin-top: 0; }
+  .toc li.toc-h2 > a.is-active { color: var(--fg); }
+  .toc li.toc-h3 { list-style: none; }
+
+  /* Tables */
+  .post-content .table-wrap {
+    margin: 2em 0;
+    overflow-x: auto;
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    background: var(--bg-elev);
+    -webkit-overflow-scrolling: touch;
+  }
+  .post-content table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    line-height: 1.5;
+    min-width: 520px;
+  }
+  .post-content thead {
+    background: color-mix(in oklab, var(--accent) 7%, transparent);
+  }
+  .post-content th {
+    text-align: left;
+    padding: 12px 16px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--fg-subtle);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .post-content td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-soft);
+    vertical-align: top;
+    color: var(--fg);
+  }
+  .post-content tbody tr:last-child td { border-bottom: none; }
+  .post-content tbody tr.is-continuation td { border-top: none; }
+  .post-content tbody tr.is-continuation td:first-child {
+    border-top: none;
+  }
+  .post-content tbody tr:hover {
+    background: color-mix(in oklab, var(--accent) 5%, transparent);
+  }
+
+  /* First column = group/phase label */
+  .post-content td:first-child {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--fg-muted);
+    white-space: nowrap;
+    border-left: 2px solid transparent;
+    position: relative;
+  }
+  .post-content td.is-group-head:first-child {
+    border-left-color: var(--accent);
+  }
+  .post-content tbody tr.is-continuation td:first-child {
+    border-left: 2px solid var(--border-soft);
+  }
+  .post-content td.is-duplicate {
+    color: transparent !important;
+    user-select: none;
   }
 </style>
