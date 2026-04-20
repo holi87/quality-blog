@@ -1,7 +1,7 @@
 ---
 title: "Skala Holaka — rozbudowany model dojrzałości adopcji AI"
 description: "11 poziomów od oporu do orkiestracji — z diagnozą, anti-patternami i wymiarem organizacyjnym. Rozwinięcie autorskiego modelu dojrzałości AI."
-date: 2026-04-21
+date: 2026-04-21T00:00:00+02:00
 tags: ["ai", "adopcja", "zespoly", "strategia"]
 lang: pl
 readingTime: 12

@@ -1,7 +1,7 @@
 ---
 title: "The Holak Scale — An Expanded AI Adoption Maturity Model"
 description: "11 levels from resistance to orchestration — with self-diagnosis, anti-patterns, and the organisational dimension. An expansion of the original maturity model."
-date: 2026-04-21
+date: 2026-04-21T00:00:00+02:00
 tags: ["ai", "adoption", "teams", "strategy"]
 lang: en
 readingTime: 12
