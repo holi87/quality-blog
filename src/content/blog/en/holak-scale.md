@@ -30,21 +30,21 @@ These two often diverge. A single engineer may sit at level 9 while their compan
 
 | Phase | Level | Name | In one sentence |
 |-------|-------|------|-----------------|
-| Start | [0](#level-0) | Resistance | No contact with AI |
-| Start | [1](#level-1) | Basic chat | Question → answer |
-| Intentional use | [2](#level-2) | Intentional prompting | Input quality = output quality |
-| Intentional use | [3](#level-3) | Frameworks | CRISP, CoT, few-shot |
-| Intentional use | [4](#level-4) | Custom instructions | The model knows you without being reminded |
-| Context and knowledge | [5](#level-5) | Context files | README, AGENTS.md, claude.md |
-| Context and knowledge | [6](#level-6) | Advanced instructions | Rules for behaviour and boundaries |
-| Context and knowledge | [7](#level-7) | Skills and knowledge bases | Domain knowledge + capabilities |
-| Context and knowledge | [8](#level-8) | Tools and MCP | Integration with systems |
-| Autonomy | [9](#level-9) | Agentic workflow | Goal → autonomous execution |
-| Autonomy | [10](#level-10) | Orchestration | A team of agents + a coordinator |
+| Start | [0](#level-0) | [Resistance](#level-0) | No contact with AI |
+| Start | [1](#level-1) | [Basic chat](#level-1) | Question → answer |
+| Intentional use | [2](#level-2) | [Intentional prompting](#level-2) | Input quality = output quality |
+| Intentional use | [3](#level-3) | [Frameworks](#level-3) | CRISP, CoT, few-shot |
+| Intentional use | [4](#level-4) | [Custom instructions](#level-4) | The model knows you without being reminded |
+| Context and knowledge | [5](#level-5) | [Context files](#level-5) | README, AGENTS.md, claude.md |
+| Context and knowledge | [6](#level-6) | [Advanced instructions](#level-6) | Rules for behaviour and boundaries |
+| Context and knowledge | [7](#level-7) | [Skills and knowledge bases](#level-7) | Domain knowledge + capabilities |
+| Context and knowledge | [8](#level-8) | [Tools and MCP](#level-8) | Integration with systems |
+| Autonomy | [9](#level-9) | [Agentic workflow](#level-9) | Goal → autonomous execution |
+| Autonomy | [10](#level-10) | [Orchestration](#level-10) | A team of agents + a coordinator |
 
 ## Phase 0–1: Start
 
-### Level 0 {#level-0}
+### Level 0
 
 **Resistance / no adoption.** The user doesn't use AI — due to lack of knowledge, fear, ethical decision, or company policy. Often accompanied by anxiety about job loss or distrust of the technology.
 
@@ -52,7 +52,7 @@ These two often diverge. A single engineer may sit at level 9 while their compan
 - **Success:** an honest, informed decision (not avoidance).
 - **Trap:** rationalising resistance with technical arguments ("it hallucinates", "there's no compliance") instead of admitting the real issue is fear.
 
-### Level 1 {#level-1}
+### Level 1
 
 **Basic chat — question → answer.** First interaction. The user treats the model like a search engine: types a question, gets an answer, sometimes follows up.
 
@@ -66,7 +66,7 @@ These two often diverge. A single engineer may sit at level 9 while their compan
 
 ## Phase 2–4: Intentional use
 
-### Level 2 {#level-2}
+### Level 2
 
 **Intentional prompting — input quality drives output quality.** The user assigns a role ("you are a QA engineer, write tests"), provides context, sets constraints. Starts iterating instead of accepting the first answer.
 
@@ -74,7 +74,7 @@ These two often diverge. A single engineer may sit at level 9 while their compan
 - **Success:** prompts include role, goal, context, and output format — without a framework, from experience.
 - **Trap:** the belief that "just being precise is enough" — without systemisation, every prompt has to be reinvented.
 
-### Level 3 {#level-3}
+### Level 3
 
 **Frameworks and prompt engineering.** CRISP, chain-of-thought, few-shot learning, ReAct. Structured templates, repeatable processes, personal prompt libraries.
 
@@ -84,7 +84,7 @@ These two often diverge. A single engineer may sit at level 9 while their compan
 - **Success:** repeatable, high-quality results; the team shares a common prompting language.
 - **Trap:** prompt fetishism — prompts get longer and more baroque, instead of moving the repeated content into custom instructions.
 
-### Level 4 {#level-4}
+### Level 4
 
 **Custom instructions — the model knows you without being reminded.** Custom instructions, system prompts, per-project settings. You no longer repeat every session "I'm a tester, I write in English, I like concise answers".
 
@@ -98,7 +98,7 @@ These two often diverge. A single engineer may sit at level 9 while their compan
 
 ## Phase 5–8: Context and knowledge
 
-### Level 5 {#level-5}
+### Level 5
 
 **Context files — per-project context.** `README.md`, `AGENTS.md`, `CLAUDE.md`, `.cursorrules`. AI agents get files that describe the project: what we're building, how it's structured, which conventions apply. You run the agent in a directory — it already knows what to do.
 
@@ -106,7 +106,7 @@ These two often diverge. A single engineer may sit at level 9 while their compan
 - **Success:** a new team member (human or agent) is productive within an hour.
 - **Trap:** `CLAUDE.md` written once and never updated — it becomes mythology.
 
-### Level 6 {#level-6}
+### Level 6
 
 **Advanced instructions — behaviour, rules, and boundaries.** Not "what to do" but "how to behave": when to ask, when to act autonomously, how to report back, what to avoid. The difference between a README and a full role specification.
 
@@ -114,7 +114,7 @@ These two often diverge. A single engineer may sit at level 9 while their compan
 - **Success:** the agent operates in line with the team's culture without your presence.
 - **Trap:** rigid rules where a good example would work better — overfitting to one scenario.
 
-### Level 7 {#level-7}
+### Level 7
 
 **Skills and knowledge bases — specialised capabilities and domain knowledge.** Dedicated skills (generating reports, analysing logs, migrations), knowledge bases (documentation, standards, decision history). We don't reinvent the wheel — knowledge is organised.
 
@@ -122,7 +122,7 @@ These two often diverge. A single engineer may sit at level 9 while their compan
 - **Success:** the agent reaches for the right tool by itself, without hand-holding.
 - **Trap:** multiplying skills "just in case" — no one uses them and no one remembers they exist.
 
-### Level 8 {#level-8}
+### Level 8
 
 **Tools, MCP and connectors — integration with external systems.** The agent doesn't just write — it searches Slack, creates Jira tickets, reads emails, calls APIs, runs tests. MCP (Model Context Protocol) and connectors let it act in the world.
 
@@ -142,7 +142,7 @@ Crossing requires two things: **verifiability** (it's easy to check what the age
 
 ## Phase 9–10: Autonomy
 
-### Level 9 {#level-9}
+### Level 9
 
 **Agentic workflow — goal → autonomous planning and execution.** The agent gets a high-level goal and plans the steps itself. *"Prepare release notes from the latest commits"* — the agent checks the repo, analyses the changes, writes the notes, proposes a draft.
 
@@ -152,7 +152,7 @@ Crossing requires two things: **verifiability** (it's easy to check what the age
 - **Success:** you delegate goals, not tasks; the agent flags you when it gets stuck.
 - **Trap:** the illusion of autonomy — the agent *seems* to work alone, but in practice 60% of your time is spent fixing things that "almost worked".
 
-### Level 10 {#level-10}
+### Level 10
 
 **Multi-agent orchestration — a team of agents with a coordinator.** Multiple agents, each specialised: one analyses, another codes, a third reviews, a fourth writes tests. The orchestrator coordinates order, resolves conflicts, aggregates results.
 

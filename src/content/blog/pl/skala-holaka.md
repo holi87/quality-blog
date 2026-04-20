@@ -30,21 +30,21 @@ Te dwa wymiary często się rozjeżdżają. Pojedynczy inżynier bywa na poziomi
 
 | Faza | Poziom | Nazwa | Jednym zdaniem |
 |------|--------|-------|----------------|
-| Start | [0](#poziom-0) | Opór | Brak kontaktu z AI |
-| Start | [1](#poziom-1) | Podstawowy czat | Pytanie → odpowiedź |
-| Świadome użycie | [2](#poziom-2) | Świadome promptowanie | Jakość inputu = jakość outputu |
-| Świadome użycie | [3](#poziom-3) | Frameworki | CRISP, CoT, few-shot |
-| Świadome użycie | [4](#poziom-4) | Instrukcje niestandardowe | Model zna Cię bez przypominania |
-| Kontekst i wiedza | [5](#poziom-5) | Pliki kontekstowe | README, AGENTS.md, claude.md |
-| Kontekst i wiedza | [6](#poziom-6) | Zaawansowane instrukcje | Reguły zachowań i granic |
-| Kontekst i wiedza | [7](#poziom-7) | Skille i bazy wiedzy | Wiedza domenowa + umiejętności |
-| Kontekst i wiedza | [8](#poziom-8) | Narzędzia i MCP | Integracja z systemami |
-| Autonomia | [9](#poziom-9) | Agentowy workflow | Cel → autonomiczna realizacja |
-| Autonomia | [10](#poziom-10) | Orkiestracja | Zespół agentów + koordynator |
+| Start | [0](#poziom-0) | [Opór](#poziom-0) | Brak kontaktu z AI |
+| Start | [1](#poziom-1) | [Podstawowy czat](#poziom-1) | Pytanie → odpowiedź |
+| Świadome użycie | [2](#poziom-2) | [Świadome promptowanie](#poziom-2) | Jakość inputu = jakość outputu |
+| Świadome użycie | [3](#poziom-3) | [Frameworki](#poziom-3) | CRISP, CoT, few-shot |
+| Świadome użycie | [4](#poziom-4) | [Instrukcje niestandardowe](#poziom-4) | Model zna Cię bez przypominania |
+| Kontekst i wiedza | [5](#poziom-5) | [Pliki kontekstowe](#poziom-5) | README, AGENTS.md, claude.md |
+| Kontekst i wiedza | [6](#poziom-6) | [Zaawansowane instrukcje](#poziom-6) | Reguły zachowań i granic |
+| Kontekst i wiedza | [7](#poziom-7) | [Skille i bazy wiedzy](#poziom-7) | Wiedza domenowa + umiejętności |
+| Kontekst i wiedza | [8](#poziom-8) | [Narzędzia i MCP](#poziom-8) | Integracja z systemami |
+| Autonomia | [9](#poziom-9) | [Agentowy workflow](#poziom-9) | Cel → autonomiczna realizacja |
+| Autonomia | [10](#poziom-10) | [Orkiestracja](#poziom-10) | Zespół agentów + koordynator |
 
 ## Faza 0–1: Start
 
-### Poziom 0 {#poziom-0}
+### Poziom 0
 
 **Opór / brak adopcji.** Użytkownik nie korzysta z AI — z powodu braku wiedzy, obaw, decyzji etycznej lub niezgody firmowej. Często towarzyszy temu lęk przed utratą pracy albo nieufność wobec technologii.
 
@@ -52,7 +52,7 @@ Te dwa wymiary często się rozjeżdżają. Pojedynczy inżynier bywa na poziomi
 - **Sukces:** uczciwa, poinformowana decyzja (a nie unik).
 - **Pułapka:** racjonalizowanie oporu argumentami technicznymi („halucynuje", „nie ma compliance") zamiast przyznania, że problemem jest strach.
 
-### Poziom 1 {#poziom-1}
+### Poziom 1
 
 **Podstawowy czat — pytanie → odpowiedź.** Pierwsza interakcja. Użytkownik traktuje model jak wyszukiwarkę: wpisuje pytanie, dostaje odpowiedź, czasem doprecyzowuje.
 
@@ -66,7 +66,7 @@ Te dwa wymiary często się rozjeżdżają. Pojedynczy inżynier bywa na poziomi
 
 ## Faza 2–4: Świadome użycie
 
-### Poziom 2 {#poziom-2}
+### Poziom 2
 
 **Świadome promptowanie — jakość inputu wpływa na jakość outputu.** Użytkownik nadaje rolę („jesteś QA, napisz testy"), kontekst, ograniczenia. Zaczyna iterować zamiast akceptować pierwszą odpowiedź.
 
@@ -74,7 +74,7 @@ Te dwa wymiary często się rozjeżdżają. Pojedynczy inżynier bywa na poziomi
 - **Sukces:** prompty zawierają rolę, cel, kontekst, format wyjścia — bez frameworka, z doświadczenia.
 - **Pułapka:** przekonanie, że „wystarczy być precyzyjnym" — bez systematyzacji każdy prompt trzeba wymyślać od nowa.
 
-### Poziom 3 {#poziom-3}
+### Poziom 3
 
 **Frameworki i prompt engineering.** CRISP, chain-of-thought, few-shot learning, ReAct. Ustrukturyzowane szablony, powtarzalne procesy, własne biblioteki promptów.
 
@@ -84,7 +84,7 @@ Te dwa wymiary często się rozjeżdżają. Pojedynczy inżynier bywa na poziomi
 - **Sukces:** powtarzalne, wysokiej jakości wyniki; zespół ma wspólny język promptowania.
 - **Pułapka:** fetyszyzacja promptów — coraz dłuższe, coraz bardziej barokowe, zamiast przenieść powtarzającą się treść do instrukcji niestandardowych.
 
-### Poziom 4 {#poziom-4}
+### Poziom 4
 
 **Instrukcje niestandardowe — model zna Cię bez przypominania.** Custom instructions, system prompts, ustawienia per-projekt. Nie powtarzasz co sesję „jestem testerem, piszę po polsku, lubię zwięzłe odpowiedzi".
 
@@ -98,7 +98,7 @@ Te dwa wymiary często się rozjeżdżają. Pojedynczy inżynier bywa na poziomi
 
 ## Faza 5–8: Kontekst i wiedza
 
-### Poziom 5 {#poziom-5}
+### Poziom 5
 
 **Pliki kontekstowe — kontekst per-projekt.** `README.md`, `AGENTS.md`, `CLAUDE.md`, `.cursorrules`. Agenci AI otrzymują pliki opisujące projekt: co budujemy, jaka jest struktura, jakie konwencje. Uruchamiasz agenta w katalogu — on już wie, co robić.
 
@@ -106,7 +106,7 @@ Te dwa wymiary często się rozjeżdżają. Pojedynczy inżynier bywa na poziomi
 - **Sukces:** nowy członek zespołu (człowiek lub agent) jest produktywny w godzinę.
 - **Pułapka:** `CLAUDE.md` pisany raz i nigdy nieaktualizowany — staje się mitologią.
 
-### Poziom 6 {#poziom-6}
+### Poziom 6
 
 **Zaawansowane instrukcje — definicja zachowań, reguł i granic.** Nie „co robić", tylko „jak się zachowywać": kiedy pytać, kiedy działać autonomicznie, jak raportować, czego nie robić. Różnica między prostym README a pełną specyfikacją roli.
 
@@ -114,7 +114,7 @@ Te dwa wymiary często się rozjeżdżają. Pojedynczy inżynier bywa na poziomi
 - **Sukces:** agent działa zgodnie z kulturą zespołu bez Twojej obecności.
 - **Pułapka:** sztywne reguły w miejscach, gdzie lepiej działałby dobry przykład — overfitting do jednego scenariusza.
 
-### Poziom 7 {#poziom-7}
+### Poziom 7
 
 **Skille i bazy wiedzy — wyspecjalizowane umiejętności i wiedza domenowa.** Dedykowane skille (generowanie raportów, analiza logów, migracje), bazy wiedzy (dokumentacja, standardy, historia decyzji). Nie wymyślamy koła na nowo — wiedza jest zorganizowana.
 
@@ -122,7 +122,7 @@ Te dwa wymiary często się rozjeżdżają. Pojedynczy inżynier bywa na poziomi
 - **Sukces:** agent sięga po właściwe narzędzie sam, bez prowadzenia za rękę.
 - **Pułapka:** mnożenie skilli „na wszelki wypadek" — nikt ich nie używa i nikt nie pamięta, że istnieją.
 
-### Poziom 8 {#poziom-8}
+### Poziom 8
 
 **Narzędzia, MCP i konektory — integracja z zewnętrznymi systemami.** Agent nie tylko pisze — przeszukuje Slacka, tworzy zadania w Jira, czyta maile, odpytuje API, uruchamia testy. MCP (Model Context Protocol) i konektory pozwalają mu działać w świecie.
 
@@ -142,7 +142,7 @@ Przejście wymaga dwóch rzeczy: **sprawdzalności** (łatwo zweryfikować, co a
 
 ## Faza 9–10: Autonomia
 
-### Poziom 9 {#poziom-9}
+### Poziom 9
 
 **Agentowy workflow — cel → autonomiczne planowanie i realizacja.** Agent dostaje cel wysokopoziomowy i sam planuje kroki. *„Przygotuj release notes na podstawie ostatnich commitów"* — agent sprawdza repo, analizuje zmiany, pisze notatki, proponuje draft.
 
@@ -152,7 +152,7 @@ Przejście wymaga dwóch rzeczy: **sprawdzalności** (łatwo zweryfikować, co a
 - **Sukces:** delegujesz cele, nie zadania; agent zgłasza się sam, gdy utknie.
 - **Pułapka:** iluzja autonomii — agent *wydaje się* robić sam, ale w praktyce 60% Twojego czasu zjadają poprawki tego, co „prawie działa".
 
-### Poziom 10 {#poziom-10}
+### Poziom 10
 
 **Orkiestracja wieloagentowa — zespół agentów z koordynatorem.** Wielu agentów, każdy ze swoją specjalizacją: jeden analizuje, drugi koduje, trzeci robi review, czwarty pisze testy. Orkiestrator koordynuje kolejność, rozwiązuje konflikty, agreguje wyniki.
 
