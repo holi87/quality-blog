@@ -1,6 +1,6 @@
 ---
 title: "10 workflowów AI, które realnie pomagają Test Architectowi"
-description: "Dziesięć konkretnych workflowów — od review strategii po decyzję „nie automatyzować" — które można wdrożyć w tygodniu i używać codziennie."
+description: "Dziesięć konkretnych workflowów — od review strategii po decyzję „nie automatyzować” — które można wdrożyć w tygodniu i używać codziennie."
 date: 2026-04-24
 tags: ["ai", "qa", "test-architect", "workflowy"]
 lang: pl
