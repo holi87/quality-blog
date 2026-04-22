@@ -1,108 +1,79 @@
 ---
 title: "Jak tester powinien oceniać output agenta"
-description: "Pięć wymiarów oceny outputu agenta plus checklista review, którą zrobisz w 15 minut, i pięć sytuacji, w których po prostu zawracasz."
-date: 2026-04-26
+description: "Pięć wymiarów oceny outputu agenta, checklista, którą przejdziesz w piętnaście minut, i sytuacje, w których po prostu zawracasz wynik bez długiej dyskusji."
+date: 2026-04-28
 tags: ["ai", "qa", "agenci", "review"]
 lang: pl
 readingTime: 9
 ---
 
-Gdy zespół zaczyna używać agentów AI na serio, szybko pojawia się nowe zadanie, którego wcześniej nie było: **weryfikacja tego, co agent wyprodukował**. Dla testera to dobra wiadomość, bo to w dużej mierze ta sama czynność, którą i tak robimy codziennie — krytyczne review outputu — ale z nowym rodzajem źródła i nowymi wzorcami błędów.
+Kiedy zespół zaczyna używać agentów AI na serio, pojawia się nowe zadanie, którego wcześniej nie było — weryfikacja tego, co agent wyprodukował. Dla testera to w gruncie rzeczy dobra wiadomość, bo krytyczne review outputu to czynność, którą i tak wykonujemy codziennie. Zmienia się tylko rodzaj źródła i wzorce błędów, które pod tym źródłem się kryją.
 
-W tym wpisie rozbiorę, jak podchodzić do oceny outputu agenta w sposób systematyczny. Na przykład: scenariusz testowy wygenerowany przez agenta, raport z analizy changeloga, propozycja checklisty release readiness, generowana dokumentacja API. Mechanizm jest podobny, zmienia się tylko konkret.
+W tym wpisie przedstawiam, jak podejść do tej oceny systematycznie. Materiał do przeglądu bywa różny: scenariusz testowy wygenerowany przez agenta, analiza changeloga, propozycja checklisty release readiness, wygenerowana dokumentacja API. Mechanizm oceny jest wspólny — zmienia się tylko konkret, który mamy przed sobą.
 
-Celem nie jest „łapać AI na kłamstwie". Celem jest mieć stabilny zestaw pytań, które zadajesz każdemu outputowi, zanim go puścisz dalej.
+Od razu zastrzeżenie, żeby uniknąć nieporozumień. Celem nie jest „przyłapać AI na kłamstwie". Celem jest mieć stały zestaw pytań, które zadajemy każdemu outputowi, zanim pójdzie dalej do zespołu, do klienta albo do repo.
 
 ## Pięć wymiarów oceny
 
-Proponuję pięć wymiarów. Każdy z nich odpowiada na inne pytanie i każdy wyłapuje inny rodzaj problemu.
+W praktyce sprawdzam pięć wymiarów. Każdy z nich odpowiada na inne pytanie i każdy łapie inną klasę problemu.
 
-### 1. Kompletność
+### Kompletność
 
-Pytanie: **czy output pokrywa wszystko, co miał pokryć?**
+Pierwszy wymiar to prosta kwestia: czy output pokrywa wszystko, co miał pokryć. Agent, który dostał prośbę o scenariusze testowe dla nowej funkcji kuponów, potrafi wygenerować osiem świetnych scenariuszy — i obok nich cztery ciche pominięcia. Braku nie zobaczymy, patrząc tylko na to, co napisał. Zobaczymy go, porównując z tym, co być powinno.
 
-Agent, który dostał prośbę o „scenariusze testowe dla nowej funkcji kuponów", może łatwo wygenerować 8 świetnych scenariuszy i 4 ciche pominięcia. Nie zobaczysz tego, patrząc tylko na to, co napisał — zobaczysz, porównując z tym, co być powinno.
+Z mojego doświadczenia sposób, który tu działa najlepiej, to zapisać listę obszarów jeszcze zanim zawołam agenta. Dla scenariuszy ta lista obejmuje happy path, główne ścieżki negatywne, przypadki brzegowe, błędy walidacji, interakcje z innymi modułami, zachowanie przy braku sieci i wymagania niefunkcjonalne. Kiedy wynik wraca, konfrontuję go pozycja po pozycji.
 
-Praktyczny sposób: zanim zawołasz agenta, zapisz **listę obszarów, które powinny się znaleźć** w outputcie. Kiedy dostaniesz wynik, konfrontuj pozycja-po-pozycji. Jeśli agenta prosisz o scenariusze, Twoja lista powinna obejmować: happy path, główne scenariusze negatywne, brzegowe, błędy walidacji, interakcja z innymi modułami, zachowanie przy braku sieci, wymagania niefunkcjonalne.
+Warto mieć świadomość jednego typowego biasu — agenci nagminnie kierują się w stronę pozytywnych ścieżek. Jeśli jawnie nie poprosimy o klasę błędów, prawie zawsze zostanie pominięta.
 
-Typowy symptom problemu: agent ma bias w stronę **pozytywnych ścieżek**. Prawie zawsze pominie klasę błędów, jeśli tego jawnie nie poprosisz.
+### Poprawność faktyczna
 
-### 2. Poprawność faktyczna
+Wymiar najbardziej oczywisty, a w praktyce paradoksalnie najczęściej zaniedbywany podczas review. Mechanizm jest prosty: output brzmi wiarygodnie, więc przestajemy kwestionować detale.
 
-Pytanie: **czy to, co agent twierdzi, jest prawdą?**
+Trzy podejścia, które u mnie się sprawdzają. Pierwsze — krzyżowa weryfikacja z kodem. Jeśli agent opisuje zachowanie funkcji, trzy losowo wybrane stwierdzenia porównane z implementacją dają wystarczającą podstawę, żeby zaufać reszcie. Drugie — porównanie ze specyfikacją albo dokumentacją, szczególnie kiedy agent odwołuje się do wymagań. Dobre narzędzia cytują; jeśli nie cytują, trzymam rękę na pulsie. Trzecie — test samodzielności stwierdzenia. Wybieram jedno zdanie z outputu i proszę agenta o źródło albo rekonstrukcję uzasadnienia. Brak dobrej odpowiedzi to sygnał, że reszta też wymaga dokładniejszej weryfikacji.
 
-Najbardziej oczywisty wymiar i najłatwiejszy do obrony, ale w praktyce najczęściej ignorowany przy review, bo output wygląda wiarygodnie.
+Najbardziej niebezpieczna jest kategoria błędów, którą nazywam „precyzyjne, lecz fałszywe". Stwierdzenie w stylu „endpoint `/api/v2/discounts` akceptuje pole `max_uses`" brzmi konkretnie i autorytatywnie, bywa jednak zmyślone. Im bardziej szczegółowy detal techniczny, tym ostrożniej go przyjmuję.
 
-Sposoby weryfikacji, które działają:
+### Zgodność z domeną
 
-- **Cross-check z kodem**. Jeśli agent opisuje zachowanie funkcji, zerknij w kod. Trzy losowe stwierdzenia są wystarczające na zaufanie do reszty.
-- **Cross-check ze specyfikacją**. Jeśli agent odnosi się do wymagań, sprawdź czy cytuje realne fragmenty. Dobre narzędzia cytują. Jeśli nie cytują — podejrzewaj.
-- **Test samodzielności stwierdzeń**. Weź jedno twierdzenie z outputu i zapytaj „skąd to wiesz?". Jeśli agent nie potrafi wskazać źródła ani zrekonstruować uzasadnienia, to sygnał.
+Trzeci wymiar to pytanie o konwencje naszego projektu, zespołu i produktu. Agenci masowo to lekceważą, bo zwyczajnie ich nie znają. Tej wiedzy nie ma w treningu — chyba że jawnie ją dostarczymy przez `AGENTS.md`, dokumentację albo przykłady.
 
-Najniebezpieczniejszy wariant błędu faktycznego to **precyzyjne, lecz fałszywe**. „Endpoint `/api/v2/discounts` akceptuje pole `max_uses`" — brzmi konkretnie, bywa zmyślone.
+W praktyce sprawdzam cztery rzeczy. Nazewnictwo — czy scenariusz jest nazwany zgodnie z naszą konwencją, na przykład `should ... when ...` zamiast opisowego zdania. Selektory i identyfikatory — czy agent użył `data-testid` zamiast klas CSS, jeśli takie mamy ustalenie. Terminologię produktową, zwłaszcza tam, gdzie rozróżnienie ma znaczenie biznesowe („user" vs „customer" vs „merchant"). Strukturalne konwencje — gdzie plik żyje, jaki ma nagłówek, jakie importy.
 
-### 3. Zgodność z domeną
+Pominięcie tego wymiaru prowadzi do outputu, który jest faktycznie poprawny, ale nie pasuje do zespołu. Na review wróci, nawet jeśli wszystko inne jest w porządku.
 
-Pytanie: **czy output trzyma się konwencji Twojego projektu, zespołu, produktu?**
+### Traceability do źródeł
 
-To jest wymiar, który agenci masowo lekceważą, bo go nie znają. Nie ma takiego wymiaru w ich trainingu — chyba że jawnie go dostarczysz przez `AGENTS.md`, dokumentację, przykłady.
+Czwarty wymiar jest krytyczny dla wszystkiego, co agent generuje na podstawie evidence — analizy logów, historii bugów, dokumentacji. Bez traceability reviewer nie ma szans zweryfikować poprawności.
 
-Konkrety, które sprawdzam:
+Dobry output wskazuje konkretne źródła: identyfikator ticketu, numer loga, ścieżkę do pliku, hash commita. Linki są klikalne przez człowieka. Tam, gdzie wersja albo data ma znaczenie — są podane wprost. Zły output operuje na frazach typu „nasze logi pokazują…" bez wskazania, które; „w dokumentacji jest napisane…" bez referencji; „w ostatnich commitach…" bez hashów.
 
-- **Nazewnictwo** — czy scenariusz nazwany jest zgodnie z waszą konwencją (`should ... when ...` vs opisowe zdania).
-- **Selektory / identyfikatory** — czy użyte są `data-testid`, a nie klasy CSS, jeśli tak macie.
-- **Terminologia** — czy używa Waszej, czy podstawił ogólne („user" vs „customer" vs „merchant", jeśli to znaczące).
-- **Strukturalne konwencje** — gdzie żyje plik, jaką ma nagłówek, jakie importy.
+Brzmi to surowo, bo takie jest. Bez traceability nie odróżnimy wniosku ze źródła od halucynacji, a ta różnica kosztuje w QA wyraźnie więcej niż dodatkowe piętnaście sekund poświęcone na dopisanie citation.
 
-Bez tego wymiaru output może być faktycznie poprawny, ale nie pasować do zespołu. Na review wróci, nawet jeśli wszystko inne jest OK.
+### Ryzyko „ładnej bzdury"
 
-### 4. Traceability do źródeł
+Ostatni wymiar jest meta-wymiarem — dotyczy samoświadomości reviewera. Dobrze sformułowany, równo ustrukturyzowany, stylistycznie spójny tekst tworzy iluzję poprawności. Po dwóch godzinach review tester zaczyna ufać formie, a nie treści. To jest moment, w którym jakość oceny zaczyna cicho spadać.
 
-Pytanie: **czy da się zweryfikować, skąd wzięło się każde stwierdzenie?**
+Antidotum jest nudne, ale działa: wybieram losowe fragmenty i sprawdzam je bardzo agresywnie. Jeśli losowy fragment przechodzi trzy głębokie kontrole, pozostałej części można zaufać. Jeśli pęka — reszta wymaga głębszej weryfikacji, a nie powierzchownej akceptacji.
 
-To wymiar krytyczny dla wszystkiego, co agent generuje na podstawie evidence (analizy logów, historii bugów, dokumentacji). Bez traceability Ty jako reviewer nie masz żadnej szansy zweryfikować poprawności.
+Drugi mechanizm to proste liczenie. Ile razy w swoim review powiedziałem „wygląda sensownie"? Jeśli więcej niż dwa razy na jeden output, robię review formy, nie treści, i muszę się zatrzymać.
 
-Dobry output ma:
+## Checklista review w wersji praktycznej
 
-- **cytaty wskazujące na konkretny ticket / log / plik**,
-- **linki lub identyfikatory** klikalne przez człowieka,
-- **datę / wersję** źródła, jeśli to ma znaczenie.
-
-Zły output ma:
-
-- stwierdzenia typu „nasze logi pokazują, że…" bez wskazania konkretnego loga,
-- „w dokumentacji jest napisane…" bez referencji,
-- „w ostatnich commitach…" bez hashów.
-
-Jeśli to brzmi surowo, to dlatego że jest. Bez traceability nie odróżnisz wniosku ze źródła od halucynacji, a koszt tej różnicy w QA jest wysoki.
-
-### 5. Ryzyko „ładnej bzdury"
-
-Pytanie: **czy to, że output wygląda świetnie, nie jest jedynym powodem, dla którego go akceptujesz?**
-
-To jest metawymiar. Chodzi o samoświadomość reviewera. Dobrze sformułowany, ładnie ustrukturyzowany, spójny w stylu tekst tworzy iluzję poprawności. Tester po dwóch godzinach review zaczyna ufać formie.
-
-Antidotum: wybierz losowe fragmenty i bardzo agresywnie je sprawdź. Jeśli losowy fragment przechodzi trzy głębokie kontrole, reszta prawdopodobnie też przejdzie. Jeśli pęka — reszta wymaga głębszej weryfikacji, a nie powierzchownej akceptacji.
-
-Drugi mechanizm: policz, ile razy w swoim review powiedziałeś „wygląda sensownie". Jeśli więcej niż dwa razy w jednym outputcie — robisz review formy, nie treści.
-
-## Checklista review — wersja praktyczna
-
-Składając to razem, ustrukturyzowana checklista, którą zapisuję sobie jako szablon:
+Te pięć wymiarów składa się w piętnastopunktową listę, którą trzymam jako szablon.
 
 **Kompletność**
-- [ ] Output pokrywa wszystkie obszary z mojej wcześniejszej listy.
-- [ ] Brak oczywistych klas scenariuszy/wątków, które powinny się pojawić.
-- [ ] Zakres (scope) odpowiada temu, o co prosiłem.
+- [ ] Output pokrywa wszystkie obszary z listy przygotowanej przed wywołaniem agenta.
+- [ ] Brak oczywistych klas scenariuszy lub wątków, które powinny się pojawić.
+- [ ] Zakres odpowiada temu, o co prosiłem.
 
 **Poprawność**
-- [ ] Losowe sprawdzenie 3 stwierdzeń wobec kodu/specyfikacji.
-- [ ] Brak detalicznych, ale niedowodliwych faktów (np. nazwy endpointów, pól, stałych).
-- [ ] Wartości liczbowe, jeśli są, mają źródło.
+- [ ] Wyrywkowa weryfikacja trzech stwierdzeń wobec kodu lub specyfikacji.
+- [ ] Brak detalicznych, ale niedowodliwych faktów (nazwy endpointów, pól, stałych).
+- [ ] Wartości liczbowe, jeśli się pojawiają, mają źródło.
 
 **Zgodność z domeną**
-- [ ] Nazewnictwo zgodne z konwencjami.
-- [ ] Selektory / typy / struktura pliku zgodne z repo.
+- [ ] Nazewnictwo zgodne z konwencjami projektu.
+- [ ] Selektory i struktura plików zgodne z repo.
 - [ ] Terminologia produktowa spójna.
 
 **Traceability**
@@ -111,49 +82,40 @@ Składając to razem, ustrukturyzowana checklista, którą zapisuję sobie jako 
 - [ ] Brak stwierdzeń „nasze dane pokazują…" bez linku.
 
 **Ładna bzdura**
-- [ ] Forma nie przykryła mi braków treści — zrobiłem random sample.
-- [ ] Nie akceptowałem niczego „bo wygląda sensownie".
+- [ ] Forma nie przykryła braków treści — zrobiłem random sample.
+- [ ] Nie zaakceptowałem niczego „bo wygląda sensownie".
 - [ ] Trzy najbardziej precyzyjne stwierdzenia zweryfikowałem ręcznie.
 
-Piętnaście punktów. Piętnaście minut, jeśli robisz to regularnie.
+Piętnaście punktów i piętnaście minut, jeśli robi się to regularnie. Pierwsze przejścia są dłuższe, bo trzeba się nauczyć, gdzie typowo pęka output.
 
-## Kiedy wynik odrzucać bez dyskusji
+## Sytuacje, w których odrzucam bez dyskusji
 
-Są sytuacje, w których nie marnuję czasu na dokładne review, tylko wracam do agenta po nowy output. Traktuję je jak czerwone flagi:
+Są przypadki, w których nie marnuję czasu na dokładny przegląd, tylko wracam do agenta po nowy wynik. Traktuję je jako czerwone flagi.
 
-**1. Brak źródeł przy twierdzeniach o evidence.**
-Output w stylu „w ostatnim miesiącu mieliśmy flaky testy w obszarze X" bez wskazania, które konkretnie. Reject.
+**Brak źródeł przy stwierdzeniach o evidence.** Output w stylu „w ostatnim miesiącu mieliśmy flaky testy w obszarze X", bez wskazania, które konkretnie. Nie ma o czym dyskutować — zawracam i proszę o konkret.
 
-**2. Zmyślone nazwy API / pól / plików.**
-Wystarczy jedno takie wskazanie, żeby zakwestionować cały output. Reject i generuj od nowa z wyraźnym wymogiem cytowania.
+**Zmyślone nazwy API, pól albo plików.** Wystarczy jedno takie wskazanie, żeby cały output stał się podejrzany. Zawracam i generuję od nowa z jawnym wymogiem cytowania.
 
-**3. Wewnętrzne sprzeczności.**
-„Test powinien weryfikować, że kupon jest jednorazowy" — i trzy linie niżej „…po wielokrotnym użyciu kupon nadal działa". Obie linie mogą być z życia, ale agent nie zauważył konfliktu. Reject.
+**Wewnętrzne sprzeczności.** „Test powinien weryfikować, że kupon jest jednorazowy" — i trzy linie niżej „…po wielokrotnym użyciu kupon nadal działa". Obie linie mogą mieć sens osobno, ale agent nie zauważył konfliktu. Zawracam.
 
-**4. Niezgodność z jawnymi instrukcjami.**
-Prosiłeś o scenariusze w konwencji BDD, dostałeś listę kroków imperatywnych. Nie poprawiaj ręcznie — zawracaj. Inaczej agent nie nauczy się, że się z tego nie wywija.
+**Niezgodność z jawnymi instrukcjami.** Prosiłem o scenariusze w konwencji BDD, dostałem listę kroków imperatywnych. Nie poprawiam ręcznie — zawracam. Inaczej agent nie uczy się, że z instrukcji się nie wywinie.
 
-**5. Output zbyt ogólny.**
-„System powinien być niezawodny" — kiedy prosiłeś o konkretne scenariusze. Reject z prośbą o konkretność.
+**Output zbyt ogólny.** „System powinien być niezawodny" w miejscu, w którym pytałem o konkretne scenariusze. Zawracam z prośbą o konkretność.
 
-W każdym z tych przypadków koszt zawrócenia (30 sekund promptu) jest niższy niż koszt ręcznego poprawiania (30 minut). Zawracanie jest pro-quality.
+Reguła ekonomiczna jest prosta: koszt zawrócenia to zwykle trzydzieści sekund promptu, koszt ręcznej poprawki — trzydzieści minut pracy. Zawracanie jest pro-quality.
 
-## Skalowanie review — co dalej
+## Skalowanie review w większym zespole
 
-W większych zespołach review agenta samemu przestaje skalować. Dwie praktyki, które działają:
+W pewnym momencie samodzielne review agenta przestaje skalować — wyników jest za dużo, a testerzy mają też inne zadania. Dwie praktyki, które mi się sprawdziły.
 
-**Review AI przez AI (jako pre-filtr).** Drugi model sprawdza output wobec powyższej checklisty i flaguje, co wymaga ludzkiej uwagi. To nie eliminuje ludzkiego review — eliminuje część rutynowej pracy. Jeśli pre-filtr mówi „całość wygląda spójnie, ale trzy stwierdzenia o evidence nie mają citationu" — człowiek wie, gdzie zacząć.
+Pierwsza to **AI reviewing AI jako pre-filtr**. Drugi model sprawdza output wobec tej samej checklisty i flaguje fragmenty wymagające ludzkiej uwagi. Nie eliminuje to ludzkiego review — eliminuje rutynową część. Kiedy pre-filtr mówi „całość wygląda spójnie, ale trzy stwierdzenia o evidence nie mają citationu", człowiek wie, gdzie zacząć.
 
-**Regresja własnych uwag.** Zbieraj notatki z review: „za trzecim razem dodałem uwagę o brakującym citation", „znowu zmyślone pole API". Po kilku tygodniach masz mapę słabości agenta. Część z nich trafi do system prompta jako instrukcje, część do `AGENTS.md`, część zostanie na stałe w Twojej checklicie.
+Druga to **regresja własnych uwag**. Prowadzę prostą notatkę po review: „trzeci raz dodałem uwagę o brakującym citation", „znowu zmyślone pole API", „znowu scenariusz pozytywny bez negatywnej wersji". Po kilku tygodniach mam mapę słabości konkretnego agenta albo konkretnego promptu. Część z tych obserwacji trafia do system prompta jako instrukcja, część do `AGENTS.md`, część zostaje na stałe w checklicie.
 
-Jakość oceny outputu agenta rośnie razem z dojrzałością procesu. Pierwsze review bywają długie. Dziesiąte są szybkie, bo wiesz, gdzie zwykle coś pęka.
+Jakość oceny outputu agenta rośnie razem z dojrzałością procesu. Pierwsze review bywają długie i wymagają skupienia. Dziesiąte są szybkie, bo wiadomo, gdzie zwykle coś pęka i gdzie nie ma co tracić czasu na nadmierną weryfikację.
 
-## Warto pamiętać
+## Na koniec
 
-- Pięć wymiarów oceny: kompletność, poprawność faktyczna, zgodność z domeną, traceability, ryzyko „ładnej bzdury".
-- Każdy wymiar sprawdza inny typ błędu. Pominięcie któregoś to stały wyciek jakości.
-- Piętnastopunktowa checklista mieści się w 15 minutach review.
-- Pięć sytuacji, w których output odrzucasz bez dyskusji i zawracasz. Zawracanie jest tanie.
-- Skalowanie: AI-pre-filtr + regresja własnych uwag do system prompta i `AGENTS.md`.
+Pięć wymiarów oceny to kompletność, poprawność faktyczna, zgodność z domeną, traceability i ryzyko „ładnej bzdury". Każdy z nich łapie inny typ błędu, a pominięcie któregoś zostawia stały wyciek jakości. Piętnastopunktowa checklista mieści się w kwadransie review. Pięć sytuacji, w których zawracam bez dyskusji, pozwala oszczędzić sobie ręcznej poprawki. Skalowanie zapewniają pre-filtr AI i systematyczna regresja własnych obserwacji do system prompta i `AGENTS.md`.
 
-W kolejnym wpisie inny wątek — jak wpis taki jak ten zamienić w 30–45 sekundowy video explainer, który osadzasz pod artykułem i reużywasz w social i szkoleniu.
+W kolejnym wpisie — inny wątek: jak artykuł tego typu zamienić w trzydziestosekundowy video explainer, który osadzamy pod tekstem i reużywamy w social oraz szkoleniach.

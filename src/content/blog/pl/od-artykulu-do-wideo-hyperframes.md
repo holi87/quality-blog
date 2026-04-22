@@ -1,146 +1,110 @@
 ---
 title: "Od artykułu do wideo: HyperFrames dla quality-blog.eu"
-description: "Kiedy wpis zasługuje na 30–45 sekundowe video explainery, jak zbudować scenariusz, i jak ten sam materiał reużywać w pięciu kanałach."
-date: 2026-04-27
+description: "Kiedy wpis zasługuje na trzydziestosekundowy video explainer, jak zbudować jego scenariusz i jak ten sam materiał reużyć w pięciu kanałach jednocześnie."
+date: 2026-04-29
 tags: ["ai", "content", "wideo", "hyperframes"]
 lang: pl
 readingTime: 9
 ---
 
-Dobre techniczne wpisy na blogu mają jeden problem: ludzie nie czytają ich w pełnym wymiarze. Czytają 30 sekund, odbijają się od monitora, wracają za tydzień. I to nie dlatego że są leniwi — po prostu ich uwaga w LinkedIn feedzie rzadko ma rezerwę na 1500 słów.
+Dobrze napisane techniczne wpisy mają jeden kłopotliwy dla autora problem: czytelnicy rzadko czytają je w całości. Trzydzieści sekund uwagi, odbicie, powrót za tydzień — to statystyka, z którą trzeba się pogodzić. Nie wynika z lenistwa. Wynika z tego, że uwaga w feedzie LinkedIna albo w porannej kawie rzadko ma rezerwę na tysiąc pięćset słów.
 
-Tu wchodzi format, który nazywamy HyperFrames: **30–45 sekundowe wideo explainery**, osadzone na blogu razem z pełnym artykułem, dystrybuowane też w social i reużywane w szkoleniach. Nie jako zamiennik tekstu, tylko jako jego „trailer" — pierwsza warstwa, po której czytelnik decyduje, czy wchodzić głębiej.
+W moim obiegu publikacji dokłada się do tekstu drugi format, który nazywam HyperFrames: trzydziesto- i czterdziestopięciosekundowe wideo explainery, osadzane na blogu razem z pełnym artykułem, dystrybuowane dalej w social i reużywane w szkoleniach. Nie zastępują tekstu. Są jego „trailerem" — pierwszą warstwą, po której czytelnik decyduje, czy wchodzić głębiej.
 
-W tym wpisie: kiedy warto przerabiać wpis na video, jak zbudować scenariusz, które wizualizacje działają na tematy QA/tech, jak to embedować i jak ten sam materiał reużywać w social i w szkoleniu.
+W tym wpisie opisuję, kiedy warto przerabiać tekst na video, jak zbudować scenariusz, które wizualizacje stabilnie działają w tematach QA i technicznych, jak zrobić sensowny embedding na blogu oraz jak ten sam materiał reużywać w kilku kanałach naraz.
 
-## Kiedy wpis warto zamienić na video explainer
+## Kiedy wpis zasługuje na video
 
-Nie każdy. Mam trzy filtry, które stosuję:
+Nie każdy wpis się do tego nadaje. W praktyce stosuję trzy filtry.
 
-**1. Czy temat da się streścić w jednym zdaniu bez utraty istoty?**
-Jeśli tak — video może działać. „Jak pisać `AGENTS.md` dla repo testowego" — tak. „Pełna mapa pojęć skills/tools/agents/MCP" — raczej nie, za dużo kontekstu do video formatu; tu video może pokazać tylko **jedną** parę pojęć, a reszta zostaje w tekście.
+Pierwszy to pytanie, czy temat da się streścić w jednym zdaniu bez utraty istoty. Wpis „Jak pisać `AGENTS.md` dla repo testowego" — tak. „Pełna mapa pojęć skills / tools / agents / MCP" — raczej nie, bo kontekstu jest zbyt dużo na ten format. Z takich przekrojowych map video może wyciągnąć co najwyżej jedną parę pojęć, a reszta zostaje w tekście.
 
-**2. Czy temat ma element wizualny?**
-QA to często wizualne zadania — flowy, struktury katalogów, diagramy decyzyjne, zrzuty z raportów. Jeśli temat broni się tylko prozą, video będzie płaskie. Jeśli ma strukturę, flow, albo konkretną rzecz do pokazania — warto.
+Drugi filtr dotyczy elementu wizualnego. QA to dziedzina, w której sporo rzeczy da się pokazać — flow, struktury katalogów, diagramy decyzyjne, fragmenty raportów, porównania „przed i po". Jeśli temat broni się wyłącznie prozą, video wychodzi płaskie. Jeśli ma coś konkretnego do pokazania, zwykle warto.
 
-**3. Czy to jest temat przekrojowy, czy niszowa głębia?**
-Przekrojowy (szerokie audytorium, wprowadzenie, mapa) → tak, video dobrze go dystrybuuje.
-Niszowa głębia (dla osoby, która już temat rozumie) → raczej nie, audytorium jest za wąskie, koszt produkcji nie zwraca się.
+Trzeci filtr to zakres tematu. Wpis przekrojowy, z szerokim audytorium i charakterem wprowadzenia, dobrze się w tym formacie dystrybuuje. Niszowa głębia, adresowana do osoby, która temat już rozumie, jest dla video zbyt wąskim celem — koszt produkcji nie zwraca się z zasięgiem.
 
-Pięćdziesiąt procent moich wpisów przechodzi przez te filtry i dostaje video. Reszta zostaje czysto tekstem — i to jest OK. Nie wszystkie formy są dla każdego tematu.
+W praktyce około połowy moich wpisów przechodzi przez te filtry i dostaje video. Druga połowa zostaje czystym tekstem — i to jest w porządku. Nie każdy temat zasługuje na każdą formę.
 
-## Jak skrócić artykuł do 30–45 sekund
+## Jak skrócić artykuł do trzydziestu sekund
 
-To jest robota redaktorska, a nie techniczna. Docelowe tempo: **150–170 słów / minutę** w narracji spokojnym głosem. 30 sekund to 75–85 słów. 45 sekund to 110–125 słów.
+Tutaj zaczyna się praca redaktorska, nie techniczna. Narracja spokojnym głosem mieści się w tempie sto pięćdziesiąt do stu siedemdziesięciu słów na minutę. W przeliczeniu: trzydzieści sekund to siedemdziesiąt pięć do osiemdziesięciu pięciu słów, czterdzieści pięć sekund — sto dziesięć do stu dwudziestu pięciu. Zestawione z tysiącem pięciuset słów pełnego artykułu, to drastyczne ograniczenie.
 
-To jest mało. To jest drastycznie mało w porównaniu z 1500-słowowym wpisem. Żeby się zmieścić, trzeba zrobić trzy operacje:
+Żeby się w nim zmieścić, konieczne są trzy operacje. Trzeba znaleźć jedno zdanie, które mówi, o czym jest film — nie opis typu „wprowadzenie do tematu", tylko konkretne twierdzenie. Zamiast „wprowadzenie do tematu `AGENTS.md`" lepiej brzmi „jeśli używasz AI agenta w swoim repo testowym bez `AGENTS.md`, marnujesz jego czas i swój".
 
-**Operacja 1: Jedno zdanie, które mówi, o czym jest film.**
-Nie „wprowadzenie do tematu AGENTS.md". Raczej: „Jeśli używasz AI agenta w swoim repo testowym bez `AGENTS.md`, marnujesz jego czas i swój."
+Druga operacja: wybrać jedną rzecz, której widz ma się dowiedzieć. Nie trzy, nie dziesięć — jedna. Reszta zostaje w artykule. Próba zmieszczenia kilku punktów w trzydziestu sekundach kończy się tym, że żaden z nich nie zapada w pamięć.
 
-**Operacja 2: Jedna rzecz, której widz ma się dowiedzieć.**
-Nie dziesięć. Jedna. Reszta jest w artykule. Jeśli próbujesz zmieścić trzy rzeczy w 30 sekundach, żadna z nich nie utkwi.
+Trzecia operacja: jedno wezwanie do działania. „Przeczytaj pełny wpis, żeby zobaczyć szkielet pliku" albo „Zapisz ten prompt, odpal dziś po południu". Film bez następnego kroku jest jak dobrze napisany akapit, który urywa się w połowie zdania.
 
-**Operacja 3: Jedno wezwanie do działania.**
-„Przeczytaj pełny wpis, żeby zobaczyć szkielet pliku." Albo: „Zapisz ten prompt, odpal w swoim repo dziś po południu." Nie zostawiaj widza bez następnego kroku.
+## Struktura scenariusza
 
-## Struktura scenariusza: hook → problem → demo → takeaway
+Strukturalnie dzielę video na cztery fazy po siedem do dziesięciu sekund.
 
-Strukturę, która działa, najprościej rozbić na cztery fazy 7–10 sekund każda.
+**Hook (0–7 s)** to stwierdzenie, pytanie albo obserwacja, która zatrzymuje scrollowanie. Musi być konkretna i lekko prowokacyjna — „Dziś porozmawiamy o `AGENTS.md` w kontekście testowania" jest za słabe. „Twój AI agent dostaje repo testowe i przez pierwszą minutę zgaduje — to kosztuje cię pieniądze" działa lepiej.
 
-**Hook (0–7s).** Stwierdzenie, pytanie albo obserwacja, która zatrzymuje scrollowanie. Musi być konkretna i lekko prowokacyjna, nie banalna.
+**Problem (7–15 s)** uzasadnia hook. W miarę konkretnie odwołuje się do znanej frustracji — na przykład „przy każdym PR tłumaczysz agentowi, że używamy `data-testid`, a nie klas CSS". Widz musi rozpoznać w tym własną sytuację.
 
-Zły hook: „Dziś porozmawiamy o `AGENTS.md` w kontekście testowania."
-Dobry hook: „Twój AI agent dostaje repo testowe i przez pierwszą minutę zgaduje. To kosztuje Cię pieniądze."
+**Demo (15–30 s)** pokazuje konkret. Fragment pliku, diagram, szybkie porównanie „bez i z". To najważniejsza część wizualnie — na tym etapie widz decyduje, czy temat ma dla niego zastosowanie.
 
-**Problem (7–15s).** Dlaczego to, co właśnie powiedziałeś, jest realnym problemem. W miarę konkretnie, ideałem jest odwołanie do znanej frustracji („przy każdym PR tłumaczysz agentowi, że używamy `data-testid`, nie klas").
+**Takeaway (30–45 s)** zostawia jedną rzecz do zapamiętania plus jedno wezwanie do działania. „Struktura pliku: setup, komendy, konwencje, sekcja *nie rób tego*. Link do pełnego wpisu pod filmem".
 
-**Demo (15–30s).** Pokaż konkret. Zrzut pliku, diagram, szybkie porównanie „bez vs z". To najważniejsza część wizualnie — to tu widz decyduje, czy to ma dla niego zastosowanie.
+Każda z tych faz ma inne zadanie. Hook zatrzymuje. Problem uzasadnia. Demo przekonuje. Takeaway prowadzi dalej. Wyjęcie którejkolwiek rozbija całość.
 
-**Takeaway (30–45s).** Jedna rzecz do zapamiętania, jedno wezwanie do działania. „Struktura pliku — setup, komendy, konwencje, sekcja 'nie rób tego'. Link do pełnego wpisu pod filmem."
+## Wizualizacje, które działają w temacie QA
 
-Ta struktura ma powód. Hook zatrzymuje. Problem uzasadnia. Demo przekonuje. Takeaway prowadzi dalej. Jeśli wyjmiesz którąkolwiek fazę, video się rozjeżdża.
+W formacie trzydziestosekundowym widz nie ma czasu dekodować skomplikowanego obrazu. W praktyce sprawdzają mi się cztery-pięć typów wizualizacji.
 
-## Jakie wizualizacje działają dla QA/tech contentu
+Pierwszy to fragment pliku z wyróżnieniem konkretnej sekcji. `AGENTS.md` na ekranie, podświetlenie podążające za narracją. Widz widzi tekst, ale nie musi go czytać — oko podąża za tym, co jest wyróżnione. Dla tematów „struktury dokumentu" jeden z najsilniejszych formatów.
 
-Nie wszystkie wizualizacje są równe. W formacie 30–45 sekund widz nie ma czasu dekodować skomplikowanego obrazu. Kilka typów, które stabilnie działają:
+Drugi to porównanie „bez" i „z". Po lewej output agenta bez `AGENTS.md`, po prawej z plikiem. Różnica jest widoczna od razu, bez tłumaczenia — format w dużej mierze sprzedaje sam siebie.
 
-**Plik z wyróżnieniami.** Fragment `AGENTS.md` na ekranie, z podświetleniem sekcji, o której mówisz. Widz widzi tekst, ale nie musi go czytać — jego oko podąża za Twoimi podświetleniami. To jeden z najsilniejszych formatów dla tematów „struktury dokumentu".
+Trzeci to diagram decyzyjny budowany progresywnie. Gałąź pojawia się w miarę tego, co mówi narracja. Utrzymuje to tempo i sprawia, że widz śledzi logikę razem z filmem, zamiast próbować ogarnąć całość naraz.
 
-**Porównanie „bez vs z".** Lewa strona: output agenta bez `AGENTS.md`. Prawa: z plikiem. Widz widzi różnicę natychmiast. To format, który sprzedaje sam siebie.
+Czwarty to screen-recording realnego workflow. Prompt, klik, wynik. Kilkanaście sekund. Widz widzi, że to nie jest abstrakcja, tylko coś działającego w konkretnym narzędziu. Sprawdza się szczególnie dla prezentacji MCP, workflowów AI i review outputu agenta.
 
-**Diagram decyzyjny, ujawniany krok po kroku.** Nie rysuj wszystkiego naraz. Dodaj gałąź w miarę mówienia. To utrzymuje tempo i sprawia, że widz śledzi logikę razem z Tobą.
+Piąty to animowany diagram ról albo przepływu — kilka ikon (tester, agent, repo, MCP, evidence) ze strzałkami pokazującymi, co gdzie trafia. Działa dobrze dla tematów konceptualnych.
 
-**Screen-recording z realnego workflow.** Prompt, klik, wynik. Kilkanaście sekund. Widz widzi, że to działa w realnym narzędziu, nie jest abstrakcyjną ideą. Dobre do demonstracji MCP, workflowów AI, review agenta.
+Czego unikam: gadającej głowy pozbawionej ilustracji (nuda, widz ucieka), długich slajdów z tekstem (nikt nie zdąży przeczytać), efektów dla efektów (fade-in przy każdym kadrze rozprasza) oraz stockowego video z tematyką „techy" (wygląda przypadkowo i tanio).
 
-**Animowany diagram ról / przepływu.** Np. pięć ikon — tester, agent, repo, MCP, evidence — z animowanymi strzałkami pokazującymi, co gdzie idzie. Dobre dla tematów konceptualnych.
+Zasada praktyczna: jeśli widz zrobi losową pauzę, to, co zobaczy, powinno mieć sens samo w sobie. Każda klatka jest potencjalnym thumbnailem.
 
-Czego **nie** polecam:
+## Embed na blogu
 
-- Gadająca głowa sama. Nuda, odbija się.
-- Długie slajdy tekstowe. Widz nie zdąży przeczytać.
-- Efekty dla efektów (transitions, fade-in-fade-out między każdym kadrem). Rozprasza.
-- Stock video z „techy" motywami. Wygląda na tanie i przypadkowe.
+Technicznie osadzenie video jest proste, ale kilka rzeczy warto zrobić dobrze, żeby format w ogóle zadziałał.
 
-Reguła praktyczna: **jeśli widz w losowym momencie zrobi pauzę, to, co zobaczy, powinno mieć sens samo w sobie**. Każda klatka to potencjalny thumbnail.
+Video trafia nad fałdę, ale pod nagłówkiem i zdanie wstępu. Czytelnik od razu widzi, że ma opcję obejrzenia zamiast czytania — ale nie jest tym zasypany od pierwszej sekundy. Schowanie filmu w trzeciej połowie artykułu oznacza, że znajduje go tylko ktoś, kto już i tak doczytał do końca.
 
-## Embedding na blogu
+Autoplay z dźwiękiem odpada. Przeglądarki go blokują, a reszta użytkowników czuje się zaatakowana. Akceptowalne jest autoplay bez dźwięku (muted) z wyraźnym przyciskiem unmute. Najbezpieczniejszy wariant to click-to-play.
 
-Technicznie proste, ale warto zrobić kilka rzeczy dobrze:
+Napisy powinny być dostępne od razu. Dziewięćdziesiąt procent wyświetleń w social feedzie odbywa się bez dźwięku; na blogu również większość. Wypalone w film albo dostępne jako SRT — obie opcje są poprawne.
 
-**1. Video nad fałdą, ale pod nagłówkiem.**
-Tytuł, jedno zdanie wstępu, video. Tak żeby czytelnik od razu wiedział, że ma opcję obejrzeć zamiast czytać. Nie chowaj video w trzeciej połowie tekstu.
+Pod video wpisuję jedno zdanie opisu („trzydziestosekundowe wprowadzenie do struktury `AGENTS.md`"). To jest jednocześnie SEO i dostępność — nie tylko ozdoba.
 
-**2. Video nie na autoplay z dźwiękiem.**
-Autoplay z dźwiękiem jest agresywny, blokowany przez przeglądarki, i psuje UX. Autoplay bez dźwięku (muted) z jasnym przyciskiem „unmute" jest akceptowalny. Ideałem jest click-to-play.
-
-**3. Napisy od początku.**
-90% wyświetleń w social feedzie jest bez dźwięku. Na blogu większość też. Napisy muszą być wypalone w film albo dostępne jako SRT.
-
-**4. Alternatywa tekstowa.**
-Pod video: 1 zdanie opisu („30-sekundowe wprowadzenie do struktury `AGENTS.md`"). To jest też SEO i dostępność.
-
-**5. Analityka na kliknięcia.**
-Mierz: ile osób play'uje, ile kończy, ile klika dalej w linki z wpisu. Bez tego nie wiesz, czy format działa.
+Warto mierzyć konwersję: ile osób włącza film, ile go kończy, ile klika w linki z wpisu. Bez tego nie wiadomo, czy format rzeczywiście działa, czy tylko zajmuje miejsce nad fałdą.
 
 ## Reuse tego samego materiału
 
-Tu robi się ciekawie. Ten sam 30-sekundowy materiał źródłowy obsługuje trzy kanały:
+Ten sam trzydziestosekundowy materiał obsługuje mi zwykle pięć kanałów — i dopiero z tej perspektywy ekonomia produkcji zaczyna się bilansować.
 
-**Blog.** Embed pod tytułem, jako trailer dla pełnego wpisu. Link z filmu wraca do wpisu.
+Na blogu video działa jako trailer. Embed pod tytułem, link wewnątrz filmu wraca do pełnego artykułu.
 
-**Social — LinkedIn.** Ten sam film, ale z **native upload** (nie YouTube embed) i z dłuższym postem opisowym pod nim. LinkedIn premiuje native video. Dobry post z tym formatem zbiera 10x więcej impressionów niż sam link do wpisu.
+Na LinkedInie ten sam film — ale wgrany natywnie, a nie osadzony z YouTube'a. LinkedIn premiuje native video. Post z krótkim komentarzem pod spodem i linkiem do wpisu zbiera zauważalnie więcej zasięgu niż sam link do bloga.
 
-**Social — X / Mastodon / wewnętrzny Slack.** Skrócona wersja, 15–20s, najmocniejszy fragment wyjęty. To jest „trailer trailera" — żyje pojedynczy insight, z linkiem do pełnego wpisu.
+Na X, Mastodonie albo wewnętrznym Slacku publikuję skróconą wersję, piętnaście-dwadzieścia sekund — najmocniejszy fragment wyjęty jako „trailer trailera". Żyje jednym insightem, z linkiem do pełnego wpisu.
 
-**Szkolenie wewnętrzne / prezentacja.** Video wmontowane w slajd (nie jako gadająca głowa, tylko jako ilustracja punktu). W prezentacji masz okazję zatrzymać, skomentować, rozwinąć. Zyskujesz 30 sekund gotowego materiału na slajd, który by inaczej wymagał od Ciebie zbudowania animacji od zera.
+W prezentacji albo szkoleniu wewnętrznym video trafia jako ilustracja punktu na slajdzie. W prezentacji jest okazja zatrzymać, skomentować, rozwinąć — a slajd zyskuje trzydzieści sekund gotowego materiału, który inaczej wymagałby zbudowania animacji od zera.
 
-**Onboarding.** Nowy tester dołącza do zespołu. Dajesz mu listę „najpierw obejrzyj te 8 filmów po 30s". Pół godziny i ma mapę pojęć. Reszta w dokumentach, które mogą być długie.
+W onboardingu lista „najpierw obejrzyj te osiem trzydziestosekundowych filmów" skraca nowemu testerowi pół godziny czytania do pół godziny oglądania z pełnym mentalnym szkieletem na koniec. Szczegóły zostają w dokumentach, które są długie i nie muszą być przeczytane od razu.
 
-Jedna produkcja, pięć zastosowań. **Ekonomika content marketingu w QA robi się realna dopiero, gdy zaczniesz liczyć reuse, a nie single-use**.
+Jedna produkcja, pięć zastosowań. Ekonomia content marketingu w QA zaczyna być sensowna dopiero wtedy, kiedy liczyć reuse, a nie pojedyncze użycie.
 
 ## Checklista przed publikacją
 
-Przed każdym HyperFrames publikuję przez jedną listę:
+Przed każdym filmem przechodzę przez osiem sprawdzeń, które blokują publikację, gdy coś jest niedopięte. Czy jedno zdanie mówiące, o czym jest film, jest zapisane i potwierdzone. Czy jedna rzecz do zapamiętania została wybrana świadomie. Czy hook w pierwszych trzech sekundach nie jest banalny — „dziś opowiem o…" nie kwalifikuje się. Czy napisy są wypalone i sprawdzone pod kątem literówek. Czy każda klatka ma sens sama — sprawdzam przez trzy losowe pauzy. Czy link do pełnego wpisu znajduje się w opisie filmu. Czy miniatura (pierwsza klatka) działa na ekranie mobilnym. Czy wersje na wszystkie kanały są przygotowane: embed na blogu, native social, trailer trailera, slajd do szkolenia.
 
-- [ ] Jedno zdanie, o czym jest film — zapisane i potwierdzone.
-- [ ] Jedna rzecz do zapamiętania — wybrana.
-- [ ] Hook w pierwszych 3 sekundach nie jest bananalny („dziś opowiem o…" nie kwalifikuje się).
-- [ ] Napisy wypalone, sprawdzone pod kątem literówek.
-- [ ] Każda klatka ma sens sama — zrobiłem random pauzę trzy razy.
-- [ ] Link do pełnego wpisu jest w opisie filmu.
-- [ ] Miniatura (pierwsza klatka) sensownie działa na mobile.
-- [ ] Wersje: blog-embed, native social, trailer-trailera, slajd.
+Osiem punktów, kilka minut review. Zabezpiecza przed publikacją czegoś, co będzie żyło tylko na blogu i dalej nie zaskaluje się w żaden sposób.
 
-Osiem punktów, kilka minut review. Zabezpiecza przed publikowaniem czegoś, co żyje tylko na blogu i nie skaluje się dalej.
+## Podsumowanie
 
-## Pamiętaj
+Nie każdy wpis zasługuje na video — trzy filtry (jedno zdanie, element wizualny, zakres przekrojowy) odsiewają większość. W trzydziestu do czterdziestu pięciu sekund mieści się jedno zdanie wprowadzające, jedna rzecz do zapamiętania i jedno wezwanie do działania. Struktura hook → problem → demo → takeaway, każda faza po siedem do dziesięciu sekund. Wizualizacje, które działają: plik z wyróżnieniami, porównanie „bez i z", progresywny diagram, realny screen-record. Embedding na blogu bez autoplay z dźwiękiem, z napisami i alternatywą tekstową. Reuse w pięciu kanałach równolegle — blog, native social, wersja skrócona, slajd w szkoleniu, onboarding.
 
-- Nie każdy wpis zasługuje na video. Trzy filtry: da się streścić w 1 zdaniu, ma element wizualny, jest przekrojowy.
-- 30–45 sekund = 75–125 słów. To jest drastyczne ograniczenie — jedno zdanie wprowadzające, jedna rzecz do zapamiętania, jedno wezwanie do działania.
-- Struktura: hook → problem → demo → takeaway, po 7–10 sekund każda.
-- Wizualizacje, które działają: plik z wyróżnieniami, porównanie „bez vs z", progresywny diagram, realny screen-record. Unikaj gadającej głowy solo i stock video.
-- Embed na blogu: nad fałdą, bez autoplay z dźwiękiem, z napisami, z alternatywą tekstową.
-- Reuse: jedna produkcja, pięć kanałów — blog, native social długie, trailer trailera, slajd w szkoleniu, onboarding.
-
-To zamyka pierwszą serię sześciu wpisów. W kolejnych rundach wejdziemy głębiej w konkretne workflowy AI, przykłady dobrych i złych `AGENTS.md`, i w eksperymenty z oceną jakości outputu agentów — z prawdziwymi case studies z projektów.
+Tym wpisem zamykam pierwszą serię sześciu tekstów. W kolejnych rundach wchodzę głębiej w konkretne workflowy AI, przykłady dobrych i złych plików `AGENTS.md` oraz w eksperymenty z oceną jakości outputu agentów — tym razem z konkretnymi case studies z projektów, a nie tylko z ramami pojęciowymi.

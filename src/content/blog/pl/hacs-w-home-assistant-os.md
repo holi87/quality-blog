@@ -1,7 +1,7 @@
 ---
 title: "HACS w Home Assistant OS — po co, dlaczego warto i jak to zainstalować krok po kroku"
 description: "Po co HACS w Home Assistant OS, na co uważać, jak zainstalować go krok po kroku i co zainstalować jako pierwsze — uczciwy przewodnik."
-date: 2026-04-25
+date: 2026-04-27
 tags: ["smart-home", "home-assistant", "hacs"]
 lang: pl
 readingTime: 15

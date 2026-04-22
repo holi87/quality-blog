@@ -1,7 +1,7 @@
 ---
 title: "HACS in Home Assistant OS — why, when it's worth it, and how to install it step by step"
 description: "Why HACS belongs in Home Assistant OS, what to watch out for, how to install it step by step, and what to enable first — an honest walkthrough."
-date: 2026-04-25
+date: 2026-04-27
 tags: ["smart-home", "home-assistant", "hacs"]
 lang: en
 readingTime: 15
