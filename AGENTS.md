@@ -62,6 +62,7 @@ Lista bloga (`/{locale}/blog/`) ma client-side filter po tagach (chips + query s
 
 - **Dodając post**: utwórz `src/content/blog/<lang>/<slug>.md` z kompletem frontmattera wymaganym przez schema. Build padnie jeśli pole nie pasuje do Zod.
 - **Data publikacji**: tylko dni robocze (pn–pt). Weekend pomijaj — jeśli kandydująca data wypada w sobotę/niedzielę, przesuń `date` na najbliższy poniedziałek. PL i EN siblings dzielą tę samą datę.
+- **Święta**: tak samo jak weekend — święta państwowe (PL) pomijaj. Polskie wolne dni: 1.01, 6.01, Wielkanoc (Pn), 1.05, 3.05, Boże Ciało (czw, ruchome), 15.08, 1.11, 11.11, 25.12, 26.12. Dla świąt ruchomych (Wielkanoc, Boże Ciało) policz datę dla danego roku.
 - **Dodając tłumaczenie UI**: najpierw klucz w `src/i18n/translations.ts` (oba locale), potem użycie `t(locale).section.key` w komponencie.
 - **Dodając stronę**: duplikuj w `src/pages/pl/` i `src/pages/en/`. Przykład: `about.astro` (EN) vs `o-projekcie.astro` (PL) — nazwa pliku może być zlokalizowana.
 - Po zmianach w stronach/treści uruchom `npx playwright test` — testy pokrywają redirect root→/pl/, hero/posts na obu locale, obecność nav/footer.
