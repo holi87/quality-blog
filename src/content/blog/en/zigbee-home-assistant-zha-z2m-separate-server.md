@@ -1,7 +1,7 @@
 ---
 title: "Zigbee in Home Assistant 2026: ZHA, Z2M Add-on, or Z2M on a Separate Server?"
 description: "Three real-world Zigbee deployments in HA: built-in ZHA, Zigbee2MQTT as an add-on, and Z2M+MQTT on a separate host. Failure isolation, MQTT attack surface, multi-coordinator, PoE coordinators."
-date: 2026-05-09
+date: 2026-05-11
 tags: ["smart-home", "home-assistant", "zigbee", "zigbee2mqtt", "zha", "mqtt"]
 lang: en
 readingTime: 10

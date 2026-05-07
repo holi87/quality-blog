@@ -1,7 +1,7 @@
 ---
 title: "Zigbee w Home Assistant 2026: ZHA, Z2M w HA, czy Z2M na osobnym serwerze?"
 description: "Trzy realne deploymenty Zigbee w HA: wbudowane ZHA, Zigbee2MQTT jako addon, Z2M+MQTT na osobnym hoście. Izolacja awarii, bezpieczeństwo MQTT, multi-koordynator, koordynatory PoE."
-date: 2026-05-09
+date: 2026-05-11
 tags: ["smart-home", "home-assistant", "zigbee", "zigbee2mqtt", "zha", "mqtt"]
 lang: pl
 readingTime: 10
