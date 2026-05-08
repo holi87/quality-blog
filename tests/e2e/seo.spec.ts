@@ -77,5 +77,6 @@ test.describe('SEO and LLM discoverability', () => {
 
     await page.goto('/en/about/');
     await expect(page.locator('body')).toContainText('the Quality Cat team of Grzegorz Holak and Julia Sielska');
+    await expect(page.locator('body')).toContainText('a regular sparring partner');
   });
 });
