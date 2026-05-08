@@ -550,9 +550,9 @@ const copiedLabel = locale === 'pl' ? 'Skopiowano' : 'Copied';
     text-decoration: var(--shiki-light-text-decoration) !important;
   }
 
-  /* Dark mode override — Shiki inline = light by default, swap to --shiki-dark */
-  :root[data-theme='dark'] .astro-code,
-  :root[data-theme='dark'] .astro-code span {
+  /* Dark is the CSS default, so Shiki must be dark even before JS sets data-theme. */
+  :root:not([data-theme='light']) .astro-code,
+  :root:not([data-theme='light']) .astro-code span {
     color: var(--shiki-dark) !important;
     background-color: var(--shiki-dark-bg) !important;
     font-style: var(--shiki-dark-font-style) !important;

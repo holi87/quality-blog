@@ -1,9 +1,10 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Homepage', () => {
-  test('root redirects to /pl/', async ({ page }) => {
+  test('root serves PL homepage', async ({ page }) => {
     await page.goto('/');
-    await expect(page).toHaveURL(/\/pl\//);
+    await expect(page).toHaveURL('http://localhost:4321/');
+    await expect(page.locator('h1')).toContainText('Dzielimy się wiedzą');
   });
 
   test('PL homepage renders hero and posts', async ({ page }) => {
@@ -26,7 +27,7 @@ test.describe('Homepage', () => {
 
   test('footer links to qualitycat.pl', async ({ page }) => {
     await page.goto('/pl/');
-    const link = page.locator('footer a[href="https://qualitycat.pl"]');
+    const link = page.locator('footer a[href="https://qualitycat.pl"]').first();
     await expect(link).toBeVisible();
   });
 });

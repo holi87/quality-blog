@@ -19,11 +19,11 @@ test.describe('i18n', () => {
 
   test('EN about page exists', async ({ page }) => {
     await page.goto('/en/about/');
-    await expect(page.locator('h1')).toContainText('About');
+    await expect(page.locator('h1')).toContainText('Knowledge that');
   });
 
   test('PL about page exists', async ({ page }) => {
     await page.goto('/pl/o-projekcie/');
-    await expect(page.locator('h1')).toContainText('O projekcie');
+    await expect(page.locator('h1')).toContainText('Wiedza, która');
   });
 });
