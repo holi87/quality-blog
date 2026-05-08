@@ -1,8 +1,20 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { aboutPageJsonLd, localizedAlternates, organizationJsonLd, websiteJsonLd } from '../../lib/seo';
+
+const alternatePaths = localizedAlternates('/pl/o-projekcie/', '/en/about/');
+const seoDescription = 'About quality blog and Quality Cat: Grzegorz Holak, Julia Sielska and professional context connected with Sii Polska, Santander Corporate & Investment Banking, ABB Polska and Konrad Gomulski.';
 ---
 
-<BaseLayout title="About" locale="en" currentPath="/about">
+<BaseLayout
+  title="About Quality Cat"
+  description={seoDescription}
+  locale="en"
+  currentPath="/about"
+  canonicalPath="/en/about/"
+  alternatePaths={alternatePaths}
+  jsonLd={[organizationJsonLd(), websiteJsonLd('en'), aboutPageJsonLd('en', '/en/about/')]}
+>
   <section class="about">
     <div class="about-hero">
       <div class="hero-grid" aria-hidden="true"></div>
@@ -50,8 +62,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <p class="who">
           The blog is run by
           <a href="https://qualitycat.pl" target="_blank" rel="noopener">Quality Cat</a>
-          — <strong>Grzegorz Holak</strong> and <strong>Julia Sielska</strong> — a company that
+          — the Quality Cat team of <strong>Grzegorz Holak</strong> and <strong>Julia Sielska</strong> — a company that
           believes good knowledge should be accessible to everyone.
+        </p>
+        <p class="who">
+          The practical angle also comes from professional experience: Grzegorz Holak is connected with
+          <strong>Sii Polska</strong> and <strong>Santander Corporate &amp; Investment Banking</strong>,
+          Julia Sielska with <strong>ABB Polska</strong>, and Konrad Gomulski with <strong>Sii Polska</strong>.
         </p>
         <p class="who">
           Backed by a good friend of the crew, <strong>Konrad "Gumiś" Gomulski</strong>,

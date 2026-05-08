@@ -1,21 +1,50 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BlogPost from '../../../layouts/BlogPost.astro';
+import {
+  blogPostingJsonLd,
+  breadcrumbJsonLd,
+  isPublished,
+  organizationJsonLd,
+  postAlternatePaths,
+  postPath,
+  postSlug,
+  websiteJsonLd,
+} from '../../../lib/seo';
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog');
-  const enPosts = allPosts.filter((post) => post.data.lang === 'en');
+  const now = new Date();
+  const publishedPosts = allPosts.filter((post) => isPublished(post, now));
+  const enPosts = publishedPosts.filter((post) => post.data.lang === 'en');
 
   return enPosts.map((post) => {
-    const slug = post.id.replace(/^[a-z]{2}\//, '');
+    const slug = postSlug(post.id);
+    const alternatePaths = postAlternatePaths(publishedPosts, post);
+    const canonicalPath = alternatePaths.en ?? postPath('en', slug);
     return {
       params: { slug },
-      props: { post, slug },
+      props: {
+        post,
+        slug,
+        canonicalPath,
+        alternatePaths,
+        jsonLd: [
+          organizationJsonLd(),
+          websiteJsonLd('en'),
+          blogPostingJsonLd(post, alternatePaths),
+          breadcrumbJsonLd([
+            { name: 'Home', path: '/en/' },
+            { name: 'Blog', path: '/en/blog/' },
+            { name: post.data.title, path: canonicalPath },
+          ]),
+        ],
+      },
     };
   });
 }
 
-const { post, slug } = Astro.props;
+const { post, slug, canonicalPath, alternatePaths, jsonLd } = Astro.props;
 const { Content } = await render(post);
 ---
 
@@ -27,6 +56,9 @@ const { Content } = await render(post);
   tags={post.data.tags}
   locale="en"
   slug={slug}
+  canonicalPath={canonicalPath}
+  alternatePaths={alternatePaths}
+  jsonLd={jsonLd}
 >
   <Content />
 </BlogPost>

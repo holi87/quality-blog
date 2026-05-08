@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import PostCard from '../../../../components/PostCard.astro';
+import { breadcrumbJsonLd, tagPath, tagSlug, type AlternatePaths } from '../../../../lib/seo';
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog');
@@ -13,21 +14,37 @@ export async function getStaticPaths() {
     const filtered = enPosts
       .filter((p) => p.data.tags.includes(tag))
       .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+    const canonicalPath = tagPath('en', tag);
     return {
-      params: { tag: tag.toLowerCase().replace(/\//g, '-').replace(/[^a-z0-9-]+/g, '-') },
-      props: { tag, posts: filtered },
+      params: { tag: tagSlug(tag) },
+      props: { tag, posts: filtered, canonicalPath },
     };
   });
 }
 
-const { tag, posts } = Astro.props;
+const { tag, posts, canonicalPath } = Astro.props;
+const alternatePaths: AlternatePaths = { en: canonicalPath, 'x-default': '/en/blog/' };
+const seoDescription = `quality blog posts tagged ${tag}: AI, smart home, automation and practical guides.`;
+const jsonLd = breadcrumbJsonLd([
+  { name: 'Home', path: '/en/' },
+  { name: 'Blog', path: '/en/blog/' },
+  { name: `Tag: ${tag}`, path: canonicalPath },
+]);
 
 function getSlug(postId: string): string {
   return postId.replace(/^[a-z]{2}\//, '');
 }
 ---
 
-<BaseLayout title={`Tag: ${tag}`} locale="en" currentPath="/blog">
+<BaseLayout
+  title={`Tag: ${tag}`}
+  description={seoDescription}
+  locale="en"
+  currentPath={`/blog/tag/${tagSlug(tag)}/`}
+  canonicalPath={canonicalPath}
+  alternatePaths={alternatePaths}
+  jsonLd={jsonLd}
+>
   <section class="tag-hero container">
     <p class="eyebrow">/ blog / tag</p>
     <h1 class="display"><span class="hash">#</span>{tag}</h1>

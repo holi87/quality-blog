@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
 import Tag from '../../components/Tag.astro';
 import { t } from '../../i18n/translations';
+import { blogJsonLd, localizedAlternates, organizationJsonLd, websiteJsonLd } from '../../lib/seo';
 
 const locale = 'en';
 const strings = t(locale);
@@ -22,9 +23,19 @@ function getSlug(postId: string): string {
 const topics = ['Home Assistant', 'Claude/ChatGPT', 'Automation', 'IoT', 'Prompt Engineering'];
 const totalPosts = allPosts.filter((p) => p.data.lang === locale && p.data.date <= now).length;
 const lastUpdate = posts[0]?.data.date;
+const alternatePaths = localizedAlternates('/pl/', '/en/');
+const seoDescription = 'A practical blog about AI, local LLMs, Claude Code, MCP, prompt engineering, QA automation, Home Assistant and smart home.';
 ---
 
-<BaseLayout title="Home" locale={locale} currentPath="/">
+<BaseLayout
+  title="AI, smart home and automation"
+  description={seoDescription}
+  locale={locale}
+  currentPath="/"
+  canonicalPath="/en/"
+  alternatePaths={alternatePaths}
+  jsonLd={[organizationJsonLd(), websiteJsonLd(locale), blogJsonLd(locale, posts)]}
+>
   <section class="hero">
     <div class="hero-grid" aria-hidden="true"></div>
     <div class="hero-glow" aria-hidden="true"></div>

@@ -4,6 +4,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import PostCard from '../../../components/PostCard.astro';
 import Tag from '../../../components/Tag.astro';
 import { t } from '../../../i18n/translations';
+import { blogJsonLd, localizedAlternates, organizationJsonLd, websiteJsonLd } from '../../../lib/seo';
 
 const locale = 'pl';
 const strings = t(locale);
@@ -19,9 +20,19 @@ function getSlug(postId: string): string {
 }
 
 const allTags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
+const alternatePaths = localizedAlternates('/pl/blog/', '/en/blog/');
+const seoDescription = 'Wszystkie wpisy quality blog o AI, lokalnych LLM, Claude Code, MCP, QA automation, Home Assistant, IoT i smart home.';
 ---
 
-<BaseLayout title="Blog" locale={locale} currentPath="/blog">
+<BaseLayout
+  title="Blog o AI, LLM i smart home"
+  description={seoDescription}
+  locale={locale}
+  currentPath="/blog"
+  canonicalPath="/pl/blog/"
+  alternatePaths={alternatePaths}
+  jsonLd={[organizationJsonLd(), websiteJsonLd(locale), blogJsonLd(locale, posts)]}
+>
   <section class="blog-hero">
     <div class="hero-grid" aria-hidden="true"></div>
     <div class="container blog-hero__inner">

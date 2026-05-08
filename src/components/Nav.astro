@@ -1,14 +1,17 @@
 ---
 import { t, getLocalePath, type Locale } from '../i18n/translations';
+import type { AlternatePaths } from '../lib/seo';
 
 interface Props {
   locale: Locale;
   currentPath?: string;
+  alternatePaths?: AlternatePaths;
 }
 
-const { locale, currentPath = '' } = Astro.props;
+const { locale, currentPath = '', alternatePaths } = Astro.props;
 const strings = t(locale);
 const otherLocale = locale === 'pl' ? 'en' : 'pl';
+const languageSwitchHref = alternatePaths?.[otherLocale] ?? getLocalePath(otherLocale, '/');
 
 const isHome = currentPath === '/' || currentPath === '';
 const isBlog = currentPath.startsWith('/blog');
@@ -63,7 +66,7 @@ const isAbout = currentPath.includes('o-projekcie') || currentPath.includes('abo
         </svg>
       </button>
 
-      <a href={getLocalePath(otherLocale, '/')} class="lang-switch">
+      <a href={languageSwitchHref} class="lang-switch">
         {locale === 'pl' ? 'EN' : 'PL'}
       </a>
     </div>
