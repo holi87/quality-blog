@@ -1,6 +1,7 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
+import { postAuthorName } from '../../lib/seo';
 
 export async function GET(context: APIContext) {
   const now = new Date();
@@ -12,12 +13,16 @@ export async function GET(context: APIContext) {
     title: 'quality blog',
     description: 'Praktyczna wiedza o smart home i AI.',
     site: context.site ?? 'https://quality-blog.eu',
+    xmlns: {
+      dc: 'http://purl.org/dc/elements/1.1/',
+    },
     items: posts.map((post) => ({
       title: post.data.title,
       description: post.data.description,
       pubDate: post.data.date,
       link: `/pl/blog/${post.id.replace(/^[a-z]{2}\//, '')}/`,
       categories: post.data.tags,
+      customData: `<dc:creator>${postAuthorName(post.data.author)}</dc:creator>`,
     })),
     customData: '<language>pl-pl</language>',
   });

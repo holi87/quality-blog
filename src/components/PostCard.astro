@@ -2,11 +2,13 @@
 import Tag from './Tag.astro';
 import type { Locale } from '../i18n/translations';
 import { t } from '../i18n/translations';
+import { postAuthorName, type AuthorCode } from '../lib/seo';
 
 interface Props {
   title: string;
   description: string;
   date: Date;
+  author: AuthorCode;
   readingTime: number;
   tags: string[];
   slug: string;
@@ -14,8 +16,9 @@ interface Props {
   index?: number;
 }
 
-const { title, description, date, readingTime, tags, slug, locale, index } = Astro.props;
+const { title, description, date, author, readingTime, tags, slug, locale, index } = Astro.props;
 const strings = t(locale);
+const authorName = postAuthorName(author);
 
 const formattedDate = date.toLocaleDateString(locale === 'pl' ? 'pl-PL' : 'en-US', {
   day: 'numeric',
@@ -39,6 +42,8 @@ const primary = (tags[0] ?? 'default')
       <span class="idx">{String(index).padStart(2, '0')}</span>
     )}
     <span class="date">{formattedDate}</span>
+    <span class="dot-sep">·</span>
+    <span class="author" title={authorName}>{strings.posts.author}: {author}</span>
     <span class="dot-sep">·</span>
     <span class="rt">{readingTime} {strings.posts.readingTime}</span>
   </div>
@@ -106,8 +111,9 @@ const primary = (tags[0] ?? 'default')
 
   .post-card__meta {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 8px;
+    gap: 4px 8px;
     font-family: var(--font-mono);
     font-size: 11px;
     color: var(--fg-subtle);

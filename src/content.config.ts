@@ -10,6 +10,7 @@ const blog = defineCollection({
     tags: z.array(z.string()),
     lang: z.enum(['pl', 'en']),
     readingTime: z.number(),
+    author: z.enum(['GH', 'JS']),
   }),
 });
 

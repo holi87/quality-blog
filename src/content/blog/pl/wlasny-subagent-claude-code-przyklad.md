@@ -5,6 +5,7 @@ date: 2026-05-15
 tags: ["ai", "claude-code", "subagenty", "automatyzacja"]
 lang: pl
 readingTime: 9
+author: GH
 ---
 
 We [wpisie z dnia 12 maja 2026](/pl/blog/subagenci-claude-code-co-to-i-po-co/) pokazałem, czemu warto wołać subagentów i jakie buildtin'y są dostępne. Teraz druga część: piszemy własny subagent od zera. Konkretny use-case: agent, który czyta pomysł na post bloga i zwraca pełny szkic w stylu twojego bloga. Pisany raz, używany dziesiątki razy.

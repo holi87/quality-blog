@@ -5,6 +5,7 @@ date: 2026-04-29
 tags: ["ai", "content", "wideo", "hyperframes"]
 lang: pl
 readingTime: 9
+author: GH
 ---
 
 Dobrze napisane techniczne wpisy mają jeden kłopotliwy dla autora problem: czytelnicy rzadko czytają je w całości. Trzydzieści sekund uwagi, odbicie, powrót za tydzień — to statystyka, z którą trzeba się pogodzić. Nie wynika z lenistwa. Wynika z tego, że uwaga w feedzie LinkedIna albo w porannej kawie rzadko ma rezerwę na tysiąc pięćset słów.

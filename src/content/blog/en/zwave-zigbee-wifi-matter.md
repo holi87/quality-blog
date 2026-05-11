@@ -5,6 +5,7 @@ date: 2026-04-21
 tags: ["smart-home", "zigbee", "zwave", "matter", "thread", "wifi"]
 lang: en
 readingTime: 10
+author: JS
 ---
 
 If you're starting a smart home from scratch in 2026, you have four radio protocols to choose from. Each of them makes sense — but not in the same place. Below is a practical guide: when to pick what, where the traps are, and whether Matter actually solves the problem it was built for.

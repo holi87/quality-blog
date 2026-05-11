@@ -5,6 +5,7 @@ date: 2026-04-15
 tags: ["ai", "adoption", "teams"]
 lang: en
 readingTime: 7
+author: GH
 ---
 
 From resistance to orchestration — 11 levels of AI utilisation in an organisation. Find out where you and your team stand.

@@ -5,6 +5,7 @@ date: 2026-05-13
 tags: ["ai", "claude-code", "skill", "prompty"]
 lang: pl
 readingTime: 7
+author: GH
 ---
 
 Pisałeś dziś prompt do Midjourneya. Zaczynasz od „cyberpunkowy portret Beksińskiego, wysokie szczegóły, ciemna paleta", patrzysz na efekt, dodajesz `--ar 16:9 --style raw --v 6`, iterujesz dziesięć razy. Potem to samo z promptem do GPT-5 do wygenerowania kodu Python, potem do Sory na video animację. Każde narzędzie ma własną gramatykę promptingu, własne parametry, własne idiosynkrazje. Pisanie tego ręcznie z głowy = strata czasu.

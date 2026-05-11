@@ -5,6 +5,7 @@ date: 2026-05-14
 tags: ["ai", "claude-code", "advisor", "workflow"]
 lang: pl
 readingTime: 7
+author: GH
 ---
 
 Claude w terminalu pisze rozwiązanie. Skąd wie, że dobre? Domyślnie: zgaduje. Pierwszy strzał, czasem drugi. Jeśli zacementuje się przy złej interpretacji problemu — wraca dopiero po godzinie, gdy debug zaczyna trzeszczeć. Tool `advisor()` to mechanizm, który łamie ten loop: Claude woła silniejszy model, dostaje second opinion, decyduje na podstawie obu.

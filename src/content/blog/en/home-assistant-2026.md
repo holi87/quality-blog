@@ -5,6 +5,7 @@ date: 2026-04-12
 tags: ["smart-home", "home-assistant"]
 lang: en
 readingTime: 5
+author: JS
 ---
 
 ## What is Home Assistant?

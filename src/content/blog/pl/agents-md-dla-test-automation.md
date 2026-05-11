@@ -5,6 +5,7 @@ date: 2026-04-22
 tags: ["ai", "qa", "agenci", "agents-md", "test-automation"]
 lang: pl
 readingTime: 9
+author: GH
 ---
 
 Kiedy agent AI dostaje Twoje repo testowe bez żadnej dodatkowej instrukcji, zaczyna od tego, co widzi: `package.json`, `playwright.config.ts`, kilka folderów `tests/`. Na tej podstawie zgaduje, jak pracujesz. Zgaduje całkiem nieźle — ale zgaduje.

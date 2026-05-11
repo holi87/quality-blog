@@ -61,9 +61,28 @@ test.describe('SEO and LLM discoverability', () => {
       headline: 'Open WebUI — front jak ChatGPT do twojego lokalnego LLM',
       inLanguage: 'pl',
       isAccessibleForFree: true,
+      author: {
+        name: 'Grzegorz Holak',
+        alternateName: 'GH',
+      },
     });
     expect(article.author.worksFor.name).toBe('Quality Cat');
     expect(article.publisher['@id']).toBe('https://quality-blog.eu/#organization');
+  });
+
+  test('Home Assistant posts expose JS as the article author', async ({ page }) => {
+    await page.goto('/pl/blog/hacs-w-home-assistant-os/');
+
+    await expect(page.locator('.post-meta')).toContainText('Autor: JS');
+
+    const jsonLdItems = (await page.locator('script[type="application/ld+json"]').allTextContents())
+      .map((text) => JSON.parse(text));
+    const article = jsonLdItems.find((item) => item['@type'] === 'BlogPosting');
+
+    expect(article.author).toMatchObject({
+      name: 'Julia Sielska',
+      alternateName: 'JS',
+    });
   });
 
   test('about pages explicitly connect Quality Cat people and professional context', async ({ page }) => {

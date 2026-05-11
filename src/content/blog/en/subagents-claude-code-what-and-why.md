@@ -5,6 +5,7 @@ date: 2026-05-12
 tags: ["ai", "claude-code", "subagents", "automation"]
 lang: en
 readingTime: 7
+author: GH
 ---
 
 Claude Code in the terminal answers with a single model by default. One context window, one history, one session. That works until the task needs things that don't fit in one context — research across ten files, fixing four bugs in parallel, a second opinion from a stronger model. That's when delegation kicks in: Claude calls a **subagent**.

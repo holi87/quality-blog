@@ -5,6 +5,7 @@ date: 2026-05-14
 tags: ["ai", "claude-code", "advisor", "workflow"]
 lang: en
 readingTime: 7
+author: GH
 ---
 
 Claude in your terminal writes a solution. How does it know it's good? By default: it guesses. First shot, sometimes second. If it cements an incorrect interpretation of the problem — you find out an hour later when debugging starts creaking. The `advisor()` tool breaks that loop: Claude calls a stronger model, gets a second opinion, decides based on both.

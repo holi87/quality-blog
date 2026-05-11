@@ -5,6 +5,7 @@ date: 2026-05-04
 tags: ["ai", "claude-code", "tokens", "tooling", "plugins"]
 lang: en
 readingTime: 10
+author: GH
 ---
 
 Late in March I got an Anthropic API bill that I wasn't ready for. Not because I was using Claude more than usual — rather because I'd moved to long agentic sessions where every round contained politely-phrased replies, gentle introductions, and careful summaries of what was about to happen. When I pulled the stats from the logs, it turned out that roughly **60–70% of the generated tokens were narration around the actual answer** — "Sure!", "Happy to help", "Let me take a look", "The reason this happens is likely...". Technically nothing was wrong with any of it. Financially and operationally, all of it was waste.

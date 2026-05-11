@@ -5,6 +5,7 @@ date: 2026-04-23
 tags: ["ai", "qa", "agenci", "mcp", "evidence"]
 lang: pl
 readingTime: 11
+author: GH
 ---
 
 Typowy dzień Test Architecta: coś się zepsuło na produkcji. Zaczynasz zbierać evidence. Logi są w Datadogu. Raporty z testów w Allure za VPN-em. Screenshoty leżą w załącznikach do ticketów w Jirze. Historia podobnych incydentów jest w Confluence. Ostatnie commity w GitHubie. Release notes w trzecim miejscu.

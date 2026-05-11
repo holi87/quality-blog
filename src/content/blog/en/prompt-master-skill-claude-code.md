@@ -5,6 +5,7 @@ date: 2026-05-13
 tags: ["ai", "claude-code", "skill", "prompts"]
 lang: en
 readingTime: 7
+author: GH
 ---
 
 You wrote a Midjourney prompt today. You start with "cyberpunk Beksiński portrait, high detail, dark palette," look at the result, add `--ar 16:9 --style raw --v 6`, iterate ten times. Then the same thing for a GPT-5 prompt to generate Python code, then a Sora prompt for a video animation. Every tool has its own prompting grammar, its own parameters, its own idiosyncrasies. Writing this from memory by hand = wasted time.

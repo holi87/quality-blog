@@ -34,7 +34,7 @@ Cała struktura routingu i treści jest zduplikowana per locale (`pl`, `en`). `d
 
 Zdefiniowana w `src/content.config.ts`. Ładowana globem `**/*.md` z `./src/content/blog`, więc plik `src/content/blog/pl/foo.md` ma `id = "pl/foo"`.
 
-Schema (Zod) wymusza: `title`, `description`, `date` (Date), `tags` (string[]), `lang` (`'pl'|'en'`), `readingTime` (number).
+Schema (Zod) wymusza: `title`, `description`, `date` (Date), `tags` (string[]), `lang` (`'pl'|'en'`), `readingTime` (number), `author` (`'GH'|'JS'`).
 
 Slug wpisu powstaje przez zdjęcie prefiksu języka z `post.id`. Używaj helpera `postSlug()` z `src/lib/seo.ts` zamiast powielać regex w nowych miejscach. URL wpisu ma format `/{locale}/blog/<slug>/`.
 
@@ -85,7 +85,7 @@ Lista bloga (`/{locale}/blog/`) ma client-side filter po tagach (chips + query s
 
 ## Konwencje pracy
 
-- Dodając post: utwórz `src/content/blog/<lang>/<slug>.md` z kompletem frontmattera wymaganym przez schema.
+- Dodając post: utwórz `src/content/blog/<lang>/<slug>.md` z kompletem frontmattera wymaganym przez schema, w tym `author: GH` dla wpisów AI oraz `author: JS` dla wpisów smart home / Home Assistant.
 - Data publikacji: tylko dni robocze (pn-pt). Weekend pomijaj — jeśli kandydująca data wypada w sobotę/niedzielę, przesuń `date` na najbliższy poniedziałek. PL i EN siblings dzielą tę samą datę.
 - Święta: tak samo jak weekend. Polskie wolne dni: 1.01, 6.01, Wielkanoc (Pn), 1.05, 3.05, Boże Ciało (czw, ruchome), 15.08, 1.11, 11.11, 25.12, 26.12. Dla świąt ruchomych policz datę dla danego roku.
 - Dodając tłumaczenie UI: najpierw klucz w `src/i18n/translations.ts` (oba locale), potem użycie `t(locale).section.key` w komponencie.

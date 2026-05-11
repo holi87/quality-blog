@@ -5,6 +5,7 @@ date: 2026-04-29
 tags: ["ai", "content", "video", "hyperframes"]
 lang: en
 readingTime: 9
+author: GH
 ---
 
 Well-written technical posts have one problem that's awkward for the author: readers rarely read them in full. Thirty seconds of attention, a bounce, a return a week later — that's the statistic you have to make peace with. It isn't about laziness. It's about the fact that attention in a LinkedIn feed, or over a morning coffee, rarely has room for fifteen hundred words.

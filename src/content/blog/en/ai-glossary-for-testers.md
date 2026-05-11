@@ -5,6 +5,7 @@ date: 2026-04-19
 tags: ["ai", "qa", "agents", "mcp"]
 lang: en
 readingTime: 8
+author: GH
 ---
 
 In conversations about AI in QA, I've noticed that discussions usually stall not because the technology is hard, but because everyone uses the same words for completely different things. "We built an agent" often means "we have a prompt in Notion." "We launched an MCP" turns out to be "we glued together a Python script." "We're writing a skill" sometimes translates to "we appended a paragraph to the system prompt."

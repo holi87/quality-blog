@@ -5,6 +5,7 @@ date: 2026-04-28
 tags: ["ai", "qa", "agents", "review"]
 lang: en
 readingTime: 9
+author: GH
 ---
 
 When a team starts using AI agents in earnest, a new task shows up that wasn't there before — verifying what the agent produced. For a tester that's actually good news, because critical review of output is something we do every day anyway. What changes is the source and the failure patterns hiding behind that source.

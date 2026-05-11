@@ -5,6 +5,7 @@ date: 2026-05-15
 tags: ["ai", "claude-code", "subagents", "automation"]
 lang: en
 readingTime: 9
+author: GH
 ---
 
 In the [post from May 12, 2026](/en/blog/subagents-claude-code-what-and-why/) I covered why subagents are worth calling and which built-ins are available. Now part two: writing your own from scratch. A concrete use case: an agent that reads a blog post idea and returns a full draft in the voice of your blog. Written once, used dozens of times.

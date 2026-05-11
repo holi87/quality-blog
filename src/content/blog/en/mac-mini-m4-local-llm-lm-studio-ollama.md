@@ -5,6 +5,7 @@ date: 2026-05-06
 tags: ["ai", "llm", "ollama", "lm-studio", "mac", "local-models"]
 lang: en
 readingTime: 10
+author: GH
 ---
 
 Late in March I closed the internal debate and bought a Mac mini M4 with 16 GB of memory. It sits next to my main Mac, which handles regular dev work — this one has a single purpose: local LLMs. Experiments, private data, saving on the API bill, finding out where a cheap, off-the-shelf config breaks. After a month I have my own conclusions — and a few things I didn't expect before buying.

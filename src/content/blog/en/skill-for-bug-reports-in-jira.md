@@ -5,6 +5,7 @@ date: 2026-04-30
 tags: ["ai", "qa", "agents", "skills", "mcp", "jira"]
 lang: en
 readingTime: 11
+author: GH
 ---
 
 In every QA team I've worked with, the same moment comes back every sprint: a tester catches a bug, describes it in a single sentence on Slack, and attaches a Jira link. Open the ticket and the summary reads „login broken", there are no reproduction steps, the screenshot shows half a screen, and „works on mine" appears in the comments twelve minutes later. Two days in, the developer closes it as „cannot reproduce". Three weeks in, the bug is back in production — this time with a wider audience.

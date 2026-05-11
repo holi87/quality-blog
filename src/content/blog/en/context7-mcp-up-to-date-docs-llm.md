@@ -5,6 +5,7 @@ date: 2026-05-05
 tags: ["ai", "mcp", "claude-code", "documentation", "tooling"]
 lang: en
 readingTime: 11
+author: GH
 ---
 
 Two weeks ago I migrated this blog from Astro 5 to Astro 6. Claude Code was supposed to know Astro — and it did. Unfortunately, it knew version 5. The code it proposed was technically valid, the syntax ran, the commands executed, but in several places it used APIs that had been rewritten in v6. Content collections, Markdown rendering, the shape of `astro.config.mjs` — small but expensive differences everywhere. An hour later, after three rounds of "write, break, fix", the migration was done. Most of that hour went into fighting the model's knowledge that was six months out of date.

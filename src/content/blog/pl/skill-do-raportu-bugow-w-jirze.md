@@ -5,6 +5,7 @@ date: 2026-04-30
 tags: ["ai", "qa", "agenci", "skills", "mcp", "jira"]
 lang: pl
 readingTime: 11
+author: GH
 ---
 
 W każdym zespole QA, w którym pracowałem, ten sam moment wraca co sprint: tester łapie buga, opisuje go jednym zdaniem na Slacku i dokleja link do ticketu. Po otwarciu okazuje się, że summary brzmi „nie działa login", brak kroków reprodukcji, screenshot pokazuje połowę ekranu, a w komentarzach pojawia się „u mnie działa". Po dwóch dniach ticket zostaje zamknięty z adnotacją „cannot reproduce", a po trzech tygodniach bug wraca na produkcję — tym razem z szerszym zasięgiem.

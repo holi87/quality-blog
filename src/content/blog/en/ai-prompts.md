@@ -5,6 +5,7 @@ date: 2026-04-08
 tags: ["ai", "prompt-engineering"]
 lang: en
 readingTime: 3
+author: GH
 ---
 
 ## Why do prompts matter?

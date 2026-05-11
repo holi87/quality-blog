@@ -5,6 +5,7 @@ date: 2026-04-28
 tags: ["ai", "qa", "agenci", "review"]
 lang: pl
 readingTime: 9
+author: GH
 ---
 
 Kiedy zespół zaczyna używać agentów AI na serio, pojawia się nowe zadanie, którego wcześniej nie było — weryfikacja tego, co agent wyprodukował. Dla testera to w gruncie rzeczy dobra wiadomość, bo krytyczne review outputu to czynność, którą i tak wykonujemy codziennie. Zmienia się tylko rodzaj źródła i wzorce błędów, które pod tym źródłem się kryją.

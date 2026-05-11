@@ -5,6 +5,7 @@ date: 2026-04-22
 tags: ["ai", "qa", "agents", "agents-md", "test-automation"]
 lang: en
 readingTime: 9
+author: GH
 ---
 
 When an AI agent lands in your test repo with no extra instructions, it starts from what it can see: `package.json`, `playwright.config.ts`, a few `tests/` folders. Based on that, it guesses how you work. It guesses reasonably well — but it guesses.

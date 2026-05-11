@@ -5,6 +5,7 @@ date: 2026-05-07
 tags: ["ai", "llm", "ollama", "modele", "kodowanie", "lokalne-modele"]
 lang: pl
 readingTime: 11
+author: GH
 ---
 
 W [poprzednim wpisie](/pl/blog/mac-mini-m4-lokalny-llm-lm-studio-ollama) opisałem stację: Mac mini M4 16 GB, LM Studio i Ollama jako runtime. Kontener bez treści. Dziś treść — czyli **konkretne modele, które warto pobrać w 2026 roku**, a które wczoraj jeszcze były top picks i już są zwykłym balastem na dysku.

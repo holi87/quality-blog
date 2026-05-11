@@ -5,6 +5,7 @@ date: 2026-05-12
 tags: ["ai", "claude-code", "subagenty", "automatyzacja"]
 lang: pl
 readingTime: 7
+author: GH
 ---
 
 Claude Code w terminalu domyślnie odpowiada jednym modelem. Jeden context window, jedna historia, jedna sesja. Działa to do momentu, gdy zadanie wymaga rzeczy, które nie mieszczą się w jednym kontekście — research po dziesięciu plikach, równoległe naprawianie czterech bugów, druga opinia od silniejszego modelu. Wtedy włącza się delegacja: Claude woła **subagenta**.

@@ -5,6 +5,7 @@ date: 2026-04-21T00:00:00+02:00
 tags: ["ai", "adoption", "teams", "strategy"]
 lang: en
 readingTime: 12
+author: GH
 ---
 
 A few days ago I published a short [AI adoption maturity model](/en/blog/ai-maturity-model/) — 11 levels from resistance to orchestration. After conversations with readers and teams I've been helping with adoption, it became clear the model needed to be expanded. It lacked diagnostic tools, concrete examples, honest anti-patterns, and a clear separation between the individual and the organisational perspective. This version — **the Holak Scale** — closes those gaps.

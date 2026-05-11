@@ -5,6 +5,7 @@ date: 2026-04-23
 tags: ["ai", "qa", "agents", "mcp", "evidence"]
 lang: en
 readingTime: 11
+author: GH
 ---
 
 A typical Test Architect's day: something broke in production. You start gathering evidence. Logs live in Datadog. Test reports are in Allure behind a VPN. Screenshots are attached to Jira tickets. The history of similar incidents lives in Confluence. Recent commits are in GitHub. Release notes are in a third place.

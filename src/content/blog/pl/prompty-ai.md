@@ -5,6 +5,7 @@ date: 2026-04-08
 tags: ["ai", "prompt-engineering"]
 lang: pl
 readingTime: 3
+author: GH
 ---
 
 ## Dlaczego prompty mają znaczenie?

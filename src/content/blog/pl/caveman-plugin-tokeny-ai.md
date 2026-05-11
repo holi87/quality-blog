@@ -5,6 +5,7 @@ date: 2026-05-04
 tags: ["ai", "claude-code", "tokeny", "tooling", "plugins"]
 lang: pl
 readingTime: 10
+author: GH
 ---
 
 Pod koniec marca dostałem fakturę za API Anthropic, na którą nie byłem gotowy. Nie dlatego, że korzystałem z Claude'a więcej niż zwykle — raczej dlatego, że zacząłem pracować z długimi, agentowymi sesjami, w których każda runda zawierała elegancko sformułowane odpowiedzi, uprzejme wprowadzenia i drobiazgowe podsumowania tego, co zaraz zostanie zrobione. Gdy wyciągnąłem statystyki z logów, okazało się, że około **60–70% wygenerowanych tokenów to narracja wokół właściwej odpowiedzi** — „Sure!", „Happy to help", „Let me take a look", „The reason this happens is likely...". Technicznie nic z tego nie było błędne. Finansowo i operacyjnie — wszystko z tego było do wyrzucenia.

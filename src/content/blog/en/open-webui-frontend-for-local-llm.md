@@ -5,6 +5,7 @@ date: 2026-05-08
 tags: ["ai", "llm", "ollama", "open-webui", "rag", "local-models"]
 lang: en
 readingTime: 10
+author: GH
 ---
 
 Third post in the series on local LLM on a Mac mini M4 16 GB. In the [first one](/en/blog/mac-mini-m4-local-llm-lm-studio-ollama) I set up the workstation. In the [second](/en/blog/llm-models-2026-mac-mini-m4) I pulled the right models. Today I'm tying it all together with a frontend that turns raw CLI into a tool someone other than me can use without a tutorial.

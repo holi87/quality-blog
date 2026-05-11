@@ -5,6 +5,7 @@ date: 2026-04-15
 tags: ["ai", "adopcja", "zespoly"]
 lang: pl
 readingTime: 7
+author: GH
 ---
 
 Od oporu do orkiestracji — 11 poziomów wykorzystania AI w organizacji. Sprawdź, na którym etapie jesteś Ty i Twój zespół.

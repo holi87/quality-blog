@@ -14,6 +14,7 @@ const translations = {
     },
     posts: {
       latest: 'Ostatnie wpisy',
+      author: 'Autor',
       readingTime: 'min czytania',
       readMore: 'Czytaj więcej',
       allPosts: 'Wszystkie wpisy',
@@ -40,6 +41,7 @@ const translations = {
     },
     posts: {
       latest: 'Latest posts',
+      author: 'By',
       readingTime: 'min read',
       readMore: 'Read more',
       allPosts: 'All posts',

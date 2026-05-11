@@ -5,6 +5,7 @@ date: 2026-04-24
 tags: ["ai", "qa", "test-architect", "workflowy"]
 lang: pl
 readingTime: 9
+author: GH
 ---
 
 Dyskusja o „AI w testowaniu" zbyt często zatrzymuje się na dwóch biegunach: albo „AI generuje testy, nie potrzebujemy testerów", albo „AI halucynuje, więc w QA się nie przyda". Obie skrajności są nieprawdziwe i obie są mało użyteczne.

@@ -5,6 +5,7 @@ date: 2026-05-11
 tags: ["smart-home", "home-assistant", "zigbee", "zigbee2mqtt", "zha", "mqtt"]
 lang: pl
 readingTime: 10
+author: JS
 ---
 
 We [wpisie z dnia 21 kwietnia 2026](/pl/blog/zwave-zigbee-wifi-matter/) wybraliśmy protokół: Zigbee. Tani, dojrzały, mesh, setki urządzeń, bateryjne czujniki na lata. Wybór protokołu to jedna decyzja. Ale jak go uruchomić w Home Assistant — to trzy różne decyzje, i większość tutoriali w sieci traktuje je jako kosmetyczne.

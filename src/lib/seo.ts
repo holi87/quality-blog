@@ -6,8 +6,29 @@ export const PUBLISHER_NAME = 'Quality Cat';
 export const AUTHOR_NAME = 'Grzegorz Holak';
 export const DEFAULT_OG_IMAGE = '/og-default.svg';
 
+export const POST_AUTHORS = {
+  GH: {
+    code: 'GH',
+    name: AUTHOR_NAME,
+    affiliation: [
+      { '@type': 'Organization', name: PUBLISHER_NAME, url: 'https://qualitycat.pl' },
+      { '@type': 'Organization', name: 'Sii Polska' },
+      { '@type': 'Organization', name: 'Santander Corporate & Investment Banking' },
+    ],
+  },
+  JS: {
+    code: 'JS',
+    name: 'Julia Sielska',
+    affiliation: [
+      { '@type': 'Organization', name: PUBLISHER_NAME, url: 'https://qualitycat.pl' },
+      { '@type': 'Organization', name: 'ABB Polska' },
+    ],
+  },
+} as const;
+
 export const LOCALES = ['pl', 'en'] as const;
 export type Locale = (typeof LOCALES)[number];
+export type AuthorCode = keyof typeof POST_AUTHORS;
 export type BlogPostEntry = CollectionEntry<'blog'>;
 export type AlternatePaths = Partial<Record<Locale | 'x-default', string>>;
 export type JsonLdNode = Record<string, unknown>;
@@ -128,6 +149,25 @@ export function isAiPost(post: BlogPostEntry): boolean {
     || /\b(ai|llm|claude|chatgpt|mcp|ollama|open webui|prompt|agent)\b/i.test(searchable);
 }
 
+export function postAuthor(code: AuthorCode) {
+  return POST_AUTHORS[code];
+}
+
+export function postAuthorName(code: AuthorCode): string {
+  return postAuthor(code).name;
+}
+
+export function postAuthorJsonLd(code: AuthorCode): JsonLdNode {
+  const author = postAuthor(code);
+  return {
+    '@type': 'Person',
+    name: author.name,
+    alternateName: author.code,
+    worksFor: { '@type': 'Organization', name: PUBLISHER_NAME, url: 'https://qualitycat.pl' },
+    affiliation: author.affiliation,
+  };
+}
+
 function tagOverlapScore(a: BlogPostEntry, b: BlogPostEntry): number {
   const aTags = new Set(a.data.tags.map((tag) => tag.toLowerCase()));
   return b.data.tags.reduce((score, tag) => score + (aTags.has(tag.toLowerCase()) ? 1 : 0), 0);
@@ -181,47 +221,10 @@ export function organizationJsonLd(): JsonLdNode {
     name: PUBLISHER_NAME,
     url: 'https://qualitycat.pl',
     brand: SITE_NAME,
-    founder: [
-      {
-        '@type': 'Person',
-        name: AUTHOR_NAME,
-        worksFor: { '@type': 'Organization', name: PUBLISHER_NAME, url: 'https://qualitycat.pl' },
-        affiliation: [
-          { '@type': 'Organization', name: PUBLISHER_NAME, url: 'https://qualitycat.pl' },
-          { '@type': 'Organization', name: 'Sii Polska' },
-          { '@type': 'Organization', name: 'Santander Corporate & Investment Banking' },
-        ],
-      },
-      {
-        '@type': 'Person',
-        name: 'Julia Sielska',
-        worksFor: { '@type': 'Organization', name: PUBLISHER_NAME, url: 'https://qualitycat.pl' },
-        affiliation: [
-          { '@type': 'Organization', name: PUBLISHER_NAME, url: 'https://qualitycat.pl' },
-          { '@type': 'Organization', name: 'ABB Polska' },
-        ],
-      },
-    ],
+    founder: [postAuthorJsonLd('GH'), postAuthorJsonLd('JS')],
     member: [
-      {
-        '@type': 'Person',
-        name: AUTHOR_NAME,
-        worksFor: { '@type': 'Organization', name: PUBLISHER_NAME, url: 'https://qualitycat.pl' },
-        affiliation: [
-          { '@type': 'Organization', name: PUBLISHER_NAME, url: 'https://qualitycat.pl' },
-          { '@type': 'Organization', name: 'Sii Polska' },
-          { '@type': 'Organization', name: 'Santander Corporate & Investment Banking' },
-        ],
-      },
-      {
-        '@type': 'Person',
-        name: 'Julia Sielska',
-        worksFor: { '@type': 'Organization', name: PUBLISHER_NAME, url: 'https://qualitycat.pl' },
-        affiliation: [
-          { '@type': 'Organization', name: PUBLISHER_NAME, url: 'https://qualitycat.pl' },
-          { '@type': 'Organization', name: 'ABB Polska' },
-        ],
-      },
+      postAuthorJsonLd('GH'),
+      postAuthorJsonLd('JS'),
       {
         '@type': 'Person',
         name: 'Konrad Gomulski',
@@ -262,6 +265,7 @@ export function blogJsonLd(locale: Locale, posts: BlogPostEntry[]): JsonLdNode {
       headline: post.data.title,
       url: absoluteUrl(postPath(locale, postSlug(post.id))),
       datePublished: post.data.date.toISOString(),
+      author: postAuthorJsonLd(post.data.author),
     })),
   };
 }
@@ -297,16 +301,7 @@ export function blogPostingJsonLd(post: BlogPostEntry, alternates: AlternatePath
     keywords: post.data.tags,
     articleSection: post.data.tags[0] ?? 'blog',
     timeRequired: `PT${post.data.readingTime}M`,
-    author: {
-      '@type': 'Person',
-      name: AUTHOR_NAME,
-      worksFor: { '@type': 'Organization', name: PUBLISHER_NAME, url: 'https://qualitycat.pl' },
-      affiliation: [
-        { '@type': 'Organization', name: PUBLISHER_NAME, url: 'https://qualitycat.pl' },
-        { '@type': 'Organization', name: 'Sii Polska' },
-        { '@type': 'Organization', name: 'Santander Corporate & Investment Banking' },
-      ],
-    },
+    author: postAuthorJsonLd(post.data.author),
     publisher: { '@id': absoluteUrl('/#organization') },
     isPartOf: { '@id': absoluteUrl(`${blogPath(locale)}#blog`) },
     about: post.data.tags.map((tag) => ({ '@type': 'Thing', name: tag })),

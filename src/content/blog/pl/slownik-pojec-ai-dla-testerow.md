@@ -5,6 +5,7 @@ date: 2026-04-19
 tags: ["ai", "qa", "agenci", "mcp"]
 lang: pl
 readingTime: 8
+author: GH
 ---
 
 W rozmowach o AI w QA zauważyłem, że dyskusja zazwyczaj się zacina nie dlatego, że technologia jest trudna, tylko dlatego, że wszyscy używają tych samych słów na zupełnie różne rzeczy. „Zbudowaliśmy agenta" często oznacza „mamy prompt w Notion". „Odpaliliśmy MCP" bywa synonimem „skleiliśmy Pythonowy skrypt". „Piszemy skill" bywa tłumaczone jako „dopisaliśmy akapit do system prompta".

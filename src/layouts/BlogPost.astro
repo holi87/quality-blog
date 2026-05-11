@@ -3,12 +3,13 @@ import BaseLayout from './BaseLayout.astro';
 import Tag from '../components/Tag.astro';
 import RelatedPosts from '../components/RelatedPosts.astro';
 import { t, type Locale } from '../i18n/translations';
-import type { AlternatePaths, JsonLdNode } from '../lib/seo';
+import { postAuthorName, type AlternatePaths, type AuthorCode, type JsonLdNode } from '../lib/seo';
 
 interface Props {
   title: string;
   description: string;
   date: Date;
+  author: AuthorCode;
   readingTime: number;
   tags: string[];
   locale: Locale;
@@ -22,6 +23,7 @@ const {
   title,
   description,
   date,
+  author,
   readingTime,
   tags,
   locale,
@@ -31,6 +33,7 @@ const {
   jsonLd,
 } = Astro.props;
 const strings = t(locale);
+const authorName = postAuthorName(author);
 
 const formattedDate = date.toLocaleDateString(locale === 'pl' ? 'pl-PL' : 'en-US', {
   day: 'numeric',
@@ -79,6 +82,8 @@ const postCurrentPath = `/blog/${slug}/`;
 
       <div class="post-meta">
         <time datetime={iso}>{formattedDate}</time>
+        <span class="sep" aria-hidden="true">·</span>
+        <span title={authorName}>{strings.posts.author}: {author}</span>
         <span class="sep" aria-hidden="true">·</span>
         <span>{readingTime} {strings.posts.readingTime}</span>
         <span class="sep" aria-hidden="true">·</span>

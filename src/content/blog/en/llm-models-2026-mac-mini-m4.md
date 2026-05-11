@@ -5,6 +5,7 @@ date: 2026-05-07
 tags: ["ai", "llm", "ollama", "models", "coding", "local-models"]
 lang: en
 readingTime: 11
+author: GH
 ---
 
 In the [previous post](/en/blog/mac-mini-m4-local-llm-lm-studio-ollama) I described the workstation: Mac mini M4 16 GB, LM Studio and Ollama as the runtime. Container without content. Today the content — that is, **specific models worth pulling in 2026**, where what was a top pick yesterday is dead weight on disk today.

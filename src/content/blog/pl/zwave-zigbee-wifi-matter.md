@@ -5,6 +5,7 @@ date: 2026-04-21
 tags: ["smart-home", "zigbee", "zwave", "matter", "thread", "wifi"]
 lang: pl
 readingTime: 10
+author: JS
 ---
 
 Jeśli w 2026 roku zaczynasz budować smart home od zera, masz do wyboru cztery protokoły radiowe. Każdy z nich ma sens — ale nie w tym samym miejscu. Poniżej praktyczny przewodnik: kiedy co wybrać, gdzie są pułapki, i czy Matter faktycznie rozwiązuje problem, dla którego powstał.
