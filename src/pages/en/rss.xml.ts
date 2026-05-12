@@ -1,7 +1,7 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
-import { postAuthorName } from '../../lib/seo';
+import { postAuthorNamesLabel } from '../../lib/seo';
 
 export async function GET(context: APIContext) {
   const now = new Date();
@@ -22,7 +22,7 @@ export async function GET(context: APIContext) {
       pubDate: post.data.date,
       link: `/en/blog/${post.id.replace(/^[a-z]{2}\//, '')}/`,
       categories: post.data.tags,
-      customData: `<dc:creator>${postAuthorName(post.data.author)}</dc:creator>`,
+      customData: `<dc:creator>${postAuthorNamesLabel(post.data.author, 'en')}</dc:creator>`,
     })),
     customData: '<language>en-us</language>',
   });

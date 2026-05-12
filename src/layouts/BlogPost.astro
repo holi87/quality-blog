@@ -3,13 +3,13 @@ import BaseLayout from './BaseLayout.astro';
 import Tag from '../components/Tag.astro';
 import RelatedPosts from '../components/RelatedPosts.astro';
 import { t, type Locale } from '../i18n/translations';
-import { postAuthorName, type AlternatePaths, type AuthorCode, type JsonLdNode } from '../lib/seo';
+import { postAuthorCodesLabel, postAuthorNamesLabel, type AlternatePaths, type AuthorInput, type JsonLdNode } from '../lib/seo';
 
 interface Props {
   title: string;
   description: string;
   date: Date;
-  author: AuthorCode;
+  author: AuthorInput;
   readingTime: number;
   tags: string[];
   locale: Locale;
@@ -33,7 +33,8 @@ const {
   jsonLd,
 } = Astro.props;
 const strings = t(locale);
-const authorName = postAuthorName(author);
+const authorName = postAuthorNamesLabel(author, locale);
+const authorLabel = postAuthorCodesLabel(author);
 
 const formattedDate = date.toLocaleDateString(locale === 'pl' ? 'pl-PL' : 'en-US', {
   day: 'numeric',
@@ -83,7 +84,7 @@ const postCurrentPath = `/blog/${slug}/`;
       <div class="post-meta">
         <time datetime={iso}>{formattedDate}</time>
         <span class="sep" aria-hidden="true">·</span>
-        <span title={authorName}>{strings.posts.author}: {author}</span>
+        <span title={authorName}>{strings.posts.author}: {authorLabel}</span>
         <span class="sep" aria-hidden="true">·</span>
         <span>{readingTime} {strings.posts.readingTime}</span>
         <span class="sep" aria-hidden="true">·</span>

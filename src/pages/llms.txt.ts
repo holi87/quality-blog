@@ -6,7 +6,8 @@ import {
   isAiPost,
   isPublished,
   postPath,
-  postAuthorName,
+  postAuthorCodesLabel,
+  postAuthorNamesLabel,
   postSlug,
   sortByDateDesc,
   type BlogPostEntry,
@@ -18,7 +19,7 @@ function formatPost(post: BlogPostEntry): string {
   const slug = postSlug(post.id);
   const date = post.data.date.toISOString().slice(0, 10);
 
-  return `- [${post.data.title}](${absoluteUrl(postPath(locale, slug))}): ${post.data.description} Author: ${post.data.author} (${postAuthorName(post.data.author)}). Tags: ${post.data.tags.join(', ')}. Language: ${locale}. Published: ${date}.`;
+  return `- [${post.data.title}](${absoluteUrl(postPath(locale, slug))}): ${post.data.description} Author: ${postAuthorCodesLabel(post.data.author)} (${postAuthorNamesLabel(post.data.author, locale)}). Tags: ${post.data.tags.join(', ')}. Language: ${locale}. Published: ${date}.`;
 }
 
 function section(title: string, posts: BlogPostEntry[]): string {

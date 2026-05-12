@@ -2,13 +2,13 @@
 import Tag from './Tag.astro';
 import type { Locale } from '../i18n/translations';
 import { t } from '../i18n/translations';
-import { postAuthorName, type AuthorCode } from '../lib/seo';
+import { postAuthorCodesLabel, postAuthorNamesLabel, type AuthorInput } from '../lib/seo';
 
 interface Props {
   title: string;
   description: string;
   date: Date;
-  author: AuthorCode;
+  author: AuthorInput;
   readingTime: number;
   tags: string[];
   slug: string;
@@ -18,7 +18,8 @@ interface Props {
 
 const { title, description, date, author, readingTime, tags, slug, locale, index } = Astro.props;
 const strings = t(locale);
-const authorName = postAuthorName(author);
+const authorName = postAuthorNamesLabel(author, locale);
+const authorLabel = postAuthorCodesLabel(author);
 
 const formattedDate = date.toLocaleDateString(locale === 'pl' ? 'pl-PL' : 'en-US', {
   day: 'numeric',
@@ -43,7 +44,7 @@ const primary = (tags[0] ?? 'default')
     )}
     <span class="date">{formattedDate}</span>
     <span class="dot-sep">·</span>
-    <span class="author" title={authorName}>{strings.posts.author}: {author}</span>
+    <span class="author" title={authorName}>{strings.posts.author}: {authorLabel}</span>
     <span class="dot-sep">·</span>
     <span class="rt">{readingTime} {strings.posts.readingTime}</span>
   </div>

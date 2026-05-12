@@ -24,6 +24,13 @@ export const POST_AUTHORS = {
       { '@type': 'Organization', name: 'ABB Polska' },
     ],
   },
+  KG: {
+    code: 'KG',
+    name: 'Konrad Gomulski',
+    affiliation: [
+      { '@type': 'Organization', name: 'Sii Polska' },
+    ],
+  },
 } as const;
 
 export const LOCALES = ['pl', 'en'] as const;
@@ -149,6 +156,12 @@ export function isAiPost(post: BlogPostEntry): boolean {
     || /\b(ai|llm|claude|chatgpt|mcp|ollama|open webui|prompt|agent)\b/i.test(searchable);
 }
 
+export type AuthorInput = AuthorCode | readonly AuthorCode[];
+
+export function authorCodes(input: AuthorInput): AuthorCode[] {
+  return Array.isArray(input) ? [...input] : [input as AuthorCode];
+}
+
 export function postAuthor(code: AuthorCode) {
   return POST_AUTHORS[code];
 }
@@ -157,7 +170,18 @@ export function postAuthorName(code: AuthorCode): string {
   return postAuthor(code).name;
 }
 
-export function postAuthorJsonLd(code: AuthorCode): JsonLdNode {
+export function postAuthorCodesLabel(input: AuthorInput): string {
+  return authorCodes(input).join('+');
+}
+
+export function postAuthorNamesLabel(input: AuthorInput, locale: Locale): string {
+  const names = authorCodes(input).map((code) => postAuthor(code).name);
+  if (names.length <= 1) return names[0] ?? '';
+  const joiner = locale === 'pl' ? ' i ' : ' and ';
+  return names.slice(0, -1).join(', ') + joiner + names[names.length - 1];
+}
+
+function singleAuthorJsonLd(code: AuthorCode): JsonLdNode {
   const author = postAuthor(code);
   return {
     '@type': 'Person',
@@ -166,6 +190,12 @@ export function postAuthorJsonLd(code: AuthorCode): JsonLdNode {
     worksFor: { '@type': 'Organization', name: PUBLISHER_NAME, url: 'https://qualitycat.pl' },
     affiliation: author.affiliation,
   };
+}
+
+export function postAuthorJsonLd(input: AuthorInput): JsonLdNode | JsonLdNode[] {
+  const codes = authorCodes(input);
+  if (codes.length === 1) return singleAuthorJsonLd(codes[0]);
+  return codes.map(singleAuthorJsonLd);
 }
 
 function tagOverlapScore(a: BlogPostEntry, b: BlogPostEntry): number {
@@ -221,16 +251,11 @@ export function organizationJsonLd(): JsonLdNode {
     name: PUBLISHER_NAME,
     url: 'https://qualitycat.pl',
     brand: SITE_NAME,
-    founder: [postAuthorJsonLd('GH'), postAuthorJsonLd('JS')],
+    founder: [singleAuthorJsonLd('GH'), singleAuthorJsonLd('JS')],
     member: [
-      postAuthorJsonLd('GH'),
-      postAuthorJsonLd('JS'),
-      {
-        '@type': 'Person',
-        name: 'Konrad Gomulski',
-        alternateName: 'Gumis',
-        affiliation: { '@type': 'Organization', name: 'Sii Polska' },
-      },
+      singleAuthorJsonLd('GH'),
+      singleAuthorJsonLd('JS'),
+      singleAuthorJsonLd('KG'),
     ],
   };
 }
