@@ -8,7 +8,7 @@ readingTime: 12
 author: GH
 ---
 
-A few days ago I published a short [AI adoption maturity model](/en/blog/ai-maturity-model/) — 11 levels from resistance to orchestration. After conversations with readers and teams I've been helping with adoption, it became clear the model needed to be expanded. It lacked diagnostic tools, concrete examples, honest anti-patterns, and a clear separation between the individual and the organisational perspective. This version — **the Holak Scale** — closes those gaps.
+In mid-April 2026 I published a short [AI adoption maturity model](/en/blog/ai-maturity-model/) — 11 levels from resistance to orchestration. After conversations with readers and teams I've been helping with adoption, it became clear the model needed to be expanded. It lacked diagnostic tools, concrete examples, honest anti-patterns, and a clear separation between the individual and the organisational perspective. This version — **the Holak Scale** — closes those gaps.
 
 ## How to read this scale
 
@@ -101,7 +101,7 @@ These two often diverge. A single engineer may sit at level 9 while their compan
 
 ### Level 5
 
-**Context files — per-project context.** `README.md`, `AGENTS.md`, `CLAUDE.md`, `.cursorrules`. AI agents get files that describe the project: what we're building, how it's structured, which conventions apply. You run the agent in a directory — it already knows what to do.
+**Context files — per-project context.** `README.md`, [`AGENTS.md`](/en/blog/agents-md-for-test-automation/), `CLAUDE.md`, `.cursorrules`. AI agents get files that describe the project: what we're building, how it's structured, which conventions apply. You run the agent in a directory — it already knows what to do.
 
 - **Barrier:** accepting that writing documentation for AI is engineering work, not "overhead".
 - **Success:** a new team member (human or agent) is productive within an hour.
@@ -117,7 +117,7 @@ These two often diverge. A single engineer may sit at level 9 while their compan
 
 ### Level 7
 
-**Skills and knowledge bases — specialised capabilities and domain knowledge.** Dedicated skills (generating reports, analysing logs, migrations), knowledge bases (documentation, standards, decision history). We don't reinvent the wheel — knowledge is organised.
+**Skills and knowledge bases — specialised capabilities and domain knowledge.** Dedicated skills ([bug reports into Jira](/en/blog/skill-for-bug-reports-in-jira/), log analysis, [building your own subagent](/en/blog/custom-subagent-claude-code-example/)), knowledge bases (documentation, standards, decision history). We don't reinvent the wheel — knowledge is organised.
 
 - **Barrier:** information architecture and the decision of *what* to wrap into a skill versus leaving ad hoc.
 - **Success:** the agent reaches for the right tool by itself, without hand-holding.
@@ -125,7 +125,7 @@ These two often diverge. A single engineer may sit at level 9 while their compan
 
 ### Level 8
 
-**Tools, MCP and connectors — integration with external systems.** The agent doesn't just write — it searches Slack, creates Jira tickets, reads emails, calls APIs, runs tests. MCP (Model Context Protocol) and connectors let it act in the world.
+**Tools, MCP and connectors — integration with external systems.** The agent doesn't just write — it searches Slack, creates Jira tickets, reads emails, calls APIs, runs tests. [MCP (Model Context Protocol)](/en/blog/first-mcp-for-qa-search-fetch/) and connectors (e.g. [context7 for up-to-date docs](/en/blog/context7-mcp-up-to-date-docs-llm/)) let it act in the world.
 
 - **Barrier:** security and permissions — *what* the agent can actually do, and *where*.
 - **Success:** the agent behaves like a new team member with access to the systems.
@@ -155,7 +155,7 @@ Crossing requires two things: **verifiability** (it's easy to check what the age
 
 ### Level 10
 
-**Multi-agent orchestration — a team of agents with a coordinator.** Multiple agents, each specialised: one analyses, another codes, a third reviews, a fourth writes tests. The orchestrator coordinates order, resolves conflicts, aggregates results.
+**Multi-agent orchestration — a team of agents with a coordinator.** Multiple [subagents](/en/blog/subagents-claude-code-what-and-why/), each specialised: one analyses, another codes, a third reviews, a fourth writes tests. The orchestrator coordinates order, resolves conflicts, aggregates results.
 
 - **Barrier:** designing a system of agents, not writing prompts.
 - **Success:** complex goals are delivered without micromanagement; the human sets direction and verifies outcomes.
@@ -191,15 +191,13 @@ Honestly:
 
 - **The scale is linear; the world isn't.** In practice you jump between levels depending on the task. In writing emails you're at 1, in code you're at 8. That's normal.
 - **Not all levels are equally valuable.** The jump from 1 to 4 yields more than from 8 to 10. The model shows a trajectory, not a priority.
-- **Tools move faster than the scale.** Level 8 in 2024 (MCP) is not level 8 in 2026. The scale describes the *kind* of capability, not specific products.
+- **Tools move faster than the scale.** Level 8 in 2025 (first MCP deployments) is not level 8 in Q2 2026. The scale describes the *kind* of capability, not specific products.
 - **There's no ethics here.** You can be at level 10 and still be doing something harmful. Technical maturity isn't moral maturity.
 
 ## What's next
 
-If this scale helps you in a conversation with your team — use it, cite it, adapt it. If you see gaps, get in touch via [holak.net.pl](https://holak.net.pl) or the contact channel on this blog. Version 3 will appear once I collect enough concrete material from your deployments.
-
-A follow-up in this series — *"How to diagnose a team's maturity level in 30 minutes"* — is in the works.
+If this scale helps you in a conversation with your team — use it, cite it, adapt it. If you see gaps, get in touch via [holak.net.pl](https://holak.net.pl) or the contact channel on this blog. Version 3 is coming later this year — together with Konrad "Gumiś" Gomulski we're collecting deployment data and running experiments.
 
 ---
 
-*By Grzegorz Holak — AI Ambassador, SCIB. Originally published at [holak.net.pl](https://holak.net.pl). Version 1 of the model: [AI Adoption Maturity Model](/en/blog/ai-maturity-model/).*
+*By Grzegorz Holak — Quality Cat, experience from Sii Polska and Santander Corporate & Investment Banking. Originally published at [holak.net.pl](https://holak.net.pl). Version 1 of the model: [AI Adoption Maturity Model](/en/blog/ai-maturity-model/).*

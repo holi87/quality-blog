@@ -8,7 +8,7 @@ readingTime: 12
 author: GH
 ---
 
-Kilka dni temu opublikowałem krótki [model dojrzałości adopcji AI](/pl/blog/model-dojrzalosci-ai/) — 11 poziomów od oporu do orkiestracji. Po rozmowach z czytelnikami i zespołami, którym pomagam we wdrożeniach, stało się jasne, że model wymaga rozbudowy. Brakowało narzędzi do diagnozy, konkretów z życia, uczciwego pokazania anti-patternów i rozdzielenia perspektywy jednostki od organizacji. Ta wersja — **skala Holaka** — zamyka te luki.
+W połowie kwietnia 2026 opublikowałem krótki [model dojrzałości adopcji AI](/pl/blog/model-dojrzalosci-ai/) — 11 poziomów od oporu do orkiestracji. Po rozmowach z czytelnikami i zespołami, którym pomagam we wdrożeniach, stało się jasne, że model wymaga rozbudowy. Brakowało narzędzi do diagnozy, konkretów z życia, uczciwego pokazania anti-patternów i rozdzielenia perspektywy jednostki od organizacji. Ta wersja — **skala Holaka** — zamyka te luki.
 
 ## Jak czytać tę skalę
 
@@ -101,7 +101,7 @@ Te dwa wymiary często się rozjeżdżają. Pojedynczy inżynier bywa na poziomi
 
 ### Poziom 5
 
-**Pliki kontekstowe — kontekst per-projekt.** `README.md`, `AGENTS.md`, `CLAUDE.md`, `.cursorrules`. Agenci AI otrzymują pliki opisujące projekt: co budujemy, jaka jest struktura, jakie konwencje. Uruchamiasz agenta w katalogu — on już wie, co robić.
+**Pliki kontekstowe — kontekst per-projekt.** `README.md`, [`AGENTS.md`](/pl/blog/agents-md-dla-test-automation/), `CLAUDE.md`, `.cursorrules`. Agenci AI otrzymują pliki opisujące projekt: co budujemy, jaka jest struktura, jakie konwencje. Uruchamiasz agenta w katalogu — on już wie, co robić.
 
 - **Bariera:** przyjęcie, że pisanie dokumentacji dla AI to praca inżynierska, nie „narzut".
 - **Sukces:** nowy członek zespołu (człowiek lub agent) jest produktywny w godzinę.
@@ -117,7 +117,7 @@ Te dwa wymiary często się rozjeżdżają. Pojedynczy inżynier bywa na poziomi
 
 ### Poziom 7
 
-**Skille i bazy wiedzy — wyspecjalizowane umiejętności i wiedza domenowa.** Dedykowane skille (generowanie raportów, analiza logów, migracje), bazy wiedzy (dokumentacja, standardy, historia decyzji). Nie wymyślamy koła na nowo — wiedza jest zorganizowana.
+**Skille i bazy wiedzy — wyspecjalizowane umiejętności i wiedza domenowa.** Dedykowane skille ([raporty bugów do Jiry](/pl/blog/skill-do-raportu-bugow-w-jirze/), analiza logów, [budowa własnego subagenta](/pl/blog/wlasny-subagent-claude-code-przyklad/)), bazy wiedzy (dokumentacja, standardy, historia decyzji). Nie wymyślamy koła na nowo — wiedza jest zorganizowana.
 
 - **Bariera:** architektura informacji i decyzja *co* zamknąć w skillu, a co zostawić ad hoc.
 - **Sukces:** agent sięga po właściwe narzędzie sam, bez prowadzenia za rękę.
@@ -125,7 +125,7 @@ Te dwa wymiary często się rozjeżdżają. Pojedynczy inżynier bywa na poziomi
 
 ### Poziom 8
 
-**Narzędzia, MCP i konektory — integracja z zewnętrznymi systemami.** Agent nie tylko pisze — przeszukuje Slacka, tworzy zadania w Jira, czyta maile, odpytuje API, uruchamia testy. MCP (Model Context Protocol) i konektory pozwalają mu działać w świecie.
+**Narzędzia, MCP i konektory — integracja z zewnętrznymi systemami.** Agent nie tylko pisze — przeszukuje Slacka, tworzy zadania w Jira, czyta maile, odpytuje API, uruchamia testy. [MCP (Model Context Protocol)](/pl/blog/pierwszy-mcp-dla-qa-search-fetch/) i konektory (np. [context7 do aktualnej dokumentacji](/pl/blog/context7-mcp-aktualna-dokumentacja-llm/)) pozwalają mu działać w świecie.
 
 - **Bariera:** bezpieczeństwo i uprawnienia — *co* i *gdzie* agent może realnie zrobić.
 - **Sukces:** agent jak nowy członek zespołu z dostępem do systemów.
@@ -155,7 +155,7 @@ Przejście wymaga dwóch rzeczy: **sprawdzalności** (łatwo zweryfikować, co a
 
 ### Poziom 10
 
-**Orkiestracja wieloagentowa — zespół agentów z koordynatorem.** Wielu agentów, każdy ze swoją specjalizacją: jeden analizuje, drugi koduje, trzeci robi review, czwarty pisze testy. Orkiestrator koordynuje kolejność, rozwiązuje konflikty, agreguje wyniki.
+**Orkiestracja wieloagentowa — zespół agentów z koordynatorem.** Wielu [subagentów](/pl/blog/subagenci-claude-code-co-to-i-po-co/), każdy ze swoją specjalizacją: jeden analizuje, drugi koduje, trzeci robi review, czwarty pisze testy. Orkiestrator koordynuje kolejność, rozwiązuje konflikty, agreguje wyniki.
 
 - **Bariera:** projektowanie systemu agentów, a nie pisanie promptów.
 - **Sukces:** złożone cele realizowane bez mikrozarządzania; człowiek ustala kierunek i weryfikuje efekt.
@@ -191,15 +191,13 @@ Uczciwie:
 
 - **Skala jest liniowa, świat nie.** W praktyce skacze się między poziomami w zależności od zadania. W pisaniu maili jesteś na 1, w kodzie na 8. To normalne.
 - **Nie wszystkie poziomy są równie wartościowe.** Przeskok z 1 na 4 daje większy zysk niż z 8 na 10. Model pokazuje trajektorię, nie priorytet.
-- **Narzędzia się zmieniają szybciej niż skala.** Poziom 8 z 2024 (MCP) to nie to samo, co poziom 8 z 2026. Skala opisuje *rodzaj* umiejętności, nie konkretne produkty.
+- **Narzędzia się zmieniają szybciej niż skala.** Poziom 8 z 2025 (pierwsze MCP w użyciu) to nie to samo, co poziom 8 z Q2 2026. Skala opisuje *rodzaj* umiejętności, nie konkretne produkty.
 - **Nie ma tu etyki.** Można być na poziomie 10 i robić coś szkodliwego. Dojrzałość techniczna nie jest dojrzałością moralną.
 
 ## Co dalej
 
-Jeśli ta skala Ci się przyda w rozmowie z zespołem — korzystaj, cytuj, adaptuj. Jeśli widzisz w niej luki, napisz do mnie na [holak.net.pl](https://holak.net.pl) albo przez kanał kontaktu na blogu. Wersja 3 powstanie, kiedy uzbieram wystarczająco dużo konkretów z Waszych wdrożeń.
-
-Kolejny post z tej serii — *„Jak zdiagnozować poziom dojrzałości zespołu w 30 minut"* — w przygotowaniu.
+Jeśli ta skala Ci się przyda w rozmowie z zespołem — korzystaj, cytuj, adaptuj. Jeśli widzisz w niej luki, napisz do mnie na [holak.net.pl](https://holak.net.pl) albo przez kanał kontaktu na blogu. Wersja 3 powstanie jeszcze w tym roku — z Konradem „Gumisiem" Gomulskim zbieramy dane z wdrożeń i eksperymentujemy.
 
 ---
 
-*Opracowanie: Grzegorz Holak — AI Ambassador, SCIB. Pierwotna publikacja: [holak.net.pl](https://holak.net.pl). Wersja 1 modelu: [Model dojrzałości adopcji AI](/pl/blog/model-dojrzalosci-ai/).*
+*Opracowanie: Grzegorz Holak — Quality Cat, doświadczenie z Sii Polska i Santander Corporate & Investment Banking. Pierwotna publikacja: [holak.net.pl](https://holak.net.pl). Wersja 1 modelu: [Model dojrzałości adopcji AI](/pl/blog/model-dojrzalosci-ai/).*
