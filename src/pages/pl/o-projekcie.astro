@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { aboutPageJsonLd, localizedAlternates, organizationJsonLd, websiteJsonLd } from '../../lib/seo';
 
 const alternatePaths = localizedAlternates('/pl/o-projekcie/', '/en/about/');
-const seoDescription = 'O quality blog i Quality Cat: Grzegorz Holak, Julia Sielska oraz kontekst doświadczeń związanych z Sii Polska, Santander Corporate & Investment Banking, ABB Polska i Konradem Gomulskim.';
+const seoDescription = 'O quality blog i Quality Cat: Grzegorz Holak, Julia Sielska, Konrad „Gumiś" Gomulski i Filip Barszcz oraz kontekst doświadczeń związanych z Sii Polska, Santander Corporate & Investment Banking i ABB Polska.';
 ---
 
 <BaseLayout
@@ -62,21 +62,52 @@ const seoDescription = 'O quality blog i Quality Cat: Grzegorz Holak, Julia Siel
         <p class="who">
           Blog prowadzi
           <a href="https://qualitycat.pl" target="_blank" rel="noopener">Quality Cat</a>
-          — czyli <strong>Grzegorz Holak</strong> i <strong>Julia Sielska</strong> — firma, która wierzy,
+          — firma założona przez <strong>Julię Sielską</strong> i <strong>Grzegorza Holaka</strong>, która wierzy,
           że dobra wiedza powinna być dostępna dla każdego.
-        </p>
-        <p class="who">
-          Ten praktyczny punkt widzenia wyrasta z codziennej pracy blisko technologii i dużych organizacji:
-          Grzegorz Holak łączy perspektywę Quality Cat z doświadczeniami z <strong>Sii Polska</strong>
-          oraz <strong>Santander Corporate &amp; Investment Banking</strong>, Julia Sielska wnosi
-          perspektywę Quality Cat i <strong>ABB Polska</strong>, a <strong>Konrad „Gumiś" Gomulski</strong>
-          — przyjaciel ekipy i stały rozmówca — dorzuca świeże spojrzenie oraz doświadczenie z
-          <strong>Sii Polska</strong>.
         </p>
         <p class="eyebrow manifest-label">Manifest</p>
         <blockquote>
           <p>Żadnych paywalli. Żadnych clickbaitów. Żadnych „10 powodów, dla których…”. Tylko solidna wiedza, napisana po ludzku.</p>
         </blockquote>
+      </div>
+    </div>
+
+    <div class="container authors-wrap">
+      <p class="eyebrow">Autorzy</p>
+      <div class="authors">
+        <article class="author-card">
+          <h3 class="author-name">Julia Sielska</h3>
+          <p class="author-role">Współzałożycielka Quality Cat · ABB Polska</p>
+          <p class="author-bio">
+            Współzałożycielka <strong>Quality Cat</strong>. Na co dzień pracuje z systemami ERP
+            w <strong>ABB Polska</strong> i testuje szalone pomysły Grzegorza w ich domu.
+          </p>
+        </article>
+        <article class="author-card">
+          <h3 class="author-name">Grzegorz Holak</h3>
+          <p class="author-role">QA Architect @ SCIB · Senior TDE @ Sii Polska</p>
+          <p class="author-bio">
+            <strong>QA Architect</strong> w Santander Corporate &amp; Investment Banking i
+            <strong>Senior TDE</strong> w Sii Polska. Współzałożyciel Quality Cat,
+            pomysłodawca bloga i idei dzielenia się nabytą wiedzą.
+          </p>
+        </article>
+        <article class="author-card">
+          <h3 class="author-name">Konrad „Gumiś" Gomulski</h3>
+          <p class="author-role">Senior TDE @ Sii Polska</p>
+          <p class="author-bio">
+            <strong>Senior TDE</strong> w Sii Polska. Wspiera blog od początku — nawet jeśli
+            bezpośrednio jego wpisów jest niewiele, to czyta i weryfikuje wszystkie pozostałe.
+          </p>
+        </article>
+        <article class="author-card">
+          <h3 class="author-name">Filip Barszcz</h3>
+          <p class="author-role">QA Chapter Lead @ SCIB</p>
+          <p class="author-bio">
+            <strong>QA Chapter Lead</strong> w Santander Corporate &amp; Investment Banking.
+            Razem z Grzegorzem walczy o lepszą jakość na co dzień.
+          </p>
+        </article>
       </div>
     </div>
   </section>
@@ -186,4 +217,50 @@ const seoDescription = 'O quality blog i Quality Cat: Grzegorz Holak, Julia Siel
   @media (max-width: 720px) {
     .about-body { grid-template-columns: 1fr; }
   }
+
+  .authors-wrap {
+    padding-block: clamp(24px, 4vw, 56px) clamp(48px, 7vw, 96px);
+    border-top: 1px solid var(--border-soft);
+    max-width: 1040px;
+  }
+  .authors-wrap .eyebrow {
+    color: var(--fg-subtle);
+    margin-bottom: 24px;
+  }
+  .authors {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .author-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 22px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .author-card:hover {
+    border-color: color-mix(in oklab, var(--accent) 35%, var(--border-soft));
+    transform: translateY(-2px);
+  }
+  .author-name {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--fg);
+    margin: 0 0 4px;
+  }
+  .author-role {
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: var(--accent);
+    margin: 0 0 12px;
+  }
+  .author-bio {
+    color: var(--fg-muted);
+    font-size: 14px;
+    line-height: 1.65;
+    margin: 0;
+  }
+  .author-bio strong { color: var(--fg); font-weight: 600; }
 </style>

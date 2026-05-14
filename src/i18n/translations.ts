@@ -10,7 +10,7 @@ const translations = {
       highlight1: 'smart home',
       and: 'i',
       highlight2: 'AI',
-      description: 'Praktyczne poradniki, artykuły i porady — od automatyzacji domu po sztuczną inteligencję. Wszystko za darmo, bez marketingowego szumu.',
+      description: 'Blog o jakości — w IT, w smart home, w codziennych wyborach technologicznych. Praktyczne poradniki, eksperymenty i wnioski z pracy. Bez paywalli i bez marketingowego szumu.',
     },
     posts: {
       latest: 'Ostatnie wpisy',
@@ -37,7 +37,7 @@ const translations = {
       highlight1: 'smart home',
       and: 'and',
       highlight2: 'AI',
-      description: 'Practical guides, articles and tips — from home automation to artificial intelligence. All free, no marketing fluff.',
+      description: 'A blog about quality — in IT, in smart home, in everyday tech choices. Practical guides, experiments and lessons from the field. No paywalls, no marketing fluff.',
     },
     posts: {
       latest: 'Latest posts',

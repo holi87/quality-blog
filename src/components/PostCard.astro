@@ -2,7 +2,7 @@
 import Tag from './Tag.astro';
 import type { Locale } from '../i18n/translations';
 import { t } from '../i18n/translations';
-import { postAuthorCodesLabel, postAuthorNamesLabel, type AuthorInput } from '../lib/seo';
+import { postAuthorNamesLabel, type AuthorInput } from '../lib/seo';
 
 interface Props {
   title: string;
@@ -19,7 +19,6 @@ interface Props {
 const { title, description, date, author, readingTime, tags, slug, locale, index } = Astro.props;
 const strings = t(locale);
 const authorName = postAuthorNamesLabel(author, locale);
-const authorLabel = postAuthorCodesLabel(author);
 
 const formattedDate = date.toLocaleDateString(locale === 'pl' ? 'pl-PL' : 'en-US', {
   day: 'numeric',
@@ -44,7 +43,7 @@ const primary = (tags[0] ?? 'default')
     )}
     <span class="date">{formattedDate}</span>
     <span class="dot-sep">·</span>
-    <span class="author" title={authorName}>{strings.posts.author}: {authorLabel}</span>
+    <span class="author">{strings.posts.author}: {authorName}</span>
     <span class="dot-sep">·</span>
     <span class="rt">{readingTime} {strings.posts.readingTime}</span>
   </div>

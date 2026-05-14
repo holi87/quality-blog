@@ -73,7 +73,7 @@ test.describe('SEO and LLM discoverability', () => {
   test('Home Assistant posts expose JS as the article author', async ({ page }) => {
     await page.goto('/pl/blog/hacs-w-home-assistant-os/');
 
-    await expect(page.locator('.post-meta')).toContainText('Autor: JS');
+    await expect(page.locator('.post-meta')).toContainText('Autor: Julia Sielska');
 
     const jsonLdItems = (await page.locator('script[type="application/ld+json"]').allTextContents())
       .map((text) => JSON.parse(text));
@@ -95,7 +95,9 @@ test.describe('SEO and LLM discoverability', () => {
     await expect(page.locator('body')).toContainText('ABB Polska');
 
     await page.goto('/en/about/');
-    await expect(page.locator('body')).toContainText('the Quality Cat team of Grzegorz Holak and Julia Sielska');
-    await expect(page.locator('body')).toContainText('a regular sparring partner');
+    await expect(page.locator('body')).toContainText('Julia Sielska');
+    await expect(page.locator('body')).toContainText('Grzegorz Holak');
+    await expect(page.locator('body')).toContainText('Konrad');
+    await expect(page.locator('body')).toContainText('Filip Barszcz');
   });
 });

@@ -31,6 +31,13 @@ export const POST_AUTHORS = {
       { '@type': 'Organization', name: 'Sii Polska' },
     ],
   },
+  FB: {
+    code: 'FB',
+    name: 'Filip Barszcz',
+    affiliation: [
+      { '@type': 'Organization', name: 'Santander Corporate & Investment Banking' },
+    ],
+  },
 } as const;
 
 export const LOCALES = ['pl', 'en'] as const;
@@ -171,14 +178,13 @@ export function postAuthorName(code: AuthorCode): string {
 }
 
 export function postAuthorCodesLabel(input: AuthorInput): string {
-  return authorCodes(input).join('+');
+  return authorCodes(input).map((code) => postAuthor(code).name).join(' & ');
 }
 
-export function postAuthorNamesLabel(input: AuthorInput, locale: Locale): string {
+export function postAuthorNamesLabel(input: AuthorInput, _locale: Locale): string {
   const names = authorCodes(input).map((code) => postAuthor(code).name);
   if (names.length <= 1) return names[0] ?? '';
-  const joiner = locale === 'pl' ? ' i ' : ' and ';
-  return names.slice(0, -1).join(', ') + joiner + names[names.length - 1];
+  return names.join(' & ');
 }
 
 function singleAuthorJsonLd(code: AuthorCode): JsonLdNode {

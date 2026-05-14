@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { aboutPageJsonLd, localizedAlternates, organizationJsonLd, websiteJsonLd } from '../../lib/seo';
 
 const alternatePaths = localizedAlternates('/pl/o-projekcie/', '/en/about/');
-const seoDescription = 'About quality blog and Quality Cat: Grzegorz Holak, Julia Sielska and professional context connected with Sii Polska, Santander Corporate & Investment Banking, ABB Polska and Konrad Gomulski.';
+const seoDescription = 'About quality blog and Quality Cat: Grzegorz Holak, Julia Sielska, Konrad "Gumiś" Gomulski and Filip Barszcz, with professional context connected with Sii Polska, Santander Corporate & Investment Banking and ABB Polska.';
 ---
 
 <BaseLayout
@@ -62,21 +62,52 @@ const seoDescription = 'About quality blog and Quality Cat: Grzegorz Holak, Juli
         <p class="who">
           The blog is run by
           <a href="https://qualitycat.pl" target="_blank" rel="noopener">Quality Cat</a>
-          — the Quality Cat team of <strong>Grzegorz Holak</strong> and <strong>Julia Sielska</strong> — a company that
-          believes good knowledge should be accessible to everyone.
-        </p>
-        <p class="who">
-          That practical angle comes from daily work close to technology and large organizations:
-          Grzegorz Holak combines the Quality Cat perspective with experience from <strong>Sii Polska</strong>
-          and <strong>Santander Corporate &amp; Investment Banking</strong>, Julia Sielska brings the
-          Quality Cat and <strong>ABB Polska</strong> perspective, and <strong>Konrad "Gumiś" Gomulski</strong>
-          — a good friend of the crew and a regular sparring partner — adds fresh thinking and experience
-          from <strong>Sii Polska</strong>.
+          — a company co-founded by <strong>Julia Sielska</strong> and <strong>Grzegorz Holak</strong> on the belief that
+          good knowledge should be accessible to everyone.
         </p>
         <p class="eyebrow manifest-label">Manifesto</p>
         <blockquote>
           <p>No paywalls. No clickbait. No "10 reasons why…". Just solid knowledge, written like a human.</p>
         </blockquote>
+      </div>
+    </div>
+
+    <div class="container authors-wrap">
+      <p class="eyebrow">Authors</p>
+      <div class="authors">
+        <article class="author-card">
+          <h3 class="author-name">Julia Sielska</h3>
+          <p class="author-role">Quality Cat co-founder · ABB Polska</p>
+          <p class="author-bio">
+            Co-founder of <strong>Quality Cat</strong>. Works day-to-day with ERP systems
+            at <strong>ABB Polska</strong> and tests Grzegorz's wildest ideas at home.
+          </p>
+        </article>
+        <article class="author-card">
+          <h3 class="author-name">Grzegorz Holak</h3>
+          <p class="author-role">QA Architect @ SCIB · Senior TDE @ Sii Polska</p>
+          <p class="author-bio">
+            <strong>QA Architect</strong> at Santander Corporate &amp; Investment Banking and
+            <strong>Senior TDE</strong> at Sii Polska. Co-founder of Quality Cat — and the person
+            behind the idea of sharing what we've picked up along the way.
+          </p>
+        </article>
+        <article class="author-card">
+          <h3 class="author-name">Konrad "Gumiś" Gomulski</h3>
+          <p class="author-role">Senior TDE @ Sii Polska</p>
+          <p class="author-bio">
+            <strong>Senior TDE</strong> at Sii Polska. Has been backing the blog from day one —
+            even if his own posts are few, he reads and reviews everyone else's.
+          </p>
+        </article>
+        <article class="author-card">
+          <h3 class="author-name">Filip Barszcz</h3>
+          <p class="author-role">QA Chapter Lead @ SCIB</p>
+          <p class="author-bio">
+            <strong>QA Chapter Lead</strong> at Santander Corporate &amp; Investment Banking.
+            Fights alongside Grzegorz for better quality every day.
+          </p>
+        </article>
       </div>
     </div>
   </section>
@@ -182,4 +213,50 @@ const seoDescription = 'About quality blog and Quality Cat: Grzegorz Holak, Juli
   @media (max-width: 720px) {
     .about-body { grid-template-columns: 1fr; }
   }
+
+  .authors-wrap {
+    padding-block: clamp(24px, 4vw, 56px) clamp(48px, 7vw, 96px);
+    border-top: 1px solid var(--border-soft);
+    max-width: 1040px;
+  }
+  .authors-wrap .eyebrow {
+    color: var(--fg-subtle);
+    margin-bottom: 24px;
+  }
+  .authors {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .author-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 22px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .author-card:hover {
+    border-color: color-mix(in oklab, var(--accent) 35%, var(--border-soft));
+    transform: translateY(-2px);
+  }
+  .author-name {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--fg);
+    margin: 0 0 4px;
+  }
+  .author-role {
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: var(--accent);
+    margin: 0 0 12px;
+  }
+  .author-bio {
+    color: var(--fg-muted);
+    font-size: 14px;
+    line-height: 1.65;
+    margin: 0;
+  }
+  .author-bio strong { color: var(--fg); font-weight: 600; }
 </style>

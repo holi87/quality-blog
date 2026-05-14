@@ -10,7 +10,7 @@ const blog = defineCollection({
     tags: z.array(z.string()),
     lang: z.enum(['pl', 'en']),
     readingTime: z.number(),
-    author: z.union([z.enum(['GH', 'JS', 'KG']), z.array(z.enum(['GH', 'JS', 'KG']))]),
+    author: z.union([z.enum(['GH', 'JS', 'KG', 'FB']), z.array(z.enum(['GH', 'JS', 'KG', 'FB']))]),
   }),
 });
 
