@@ -285,7 +285,7 @@ export function blogJsonLd(locale: Locale, posts: BlogPostEntry[]): JsonLdNode {
     '@type': 'Blog',
     '@id': absoluteUrl(`${blogPath(locale)}#blog`),
     url: absoluteUrl(blogPath(locale)),
-    name: locale === 'pl' ? 'Blog o AI, LLM i smart home' : 'AI, LLM and smart home blog',
+    name: locale === 'pl' ? 'Blog o AI, smart home i QA' : 'AI, smart home and QA blog',
     description: locale === 'pl'
       ? 'Praktyczne artykuly o AI, lokalnych modelach LLM, Claude Code, MCP, QA, automatyzacji i smart home.'
       : 'Practical articles about AI, local LLMs, Claude Code, MCP, QA, automation and smart home.',
