@@ -24,7 +24,7 @@ const topics = ['Home Assistant', 'Claude/ChatGPT', 'Automatyzacja', 'IoT', 'Pro
 const totalPosts = allPosts.filter((p) => p.data.lang === locale && p.data.date <= now).length;
 const lastUpdate = posts[0]?.data.date;
 const alternatePaths = localizedAlternates('/pl/', '/en/');
-const seoDescription = 'Praktyczny blog o AI, lokalnych LLM, Claude Code, MCP, prompt engineering, QA automation, Home Assistant i smart home.';
+const seoDescription = 'Praktyczny blog o AI, smart home i QA — Claude Code, MCP, lokalne LLM, prompt engineering, Home Assistant, automatyzacja testów.';
 ---
 
 <BaseLayout
@@ -50,9 +50,10 @@ const seoDescription = 'Praktyczny blog o AI, lokalnych LLM, Claude Code, MCP, p
 
       <h1 class="hero-title display rise" style="animation-delay: 80ms;">
         {strings.hero.title}{' '}
-        <em class="hl hl-1">{strings.hero.highlight1}</em>{' '}
+        <em class="hl hl-1">{strings.hero.highlight1}</em>,{' '}
+        <em class="hl hl-2">{strings.hero.highlight2}</em>{' '}
         <span class="amp">{strings.hero.and}</span>{' '}
-        <em class="hl hl-2">{strings.hero.highlight2}</em>.
+        <em class="hl hl-3">{strings.hero.highlight3}</em>.
       </h1>
 
       <p class="hero-lede rise" style="animation-delay: 160ms;">
@@ -163,7 +164,7 @@ const seoDescription = 'Praktyczny blog o AI, lokalnych LLM, Claude Code, MCP, p
   .hero-title {
     font-size: var(--step-6);
     color: var(--fg);
-    max-width: 18ch;
+    max-width: 22ch;
   }
   .hero-title .hl {
     font-style: italic;
@@ -176,6 +177,12 @@ const seoDescription = 'Praktyczny blog o AI, lokalnych LLM, Claude Code, MCP, p
   }
   .hero-title .hl-2 {
     background: linear-gradient(135deg, var(--accent-2), var(--accent-2-soft));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-title .hl-3 {
+    background: linear-gradient(135deg, var(--accent-3), var(--accent-3-soft));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

@@ -25,6 +25,7 @@
   --accent-2:      #64d4ff;      /* electric cyan — category accent */
   --accent-2-soft: #9ae3ff;
   --accent-3:      #b9ff66;      /* lime — third category hue */
+  --accent-3-soft: #d6ff9e;
   --shadow-card:   0 1px 0 rgba(255,255,255,0.04) inset, 0 20px 40px -24px rgba(0,0,0,0.6);
   --grid-line:     rgba(255,255,255,0.035);
   --noise-opacity: 0.04;
@@ -69,6 +70,7 @@
   --accent-2:      #0e7490;
   --accent-2-soft: #0891b2;
   --accent-3:      #4d7c0f;
+  --accent-3-soft: #6ba318;
   --grid-line:     rgba(0,0,0,0.05);
   --noise-opacity: 0.025;
   --shadow-card:   0 1px 0 rgba(255,255,255,0.8) inset, 0 10px 30px -20px rgba(60,50,20,0.25);

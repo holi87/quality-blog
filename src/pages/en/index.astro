@@ -24,7 +24,7 @@ const topics = ['Home Assistant', 'Claude/ChatGPT', 'Automation', 'IoT', 'Prompt
 const totalPosts = allPosts.filter((p) => p.data.lang === locale && p.data.date <= now).length;
 const lastUpdate = posts[0]?.data.date;
 const alternatePaths = localizedAlternates('/pl/', '/en/');
-const seoDescription = 'A practical blog about AI, local LLMs, Claude Code, MCP, prompt engineering, QA automation, Home Assistant and smart home.';
+const seoDescription = 'A practical blog about AI, smart home and QA — Claude Code, MCP, local LLMs, prompt engineering, Home Assistant, test automation.';
 ---
 
 <BaseLayout
@@ -50,9 +50,10 @@ const seoDescription = 'A practical blog about AI, local LLMs, Claude Code, MCP,
 
       <h1 class="hero-title display rise" style="animation-delay: 80ms;">
         {strings.hero.title}{' '}
-        <em class="hl hl-1">{strings.hero.highlight1}</em>{' '}
+        <em class="hl hl-1">{strings.hero.highlight1}</em>,{' '}
+        <em class="hl hl-2">{strings.hero.highlight2}</em>{' '}
         <span class="amp">{strings.hero.and}</span>{' '}
-        <em class="hl hl-2">{strings.hero.highlight2}</em>.
+        <em class="hl hl-3">{strings.hero.highlight3}</em>.
       </h1>
 
       <p class="hero-lede rise" style="animation-delay: 160ms;">
@@ -161,7 +162,7 @@ const seoDescription = 'A practical blog about AI, local LLMs, Claude Code, MCP,
   .hero-title {
     font-size: var(--step-6);
     color: var(--fg);
-    max-width: 18ch;
+    max-width: 22ch;
   }
   .hero-title .hl {
     font-style: italic;
@@ -173,6 +174,12 @@ const seoDescription = 'A practical blog about AI, local LLMs, Claude Code, MCP,
   }
   .hero-title .hl-2 {
     background: linear-gradient(135deg, var(--accent-2), var(--accent-2-soft));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-title .hl-3 {
+    background: linear-gradient(135deg, var(--accent-3), var(--accent-3-soft));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

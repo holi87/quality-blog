@@ -11,7 +11,7 @@ export async function GET(context: APIContext) {
 
   return rss({
     title: 'quality blog',
-    description: 'Praktyczna wiedza o smart home i AI.',
+    description: 'Praktyczna wiedza o AI, smart home i QA.',
     site: context.site ?? 'https://quality-blog.eu',
     xmlns: {
       dc: 'http://purl.org/dc/elements/1.1/',
