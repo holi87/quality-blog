@@ -6,8 +6,8 @@ tags: ["ai", "adoption", "holak-scale", "self-criticism"]
 lang: en
 readingTime: 6
 author:
-  - KG
   - GH
+  - KG
 ---
 
 The [Holak Scale](/en/blog/holak-scale/) has a section *"Where this model fails"* — four points, each in 2 sentences. After dozens of diagnoses and conversations with readers, we see it's not enough.

@@ -5,7 +5,7 @@ date: 2026-04-27
 tags: ["smart-home", "home-assistant", "hacs"]
 lang: en
 readingTime: 15
-author: JS
+author: GH
 ---
 
 If you've been using Home Assistant for more than a week, sooner or later you'll hit a forum thread, a YouTube video, or a Reddit post where someone says: "install it from HACS". And it's usually said so casually that you'd think every HA user has HACS by default. They don't. HACS has to be installed separately, and the install itself — even though HACS 2.0 made it noticeably simpler — is still not a one-click affair.

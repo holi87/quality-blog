@@ -6,8 +6,8 @@ tags: ["ai", "adopcja", "skala-holaka", "autokrytyka"]
 lang: pl
 readingTime: 6
 author:
-  - KG
   - GH
+  - KG
 ---
 
 [Skala Holaka](/pl/blog/skala-holaka/) ma sekcję *„Gdzie ten model zawodzi"* — cztery punkty, każdy w 2 zdaniach. Po dziesiątkach diagnoz i rozmów z czytelnikami widzimy, że to za mało.

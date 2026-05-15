@@ -5,7 +5,7 @@ date: 2026-05-11
 tags: ["smart-home", "home-assistant", "zigbee", "zigbee2mqtt", "zha", "mqtt"]
 lang: en
 readingTime: 10
-author: JS
+author: GH
 ---
 
 In the [post from April 21, 2026](/en/blog/zwave-zigbee-wifi-matter/) we picked the protocol: Zigbee. Cheap, mature, mesh, hundreds of devices, battery sensors that last years. Choosing the protocol is one decision. But how to actually run it inside Home Assistant — that's three different decisions, and most online tutorials treat them as cosmetic.

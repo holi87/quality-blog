@@ -5,7 +5,9 @@ date: 2026-04-21T00:00:00+02:00
 tags: ["ai", "adopcja", "zespoly", "strategia"]
 lang: pl
 readingTime: 12
-author: GH
+author:
+  - GH
+  - KG
 ---
 
 W połowie kwietnia 2026 opublikowałem krótki [model dojrzałości adopcji AI](/pl/blog/model-dojrzalosci-ai/) — 11 poziomów od oporu do orkiestracji. Po rozmowach z czytelnikami i zespołami, którym pomagam we wdrożeniach, stało się jasne, że model wymaga rozbudowy. Brakowało narzędzi do diagnozy, konkretów z życia, uczciwego pokazania anti-patternów i rozdzielenia perspektywy jednostki od organizacji. Ta wersja — **skala Holaka** — zamyka te luki.

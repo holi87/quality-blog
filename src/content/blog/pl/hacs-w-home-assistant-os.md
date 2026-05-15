@@ -5,7 +5,7 @@ date: 2026-04-27
 tags: ["smart-home", "home-assistant", "hacs"]
 lang: pl
 readingTime: 15
-author: JS
+author: GH
 ---
 
 Jeśli używasz Home Assistant dłużej niż tydzień, prędzej czy później trafisz na forum, film na YouTubie albo wpis na Reddicie, w którym ktoś mówi: „zainstaluj to z HACS-a”. I zwykle jest to wypowiedziane tak mimochodem, jakby każdy użytkownik HA miał HACS-a domyślnie. Nie ma. HACS trzeba zainstalować samemu, a sama instalacja — chociaż w HACS 2.0 stała się zauważalnie prostsza — wciąż nie jest jednoklikowa.
