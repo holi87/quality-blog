@@ -128,29 +128,23 @@ const seoDescription = 'All quality blog articles about AI, local LLMs, Claude C
 <style>
   .blog-hero {
     position: relative;
-    overflow: hidden;
-    padding-block: clamp(40px, 6vw, 80px) clamp(24px, 3vw, 40px);
-    border-bottom: 1px solid var(--border-soft);
+    padding-block: clamp(48px, 6vw, 80px) clamp(28px, 3vw, 40px);
+    border-bottom: 1px solid var(--border);
   }
-  .hero-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: radial-gradient(ellipse 60% 50% at 20% 40%, black 50%, transparent 100%);
-    -webkit-mask-image: radial-gradient(ellipse 60% 50% at 20% 40%, black 50%, transparent 100%);
-    pointer-events: none;
-  }
+  .hero-grid { display: none; }
   .blog-hero__inner { position: relative; max-width: 920px; }
   .blog-hero h1 {
+    font-family: var(--font-body);
+    font-weight: 700;
     font-size: var(--step-5);
     color: var(--fg);
     margin-top: 8px;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    text-wrap: balance;
   }
   .blog-hero .lede {
-    margin-top: 16px;
+    margin-top: 18px;
     color: var(--fg-muted);
     font-size: var(--step-1);
     max-width: 60ch;
@@ -158,58 +152,54 @@ const seoDescription = 'All quality blog articles about AI, local LLMs, Claude C
   }
 
   .tag-bar {
-    margin-top: 36px;
+    margin-top: 32px;
     display: flex;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
   }
   .tag-chip {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 7px;
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
-    text-transform: lowercase;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     color: var(--fg-muted);
-    background: color-mix(in oklab, var(--bg-elev) 85%, transparent);
-    border: 1px solid var(--border-soft);
+    background: transparent;
+    border: 1px solid var(--border);
     border-radius: 999px;
-    padding: 7px 12px 7px 10px;
-    transition: color 180ms, border-color 180ms, background 180ms, transform 180ms;
+    padding: 5px 10px;
+    transition: color 180ms, border-color 180ms, background 180ms;
   }
   .tag-chip .dot {
-    width: 7px;
-    height: 7px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: var(--cat, var(--fg-muted));
-    box-shadow: 0 0 0 2px color-mix(in oklab, var(--cat, var(--fg-muted)) 22%, transparent);
   }
   .tag-chip .count {
     font-size: 10px;
     color: var(--fg-subtle);
-    background: color-mix(in oklab, var(--bg) 50%, transparent);
-    padding: 2px 6px;
-    border-radius: 999px;
-    margin-left: 2px;
+    margin-left: 1px;
   }
   .tag-chip:hover {
     color: var(--fg);
-    border-color: var(--border);
-    transform: translateY(-1px);
+    border-color: var(--fg-subtle);
   }
   .tag-chip.is-active {
     color: var(--fg);
-    background: var(--bg-card);
-    border-color: color-mix(in oklab, var(--cat, var(--accent)) 55%, var(--border));
-    box-shadow: 0 0 0 3px color-mix(in oklab, var(--cat, var(--accent)) 10%, transparent);
+    background: var(--cat-bg, var(--bg-elev));
+    border-color: transparent;
   }
+  .tag-chip.is-active .count { color: var(--cat-fg, var(--fg)); opacity: 0.7; }
 
   .blog-list { padding-block: clamp(32px, 5vw, 56px); }
   .posts-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    gap: 14px;
   }
   .post-wrap { display: flex; }
   .post-wrap > * { flex: 1; }

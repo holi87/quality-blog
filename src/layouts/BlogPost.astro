@@ -274,22 +274,10 @@ const postCurrentPath = `/blog/${slug}/`;
 
 <style>
   .post {
-    --card-accent: var(--cat, var(--accent));
     position: relative;
-    padding-block: clamp(32px, 5vw, 60px) clamp(48px, 6vw, 80px);
+    padding-block: clamp(40px, 5vw, 72px) clamp(48px, 6vw, 80px);
   }
-  .post-accent {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 380px;
-    background:
-      radial-gradient(ellipse 50% 60% at 30% 0%, color-mix(in oklab, var(--card-accent) 15%, transparent), transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .post > * { position: relative; z-index: 1; }
+  .post-accent { display: none; }
 
   .post-header {
     max-width: 880px;
@@ -299,43 +287,49 @@ const postCurrentPath = `/blog/${slug}/`;
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 20px;
-    font-size: 11px;
+    margin-bottom: 24px;
+    font-size: 10.5px;
   }
   .breadcrumbs a {
     color: var(--fg-muted);
     transition: color 180ms;
   }
   .breadcrumbs a:hover { color: var(--fg); }
-  .breadcrumbs .sep { color: var(--border); }
+  .breadcrumbs .sep { color: var(--fg-subtle); opacity: 0.5; }
   .breadcrumbs .current { color: var(--fg); }
 
   .post-title {
+    font-family: var(--font-body);
+    font-weight: 700;
     font-size: var(--step-5);
     color: var(--fg);
-    max-width: 20ch;
+    max-width: 22ch;
     line-height: 1.05;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
   }
   .post-desc {
-    margin-top: 20px;
+    margin-top: 24px;
     font-size: var(--step-1);
     color: var(--fg-muted);
     max-width: 60ch;
     line-height: 1.55;
   }
   .post-meta {
-    margin-top: 28px;
+    margin-top: 36px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     font-family: var(--font-mono);
     font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.05em;
     color: var(--fg-subtle);
   }
-  .post-meta .sep { opacity: 0.5; }
+  .post-meta .sep { opacity: 0.4; }
   .post-tags {
     display: inline-flex;
     gap: 6px;
@@ -352,15 +346,15 @@ const postCurrentPath = `/blog/${slug}/`;
 
   .toc {
     position: sticky;
-    top: 88px;
+    top: 80px;
     font-family: var(--font-mono);
     font-size: 12px;
   }
-  .toc .eyebrow { margin-bottom: 12px; }
+  .toc .eyebrow { margin-bottom: 14px; }
   .toc ol {
     list-style: none;
     padding: 0;
-    border-left: 1px solid var(--border-soft);
+    border-left: 1px solid var(--border);
   }
   .toc li { margin: 0; }
   .toc li a {
@@ -377,28 +371,28 @@ const postCurrentPath = `/blog/${slug}/`;
   .toc li.toc-h3 a { padding-left: 26px; color: var(--fg-subtle); font-size: 11.5px; }
   .toc li a.is-active {
     color: var(--fg);
-    border-left-color: var(--card-accent);
+    border-left-color: var(--fg);
   }
 
   .post-footer {
     max-width: 880px;
-    margin-top: 56px;
+    margin-top: 64px;
     padding-top: 28px;
-    border-top: 1px solid var(--border-soft);
+    border-top: 1px solid var(--border);
   }
   .back-link {
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 11.5px;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--card-accent);
-    transition: opacity 180ms;
+    letter-spacing: 0.05em;
+    color: var(--fg-muted);
+    transition: color 180ms;
   }
-  .back-link:hover { opacity: 0.7; }
+  .back-link:hover { color: var(--fg); }
 
   @media (max-width: 900px) {
     .post-body { grid-template-columns: 1fr; }
-    .toc { position: static; order: 2; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border-soft); }
+    .toc { position: static; order: 2; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); }
   }
 </style>
 
@@ -421,41 +415,52 @@ const postCurrentPath = `/blog/${slug}/`;
   .post-content h2,
   .post-content h3,
   .post-content h4 {
-    font-family: var(--font-display);
-    font-weight: 500;
+    font-family: var(--font-body);
+    font-weight: 600;
     letter-spacing: -0.02em;
     color: var(--fg);
-    line-height: 1.2;
-    font-variation-settings: 'SOFT' 30, 'opsz' 144;
-    scroll-margin-top: 100px;
+    line-height: 1.25;
+    scroll-margin-top: 88px;
   }
   .post-content h2 {
-    font-size: clamp(24px, 2vw + 12px, 32px);
-    margin-top: 2.2em;
-    margin-bottom: 0.6em;
-    padding-top: 0.6em;
-    border-top: 1px solid var(--border-soft);
+    font-size: clamp(22px, 1.6vw + 12px, 28px);
+    margin-top: 2.4em;
+    margin-bottom: 0.7em;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .post-content h2::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 1em;
+    background: var(--fg);
+    border-radius: 2px;
+    flex-shrink: 0;
+    transform: translateY(2px);
   }
   .post-content h3 {
-    font-size: clamp(20px, 1.5vw + 10px, 24px);
+    font-size: clamp(18px, 1.2vw + 10px, 22px);
     margin-top: 2em;
     margin-bottom: 0.5em;
   }
   .post-content h4 {
-    font-size: 18px;
+    font-size: 17px;
     margin-top: 1.8em;
     margin-bottom: 0.4em;
   }
 
   .post-content a {
-    color: var(--accent);
+    color: var(--fg);
     text-decoration: underline;
-    text-decoration-color: color-mix(in oklab, var(--accent) 35%, transparent);
+    text-decoration-color: var(--border);
+    text-decoration-thickness: 1px;
     text-underline-offset: 3px;
     transition: text-decoration-color 180ms;
   }
   .post-content a:hover {
-    text-decoration-color: var(--accent);
+    text-decoration-color: var(--fg);
   }
 
   .post-content ul,
@@ -474,37 +479,37 @@ const postCurrentPath = `/blog/${slug}/`;
     font-family: var(--font-display);
     font-style: italic;
     font-weight: 500;
-    font-variation-settings: 'SOFT' 70;
   }
 
   .post-content blockquote {
     margin: 2em 0;
-    padding: 16px 22px;
-    border-left: 3px solid var(--accent);
-    background: color-mix(in oklab, var(--accent) 6%, var(--bg-elev));
-    border-radius: 0 8px 8px 0;
+    padding: 8px 0 8px 22px;
+    border-left: 3px solid var(--fg);
+    background: transparent;
+    border-radius: 0;
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 19px;
+    font-size: 1.15rem;
     color: var(--fg);
+    line-height: 1.55;
   }
   .post-content blockquote p { font-size: inherit; line-height: 1.55; }
 
   .post-content hr {
     border: none;
     height: 1px;
-    background: linear-gradient(to right, transparent, var(--border), transparent);
+    background: var(--border);
     margin: 3em 0;
   }
 
   /* Inline code */
   .post-content :not(pre) > code {
-    background: var(--bg-code);
-    border: 1px solid var(--border-soft);
-    border-radius: 5px;
+    background: var(--p-red-bg);
+    color: var(--p-red-fg);
+    border-radius: 4px;
     padding: 1px 6px;
-    font-size: 0.88em;
-    color: var(--accent);
+    font-size: 0.86em;
+    border: 0;
   }
 
   /* Code blocks (Shiki renders .astro-code) */
@@ -512,13 +517,12 @@ const postCurrentPath = `/blog/${slug}/`;
   .post-content .astro-code {
     position: relative;
     background: var(--bg-code) !important;
-    border: 1px solid var(--border-soft);
-    border-radius: 10px;
-    padding: 20px 22px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
     overflow-x: auto;
     font-size: 13.5px;
-    line-height: 1.6;
-    box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--fg) 3%, transparent);
+    line-height: 1.7;
   }
   .post-content pre code,
   .post-content .astro-code code {
@@ -534,17 +538,17 @@ const postCurrentPath = `/blog/${slug}/`;
   .post-content pre .copy-btn,
   .post-content .astro-code .copy-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 8px;
+    right: 8px;
     font-family: var(--font-mono);
-    font-size: 10.5px;
+    font-size: 10px;
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 5px 9px;
-    border-radius: 6px;
+    letter-spacing: 0.05em;
+    padding: 4px 8px;
+    border-radius: 4px;
     color: var(--fg-muted);
-    background: color-mix(in oklab, var(--bg) 80%, transparent);
+    background: var(--bg);
     border: 1px solid var(--border);
     cursor: pointer;
     opacity: 0;
@@ -557,11 +561,11 @@ const postCurrentPath = `/blog/${slug}/`;
   }
   .post-content .copy-btn:hover {
     color: var(--fg);
-    border-color: var(--accent);
+    border-color: var(--fg-subtle);
   }
   .post-content .copy-btn.is-copied {
-    color: var(--accent);
-    border-color: var(--accent);
+    color: var(--p-green-fg);
+    border-color: var(--p-green-fg);
   }
 
   /* Light mode override for Shiki — use CSS vars --shiki-light swapping */
@@ -585,8 +589,8 @@ const postCurrentPath = `/blog/${slug}/`;
   }
 
   .post-content img {
-    border-radius: 10px;
-    border: 1px solid var(--border-soft);
+    border-radius: 8px;
+    border: 1px solid var(--border);
   }
 
   /* TOC — nested groups (JS-created, needs global scope) */
@@ -621,8 +625,8 @@ const postCurrentPath = `/blog/${slug}/`;
   .post-content .table-wrap {
     margin: 2em 0;
     overflow-x: auto;
-    border: 1px solid var(--border-soft);
-    border-radius: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
     background: var(--bg-elev);
     -webkit-overflow-scrolling: touch;
   }
@@ -634,7 +638,7 @@ const postCurrentPath = `/blog/${slug}/`;
     min-width: 520px;
   }
   .post-content thead {
-    background: color-mix(in oklab, var(--accent) 7%, transparent);
+    background: var(--bg-code);
   }
   .post-content th {
     text-align: left;
@@ -643,7 +647,7 @@ const postCurrentPath = `/blog/${slug}/`;
     font-size: 10.5px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.05em;
     color: var(--fg-subtle);
     border-bottom: 1px solid var(--border);
     white-space: nowrap;
@@ -656,11 +660,8 @@ const postCurrentPath = `/blog/${slug}/`;
   }
   .post-content tbody tr:last-child td { border-bottom: none; }
   .post-content tbody tr.is-continuation td { border-top: none; }
-  .post-content tbody tr.is-continuation td:first-child {
-    border-top: none;
-  }
   .post-content tbody tr:hover {
-    background: color-mix(in oklab, var(--accent) 5%, transparent);
+    background: var(--bg-code);
   }
 
   /* First column = group/phase label */
@@ -668,17 +669,17 @@ const postCurrentPath = `/blog/${slug}/`;
     font-family: var(--font-mono);
     font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.05em;
     color: var(--fg-muted);
     white-space: nowrap;
     border-left: 2px solid transparent;
     position: relative;
   }
   .post-content td.is-group-head:first-child {
-    border-left-color: var(--accent);
+    border-left-color: var(--fg);
   }
   .post-content tbody tr.is-continuation td:first-child {
-    border-left: 2px solid var(--border-soft);
+    border-left: 2px solid var(--border);
   }
   .post-content td.is-duplicate {
     color: transparent !important;

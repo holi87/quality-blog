@@ -35,16 +35,12 @@ const primary = (tags[0] ?? 'default')
 ---
 
 <a href={`/${locale}/blog/${slug}/`} class="post-card" data-cat={primary}>
-  <div class="post-card__bar" aria-hidden="true"></div>
-
   <div class="post-card__meta">
     {typeof index === 'number' && (
       <span class="idx">{String(index).padStart(2, '0')}</span>
     )}
     <span class="date">{formattedDate}</span>
-    <span class="dot-sep">·</span>
-    <span class="author">{strings.posts.author}: {authorName}</span>
-    <span class="dot-sep">·</span>
+    <span class="dot-sep" aria-hidden="true">·</span>
     <span class="rt">{readingTime} {strings.posts.readingTime}</span>
   </div>
 
@@ -55,93 +51,60 @@ const primary = (tags[0] ?? 'default')
     <div class="post-card__tags">
       {tags.slice(0, 2).map((tag) => <Tag label={tag} variant="ghost" />)}
     </div>
-    <span class="arrow" aria-hidden="true">→</span>
+    <span class="author">{authorName}</span>
   </div>
 </a>
 
 <style>
   .post-card {
-    --card-accent: var(--cat, var(--fg-muted));
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding: 22px;
+    gap: 10px;
+    padding: 24px;
     background: var(--bg-card);
-    border: 1px solid var(--border-soft);
+    border: 1px solid var(--border);
     border-radius: var(--radius-md);
-    overflow: hidden;
-    transition: border-color 240ms ease, transform 240ms ease, background 240ms ease;
-    box-shadow: var(--shadow-card);
-    isolation: isolate;
+    transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 240ms ease, border-color 240ms ease;
   }
-  .post-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(120% 80% at 0% 0%, color-mix(in oklab, var(--card-accent) 16%, transparent), transparent 60%);
-    opacity: 0;
-    transition: opacity 300ms ease;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .post-card > * { position: relative; z-index: 1; }
-
-  .post-card__bar {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: linear-gradient(to bottom, var(--card-accent), transparent 85%);
-    opacity: 0.7;
-    transition: opacity 260ms ease, width 260ms ease;
-  }
-
   .post-card:hover {
-    border-color: color-mix(in oklab, var(--card-accent) 60%, var(--border));
-    transform: translateY(-3px);
-  }
-  .post-card:hover::before { opacity: 1; }
-  .post-card:hover .post-card__bar { width: 4px; opacity: 1; }
-  .post-card:hover .arrow {
-    transform: translateX(4px);
-    color: var(--card-accent);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    border-color: var(--fg-subtle);
   }
 
   .post-card__meta {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 4px 8px;
+    gap: 6px;
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 10.5px;
     color: var(--fg-subtle);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.05em;
   }
   .idx {
-    color: var(--card-accent);
+    color: var(--cat, var(--fg));
     font-weight: 600;
-    margin-right: 4px;
+    margin-right: 2px;
   }
-  .dot-sep { opacity: 0.4; }
+  .dot-sep { opacity: 0.6; }
 
   .post-card__title {
-    font-family: var(--font-display);
-    font-size: clamp(19px, 1.5vw + 12px, 24px);
-    font-weight: 500;
+    font-family: var(--font-body);
+    font-size: clamp(17px, 1.1vw + 12px, 20px);
+    font-weight: 600;
     color: var(--fg);
-    line-height: 1.2;
-    letter-spacing: -0.015em;
-    font-variation-settings: 'SOFT' 30, 'opsz' 72;
+    line-height: 1.25;
+    letter-spacing: -0.018em;
     margin-top: 4px;
   }
 
   .post-card__desc {
     font-size: 14px;
     color: var(--fg-muted);
-    line-height: 1.6;
+    line-height: 1.55;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -150,11 +113,12 @@ const primary = (tags[0] ?? 'default')
 
   .post-card__footer {
     margin-top: auto;
-    padding-top: 10px;
+    padding-top: 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
+    border-top: 1px solid var(--border-soft);
   }
   .post-card__tags {
     display: flex;
@@ -162,11 +126,12 @@ const primary = (tags[0] ?? 'default')
     flex-wrap: wrap;
     min-width: 0;
   }
-  .arrow {
+  .author {
     font-family: var(--font-mono);
-    font-size: 16px;
+    font-size: 10.5px;
     color: var(--fg-subtle);
-    transition: transform 240ms ease, color 240ms ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     flex-shrink: 0;
   }
 </style>

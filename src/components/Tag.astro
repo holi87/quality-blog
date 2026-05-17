@@ -30,54 +30,53 @@ const Element = (href ? 'a' : 'span') as any;
 
 <style>
   .tag {
-    --cat: var(--fg-muted);
     display: inline-flex;
     align-items: center;
     gap: 6px;
     font-family: var(--font-mono);
     font-weight: 500;
-    font-size: 11px;
-    text-transform: lowercase;
-    letter-spacing: 0.02em;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     line-height: 1;
     border-radius: 999px;
-    padding: 5px 10px;
-    color: var(--fg-muted);
-    transition: background 160ms, color 160ms, border-color 160ms, transform 160ms;
+    padding: 4px 10px;
+    color: var(--cat-fg, var(--fg-muted));
+    background: var(--cat-bg, var(--bg-elev));
+    border: 1px solid transparent;
+    transition: opacity 160ms, transform 160ms;
     white-space: nowrap;
   }
-  .tag--md { font-size: 12px; padding: 7px 12px; }
+  .tag--md { font-size: 11.5px; padding: 5px 12px; }
   .tag .dot {
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background: var(--cat);
-    box-shadow: 0 0 0 2px color-mix(in oklab, var(--cat) 22%, transparent);
+    background: currentColor;
+    opacity: 0.85;
   }
 
   .tag--ghost {
     background: transparent;
-    border: 1px solid var(--border-soft);
+    border-color: var(--border);
+    color: var(--fg-muted);
   }
+  .tag--ghost .dot { background: var(--cat, var(--fg-muted)); opacity: 1; }
   .tag--outline {
-    background: color-mix(in oklab, var(--bg-elev) 80%, transparent);
-    border: 1px solid var(--border-soft);
+    background: transparent;
+    border-color: var(--border);
     color: var(--fg);
   }
+  .tag--outline .dot { background: var(--cat, var(--fg-muted)); opacity: 1; }
   .tag--solid {
-    background: color-mix(in oklab, var(--cat) 15%, var(--bg-elev));
-    border: 1px solid color-mix(in oklab, var(--cat) 35%, var(--border));
-    color: var(--fg);
+    background: var(--cat-bg, var(--bg-elev));
+    color: var(--cat-fg, var(--fg));
   }
   .tag--accent {
-    background: color-mix(in oklab, var(--cat) 18%, transparent);
-    border: 1px solid color-mix(in oklab, var(--cat) 40%, transparent);
-    color: color-mix(in oklab, var(--cat) 80%, var(--fg));
+    background: var(--cat-bg, var(--bg-elev));
+    color: var(--cat-fg, var(--fg));
   }
 
-  .is-link:hover {
-    color: var(--fg);
-    border-color: color-mix(in oklab, var(--cat) 60%, var(--border));
-    transform: translateY(-1px);
-  }
+  .is-link { cursor: pointer; }
+  .is-link:hover { transform: translateY(-1px); }
 </style>
