@@ -1,4 +1,4 @@
-# Quality Cat Knowledge Hub — Implementation Plan
+# Quality Cat Knowledge Hub - Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -212,7 +212,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Strona główna">
-  <h1>Quality Cat — Knowledge Hub</h1>
+  <h1>Quality Cat - Knowledge Hub</h1>
 </BaseLayout>
 ```
 
@@ -276,7 +276,7 @@ const translations = {
       highlight1: 'smart home',
       and: 'i',
       highlight2: 'AI',
-      description: 'Praktyczne poradniki, artykuły i porady — od automatyzacji domu po sztuczną inteligencję. Wszystko za darmo, bez marketingowego szumu.',
+      description: 'Praktyczne poradniki, artykuły i porady - od automatyzacji domu po sztuczną inteligencję. Wszystko za darmo, bez marketingowego szumu.',
     },
     posts: {
       latest: 'Ostatnie wpisy',
@@ -302,7 +302,7 @@ const translations = {
       highlight1: 'smart home',
       and: 'and',
       highlight2: 'AI',
-      description: 'Practical guides, articles and tips — from home automation to artificial intelligence. All free, no marketing fluff.',
+      description: 'Practical guides, articles and tips - from home automation to artificial intelligence. All free, no marketing fluff.',
     },
     posts: {
       latest: 'Latest posts',
@@ -624,14 +624,14 @@ git commit -m "feat: define blog content collection schema"
 - Create: `src/content/blog/en/home-assistant-2026.md`
 - Create: `src/content/blog/en/ai-prompts.md`
 
-- [ ] **Step 1: Create PL post — Home Assistant**
+- [ ] **Step 1: Create PL post - Home Assistant**
 
 Create `src/content/blog/pl/home-assistant-2026.md`:
 
 ```markdown
 ---
 title: "Jak zacząć z Home Assistant w 2026 roku"
-description: "Kompletny przewodnik dla początkujących — od wyboru sprzętu po pierwszą automatyzację."
+description: "Kompletny przewodnik dla początkujących - od wyboru sprzętu po pierwszą automatyzację."
 date: 2026-04-12
 tags: ["smart-home", "home-assistant"]
 lang: pl
@@ -640,17 +640,17 @@ readingTime: 5
 
 ## Czym jest Home Assistant?
 
-Home Assistant to otwartoźródłowa platforma do automatyzacji domu. Pozwala zarządzać wszystkimi urządzeniami smart home z jednego miejsca — niezależnie od producenta.
+Home Assistant to otwartoźródłowa platforma do automatyzacji domu. Pozwala zarządzać wszystkimi urządzeniami smart home z jednego miejsca - niezależnie od producenta.
 
 ## Od czego zacząć?
 
 ### 1. Wybierz sprzęt
 
-Najprostszy start to **Home Assistant Green** — gotowe urządzenie, które wystarczy podłączyć do routera. Alternatywnie możesz zainstalować HA na Raspberry Pi 4/5 lub jako maszynę wirtualną.
+Najprostszy start to **Home Assistant Green** - gotowe urządzenie, które wystarczy podłączyć do routera. Alternatywnie możesz zainstalować HA na Raspberry Pi 4/5 lub jako maszynę wirtualną.
 
 ### 2. Pierwsza integracja
 
-Po uruchomieniu HA automatycznie wykryje urządzenia w Twojej sieci. Zacznij od czegoś prostego — na przykład inteligentnej żarówki Zigbee.
+Po uruchomieniu HA automatycznie wykryje urządzenia w Twojej sieci. Zacznij od czegoś prostego - na przykład inteligentnej żarówki Zigbee.
 
 ### 3. Pierwsza automatyzacja
 
@@ -671,7 +671,7 @@ automation:
 Home Assistant w 2026 roku jest łatwiejszy niż kiedykolwiek. Społeczność jest ogromna, integracji jest ponad 2000, a start zajmuje dosłownie kilkanaście minut.
 ```
 
-- [ ] **Step 2: Create PL post — AI Prompts**
+- [ ] **Step 2: Create PL post - AI Prompts**
 
 Create `src/content/blog/pl/prompty-ai.md`:
 
@@ -706,21 +706,21 @@ Dodaj *"Myśl krok po kroku"* do złożonych zadań. AI będzie lepiej struktury
 
 ### 4. Ogranicz zakres
 
-*"Odpowiedz w maksymalnie 3 zdaniach"* — proste ograniczenie, ale dramatycznie poprawia jakość odpowiedzi.
+*"Odpowiedz w maksymalnie 3 zdaniach"* - proste ograniczenie, ale dramatycznie poprawia jakość odpowiedzi.
 
 ### 5. Iteruj
 
-Pierwszy wynik rzadko jest idealny. Traktuj rozmowę z AI jak współpracę — dawaj feedback, doprecyzowuj.
+Pierwszy wynik rzadko jest idealny. Traktuj rozmowę z AI jak współpracę - dawaj feedback, doprecyzowuj.
 ```
 
-- [ ] **Step 3: Create EN post — Home Assistant**
+- [ ] **Step 3: Create EN post - Home Assistant**
 
 Create `src/content/blog/en/home-assistant-2026.md`:
 
 ```markdown
 ---
 title: "Getting Started with Home Assistant in 2026"
-description: "A complete beginner's guide — from choosing hardware to your first automation."
+description: "A complete beginner's guide - from choosing hardware to your first automation."
 date: 2026-04-12
 tags: ["smart-home", "home-assistant"]
 lang: en
@@ -729,17 +729,17 @@ readingTime: 5
 
 ## What is Home Assistant?
 
-Home Assistant is an open-source home automation platform. It lets you manage all your smart home devices from one place — regardless of the manufacturer.
+Home Assistant is an open-source home automation platform. It lets you manage all your smart home devices from one place - regardless of the manufacturer.
 
 ## Where to start?
 
 ### 1. Choose your hardware
 
-The easiest start is **Home Assistant Green** — a ready-made device you just plug into your router. Alternatively, you can install HA on a Raspberry Pi 4/5 or as a virtual machine.
+The easiest start is **Home Assistant Green** - a ready-made device you just plug into your router. Alternatively, you can install HA on a Raspberry Pi 4/5 or as a virtual machine.
 
 ### 2. First integration
 
-After starting HA, it will automatically discover devices on your network. Start with something simple — like a Zigbee smart bulb.
+After starting HA, it will automatically discover devices on your network. Start with something simple - like a Zigbee smart bulb.
 
 ### 3. First automation
 
@@ -760,7 +760,7 @@ automation:
 Home Assistant in 2026 is easier than ever. The community is huge, there are over 2000 integrations, and getting started takes literally minutes.
 ```
 
-- [ ] **Step 4: Create EN post — AI Prompts**
+- [ ] **Step 4: Create EN post - AI Prompts**
 
 Create `src/content/blog/en/ai-prompts.md`:
 
@@ -795,11 +795,11 @@ Add *"Think step by step"* to complex tasks. The AI will better structure its re
 
 ### 4. Limit scope
 
-*"Answer in 3 sentences maximum"* — a simple constraint that dramatically improves response quality.
+*"Answer in 3 sentences maximum"* - a simple constraint that dramatically improves response quality.
 
 ### 5. Iterate
 
-The first result is rarely perfect. Treat your conversation with AI as a collaboration — give feedback, refine.
+The first result is rarely perfect. Treat your conversation with AI as a collaboration - give feedback, refine.
 ```
 
 - [ ] **Step 5: Verify build**
@@ -1763,22 +1763,22 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <div class="about-content">
       <p>
         <strong>qualitycat / wiedza</strong> to miejsce, w którym dzielimy się praktyczną wiedzą
-        o smart home i sztucznej inteligencji. Bez marketingowego szumu, bez paywalli —
+        o smart home i sztucznej inteligencji. Bez marketingowego szumu, bez paywalli -
         po prostu przydatne treści.
       </p>
 
       <h2>Tematyka</h2>
       <ul>
-        <li><strong>Smart Home</strong> — Home Assistant, Zigbee, automatyzacje, IoT</li>
-        <li><strong>AI</strong> — prompt engineering, narzędzia AI, praktyczne zastosowania</li>
-        <li><strong>Automatyzacja</strong> — od domu po procesy biznesowe</li>
+        <li><strong>Smart Home</strong> - Home Assistant, Zigbee, automatyzacje, IoT</li>
+        <li><strong>AI</strong> - prompt engineering, narzędzia AI, praktyczne zastosowania</li>
+        <li><strong>Automatyzacja</strong> - od domu po procesy biznesowe</li>
       </ul>
 
       <h2>Kto za tym stoi?</h2>
       <p>
         Ten projekt jest prowadzony przez
         <a href="https://qualitycat.pl" target="_blank" rel="noopener">Quality Cat</a>
-        — firmę, która wierzy, że dobra wiedza powinna być dostępna dla każdego.
+        - firmę, która wierzy, że dobra wiedza powinna być dostępna dla każdego.
       </p>
     </div>
   </section>
@@ -1862,22 +1862,22 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <div class="about-content">
       <p>
         <strong>qualitycat / wiedza</strong> is a place where we share practical knowledge
-        about smart home and artificial intelligence. No marketing fluff, no paywalls —
+        about smart home and artificial intelligence. No marketing fluff, no paywalls -
         just useful content.
       </p>
 
       <h2>Topics</h2>
       <ul>
-        <li><strong>Smart Home</strong> — Home Assistant, Zigbee, automations, IoT</li>
-        <li><strong>AI</strong> — prompt engineering, AI tools, practical applications</li>
-        <li><strong>Automation</strong> — from home to business processes</li>
+        <li><strong>Smart Home</strong> - Home Assistant, Zigbee, automations, IoT</li>
+        <li><strong>AI</strong> - prompt engineering, AI tools, practical applications</li>
+        <li><strong>Automation</strong> - from home to business processes</li>
       </ul>
 
       <h2>Who's behind this?</h2>
       <p>
         This project is run by
         <a href="https://qualitycat.pl" target="_blank" rel="noopener">Quality Cat</a>
-        — a company that believes good knowledge should be accessible to everyone.
+        - a company that believes good knowledge should be accessible to everyone.
       </p>
     </div>
   </section>
@@ -2121,7 +2121,7 @@ git commit -m "test: add E2E tests for homepage, blog, and i18n"
 ## Task 13: Deploy Configuration
 
 **Files:**
-- Create: `netlify.toml` (or `vercel.json` — using Netlify as default)
+- Create: `netlify.toml` (or `vercel.json` - using Netlify as default)
 
 - [ ] **Step 1: Create Netlify config**
 

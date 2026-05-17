@@ -8,13 +8,13 @@ readingTime: 17
 author: GH
 ---
 
-On many projects, QA shows up too late — sometimes only when "everything is ready and just needs testing." The problem is that, by that point, many decisions have already been made, many bugs have already been baked in, and the cost of fixing them is much higher. Skipping QA can look like a saving, but more often than not it's just **shifting cost forward in time** — with a bigger multiplier and a tighter deadline.
+On many projects, QA shows up too late - sometimes only when "everything is ready and just needs testing." The problem is that, by that point, many decisions have already been made, many bugs have already been baked in, and the cost of fixing them is much higher. Skipping QA can look like a saving, but more often than not it's just **shifting cost forward in time** - with a bigger multiplier and a tighter deadline.
 
-This is the first article in the series "Mature QA in practice". The rest of the series — automation, process evolution, experience, individual growth, and reflection on continuous growth — builds on the same starting point: quality starts **before** implementation, not after it.
+This is the first article in the series "Mature QA in practice". The rest of the series - automation, process evolution, experience, individual growth, and reflection on continuous growth - builds on the same starting point: quality starts **before** implementation, not after it.
 
 ## QA isn't just clicking through a finished app
 
-The most popular myth about QA says the tester is a person who "checks at the end whether it works." That definition is comfortable for the project plan — you can slot a "testing" block between "development" and "release." It's uncomfortable for reality — because it leaves the team with a very narrow window to fix anything.
+The most popular myth about QA says the tester is a person who "checks at the end whether it works." That definition is comfortable for the project plan - you can slot a "testing" block between "development" and "release." It's uncomfortable for reality - because it leaves the team with a very narrow window to fix anything.
 
 Good QA participates in the project much earlier. The full list of areas of influence looks like this:
 
@@ -34,14 +34,14 @@ Almost all of those areas are cheaper when QA shows up early. Almost all of them
 
 It's not just the absence of someone with the title "tester" on the team. Skipping QA usually means the absence of:
 
-- **an independent perspective** — nobody is looking at the product from the user's, risk's and process's point of view, only implementation,
-- **critical requirement analysis** — requirements land in code as they were written, even if they have gaps,
-- **regression control** — no systematic check that old features still work,
-- **a consistent risk approach** — different people assess risk inconsistently,
-- **knowledge of product quality** — before release nobody can really say what state the app is in,
-- **a clear signal whether it's safe to deploy** — the release decision is an opinion, not a sum of verified facts.
+- **an independent perspective** - nobody is looking at the product from the user's, risk's and process's point of view, only implementation,
+- **critical requirement analysis** - requirements land in code as they were written, even if they have gaps,
+- **regression control** - no systematic check that old features still work,
+- **a consistent risk approach** - different people assess risk inconsistently,
+- **knowledge of product quality** - before release nobody can really say what state the app is in,
+- **a clear signal whether it's safe to deploy** - the release decision is an opinion, not a sum of verified facts.
 
-Each of those bullets in isolation looks survivable. Together, they form a gap that someone has to plug — usually in emergency mode after production.
+Each of those bullets in isolation looks survivable. Together, they form a gap that someone has to plug - usually in emergency mode after production.
 
 ## The cost of a bug grows over time
 
@@ -64,7 +64,7 @@ QA questions worth asking during analysis:
 - What if the parcel is already with the courier?
 - What if the customer changes the address but the warehouse system can't handle the update?
 
-Without those questions, the team will build a feature that **works technically** but doesn't fit the real business process. After go-live the first customers who try to change the address after shipping will get mixed-up invoices — and the team will spend a week on a hotfix and a call with the business.
+Without those questions, the team will build a feature that **works technically** but doesn't fit the real business process. After go-live the first customers who try to change the address after shipping will get mixed-up invoices - and the team will spend a week on a hotfix and a call with the business.
 
 Each of those questions could have taken 5 minutes at refinement. Each unasked question costs hours or days after the fact.
 
@@ -85,7 +85,7 @@ QA should be asking, before anything is built:
 
 Each of those questions usually surfaces something nobody else noticed. Sometimes it's a missing edge-case scenario. Sometimes an unhandled error state. Sometimes a fundamental gap in the design that wasn't visible yet.
 
-On teams where QA asks questions during analysis, **the number of defects found after release drops noticeably**. Not because more people are testing — because fewer bugs are being created in the first place.
+On teams where QA asks questions during analysis, **the number of defects found after release drops noticeably**. Not because more people are testing - because fewer bugs are being created in the first place.
 
 ## No QA leads to false confidence
 
@@ -95,7 +95,7 @@ It's not about not trusting developers. It's a different perspective.
 
 > A developer often checks whether the solution works the way it was built. QA checks whether the solution makes sense in how it will be used.
 
-On projects without QA it's very easy to reach release feeling that "everything is tested." Usually what was tested is the **happy path and a few of the developer's assumptions**. What happens at the edges — nobody knows.
+On projects without QA it's very easy to reach release feeling that "everything is tested." Usually what was tested is the **happy path and a few of the developer's assumptions**. What happens at the edges - nobody knows.
 
 ## QA protects the product and the team
 
@@ -107,9 +107,9 @@ Good QA is a buffer against concrete, easily counted costs:
 - fewer **misunderstandings** between business and tech,
 - less **after-hours stress** because problems are surfaced early.
 
-There are also soft costs — burnout, turnover, frustration — that are harder to count but immediately visible when they appear.
+There are also soft costs - burnout, turnover, frustration - that are harder to count but immediately visible when they appear.
 
-## "We don't have time for testing" — a paradox worth defusing
+## "We don't have time for testing" - a paradox worth defusing
 
 The "no time for QA" argument shows up on almost every tight project. It's worth defusing with a concrete tally.
 
@@ -162,13 +162,13 @@ QA assesses readiness. They produce a list of known limitations, risks and untes
 
 ### Production
 
-QA analyses bugs, user feedback, monitoring. They feed lessons into the next cycle — what should go into automation, where requirements need sharpening, what to add to the release checklist.
+QA analyses bugs, user feedback, monitoring. They feed lessons into the next cycle - what should go into automation, where requirements need sharpening, what to add to the release checklist.
 
 ## The myth that "testing slows the project down"
 
 I hear it a lot. Usually on projects where nobody can estimate how long fixing production bugs takes, how many hours hotfixes consume, or how much turnover comes from "constant firefighting."
 
-On projects where QA enters early, the actual delivery pace is **more predictable**. Not always faster in the first sprint. But stable in the 5th, 10th and 20th. Same team, same scope — different "friction" in delivery.
+On projects where QA enters early, the actual delivery pace is **more predictable**. Not always faster in the first sprint. But stable in the 5th, 10th and 20th. Same team, same scope - different "friction" in delivery.
 
 That's the biggest value of mature QA: not short-term speed, but **sustained predictability**.
 
@@ -178,18 +178,18 @@ This is real for many teams. The absence of someone with the title "tester" does
 
 What works in small teams without dedicated QA:
 
-- **QA as a competency, not a role** — a developer rotating into the QA role, aware of test strategy and risk thinking,
-- **QA coaching from outside** — an expert who periodically audits the process without writing day-to-day tests,
-- **built-in practices** — code review with a QA lens, refinement with a checklist of questions, mandatory definition of done with quality criteria.
+- **QA as a competency, not a role** - a developer rotating into the QA role, aware of test strategy and risk thinking,
+- **QA coaching from outside** - an expert who periodically audits the process without writing day-to-day tests,
+- **built-in practices** - code review with a QA lens, refinement with a checklist of questions, mandatory definition of done with quality criteria.
 
 It doesn't replace dedicated QA on a larger team, but it avoids the worst state: no quality thinking at all.
 
 ## Summary
 
-Skipping QA rarely means a real saving. Usually it means **shifting risk forward**, where the cost of fixing it is bigger and the pressure much higher. That's not just more hours — it's more stress, less user trust, and less control over the state of the product.
+Skipping QA rarely means a real saving. Usually it means **shifting risk forward**, where the cost of fixing it is bigger and the pressure much higher. That's not just more hours - it's more stress, less user trust, and less control over the state of the product.
 
 If QA on your project only shows up at the end, treat that as a warning sign. Quality isn't built in the last week before release. It's built starting with the first conversations about requirements.
 
 ## Next in the series
 
-This is the first article of the "Mature QA in practice" series. Next up: [when it's worth automating tests and when automation is a waste of time](/en/blog/when-to-automate-tests/) — the natural continuation from QA value to concrete tooling decisions.
+This is the first article of the "Mature QA in practice" series. Next up: [when it's worth automating tests and when automation is a waste of time](/en/blog/when-to-automate-tests/) - the natural continuation from QA value to concrete tooling decisions.

@@ -8,7 +8,7 @@ readingTime: 7
 author: GH
 ---
 
-Claude w terminalu pisze rozwiązanie. Skąd wie, że dobre? Domyślnie: zgaduje. Pierwszy strzał, czasem drugi. Jeśli zacementuje się przy złej interpretacji problemu — wraca dopiero po godzinie, gdy debug zaczyna trzeszczeć. Tool `advisor()` to mechanizm, który łamie ten loop: Claude woła silniejszy model, dostaje second opinion, decyduje na podstawie obu.
+Claude w terminalu pisze rozwiązanie. Skąd wie, że dobre? Domyślnie: zgaduje. Pierwszy strzał, czasem drugi. Jeśli zacementuje się przy złej interpretacji problemu - wraca dopiero po godzinie, gdy debug zaczyna trzeszczeć. Tool `advisor()` to mechanizm, który łamie ten loop: Claude woła silniejszy model, dostaje second opinion, decyduje na podstawie obu.
 
 ## Co to dokładnie
 
@@ -16,30 +16,30 @@ Advisor to narzędzie wbudowane w Claude Code (od jakiegoś czasu w wersji beta,
 
 - Claude woła `advisor()` bez parametrów
 - Cały twój transkrypt (zadanie, każdy tool call, każdy result, każde reasoning) leci do silniejszego modelu (zwykle Opus z poolu reviewerów)
-- Advisor czyta to wszystko i odpowiada — diagnoza, sugestia, ostrzeżenie
+- Advisor czyta to wszystko i odpowiada - diagnoza, sugestia, ostrzeżenie
 - Output wraca jako tool result do głównego Claude'a
 
-Nie ma `prompt:` ani parametrów. Forward kontekstu jest automatyczny. To jest celowe — żeby advisor widział dokładnie tyle, ile widziałby ktoś czytający transkrypt, bez „streszczonego" briefu, który mógłby ominąć szczegóły.
+Nie ma `prompt:` ani parametrów. Forward kontekstu jest automatyczny. To jest celowe - żeby advisor widział dokładnie tyle, ile widziałby ktoś czytający transkrypt, bez „streszczonego" briefu, który mógłby ominąć szczegóły.
 
 ## Kiedy wołać
 
 Z dokumentacji Claude Code wynikają cztery momenty:
 
-1. **PRZED substantive work.** Zanim napiszesz rozwiązanie albo zacementujesz interpretację problemu. To jest kluczowy moment — najtaniej skorygować kierunek tu, najdrożej po tygodniu pracy
+1. **PRZED substantive work.** Zanim napiszesz rozwiązanie albo zacementujesz interpretację problemu. To jest kluczowy moment - najtaniej skorygować kierunek tu, najdrożej po tygodniu pracy
 2. **Gdy zaciąłeś się.** Errors recurring, approach nie konwerguje, wyniki nie pasują do hipotezy
-3. **Przy zmianie podejścia.** Zanim porzucisz aktualną ścieżkę — może wystarczy mniejsza korekta
+3. **Przy zmianie podejścia.** Zanim porzucisz aktualną ścieżkę - może wystarczy mniejsza korekta
 4. **Przed deklaracją „gotowe".** Final check, czy nic istotnego nie zostało
 
-W moim workflow: na zadaniach dłuższych niż kilka kroków wołam advisor minimum dwa razy — przed commitem do podejścia i przed declaring done. Krótkie reactive tasks („uruchom test, popraw, recommit") mogą obyć się bez.
+W moim workflow: na zadaniach dłuższych niż kilka kroków wołam advisor minimum dwa razy - przed commitem do podejścia i przed declaring done. Krótkie reactive tasks („uruchom test, popraw, recommit") mogą obyć się bez.
 
 ## Kiedy NIE wołać
 
 Advisor nie jest wyrocznią. Nie wołaj:
 
-- **Dla każdego kroku.** Każde wywołanie to forward całego kontekstu — drogo i wolno. Jeśli twój plan jest jasny i kolejny krok to oczywiste „uruchom test", advisor nie pomoże
+- **Dla każdego kroku.** Każde wywołanie to forward całego kontekstu - drogo i wolno. Jeśli twój plan jest jasny i kolejny krok to oczywiste „uruchom test", advisor nie pomoże
 - **Po krótkim 1–2 step zadaniu.** Overhead wywołania > wartość second opinion
 - **Gdy wiesz dokładnie co zrobić.** Jeśli problem jest oczywisty (typo w kodzie, missing import), advisor nic nie wniesie
-- **Jako substytut pisania kodu.** Advisor nie rozwiąże za ciebie — daje opinię, decyzja zostaje twoja
+- **Jako substytut pisania kodu.** Advisor nie rozwiąże za ciebie - daje opinię, decyzja zostaje twoja
 
 ## Koszt
 
@@ -53,7 +53,7 @@ Dla długich sesji (50k+ tokenów history) wywołanie kosztuje zauważalnie. Trz
 
 ## Best practice: zapisz przed wywołaniem
 
-Subtelna rzecz, którą warto zinternalizować. Wywołanie advisora zajmuje minuty (nie sekundy — to długie generowanie po stronie reviewer modelu). W tym czasie sesja może paść (network glitch, terminal close, runtime error). Jeśli twój deliverable jest tylko w chwilowej wiadomości — przepada.
+Subtelna rzecz, którą warto zinternalizować. Wywołanie advisora zajmuje minuty (nie sekundy - to długie generowanie po stronie reviewer modelu). W tym czasie sesja może paść (network glitch, terminal close, runtime error). Jeśli twój deliverable jest tylko w chwilowej wiadomości - przepada.
 
 Reguła: **commit / Write / save BEFORE advisor()**. Plik fizyczny zostaje. Tool result z advisora to bonus, nie deliverable.
 
@@ -62,16 +62,16 @@ W praktyce wygląda to tak:
 1. Skończyłem implementację
 2. `Write` finalnego pliku
 3. `git commit` (nie push, bo może coś się jeszcze pojawi)
-4. `advisor()` — czeka kilka minut
+4. `advisor()` - czeka kilka minut
 5. Czytanie opinii → jeśli OK, push. Jeśli wskazał problem, fix → goto 2
 
 ## Trust but verify
 
-Advisor czasem się myli. Ma pełen transkrypt, ale nie odpalał kodu — opinia, nie wynik. Trzy wzorce, kiedy ignorować:
+Advisor czasem się myli. Ma pełen transkrypt, ale nie odpalał kodu - opinia, nie wynik. Trzy wzorce, kiedy ignorować:
 
 - **Empiryczna sprzeczność.** Wykonałeś krok, dał inny wynik, niż advisor przewidywał. Trzymaj się dowodu, advisor mógł niedoceniać twoich tool results
 - **Primary source contradiction.** Advisor mówi „ta funkcja nie istnieje w bibliotece X", ale właśnie czytałeś dokumentację, która ją pokazuje. Dokumentacja > opinia
-- **Passing self-test ≠ advisor wrong.** Odwrotny case: jeśli twój test przeszedł, ale advisor mówi „masz bug" — to nie znaczy, że advisor się myli. Twój test może nie sprawdzać tego, na co advisor wskazuje. Sprawdź dokładnie
+- **Passing self-test ≠ advisor wrong.** Odwrotny case: jeśli twój test przeszedł, ale advisor mówi „masz bug" - to nie znaczy, że advisor się myli. Twój test może nie sprawdzać tego, na co advisor wskazuje. Sprawdź dokładnie
 
 Reguła: jeśli masz primary-source evidence sprzeczne z advisorem, zostań przy evidence, ale rozważ jedno więcej wywołanie z reconcile prompt: „znalazłem X, sugerujesz Y, jaka konkretna konsystencja rozstrzyga?".
 
@@ -81,14 +81,14 @@ Zadanie: refaktor klasy auth middleware z opcją feature flag.
 
 ```
 1. Czytam aktualny kod (Read x3)
-2. advisor() — „mam plan: ekstrakt interfejsu, dwa implementacje, factory.
+2. advisor() - „mam plan: ekstrakt interfejsu, dwa implementacje, factory.
    Czy widzisz problem przed pisaniem?"
 3. Advisor: „uważaj na request lifecycle, factory musi być per-request
    nie per-app, inaczej feature flag się nie przełączy między requestami"
 4. Adjust plan, write code
 5. Run tests
 6. Tests pass
-7. advisor() — „skończyłem. Czy widzisz risk przed mergem?"
+7. advisor() - „skończyłem. Czy widzisz risk przed mergem?"
 8. Advisor: „migracja: stara klasa wciąż referenced w 3 miejscach.
    Albo usuń references, albo zostaw deprecation warning"
 9. Fix references → re-test → commit → push
@@ -110,4 +110,4 @@ Dla tasków mechanicznych („uruchom test, popraw lint", „dodaj testy do pros
 
 ## Crosslinki
 
-[Subagenci](/pl/blog/subagenci-claude-code-co-to-i-po-co/) — inny mechanizm delegacji. [`prompt-master`](/pl/blog/prompt-master-skill-claude-code/) — skill wczoraj. Jutro: [pisanie własnego subagenta](/pl/blog/wlasny-subagent-claude-code-przyklad/) — koniec serii.
+[Subagenci](/pl/blog/subagenci-claude-code-co-to-i-po-co/) - inny mechanizm delegacji. [`prompt-master`](/pl/blog/prompt-master-skill-claude-code/) - skill wczoraj. Jutro: [pisanie własnego subagenta](/pl/blog/wlasny-subagent-claude-code-przyklad/) - koniec serii.

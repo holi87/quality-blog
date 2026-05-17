@@ -1,5 +1,5 @@
 ---
-title: "Gdzie skala Holaka zawodzi — autokrytyka"
+title: "Gdzie skala Holaka zawodzi - autokrytyka"
 description: "Każdy model jest narzędziem, nie prawdą. Sześć miejsc, w których skala Holaka realnie zawodzi w pracy z zespołami, plus feedback od czytelników, który warto zaadresować w wersji 3."
 date: 2026-06-05
 tags: ["ai", "adopcja", "skala-holaka", "autokrytyka"]
@@ -10,9 +10,9 @@ author:
   - KG
 ---
 
-[Skala Holaka](/pl/blog/skala-holaka/) ma sekcję *„Gdzie ten model zawodzi"* — cztery punkty, każdy w 2 zdaniach. Po dziesiątkach diagnoz i rozmów z czytelnikami widzimy, że to za mało.
+[Skala Holaka](/pl/blog/skala-holaka/) ma sekcję *„Gdzie ten model zawodzi"* - cztery punkty, każdy w 2 zdaniach. Po dziesiątkach diagnoz i rozmów z czytelnikami widzimy, że to za mało.
 
-Ten artykuł rozwija autokrytykę. Bo każdy model jest narzędziem, nie prawdą — a w tej skali są miejsca, w których konsekwentnie myli ludzi.
+Ten artykuł rozwija autokrytykę. Bo każdy model jest narzędziem, nie prawdą - a w tej skali są miejsca, w których konsekwentnie myli ludzi.
 
 Piszemy razem, bo każdy z nas widzi inne pęknięcia. Konrad obserwuje zespoły wdrożeniowe, gdzie skala bywa używana jako etykieta. Grzegorz pisał ją oryginalnie i widzi jej granice z perspektywy autora.
 
@@ -23,9 +23,9 @@ Skala wygląda na liniową: 0 → 1 → 2 → 10. Sugeruje to, że dojrzałość
 W realnych zespołach jest inaczej:
 
 - W kodowaniu inżynier jest na 8.
-- W pisaniu maili — na 1 (otwiera czyste okno, jedno pytanie).
-- W analizie danych — na 4 (custom instructions dla R/Python, ale brak skilli).
-- W obsłudze klienta — na 0 (nie używa AI w ogóle).
+- W pisaniu maili - na 1 (otwiera czyste okno, jedno pytanie).
+- W analizie danych - na 4 (custom instructions dla R/Python, ale brak skilli).
+- W obsłudze klienta - na 0 (nie używa AI w ogóle).
 
 Ten sam człowiek. Cztery różne poziomy w cztery różne dni.
 
@@ -47,12 +47,12 @@ Dla 90% zespołów **celowanie w 4–5 daje większy ROI** niż celowanie w 10. 
 
 ## 3. Narzędzia się starzeją
 
-Skala opisuje *rodzaj* umiejętności, ale gdy ludzie ją czytają — myślą *tools*. *„Poziom 8 to MCP"* — i już mieli rację w 2025, ale w 2026 to znaczy co innego.
+Skala opisuje *rodzaj* umiejętności, ale gdy ludzie ją czytają - myślą *tools*. *„Poziom 8 to MCP"* - i już mieli rację w 2025, ale w 2026 to znaczy co innego.
 
 Konkretne starzenie:
 
-- Poziom 5 w 2025 = pisanie `.cursorrules`. W 2026 = AGENTS.md / CLAUDE.md / .cursorrules — trzy formaty, [każdy do innej rzeczy](/pl/blog/agents-md-claude-md-cursorrules-porownanie/).
-- Poziom 7 w 2025 = własne skille. W 2026 = plugin marketplace + community-shared skille — inna ekonomia.
+- Poziom 5 w 2025 = pisanie `.cursorrules`. W 2026 = AGENTS.md / CLAUDE.md / .cursorrules - trzy formaty, [każdy do innej rzeczy](/pl/blog/agents-md-claude-md-cursorrules-porownanie/).
+- Poziom 7 w 2025 = własne skille. W 2026 = plugin marketplace + community-shared skille - inna ekonomia.
 - Poziom 8 w 2025 = pierwsze MCP w użyciu. W 2026 = pytanie nie „czy mam MCP" tylko „[czy nie mam za dużo](/pl/blog/mcp-kiedy-warto-kiedy-overengineering/)".
 - Poziom 10 w 2025 = autonomous agents demo. W 2026 = sceptyczne pytanie [„czy nie wystarczy jeden agent"](/pl/blog/orkiestracja-wieloagentowa-kiedy-jeden-agent/).
 
@@ -71,17 +71,17 @@ Można być na poziomie 10 i:
 
 Dojrzałość techniczna ≠ dojrzałość moralna. A skala sugeruje, że „wyżej" zawsze jest *lepiej*.
 
-**Czego brakuje:** wymiar etyczny / governance jako osobna oś. Wersja 3 może wprowadzić skalę 2D — *technical maturity* × *ethical maturity*. Albo szóstą fazę. Otwarte pytanie.
+**Czego brakuje:** wymiar etyczny / governance jako osobna oś. Wersja 3 może wprowadzić skalę 2D - *technical maturity* × *ethical maturity*. Albo szóstą fazę. Otwarte pytanie.
 
 ## 5. Ludzie identyfikują się z poziomem
 
-To nie błąd modelu — to błąd używania. Ale skala go ułatwia.
+To nie błąd modelu - to błąd używania. Ale skala go ułatwia.
 
 Obserwacja Konrada z wdrożeń: rozmówcy mówią *„jestem na 5"* tak, jak mówią *„jestem ekstrawertykiem"*. To znaczy: identyfikacja, nie diagnoza.
 
 Konsekwencje:
 
-- Trudniej cofać się — *„ale ja byłem na 5, jak mam się przyznać, że teraz jestem na 4?"*
+- Trudniej cofać się - *„ale ja byłem na 5, jak mam się przyznać, że teraz jestem na 4?"*
 - Skala staje się rankingiem, nie narzędziem.
 - Zespoły kłócą się o to, kto jest na 7 a kto na 6, zamiast pytać *„co dalej?"*
 
@@ -95,24 +95,24 @@ W ciągu kilku tygodni po publikacji dostaliśmy mailem ~30 historii wdrożeń. 
 
 **Czego brakuje:** ankieta / formularz do diagnoz. Wersja 3 może mieć dedicated GitHub repo z templatkami case studies, albo prostą stronę zbierającą wpisy.
 
-## Feedback od czytelników — co się powtarza
+## Feedback od czytelników - co się powtarza
 
 W mailach, które dostaliśmy:
 
-- **„Co z tymi, którzy musieli się cofnąć?"** — np. firma na 8 wraca do 4 po incydencie. Skala nie ma drogi w dół.
-- **„Co jeśli organizacja ma 3 poziomy naraz w różnych zespołach?"** — Sales na 1, Engineering na 7. Czy to ma sens jako jedna ocena?
-- **„Czy są branże, w których poziom 8 nie ma sensu?"** — medycyna, prawo, edukacja. Czasem ograniczenie regulacyjne ustanawia sufit.
-- **„Czy poziom 0 to naprawdę pozycja?"** — argumenty etyczne za odmową. Nie jest wstydem.
-- **„Brakuje miejsca na wymiar zespołowy między jednostką a organizacją"** — squad / domena / wertykal.
+- **„Co z tymi, którzy musieli się cofnąć?"** - np. firma na 8 wraca do 4 po incydencie. Skala nie ma drogi w dół.
+- **„Co jeśli organizacja ma 3 poziomy naraz w różnych zespołach?"** - Sales na 1, Engineering na 7. Czy to ma sens jako jedna ocena?
+- **„Czy są branże, w których poziom 8 nie ma sensu?"** - medycyna, prawo, edukacja. Czasem ograniczenie regulacyjne ustanawia sufit.
+- **„Czy poziom 0 to naprawdę pozycja?"** - argumenty etyczne za odmową. Nie jest wstydem.
+- **„Brakuje miejsca na wymiar zespołowy między jednostką a organizacją"** - squad / domena / wertykal.
 
 Wszystkie zaadresujemy w v3.
 
 ## Co znaczy „autokrytyka"
 
-Nie chodzi o to, żeby pokazać, że skala nie działa — działa, używamy jej co tydzień. Chodzi o to, żeby pokazać **gdzie** nie działa, bo bez tej części czytelnik wpada w pułapkę traktowania modelu jako prawdy.
+Nie chodzi o to, żeby pokazać, że skala nie działa - działa, używamy jej co tydzień. Chodzi o to, żeby pokazać **gdzie** nie działa, bo bez tej części czytelnik wpada w pułapkę traktowania modelu jako prawdy.
 
-Każdy model jest narzędziem. Narzędzie ma ostrza, ale ma też tępy koniec. Wiedza, gdzie który koniec — to różnica między używaniem a kaleczeniem.
+Każdy model jest narzędziem. Narzędzie ma ostrza, ale ma też tępy koniec. Wiedza, gdzie który koniec - to różnica między używaniem a kaleczeniem.
 
-Wersja 3 zaadresuje co najmniej cztery z sześciu punktów powyżej. Jeśli widzisz **siódmy**, którego tu nie wymieniliśmy — [napisz](https://holak.net.pl). Zbieramy materiał aktywnie.
+Wersja 3 zaadresuje co najmniej cztery z sześciu punktów powyżej. Jeśli widzisz **siódmy**, którego tu nie wymieniliśmy - [napisz](https://holak.net.pl). Zbieramy materiał aktywnie.
 
-To koniec serii rozwijającej skalę. Dziewięć postów, od [diagnozy 30-minutowej](/pl/blog/diagnoza-dojrzalosci-ai-30-min/) po tę autokrytykę. Następna iteracja będzie wersją 3 — z poprawkami z tej autokrytyki i materiałem zebranym z waszych wdrożeń.
+To koniec serii rozwijającej skalę. Dziewięć postów, od [diagnozy 30-minutowej](/pl/blog/diagnoza-dojrzalosci-ai-30-min/) po tę autokrytykę. Następna iteracja będzie wersją 3 - z poprawkami z tej autokrytyki i materiałem zebranym z waszych wdrożeń.

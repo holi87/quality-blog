@@ -1,6 +1,6 @@
 ---
 title: "Jak zacząć z Home Assistant w 2026 roku"
-description: "Kompletny przewodnik dla początkujących — od wyboru sprzętu po pierwszą automatyzację."
+description: "Kompletny przewodnik dla początkujących - od wyboru sprzętu po pierwszą automatyzację."
 date: 2026-04-12
 tags: ["smart-home", "home-assistant"]
 lang: pl
@@ -10,17 +10,17 @@ author: GH
 
 ## Czym jest Home Assistant?
 
-Home Assistant to otwartoźródłowa platforma do automatyzacji domu. Pozwala zarządzać wszystkimi urządzeniami smart home z jednego miejsca — niezależnie od producenta.
+Home Assistant to otwartoźródłowa platforma do automatyzacji domu. Pozwala zarządzać wszystkimi urządzeniami smart home z jednego miejsca - niezależnie od producenta.
 
 ## Od czego zacząć?
 
 ### 1. Wybierz sprzęt
 
-Najprostszy start to **Home Assistant Green** — gotowe urządzenie, które wystarczy podłączyć do routera. Alternatywnie możesz zainstalować HA na Raspberry Pi 4/5 lub jako maszynę wirtualną.
+Najprostszy start to **Home Assistant Green** - gotowe urządzenie, które wystarczy podłączyć do routera. Alternatywnie możesz zainstalować HA na Raspberry Pi 4/5 lub jako maszynę wirtualną.
 
 ### 2. Pierwsza integracja
 
-Po uruchomieniu HA automatycznie wykryje urządzenia w Twojej sieci. Zacznij od czegoś prostego — na przykład inteligentnej żarówki Zigbee.
+Po uruchomieniu HA automatycznie wykryje urządzenia w Twojej sieci. Zacznij od czegoś prostego - na przykład inteligentnej żarówki Zigbee.
 
 ### 3. Pierwsza automatyzacja
 

@@ -1,6 +1,6 @@
 ---
-title: "Skala Holaka v2.1p — private. Dojrzałość prywatnego użycia AI"
-description: "12 poziomów dojrzałości codziennego użycia AI — dom, nauka, finanse, smart home, organizacja życia. Wersja prywatna Skali Holaka, równoległa do wersji enterprise."
+title: "Skala Holaka v2.1p - private. Dojrzałość prywatnego użycia AI"
+description: "12 poziomów dojrzałości codziennego użycia AI - dom, nauka, finanse, smart home, organizacja życia. Wersja prywatna Skali Holaka, równoległa do wersji enterprise."
 date: 2026-05-17
 tags: ["ai", "adopcja", "smart-home", "prywatnie"]
 lang: pl
@@ -10,7 +10,7 @@ author:
   - KG
 ---
 
-To prywatna ścieżka Skali Holaka. Wersja firmowa, dla zespołów i organizacji, ma osobny artykuł: [Skala Holaka v2.1e — enterprise](/pl/blog/skala-holaka/).
+To prywatna ścieżka Skali Holaka. Wersja firmowa, dla zespołów i organizacji, ma osobny artykuł: [Skala Holaka v2.1e - enterprise](/pl/blog/skala-holaka/).
 
 Skala Holaka **v2.1p** mierzy prywatną dojrzałość korzystania z AI w codziennym życiu: od prostego czatu, przez osobiste instrukcje, kontekst domowy, automatyzacje i agentowe workflow, aż po prywatny **agentic OS** dla życia domowego.
 
@@ -35,7 +35,7 @@ UNESCO opisuje *AI competency* jako zestaw kompetencji potrzebnych do odpowiedzi
 | 10 | Orkiestracja domowa | Kilka agentów lub ról współpracuje nad życiem domowym. |
 | 11 | Prywatny agentic OS | Osobisty system operacyjny dla celów domowych i życiowych. |
 
-## Poziom 0 — Nie używam AI
+## Poziom 0 - Nie używam AI
 
 Użytkownik nie korzysta z AI. Może nie mieć potrzeby, nie ufać technologii albo nie wiedzieć, od czego zacząć.
 
@@ -43,7 +43,7 @@ Użytkownik nie korzysta z AI. Może nie mieć potrzeby, nie ufać technologii a
 - **Sukces:** świadoma decyzja, nie wynikająca wyłącznie z niewiedzy.
 - **Pułapka:** ocenianie AI na podstawie jednego złego przykładu.
 
-## Poziom 1 — Podstawowy czat
+## Poziom 1 - Podstawowy czat
 
 Użytkownik zadaje proste pytania: „napisz wiadomość", „wytłumacz mi to", „podaj pomysł na obiad", „streść ten tekst".
 
@@ -51,7 +51,7 @@ Użytkownik zadaje proste pytania: „napisz wiadomość", „wytłumacz mi to",
 - **Sukces:** AI staje się naturalnym narzędziem do drobnych spraw.
 - **Pułapka:** traktowanie odpowiedzi jak prawdy bez sprawdzania.
 
-## Poziom 2 — Świadome pytania
+## Poziom 2 - Świadome pytania
 
 Użytkownik zaczyna dodawać kontekst: dla kogo jest odpowiedź, w jakim stylu, z jakimi ograniczeniami, w jakim formacie.
 
@@ -59,9 +59,9 @@ Użytkownik zaczyna dodawać kontekst: dla kogo jest odpowiedź, w jakim stylu, 
 - **Sukces:** odpowiedzi są praktyczniejsze, krótsze i bardziej dopasowane.
 - **Pułapka:** zbyt ogólne pytania przy ważnych decyzjach.
 
-**Przykład.** Zamiast „Zrób jadłospis" — lepiej: „Ułóż wegetariański jadłospis bez laktozy na 3 dni, 1700 kcal dziennie, szybkie posiłki, praca z domu, jedna słodka przekąska dziennie, lista zakupów na końcu."
+**Przykład.** Zamiast „Zrób jadłospis" - lepiej: „Ułóż wegetariański jadłospis bez laktozy na 3 dni, 1700 kcal dziennie, szybkie posiłki, praca z domu, jedna słodka przekąska dziennie, lista zakupów na końcu."
 
-## Poziom 3 — Prywatne szablony
+## Poziom 3 - Prywatne szablony
 
 Użytkownik ma własne prompty do powtarzalnych rzeczy: zakupy, plan tygodnia, analiza rachunków, przygotowanie maila, porównanie produktów, nauka języka, plan treningowy.
 
@@ -69,7 +69,7 @@ Użytkownik ma własne prompty do powtarzalnych rzeczy: zakupy, plan tygodnia, a
 - **Sukces:** AI pomaga szybciej, bo użytkownik nie zaczyna od zera.
 - **Pułapka:** zbieranie promptów, których nikt realnie nie używa.
 
-## Poziom 4 — Instrukcje osobiste i higiena tokenów
+## Poziom 4 - Instrukcje osobiste i higiena tokenów
 
 AI zna stałe preferencje użytkownika: język, styl, ograniczenia dietetyczne, sposób tłumaczenia, poziom szczegółowości, preferencje zakupowe, sposób planowania.
 
@@ -79,7 +79,7 @@ To poziom, na którym zaczyna się prywatna **oszczędność tokenów i czasu**.
 - **Sukces:** krótsze pytania dają lepsze odpowiedzi.
 - **Pułapka:** profil robi się zbyt długi i sprzeczny.
 
-## Poziom 5 — Kontekst domowy
+## Poziom 5 - Kontekst domowy
 
 Użytkownik tworzy stały kontekst dla spraw domowych: lista sprzętów, cele finansowe, preferencje jedzeniowe, plan domu, informacje o zwierzętach, projekty remontowe, notatki z budowy, harmonogramy, stałe procedury.
 
@@ -89,7 +89,7 @@ Użytkownik tworzy stały kontekst dla spraw domowych: lista sprzętów, cele fi
 
 **Zasada prywatna:** nie każdy dokument powinien trafić do AI. Dane medyczne, finansowe, dane dzieci, dokumenty tożsamości i dane dostępowe wymagają szczególnej ostrożności.
 
-## Poziom 6 — Prywatne zasady i granice
+## Poziom 6 - Prywatne zasady i granice
 
 AI ma opisane granice działania: kiedy ma dopytać, kiedy ostrzec, kiedy zasugerować konsultację ze specjalistą, kiedy nie podejmować decyzji za użytkownika.
 
@@ -103,7 +103,7 @@ AI ma opisane granice działania: kiedy ma dopytać, kiedy ostrzec, kiedy zasuge
 - „Przy instalacji elektrycznej podaj ryzyka i wskaż, co powinien zrobić elektryk."
 - „Przy finansach pokaż założenia i ryzyko, nie dawaj fałszywej pewności."
 
-## Poziom 7 — Prywatne skille i bazy wiedzy
+## Poziom 7 - Prywatne skille i bazy wiedzy
 
 Użytkownik ma wyspecjalizowane „obszary AI":
 
@@ -117,10 +117,10 @@ Użytkownik ma wyspecjalizowane „obszary AI":
 - skill do organizacji podróży.
 
 - **Bariera:** rozdzielenie tematów i kontekstów.
-- **Sukces:** AI nie miesza spraw — dieta to dieta, budowa to budowa, finanse to finanse.
+- **Sukces:** AI nie miesza spraw - dieta to dieta, budowa to budowa, finanse to finanse.
 - **Pułapka:** prywatny chaos notatek i instrukcji.
 
-## Poziom 8 — Narzędzia, automatyzacje i hooks
+## Poziom 8 - Narzędzia, automatyzacje i hooks
 
 AI zaczyna działać z narzędziami: kalendarzem, listą zadań, notatkami, smart home, plikami, arkuszami, systemem budżetu, pocztą, aplikacją do zakupów.
 
@@ -136,7 +136,7 @@ AI zaczyna działać z narzędziami: kalendarzem, listą zadań, notatkami, smar
 - **Sukces:** AI zaczyna oszczędzać realny czas.
 - **Pułapka:** automatyzowanie wszystkiego, łącznie z rzeczami, które lepiej zostawić ręcznie.
 
-## Poziom 9 — Agentowe workflow codzienne
+## Poziom 9 - Agentowe workflow codzienne
 
 Użytkownik zleca cel, a AI wykonuje cały proces w ograniczonym zakresie.
 
@@ -151,7 +151,7 @@ Użytkownik zleca cel, a AI wykonuje cały proces w ograniczonym zakresie.
 - **Sukces:** AI dowozi gotowy plan, a użytkownik tylko zatwierdza i koryguje.
 - **Pułapka:** AI robi plan, którego nikt potem nie używa.
 
-## Poziom 10 — Orkiestracja domowa
+## Poziom 10 - Orkiestracja domowa
 
 Kilka agentów lub ról współpracuje nad jednym celem. Nie musi to być technicznie wiele osobnych botów. Może to być jeden model działający w kilku rolach.
 
@@ -165,25 +165,25 @@ Kilka agentów lub ról współpracuje nad jednym celem. Nie musi to być techni
 
 - **Bariera:** koordynacja i prostota.
 - **Sukces:** wiele obszarów życia działa spójniej.
-- **Pułapka:** domowy overengineering — więcej systemu niż korzyści.
+- **Pułapka:** domowy overengineering - więcej systemu niż korzyści.
 
-## Poziom 11 — Prywatny agentic OS
+## Poziom 11 - Prywatny agentic OS
 
 To nowy poziom v2.1p.
 
-Użytkownik projektuje własny **Life OS / Home OS** — prywatny system operacyjny życia codziennego, w którym AI pomaga zarządzać celami, kontekstem, rytuałami, automatyzacjami i decyzjami.
+Użytkownik projektuje własny **Life OS / Home OS** - prywatny system operacyjny życia codziennego, w którym AI pomaga zarządzać celami, kontekstem, rytuałami, automatyzacjami i decyzjami.
 
 Nie chodzi o pełną autonomię. Chodzi o spójny system wsparcia.
 
 **Elementy prywatnego agentic OS:**
 
-- **cele** — zdrowie, budżet, dom, nauka, rodzina, zwierzęta, energia, czas wolny,
-- **kontekst** — preferencje, ograniczenia, dokumenty, plany, harmonogramy,
-- **pamięć** — co jest stałe, co się zmienia, co trzeba okresowo przejrzeć,
-- **automatyzacje** — przypomnienia, listy, smart home, podsumowania,
-- **kontrola** — co AI może zrobić samo, a co wymaga zgody,
-- **prywatność** — jakie dane są zakazane lub ograniczone,
-- **przegląd** — tygodniowy lub miesięczny review.
+- **cele** - zdrowie, budżet, dom, nauka, rodzina, zwierzęta, energia, czas wolny,
+- **kontekst** - preferencje, ograniczenia, dokumenty, plany, harmonogramy,
+- **pamięć** - co jest stałe, co się zmienia, co trzeba okresowo przejrzeć,
+- **automatyzacje** - przypomnienia, listy, smart home, podsumowania,
+- **kontrola** - co AI może zrobić samo, a co wymaga zgody,
+- **prywatność** - jakie dane są zakazane lub ograniczone,
+- **przegląd** - tygodniowy lub miesięczny review.
 
 - **Bariera:** zaprojektowanie systemu, który pomaga, a nie męczy.
 - **Sukces:** AI realnie zmniejsza chaos codzienności.
@@ -193,7 +193,7 @@ Nie chodzi o pełną autonomię. Chodzi o spójny system wsparcia.
 
 ## Najważniejsze różnice względem v2.1e
 
-| Obszar | v2.1e — enterprise | v2.1p — private |
+| Obszar | v2.1e - enterprise | v2.1p - private |
 |---|---|---|
 | Cel | Wynik biznesowy, jakość, szybkość, ryzyko, koszty | Lepsze życie codzienne, mniej chaosu, oszczędność czasu |
 | Ryzyko | Compliance, dane, reputacja, audyt, uprawnienia | Prywatność, nadmierne zaufanie, chaos automatyzacji |
@@ -207,13 +207,13 @@ Nie chodzi o pełną autonomię. Chodzi o spójny system wsparcia.
 
 - **AI zamiast decyzji.** Pytanie AI o wszystko, zwłaszcza w sprawach, w których powinieneś zdecydować sam (zdrowie, finanse, relacje).
 - **Wrzucanie wszystkiego do czatu.** Dane medyczne, finansowe, prywatne dokumenty bez refleksji nad polityką prywatności narzędzia.
-- **Chaos automatyzacji.** Hooks i automatyzacje rosną szybciej, niż użytkownik je rozumie. Rano lampa zapala się, bo „kiedyś było zimno" — i nikt nie wie dlaczego.
+- **Chaos automatyzacji.** Hooks i automatyzacje rosną szybciej, niż użytkownik je rozumie. Rano lampa zapala się, bo „kiedyś było zimno" - i nikt nie wie dlaczego.
 - **Profil-Frankenstein.** Custom instructions rosną do 2000 słów sprzecznych preferencji.
 - **Life OS bez życia.** System tak rozbudowany, że obsługa OS-a zajmuje więcej czasu niż samo życie.
 
 ## Co dalej
 
-Wersja firmowa skali ma osobny artykuł: [Skala Holaka v2.1e — enterprise](/pl/blog/skala-holaka/). Tam mierzy się dojrzałość AI w organizacjach: governance, MCP, agentic OS dla procesu biznesowego.
+Wersja firmowa skali ma osobny artykuł: [Skala Holaka v2.1e - enterprise](/pl/blog/skala-holaka/). Tam mierzy się dojrzałość AI w organizacjach: governance, MCP, agentic OS dla procesu biznesowego.
 
 Wcześniejsza wersja: [Model dojrzałości AI (v1)](/pl/blog/model-dojrzalosci-ai/) jako kontekst historyczny. Treść v2.0 została włączona do wersji v2.1e i v2.1p.
 
@@ -221,9 +221,9 @@ Wcześniejsza wersja: [Model dojrzałości AI (v1)](/pl/blog/model-dojrzalosci-a
 
 ## Historia wersji
 
-- **v1.0** — *Model dojrzałości adopcji AI*. Powstała w marcu 2026, opublikowana **15 kwietnia 2026**.
-- **v2.0** — *Skala Holaka*. Powstała w kwietniu 2026, opublikowana **20 kwietnia 2026**.
-- **v2.1p** (ten artykuł) — *private*. Rozdzielenie ścieżki prywatnej i firmowej, hooks na poziomie 8, poziom 11 jako prywatny agentic OS. **17 maja 2026**.
-- **v2.1e** — *enterprise*. Wersja firmowa, opublikowana **18 maja 2026**. [Czytaj v2.1e →](/pl/blog/skala-holaka/)
+- **v1.0** - *Model dojrzałości adopcji AI*. Powstała w marcu 2026, opublikowana **15 kwietnia 2026**.
+- **v2.0** - *Skala Holaka*. Powstała w kwietniu 2026, opublikowana **20 kwietnia 2026**.
+- **v2.1p** (ten artykuł) - *private*. Rozdzielenie ścieżki prywatnej i firmowej, hooks na poziomie 8, poziom 11 jako prywatny agentic OS. **17 maja 2026**.
+- **v2.1e** - *enterprise*. Wersja firmowa, opublikowana **18 maja 2026**. [Czytaj v2.1e →](/pl/blog/skala-holaka/)
 
 Skala pozostaje modelem rozwijanym iteracyjnie. AI, narzędzia i sposób pracy z agentami zmieniają się szybciej niż większość modeli dojrzałości, dlatego Skala Holaka będzie aktualizowana wraz z praktyką jej użycia w organizacjach i w życiu codziennym.

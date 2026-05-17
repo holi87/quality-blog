@@ -104,8 +104,8 @@ function stringifyJsonLd(item: JsonLdNode): string {
     <meta name="twitter:image" content={ogImageURL} />
 
     {/* RSS */}
-    <link rel="alternate" type="application/rss+xml" title={`${siteName} — PL`} href="/pl/rss.xml" />
-    <link rel="alternate" type="application/rss+xml" title={`${siteName} — EN`} href="/en/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title={`${siteName} - PL`} href="/pl/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title={`${siteName} - EN`} href="/en/rss.xml" />
 
     {/* Language alternates */}
     {resolvedAlternates.pl && <link rel="alternate" hreflang="pl" href={absoluteUrl(resolvedAlternates.pl)} />}
@@ -114,7 +114,7 @@ function stringifyJsonLd(item: JsonLdNode): string {
 
     {jsonLdItems.map((item) => <script type="application/ld+json" set:html={stringifyJsonLd(item)} />)}
 
-    {/* No-flash theme init — runs before first paint */}
+    {/* No-flash theme init - runs before first paint */}
     <script is:inline>
       (function () {
         try {
@@ -139,7 +139,7 @@ function stringifyJsonLd(item: JsonLdNode): string {
     <Footer locale={locale} />
 
     <script>
-      // Reading progress + theme toggle support — re-runs on View Transitions
+      // Reading progress + theme toggle support - re-runs on View Transitions
       function setupProgress() {
         const bar = document.getElementById('reading-progress');
         if (!bar) return;

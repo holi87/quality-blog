@@ -4,7 +4,7 @@ Instrukcje dla agentów pracujących w tym repozytorium. `AGENTS.md` i `CLAUDE.m
 
 ## Projekt
 
-`quality-blog` — dwujęzyczny (PL/EN) blog o smart home i AI zbudowany na **Astro 6** (static site, content collections). Produkcja działa na GitHub Pages pod `https://quality-blog.eu`. Użytkownik: Grzegorz Holak.
+`quality-blog` - dwujęzyczny (PL/EN) blog o smart home i AI zbudowany na **Astro 6** (static site, content collections). Produkcja działa na GitHub Pages pod `https://quality-blog.eu`. Użytkownik: Grzegorz Holak.
 
 ## Komendy
 
@@ -24,11 +24,11 @@ Wymaga Node >= 22.12.0. Playwright automatycznie odpala `npm run preview` na por
 
 ### i18n jako pierwsza zasada organizacji
 
-Cała struktura routingu i treści jest zduplikowana per locale (`pl`, `en`). `defaultLocale: 'pl'` z `prefixDefaultLocale: true` — każdy lokalizowany URL ma prefix (`/pl/...`, `/en/...`).
+Cała struktura routingu i treści jest zduplikowana per locale (`pl`, `en`). `defaultLocale: 'pl'` z `prefixDefaultLocale: true` - każdy lokalizowany URL ma prefix (`/pl/...`, `/en/...`).
 
-- `src/pages/pl/*` i `src/pages/en/*` — zwierciadlane drzewa stron. Zmiana strony zazwyczaj wymaga edycji obu odpowiedników.
-- `src/pages/index.astro` — root `/` serwuje treść PL bez widocznego redirectu. Kanonicznym odpowiednikiem tej treści jest `/pl/`.
-- `src/i18n/translations.ts` — źródło stringów UI. Dodając tekst do UI, dopisz klucz do obu `pl` i `en`.
+- `src/pages/pl/*` i `src/pages/en/*` - zwierciadlane drzewa stron. Zmiana strony zazwyczaj wymaga edycji obu odpowiedników.
+- `src/pages/index.astro` - root `/` serwuje treść PL bez widocznego redirectu. Kanonicznym odpowiednikiem tej treści jest `/pl/`.
+- `src/i18n/translations.ts` - źródło stringów UI. Dodając tekst do UI, dopisz klucz do obu `pl` i `en`.
 
 ### Content collection `blog`
 
@@ -73,10 +73,10 @@ Nie sugeruj oficjalnego partnerstwa, sponsoringu ani afiliacji marek z blogiem, 
 
 ### Komponenty i layouty
 
-- `src/layouts/BaseLayout.astro` — shell strony, nawigacja, footer, metadane SEO i JSON-LD.
-- `src/layouts/BlogPost.astro` — layout wpisu, hero, TOC, meta, related posts, copy buttons i wrappery tabel.
+- `src/layouts/BaseLayout.astro` - shell strony, nawigacja, footer, metadane SEO i JSON-LD.
+- `src/layouts/BlogPost.astro` - layout wpisu, hero, TOC, meta, related posts, copy buttons i wrappery tabel.
 - `src/components/PostCard.astro`, `Tag.astro`, `RelatedPosts.astro`, `Nav.astro`, `Footer.astro`.
-- `src/styles/global.css` — design tokens, light/dark theme, Shiki code blocks, kategorie tagów przez `data-cat`.
+- `src/styles/global.css` - design tokens, light/dark theme, Shiki code blocks, kategorie tagów przez `data-cat`.
 - Shiki jest skonfigurowane w `astro.config.mjs` (`github-light`, `github-dark-dimmed`). Czytelność kodu w ciemnym trybie jest regresyjnie testowana w `tests/e2e/blog.spec.ts`.
 
 ### Filtrowanie po tagach
@@ -86,18 +86,19 @@ Lista bloga (`/{locale}/blog/`) ma client-side filter po tagach (chips + query s
 ## Konwencje pracy
 
 - Dodając post: utwórz `src/content/blog/<lang>/<slug>.md` z kompletem frontmattera wymaganym przez schema, w tym `author: GH` dla wpisów AI oraz `author: JS` dla wpisów smart home / Home Assistant.
-- Data publikacji: tylko dni robocze (pn-pt). Weekend pomijaj — jeśli kandydująca data wypada w sobotę/niedzielę, przesuń `date` na najbliższy poniedziałek. PL i EN siblings dzielą tę samą datę.
+- Data publikacji: tylko dni robocze (pn-pt). Weekend pomijaj - jeśli kandydująca data wypada w sobotę/niedzielę, przesuń `date` na najbliższy poniedziałek. PL i EN siblings dzielą tę samą datę.
 - Święta: tak samo jak weekend. Polskie wolne dni: 1.01, 6.01, Wielkanoc (Pn), 1.05, 3.05, Boże Ciało (czw, ruchome), 15.08, 1.11, 11.11, 25.12, 26.12. Dla świąt ruchomych policz datę dla danego roku.
 - Dodając tłumaczenie UI: najpierw klucz w `src/i18n/translations.ts` (oba locale), potem użycie `t(locale).section.key` w komponencie.
 - Dodając stronę: duplikuj w `src/pages/pl/` i `src/pages/en/`. Nazwa pliku może być zlokalizowana, np. `about.astro` (EN) vs `o-projekcie.astro` (PL).
 - Po zmianach w stronach, layoutach, treści, SEO lub LLM endpointach uruchom `npm run build` i `npx playwright test`.
+- **Myślniki: tylko krótkie `-` (hyphen, U+002D).** Nie używaj em-dasha `—` (U+2014) ani en-dasha `–` (U+2013) - ani w treści postów, ani w tytułach, opisach, frontmatterze, komponentach, tłumaczeniach UI ani docs. Dotyczy wszystkich plików w repo (md, astro, ts, css, json, yml). Jeśli model AI wstawia szerokie myślniki przy generowaniu treści, zamień je na hyphen przed commitem.
 
 ## Git workflow
 
 Każdy folder, który jest repo gita (`ls .git` zwraca obecny katalog), wymaga po zakończonych zmianach:
 
-1. `git status` — sanity check
-2. `git add <pliki>` — staging konkretnych plików, nie używaj bezmyślnie `git add .`
+1. `git status` - sanity check
+2. `git add <pliki>` - staging konkretnych plików, nie używaj bezmyślnie `git add .`
 3. `git commit -m "krótki temat w trybie rozkazującym"`
 4. `git push`
 

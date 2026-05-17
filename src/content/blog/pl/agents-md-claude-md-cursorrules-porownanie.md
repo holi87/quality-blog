@@ -1,6 +1,6 @@
 ---
-title: "AGENTS.md vs CLAUDE.md vs .cursorrules — który plik kontekstowy do czego"
-description: "Trzy formaty plików kontekstowych dla agentów AI to nie chaos — każdy ma niszę. Co czyta który agent, co wrzucać do każdego, jak utrzymać w synchronizacji i czego nie kopiować 1:1."
+title: "AGENTS.md vs CLAUDE.md vs .cursorrules - który plik kontekstowy do czego"
+description: "Trzy formaty plików kontekstowych dla agentów AI to nie chaos - każdy ma niszę. Co czyta który agent, co wrzucać do każdego, jak utrzymać w synchronizacji i czego nie kopiować 1:1."
 date: 2026-05-29
 tags: ["ai", "agents-md", "claude-code", "skala-holaka", "kontekst"]
 lang: pl
@@ -10,15 +10,15 @@ author: GH
 
 W [Skali Holaka](/pl/blog/skala-holaka/) poziom 5 to *„pliki kontekstowe per-projekt"*. Wymieniam tam trzy formaty: `AGENTS.md`, `CLAUDE.md`, `.cursorrules`. Najczęstsze pytanie po publikacji: **„dobrze, ale który mam używać?"**
 
-Krótka odpowiedź: wszystkie trzy, dla różnych celów. Dłuższa — w tym artykule.
+Krótka odpowiedź: wszystkie trzy, dla różnych celów. Dłuższa - w tym artykule.
 
 ## Skąd się wzięły
 
 Trzy formaty narodziły się w odpowiedzi na ten sam problem (agent nie zna mojego projektu), ale w różnych ekosystemach.
 
-- **`.cursorrules`** — pierwszy, od Cursor. Krótkie reguły, „nie używaj X, używaj Y". Plik leży w korzeniu repo, Cursor czyta go automatycznie.
-- **`CLAUDE.md`** — wprowadzone z Claude Code. Bardziej opisowe, „kontekst projektu plus konwencje". Claude Code automatycznie wczytuje plik z root + dowolnego katalogu nadrzędnego.
-- **`AGENTS.md`** — najbardziej generyczny, propagowany od mid-2025. Zamysł: jeden plik, który zrozumie każdy nowoczesny agent — Claude Code, Codex, Cursor, Aider, etc.
+- **`.cursorrules`** - pierwszy, od Cursor. Krótkie reguły, „nie używaj X, używaj Y". Plik leży w korzeniu repo, Cursor czyta go automatycznie.
+- **`CLAUDE.md`** - wprowadzone z Claude Code. Bardziej opisowe, „kontekst projektu plus konwencje". Claude Code automatycznie wczytuje plik z root + dowolnego katalogu nadrzędnego.
+- **`AGENTS.md`** - najbardziej generyczny, propagowany od mid-2025. Zamysł: jeden plik, który zrozumie każdy nowoczesny agent - Claude Code, Codex, Cursor, Aider, etc.
 
 W praktyce: rynek nie ujednolicił się. Każde narzędzie czyta swój format, niektóre czytają wszystkie.
 
@@ -32,19 +32,19 @@ W praktyce: rynek nie ujednolicił się. Każde narzędzie czyta swój format, n
 | Aider | tak | tak | nie |
 | Continue | tak | tak | tak |
 
-**Hierarchia precedensów w Claude Code**: globalny CLAUDE.md (`~/.claude/CLAUDE.md`) → katalogowy CLAUDE.md (wczytywany rekursywnie od korzenia projektu w dół). Jeśli istnieje AGENTS.md w korzeniu — Claude Code go również wciągnie.
+**Hierarchia precedensów w Claude Code**: globalny CLAUDE.md (`~/.claude/CLAUDE.md`) → katalogowy CLAUDE.md (wczytywany rekursywnie od korzenia projektu w dół). Jeśli istnieje AGENTS.md w korzeniu - Claude Code go również wciągnie.
 
 ## Co wrzucać do każdego
 
 Każdy format ma trochę inny *spirit*. Mieszanie ich na zasadzie *„kopiuj 1:1"* daje gorsze efekty niż wykorzystanie różnic.
 
-### CLAUDE.md — kontekst i sposób pracy
+### CLAUDE.md - kontekst i sposób pracy
 
 Najpojemniejszy z trzech. Tutaj wjeżdża:
 
 - cel projektu w 2 zdaniach
 - stack technologiczny
-- konwencje kodu (tylko te, które są lokalne dla projektu — ogólne idą do custom instructions)
+- konwencje kodu (tylko te, które są lokalne dla projektu - ogólne idą do custom instructions)
 - workflow gita / branching / commit message style
 - jak uruchomić, jak zbudować, jak przetestować
 - znane pułapki („nie ruszaj X bo Y")
@@ -80,7 +80,7 @@ Python 3.11 + FastAPI + PostgreSQL 15 + Redis 7.
 - Plik `config/risk_weights.yaml` - zmiana wymaga approve od Head of Risk
 ```
 
-### .cursorrules — reguły zachowań w kodzie
+### .cursorrules - reguły zachowań w kodzie
 
 Krótkie, dyrektywne. Optymalizowane pod „nie pisz Y, pisz X":
 
@@ -95,7 +95,7 @@ Krótkie, dyrektywne. Optymalizowane pod „nie pisz Y, pisz X":
 
 Idealnie 10–30 linii. Większe = sygnał że treść powinna pójść do CLAUDE.md albo do system prompta.
 
-### AGENTS.md — workflow agenta i protokół działania
+### AGENTS.md - workflow agenta i protokół działania
 
 Najmniej standardowy z trzech, ale nabrał własnego charakteru: tu opisujesz **jak agent powinien się zachować w tym projekcie**:
 
@@ -104,7 +104,7 @@ Najmniej standardowy z trzech, ale nabrał własnego charakteru: tu opisujesz **
 - *„nigdy nie pushuj bezpośrednio do main"*
 - *„przed pushem uruchom `npm run lint`"*
 
-[Mam osobny post o AGENTS.md w kontekście test automation](/pl/blog/agents-md-dla-test-automation/) — tam jest szczegół dla repozytoriów Playwright/Cypress/API.
+[Mam osobny post o AGENTS.md w kontekście test automation](/pl/blog/agents-md-dla-test-automation/) - tam jest szczegół dla repozytoriów Playwright/Cypress/API.
 
 ## Strategia multi-tool
 
@@ -146,7 +146,7 @@ CLAUDE.md       # pełen kontekst projektu, stack, komendy
 .cursorrules    # krótkie dyrektywy kodowe
 ```
 
-`AGENTS.md` zaczyna się od *„Pełny kontekst projektu w `CLAUDE.md`. Tutaj tylko protokoły działania."* — agent pobiera oba pliki, nie ma duplikacji treści.
+`AGENTS.md` zaczyna się od *„Pełny kontekst projektu w `CLAUDE.md`. Tutaj tylko protokoły działania."* - agent pobiera oba pliki, nie ma duplikacji treści.
 
 `.cursorrules` ma na końcu *„For full project context see CLAUDE.md."*
 
@@ -154,11 +154,11 @@ CLAUDE.md       # pełen kontekst projektu, stack, komendy
 
 Najczęstszy błąd: zespół kopiuje treść CLAUDE.md do AGENTS.md, bo „obydwa narzędzia tego potrzebują". Po miesiącu pliki rozjeżdżają się. Ktoś edytuje jeden, ktoś drugi. Agent dostaje sprzeczne sygnały.
 
-Test: otwórz oba pliki i policz wspólne linie. Jeśli >40% — masz duplikację. Refaktor: zostaw treść w jednym, w drugim link.
+Test: otwórz oba pliki i policz wspólne linie. Jeśli >40% - masz duplikację. Refaktor: zostaw treść w jednym, w drugim link.
 
 ## Anti-pattern: dokumentacja-cmentarz
 
-Spisałeś raz, nigdy nie zaktualizowałeś. Pisałem o tym [w anti-patternach adopcji](/pl/blog/antipaterny-adopcji-ai/) — ale warto powtórzyć, bo to dotyczy każdego z trzech formatów.
+Spisałeś raz, nigdy nie zaktualizowałeś. Pisałem o tym [w anti-patternach adopcji](/pl/blog/antipaterny-adopcji-ai/) - ale warto powtórzyć, bo to dotyczy każdego z trzech formatów.
 
 **Test:** otwórz CLAUDE.md i powiedz, co tam zmieniło się w ostatnim miesiącu. Cisza = cmentarz.
 
@@ -168,16 +168,16 @@ Spisałeś raz, nigdy nie zaktualizowałeś. Pisałem o tym [w anti-patternach a
 
 Niezależnie od formatu, kilka rzeczy do CLAUDE.md / AGENTS.md / .cursorrules **nie należy**:
 
-- **Sekretów** — żadne API keys, hasła, tokeny. Plik jest w repo (zwykle public lub szeroko widoczny).
-- **Danych klientów** — nawet zanonimizowane „real-life examples".
-- **Stylowych preferencji ogólnych** (np. „lubię zwięzłe odpowiedzi") — to do custom instructions globalnie, nie do per-projekt pliku.
-- **Historii decyzji** (np. „rozważaliśmy X i Y, wybraliśmy Z") — to do ADR-ów (Architecture Decision Records) lub osobnego `docs/`.
-- **Roadmapy / TODO** — to do issue trackera, nie do kontekstu agenta.
+- **Sekretów** - żadne API keys, hasła, tokeny. Plik jest w repo (zwykle public lub szeroko widoczny).
+- **Danych klientów** - nawet zanonimizowane „real-life examples".
+- **Stylowych preferencji ogólnych** (np. „lubię zwięzłe odpowiedzi") - to do custom instructions globalnie, nie do per-projekt pliku.
+- **Historii decyzji** (np. „rozważaliśmy X i Y, wybraliśmy Z") - to do ADR-ów (Architecture Decision Records) lub osobnego `docs/`.
+- **Roadmapy / TODO** - to do issue trackera, nie do kontekstu agenta.
 
 ## Co dalej
 
-Jeśli twój projekt nie ma żadnego z tych plików — zacznij od **CLAUDE.md w korzeniu**. To największy ROI (Claude Code, Codex i Aider go zauważą). Daj sobie 30 minut, jedna strona maks, zaktualizuj po pierwszej sesji.
+Jeśli twój projekt nie ma żadnego z tych plików - zacznij od **CLAUDE.md w korzeniu**. To największy ROI (Claude Code, Codex i Aider go zauważą). Daj sobie 30 minut, jedna strona maks, zaktualizuj po pierwszej sesji.
 
-Jeśli masz wszystkie trzy, ale duplikują się — refaktor zgodnie z opcją 3 z tego postu.
+Jeśli masz wszystkie trzy, ale duplikują się - refaktor zgodnie z opcją 3 z tego postu.
 
-Jeśli masz jeden plik z 2023 roku — udajesz że jesteś na poziomie 5. Realnie wracasz do 4 z anti-patternem. Wyjście: weekend, refresh, retro.
+Jeśli masz jeden plik z 2023 roku - udajesz że jesteś na poziomie 5. Realnie wracasz do 4 z anti-patternem. Wyjście: weekend, refresh, retro.

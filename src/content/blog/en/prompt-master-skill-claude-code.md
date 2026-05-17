@@ -14,20 +14,20 @@ The `prompt-master` skill in Claude Code solves exactly this problem: you give i
 
 ## What it actually does
 
-`prompt-master` is a skill (not a subagent) — a body of knowledge plus patterns plus rules that load into the main Claude in your terminal when specific triggers fire. It generates, fixes, improves, and adapts prompts for different tools:
+`prompt-master` is a skill (not a subagent) - a body of knowledge plus patterns plus rules that load into the main Claude in your terminal when specific triggers fire. It generates, fixes, improves, and adapts prompts for different tools:
 
-- **Text LLMs** (GPT, Claude, Gemini) — system prompts, role definitions, few-shot examples
-- **Image AI** (Midjourney, DALL-E, Stable Diffusion, Flux) — scene descriptions, style parameters, weights
-- **Video AI** (Sora, Runway, Veo) — shot description, camera motion, duration, mood
-- **Audio AI** (Suno, Udio) — genre, tempo, instrumentation, song structure
-- **Coding agents** (Cursor, GitHub Copilot, Codex, Claude Code) — system prompts, project context, constraints
+- **Text LLMs** (GPT, Claude, Gemini) - system prompts, role definitions, few-shot examples
+- **Image AI** (Midjourney, DALL-E, Stable Diffusion, Flux) - scene descriptions, style parameters, weights
+- **Video AI** (Sora, Runway, Veo) - shot description, camera motion, duration, mood
+- **Audio AI** (Suno, Udio) - genre, tempo, instrumentation, song structure
+- **Coding agents** (Cursor, GitHub Copilot, Codex, Claude Code) - system prompts, project context, constraints
 
 ## How to invoke it
 
 Three paths:
 
 1. **Slash command**: `/prompt-master` in Claude Code
-2. **Natural language**: "write a prompt for X," "fix this MJ prompt," "adapt this GPT prompt for Cursor" — the skill triggers on the description
+2. **Natural language**: "write a prompt for X," "fix this MJ prompt," "adapt this GPT prompt for Cursor" - the skill triggers on the description
 3. **As part of a larger workflow**: while writing an article and saying "add a prompt I could feed to Sora for the video intro"
 
 The skill needs no extra configuration if you have it installed (check `/help` or `~/.claude/skills/`).
@@ -80,7 +80,7 @@ Cross-tool adaptation, not copy-paste.
 
 Common case: you have a prompt that works partially, but the result isn't what you want. Instead of writing from scratch, tell the skill: "I have this MJ prompt. It comes out too cartoony. I want more oil painting."
 
-`prompt-master` does a diff in its head — it identifies which tokens push toward "cartoony" (e.g. "illustration," "character design") and swaps them for "oil painting," "painterly brushstrokes," "canvas texture." It returns the corrected prompt with an explanation of which token was changed and why.
+`prompt-master` does a diff in its head - it identifies which tokens push toward "cartoony" (e.g. "illustration," "character design") and swaps them for "oil painting," "painterly brushstrokes," "canvas texture." It returns the corrected prompt with an explanation of which token was changed and why.
 
 This saves more time than starting over because you keep what already works.
 
@@ -88,9 +88,9 @@ This saves more time than starting over because you keep what already works.
 
 The skill is good at prompting grammar and typical patterns. It won't replace:
 
-- **Experimental knowledge** — which specific `--sref` produce which style, which `--stylize` values match your style best
-- **Live changes to the tool** — MJ adds/removes parameters every month, the skill's knowledge has a cutoff date
-- **Your aesthetic preferences** — whether you prefer soft shadows or sharp contrasts
+- **Experimental knowledge** - which specific `--sref` produce which style, which `--stylize` values match your style best
+- **Live changes to the tool** - MJ adds/removes parameters every month, the skill's knowledge has a cutoff date
+- **Your aesthetic preferences** - whether you prefer soft shadows or sharp contrasts
 
 Treat the output as 80% of the solution, not 100%. The first generated prompt will leave 1–2 things to polish manually.
 
@@ -100,7 +100,7 @@ Three things people do wrong:
 
 - **Input too generic** ("write a prompt for graphics"). The skill can't guess the subject, the tool, or the goal. The output will be generic. The more specific your input, the better the output
 - **Expecting one output to be perfect.** The skill optimizes for the typical pattern. Your specific requirement (e.g. "must have exactly 12 elements in the image") needs iteration
-- **Skipping the tool context.** "Write a prompt for AI" — which AI? MJ is different from DALL-E, different from SD. State it explicitly
+- **Skipping the tool context.** "Write a prompt for AI" - which AI? MJ is different from DALL-E, different from SD. State it explicitly
 
 ## When to use it, when to skip
 
@@ -119,4 +119,4 @@ Skip it when:
 
 ## Crosslinks
 
-Prompting basics (rules that work across tools) → [AI prompts](/en/blog/ai-prompts/). Yesterday on subagents, which can have their own custom prompts → [subagents](/en/blog/subagents-claude-code-what-and-why/). Tomorrow: [`advisor()`](/en/blog/advisor-claude-code-second-opinion/) — a second opinion in the terminal.
+Prompting basics (rules that work across tools) → [AI prompts](/en/blog/ai-prompts/). Yesterday on subagents, which can have their own custom prompts → [subagents](/en/blog/subagents-claude-code-what-and-why/). Tomorrow: [`advisor()`](/en/blog/advisor-claude-code-second-opinion/) - a second opinion in the terminal.

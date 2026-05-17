@@ -1,8 +1,8 @@
-# Skala Holaka — wersja 3 (baza robocza)
+# Skala Holaka - wersja 3 (baza robocza)
 
 Notatka robocza do rozbudowy modelu dojrzałości adopcji AI. **Nie publikować.** Plik żyje poza `src/content/blog/`, więc Astro go nie tknie.
 
-Cel: wersja 3 do końca 2026. Materiał zbieramy z Konradem „Gumisiem" Gomulskim — dane z wdrożeń + eksperymenty.
+Cel: wersja 3 do końca 2026. Materiał zbieramy z Konradem „Gumisiem" Gomulskim - dane z wdrożeń + eksperymenty.
 
 ---
 
@@ -28,7 +28,7 @@ Po fixach z 2026-05-12:
 
 ---
 
-## Co dodać w v3 — zakres
+## Co dodać w v3 - zakres
 
 ### 1. Protokół diagnozy zespołu w 30 minut
 
@@ -39,9 +39,9 @@ Pomysły do rozwinięcia:
 - 8–10 pytań kalibrujących per wymiar (jednostka, organizacja)
 - progi punktowe → poziom
 - czerwone flagi w odpowiedziach („mamy MCP" bez „kto autoryzuje akcje?")
-- różnica między samooceną a obserwacją w pracy — jak konfrontować
+- różnica między samooceną a obserwacją w pracy - jak konfrontować
 - template raportu po sesji (jeden A4)
-- materiały Gumisia: realne sesje diagnostyczne — anonimizować
+- materiały Gumisia: realne sesje diagnostyczne - anonimizować
 
 Czy oddzielić jako osobny post i tylko zalinkować z v3? Decyzja przy pisaniu.
 
@@ -51,12 +51,12 @@ W v2 to pół-sekcja. W v3:
 
 - sprawdzalność: konkretne mechanizmy (audyt logów, dry-run, replay, snapshot, diff przed apply)
 - odwracalność: rollback, git revert, sandbox, RBAC, blast radius
-- progresywne zwiększanie autonomii — etapy (auto-approve dla X, human-in-the-loop dla Y)
+- progresywne zwiększanie autonomii - etapy (auto-approve dla X, human-in-the-loop dla Y)
 - psychologia: dlaczego ludzie utykają na 8 (lubią sterować, lęk przed odpowiedzialnością)
 - case study: zespół który przeszedł 8→9 (real, z anonimizacją)
 - case study: zespół który skoczył 4→9 i wrócił do 2
 
-### 3. Anti-patterny — rozszerzenie
+### 3. Anti-patterny - rozszerzenie
 
 Brakuje w v2:
 
@@ -71,20 +71,21 @@ Format zostawić bullet-listy albo rozbić każdy na mini-podsekcję z testem i 
 
 W v2 jest „sygnał powyżej 10". Brakuje pełnej diagnozy fazy Autonomia. Dorobić w formacie jak inne fazy.
 
+dodac level 11 - Agentic OS - nie tylko orkiestrator ale pelny system operujacy na agentach i codziennosci, nie tylko np claude cowork, cos wiecej niz hermes czy openclaw (ktore moga byc level 10) - do rozbudowy
 ### 5. Sekcja ROI / wymiar biznesowy
 
 Co dostajesz na poziomie X vs koszt dotarcia tam. Dla decydenta:
 
 - przybliżony zwrot per poziom (oszczędność czasu, jakość, predykcja, ryzyko)
 - koszt dotarcia (czas, narzędzia, governance, change management)
-- krzywa zwrotu — pierwsze poziomy (1→4) tanie i wysoki ROI, środek (5→8) drogi i niewidoczny, autonomia (9–10) wysoki ale z odsetkiem porażek
-- kiedy *nie* warto iść wyżej — case kiedy zatrzymanie na 4 albo 7 jest racjonalne
+- krzywa zwrotu - pierwsze poziomy (1→4) tanie i wysoki ROI, środek (5→8) drogi i niewidoczny, autonomia (9–10) wysoki ale z odsetkiem porażek
+- kiedy *nie* warto iść wyżej - case kiedy zatrzymanie na 4 albo 7 jest racjonalne
 
 Tu Gumiś ma materiał z firm wdrożeniowych. Wyciągnąć liczby (orientacyjne, anonimowo).
 
 ### 6. Przykładowy stack 2026 per poziom
 
-Jeden boks na końcu — „referencyjny stack na maj 2026":
+Jeden boks na końcu - „referencyjny stack na maj 2026":
 
 - poziom 1–4: ChatGPT/Claude.ai, custom instructions
 - poziom 5–6: AGENTS.md, CLAUDE.md, Cursor rules, Claude Code
@@ -117,26 +118,27 @@ Linkować do [słownika pojęć AI dla testerów](/pl/blog/slownik-pojec-ai-dla-
 
 - Czy v3 ma być jednym dłuższym artykułem czy serią 3–4 postów + indeks?
 - Czy zachować numerację 0–10 czy zmienić na nazwy (po nowej kalibracji może się okazać że poziom 2 i 3 zlewają się w praktyce)?
-- Czy dodać poziom „11" / „post-orkiestracja" — projektowanie systemów multi-agent bez własnego zaangażowania w pojedynczy task?
+- Czy dodać poziom „11" / „post-orkiestracja" - projektowanie systemów multi-agent bez własnego zaangażowania w pojedynczy task?
 - Format diagnozy: PDF/Notion template do pobrania czy interaktywny formularz na blogu?
 - Czy publikować case studies anonimowo czy z nazwami zespołów (za zgodą)?
-
+- podmieniamy stara wersje jako zaktualizowana v3 z nowa data publikacji?
+- dodajemy filipa ?
 ---
 
 ## Linki wewnętrzne (kandydaci dodatkowi)
 
 Posty istniejące na blogu, które warto dolinkować w v3 tam gdzie pasują:
 
-- [10 workflowów AI dla test architecta](/pl/blog/10-workflowow-ai-dla-test-architecta/) — przy fazie 9
-- [Advisor Claude Code](/pl/blog/advisor-claude-code-druga-opinia/) — sprawdzalność / 8→9
-- [Caveman plugin a tokeny](/pl/blog/caveman-plugin-tokeny-ai/) — przy poziomie 6 (zaawansowane instrukcje / kompresja)
-- [Claude CLI vs desktop vs web](/pl/blog/claude-codex-cli-vs-desktop-vs-web/) — przy doborze narzędzi
-- [Ocena outputu agenta](/pl/blog/ocena-outputu-agenta/) — sprawdzalność, 8→9, „Gdzie ten model zawodzi"
-- [Prompt master skill](/pl/blog/prompt-master-skill-claude-code/) — przy poziomie 7
-- [Prompty AI](/pl/blog/prompty-ai/) — przy poziomie 2–3
-- [Słownik pojęć AI dla testerów](/pl/blog/slownik-pojec-ai-dla-testerow/) — w glosariuszu
+- [10 workflowów AI dla test architecta](/pl/blog/10-workflowow-ai-dla-test-architecta/) - przy fazie 9
+- [Advisor Claude Code](/pl/blog/advisor-claude-code-druga-opinia/) - sprawdzalność / 8→9
+- [Caveman plugin a tokeny](/pl/blog/caveman-plugin-tokeny-ai/) - przy poziomie 6 (zaawansowane instrukcje / kompresja)
+- [Claude CLI vs desktop vs web](/pl/blog/claude-codex-cli-vs-desktop-vs-web/) - przy doborze narzędzi
+- [Ocena outputu agenta](/pl/blog/ocena-outputu-agenta/) - sprawdzalność, 8→9, „Gdzie ten model zawodzi"
+- [Prompt master skill](/pl/blog/prompt-master-skill-claude-code/) - przy poziomie 7
+- [Prompty AI](/pl/blog/prompty-ai/) - przy poziomie 2–3
+- [Słownik pojęć AI dla testerów](/pl/blog/slownik-pojec-ai-dla-testerow/) - w glosariuszu
 
-EN odpowiedniki — zmapować przy pisaniu (`/en/blog/...`).
+EN odpowiedniki - zmapować przy pisaniu (`/en/blog/...`).
 
 ---
 
@@ -156,4 +158,5 @@ Lista do uzupełnienia w czasie pracy:
 
 ## Changelog notatki
 
-- 2026-05-12 — utworzenie pliku, zarys v3 po fixach v2
+- 2026-05-12 - utworzenie pliku, zarys v3 po fixach v2
+

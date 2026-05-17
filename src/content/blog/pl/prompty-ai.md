@@ -29,8 +29,8 @@ Dodaj *"Myśl krok po kroku"* do złożonych zadań. AI będzie lepiej struktury
 
 ### 4. Ogranicz zakres
 
-*"Odpowiedz w maksymalnie 3 zdaniach"* — proste ograniczenie, ale dramatycznie poprawia jakość odpowiedzi.
+*"Odpowiedz w maksymalnie 3 zdaniach"* - proste ograniczenie, ale dramatycznie poprawia jakość odpowiedzi.
 
 ### 5. Iteruj
 
-Pierwszy wynik rzadko jest idealny. Traktuj rozmowę z AI jak współpracę — dawaj feedback, doprecyzowuj.
+Pierwszy wynik rzadko jest idealny. Traktuj rozmowę z AI jak współpracę - dawaj feedback, doprecyzowuj.

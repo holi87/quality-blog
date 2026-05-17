@@ -18,20 +18,20 @@ Wiele osób utożsamia rozwój testera wyłącznie z nauką kodowania. To zawę�
 
 QA jest **bardzo szeroką dziedziną**. Obszary, w których można się rozwijać:
 
-- **analiza wymagań** — pytania, kryteria akceptacji, definition of done,
-- **techniki testowania** — boundary, equivalence, decision tables, state machines,
-- **testowanie eksploracyjne** — heurystyki, charters, session-based testing,
-- **testowanie API** — kontrakty, mocki, integracje, idempotency,
-- **podstawy baz danych** — SQL na poziomie, który pozwala czytać i zmieniać dane testowe,
-- **logi i monitoring** — czytanie tego, co system mówi po fakcie,
-- **automatyzacja** — UI, API, e2e, kontraktowe,
-- **CI/CD** — pipeline, jak testy mają w nim działać,
-- **bezpieczeństwo** — podstawy OWASP, typowe luki, ścieżki ataku,
-- **wydajność** — load testing, profiling, observability,
-- **komunikacja** — pisanie zgłoszeń, raportowanie ryzyka, rozmowa z biznesem,
-- **domena biznesowa** — jak system **żyje** w realnym świecie,
-- **architektura systemu** — żeby wiedzieć, co testować na jakim poziomie,
-- **praca z ryzykiem** — priorytetyzacja, świadome akceptowanie known issues.
+- **analiza wymagań** - pytania, kryteria akceptacji, definition of done,
+- **techniki testowania** - boundary, equivalence, decision tables, state machines,
+- **testowanie eksploracyjne** - heurystyki, charters, session-based testing,
+- **testowanie API** - kontrakty, mocki, integracje, idempotency,
+- **podstawy baz danych** - SQL na poziomie, który pozwala czytać i zmieniać dane testowe,
+- **logi i monitoring** - czytanie tego, co system mówi po fakcie,
+- **automatyzacja** - UI, API, e2e, kontraktowe,
+- **CI/CD** - pipeline, jak testy mają w nim działać,
+- **bezpieczeństwo** - podstawy OWASP, typowe luki, ścieżki ataku,
+- **wydajność** - load testing, profiling, observability,
+- **komunikacja** - pisanie zgłoszeń, raportowanie ryzyka, rozmowa z biznesem,
+- **domena biznesowa** - jak system **żyje** w realnym świecie,
+- **architektura systemu** - żeby wiedzieć, co testować na jakim poziomie,
+- **praca z ryzykiem** - priorytetyzacja, świadome akceptowanie known issues.
 
 Sam wybór, w którym z tych obszarów się rozwijać, jest **decyzją strategiczną**, nie tylko ćwiczeniem techniki.
 
@@ -41,7 +41,7 @@ Praktyka jest **niezbędna**, ale bez refleksji może prowadzić do powtarzania 
 
 Przykład.
 
-Tester przez lata testuje głównie UI. Potrafi bardzo dobrze sprawdzać formularze, komunikaty i ścieżki użytkownika. Gdy zespół przechodzi na **architekturę mikroserwisową** z dużą liczbą integracji asynchronicznych, sama umiejętność klikania aplikacji nie wystarczy. Większość ryzyka leży teraz w warstwie, której on nie potrafi sprawdzić — bo nie ćwiczył tej kompetencji.
+Tester przez lata testuje głównie UI. Potrafi bardzo dobrze sprawdzać formularze, komunikaty i ścieżki użytkownika. Gdy zespół przechodzi na **architekturę mikroserwisową** z dużą liczbą integracji asynchronicznych, sama umiejętność klikania aplikacji nie wystarczy. Większość ryzyka leży teraz w warstwie, której on nie potrafi sprawdzić - bo nie ćwiczył tej kompetencji.
 
 Praktyka bez świadomego rozwoju daje **głębię w jednym obszarze**, ale nie **przygotowanie na zmianę kontekstu**. A kontekst zmienia się w IT regularnie.
 
@@ -51,14 +51,14 @@ Nie każdy tester musi być programistą. Ale **podstawy techniczne bardzo zwię
 
 Praktyczne kompetencje, które się opłacają:
 
-- **czytanie requestów i response'ów** — wiesz, czy bug jest po stronie frontu czy backendu,
-- **rozumienie kodów HTTP** — 401 vs 403, 422 vs 400, kiedy 200 jest podejrzane,
-- **podstawy SQL** — `SELECT`, `JOIN`, `WHERE`, podstawowe agregacje,
-- **analiza logów** — szukanie po `traceId`, korelacja zdarzeń,
-- **rozumienie pipeline CI/CD** — wiesz, czemu test padł na CI, ale nie lokalnie,
-- **podstawy Git** — branche, rebase, cherry-pick (przyda się przy własnych poprawkach),
-- **Postman lub podobne narzędzie** — testy API bez czekania na frontend,
-- **rozumienie różnicy** między frontendem, backendem i bazą danych — gdzie jaki problem może powstać.
+- **czytanie requestów i response'ów** - wiesz, czy bug jest po stronie frontu czy backendu,
+- **rozumienie kodów HTTP** - 401 vs 403, 422 vs 400, kiedy 200 jest podejrzane,
+- **podstawy SQL** - `SELECT`, `JOIN`, `WHERE`, podstawowe agregacje,
+- **analiza logów** - szukanie po `traceId`, korelacja zdarzeń,
+- **rozumienie pipeline CI/CD** - wiesz, czemu test padł na CI, ale nie lokalnie,
+- **podstawy Git** - branche, rebase, cherry-pick (przyda się przy własnych poprawkach),
+- **Postman lub podobne narzędzie** - testy API bez czekania na frontend,
+- **rozumienie różnicy** między frontendem, backendem i bazą danych - gdzie jaki problem może powstać.
 
 Efekt nie jest abstrakcyjny. Tester z tymi kompetencjami nie musi **z każdym problemem iść do developera**. Może sam zawęzić źródło błędu, zaoszczędzić godziny zespołu i zgłosić bug w stanie, który pozwala go naprawić od razu.
 
@@ -68,9 +68,9 @@ To często niedoceniany obszar. QA, które zna domenę, jest **dużo skuteczniej
 
 Przykład.
 
-W **systemie finansowym** drobny błąd zaokrąglenia może być krytyczny — naliczenie odsetek z błędem 0,001% przez 10 lat na portfelu o wartości miliarda to realny problem. W **aplikacji contentowej** ten sam typ błędu może być w ogóle nieistotny.
+W **systemie finansowym** drobny błąd zaokrąglenia może być krytyczny - naliczenie odsetek z błędem 0,001% przez 10 lat na portfelu o wartości miliarda to realny problem. W **aplikacji contentowej** ten sam typ błędu może być w ogóle nieistotny.
 
-Bez znajomości domeny trudno ocenić **realne ryzyko**. Tester, który wie, jak działa biznes, potrafi powiedzieć „to wygląda technicznie OK, ale uderza w model rozliczeniowy" — i tę informację doceni biznes znacznie bardziej niż 200 testów automatycznych.
+Bez znajomości domeny trudno ocenić **realne ryzyko**. Tester, który wie, jak działa biznes, potrafi powiedzieć „to wygląda technicznie OK, ale uderza w model rozliczeniowy" - i tę informację doceni biznes znacznie bardziej niż 200 testów automatycznych.
 
 Domena to nie tylko encyklopedyczna wiedza. To **rozumienie, co produkt naprawdę robi dla użytkownika i dla firmy**. To kompetencja, która buduje się z czasem przez rozmowy z PO, analitykami, supportem i klientami.
 
@@ -91,20 +91,20 @@ Bardziej świadomy QA pyta:
 > Co jeśli użytkownik nie ma uprawnień?
 > Co jeśli proces został już częściowo wykonany?
 
-Jakość pytań zwykle jest **lepszym wyznacznikiem dojrzałości QA** niż jakość odpowiedzi, które potrafi dać. Bo na większość pytań ktoś odpowie — ale tylko zadane pytania zostaną sprawdzone.
+Jakość pytań zwykle jest **lepszym wyznacznikiem dojrzałości QA** niż jakość odpowiedzi, które potrafi dać. Bo na większość pytań ktoś odpowie - ale tylko zadane pytania zostaną sprawdzone.
 
 ## Rozwój zwiększa wpływ na projekt
 
 Tester, który się rozwija, nie tylko znajduje błędy. Może wpływać na:
 
-- **jakość wymagań** — przez pytania na analizie,
-- **architekturę testów** — przez wybór poziomów testowania,
-- **proces release** — przez zdefiniowanie kryteriów gotowości,
-- **strategię automatyzacji** — przez analizę kosztu/wartości,
-- **jakość danych testowych** — przez budowę fixtures i resetowania,
-- **monitorowanie produkcji** — przez współpracę z DevOps/SRE,
-- **decyzje o ryzyku** — przez świadomą priorytetyzację,
-- **sposób pracy zespołu** — przez code review, mentoring, dokumentację.
+- **jakość wymagań** - przez pytania na analizie,
+- **architekturę testów** - przez wybór poziomów testowania,
+- **proces release** - przez zdefiniowanie kryteriów gotowości,
+- **strategię automatyzacji** - przez analizę kosztu/wartości,
+- **jakość danych testowych** - przez budowę fixtures i resetowania,
+- **monitorowanie produkcji** - przez współpracę z DevOps/SRE,
+- **decyzje o ryzyku** - przez świadomą priorytetyzację,
+- **sposób pracy zespołu** - przez code review, mentoring, dokumentację.
 
 Im większy wpływ, tym **mniej osoba jest „klikaczem", a bardziej członkiem zespołu, który formuje produkt**. To zmienia satysfakcję z pracy, perspektywy zawodowe i poziom wynagrodzenia.
 
@@ -116,10 +116,10 @@ Im większy wpływ, tym **mniej osoba jest „klikaczem", a bardziej członkiem 
 
 Przykład harmonogramu rocznego:
 
-- przez 2 miesiące **API** — Postman, testy kontraktowe, OpenAPI,
-- potem **SQL** — joiny, agregacje, podstawy planów wykonania,
-- potem **podstawy automatyzacji** — Playwright albo wybrany framework,
-- potem **testowanie wydajnościowe** — k6, Locust, podstawy profiling.
+- przez 2 miesiące **API** - Postman, testy kontraktowe, OpenAPI,
+- potem **SQL** - joiny, agregacje, podstawy planów wykonania,
+- potem **podstawy automatyzacji** - Playwright albo wybrany framework,
+- potem **testowanie wydajnościowe** - k6, Locust, podstawy profiling.
 
 To 4 obszary w rok. Wystarczająco, żeby zauważyć efekt. Nie tak dużo, żeby się rozproszyć.
 
@@ -134,13 +134,13 @@ Przykłady:
 - Regresja trwa za długo? → automatyzacja albo lepsza selekcja testów oparta na ryzyku.
 - Środowiska są zawodne? → infrastruktura testowa, Docker, podstawy DevOps.
 
-Rozwój oparty na bólu projektu **niemal zawsze się opłaca** — bo natychmiast widać efekt.
+Rozwój oparty na bólu projektu **niemal zawsze się opłaca** - bo natychmiast widać efekt.
 
 ### Nie ucz się wszystkiego naraz
 
 Tekst nie ma być źródłem presji. Rozwój powinien być **świadomy, nie paniczny**. Lepiej znać 3 obszary porządnie niż 10 powierzchownie.
 
-Powierzchowna wiedza w 10 obszarach często wygląda dobrze w CV, ale **nie ratuje produktu** w sytuacji kryzysowej. Głęboka wiedza w 3 obszarach — ratuje.
+Powierzchowna wiedza w 10 obszarach często wygląda dobrze w CV, ale **nie ratuje produktu** w sytuacji kryzysowej. Głęboka wiedza w 3 obszarach - ratuje.
 
 ## Czy certyfikaty mają sens?
 
@@ -148,14 +148,14 @@ Zbalansowane podejście.
 
 Certyfikat (ISTQB Foundation, Advanced, ISTQB AI, certyfikaty narzędziowe jak Playwright/Cypress) **może pomóc**, jeśli:
 
-- **porządkuje wiedzę** — szczególnie dla osób wchodzących do branży,
-- **daje wspólny język** — w zespole z osobami z różnych firm,
-- **pomaga wejść do branży** — kiedy nie ma jeszcze doświadczenia projektowego,
-- **wspiera rozwój podstaw** — przygotowanie do egzaminu wymusza systematyczność.
+- **porządkuje wiedzę** - szczególnie dla osób wchodzących do branży,
+- **daje wspólny język** - w zespole z osobami z różnych firm,
+- **pomaga wejść do branży** - kiedy nie ma jeszcze doświadczenia projektowego,
+- **wspiera rozwój podstaw** - przygotowanie do egzaminu wymusza systematyczność.
 
 Ale sam certyfikat **nie zastępuje praktyki, myślenia i doświadczenia**. Tester z ISTQB Advanced, który nigdy nie debugował realnej awarii, jest słabszy niż tester bez certyfikatu, który ma za sobą 3 produkcyjne incydenty.
 
-Certyfikat to **narzędzie**, nie cel. Jeśli pomaga w karierze (firma wymaga, daje benefit, ułatwia rozmowę kwalifikacyjną) — warto. Jeśli to tylko punkt do CV — najpierw zainwestuj w praktykę.
+Certyfikat to **narzędzie**, nie cel. Jeśli pomaga w karierze (firma wymaga, daje benefit, ułatwia rozmowę kwalifikacyjną) - warto. Jeśli to tylko punkt do CV - najpierw zainwestuj w praktykę.
 
 ## Czy każdy QA musi zostać automatykiem?
 
@@ -163,20 +163,20 @@ Nie. To **bardzo ważne**, żeby to powiedzieć wprost.
 
 Możliwe ścieżki rozwoju w QA:
 
-- **QA Engineer** — manualny tester z silną stroną techniczną i biznesową,
-- **Test Automation Engineer** — głównie automatyzacja, programowanie testów,
-- **QA Lead** — zarządzanie zespołem QA, proces, raportowanie,
-- **Test Architect** — strategia, architektura testów, mentoring,
-- **Performance Tester** — load, stress, profiling,
-- **Security Tester** — penetration testing, OWASP, threat modeling,
-- **Business-oriented QA** — głęboka domena, kryteria akceptacji, analiza,
-- **Quality Coach** — wspieranie zespołów developerskich w jakości,
-- **Release / Quality Engineer** — proces wydawniczy, observability, SRE-bliski,
-- **specjalista domenowy** — fintech, healthcare, gaming, e-commerce.
+- **QA Engineer** - manualny tester z silną stroną techniczną i biznesową,
+- **Test Automation Engineer** - głównie automatyzacja, programowanie testów,
+- **QA Lead** - zarządzanie zespołem QA, proces, raportowanie,
+- **Test Architect** - strategia, architektura testów, mentoring,
+- **Performance Tester** - load, stress, profiling,
+- **Security Tester** - penetration testing, OWASP, threat modeling,
+- **Business-oriented QA** - głęboka domena, kryteria akceptacji, analiza,
+- **Quality Coach** - wspieranie zespołów developerskich w jakości,
+- **Release / Quality Engineer** - proces wydawniczy, observability, SRE-bliski,
+- **specjalista domenowy** - fintech, healthcare, gaming, e-commerce.
 
 Wybór ścieżki zależy od **mocnych stron, zainteresowań i rynku**. Nie ma jednej dobrej odpowiedzi. Najgorsza odpowiedź to: „muszę zostać automatykiem, bo wszyscy to robią".
 
-Jeśli sprawia ci satysfakcję rozmowa z biznesem, analiza wymagań, identyfikowanie luk w procesach — ścieżka business-oriented albo Quality Coach może być **lepsza dla ciebie i lepsza dla firmy**, niż gdybyś próbował na siłę nauczyć się Playwrighta.
+Jeśli sprawia ci satysfakcję rozmowa z biznesem, analiza wymagań, identyfikowanie luk w procesach - ścieżka business-oriented albo Quality Coach może być **lepsza dla ciebie i lepsza dla firmy**, niż gdybyś próbował na siłę nauczyć się Playwrighta.
 
 ## Czego nie warto się uczyć (na razie)
 
@@ -185,18 +185,18 @@ Krótka kontra-lista. Rzeczy, które wyglądają atrakcyjnie, ale w 90% przypadk
 - **kolejny nowy framework**, który jest hype'em tygodnia, ale jeszcze nie ma stabilnego ecosystemu,
 - **głęboka teoria**, która nie ma odzwierciedlenia w codziennej pracy,
 - **technologie, których nie ma w twoim projekcie ani w realistycznej perspektywie zmiany pracy**,
-- **AI w QA** — zacznij od ogólnego promptingu i jednego skille, zanim wpadniesz w fascynację multi-agentem.
+- **AI w QA** - zacznij od ogólnego promptingu i jednego skille, zanim wpadniesz w fascynację multi-agentem.
 
-To nie oznacza „nie ucz się tych rzeczy nigdy". Oznacza: **ułóż priorytety**. Nauka też ma koszt alternatywny — to godziny, które nie wracają.
+To nie oznacza „nie ucz się tych rzeczy nigdy". Oznacza: **ułóż priorytety**. Nauka też ma koszt alternatywny - to godziny, które nie wracają.
 
 ## Podsumowanie
 
-Rozwój w QA jest wart wysiłku, ale **nie powinien być ślepym gonieniem za trendami**. Najlepszy rozwój to taki, który zwiększa skuteczność w realnych projektach — twoich, dziś, w obszarze, który najbardziej boli.
+Rozwój w QA jest wart wysiłku, ale **nie powinien być ślepym gonieniem za trendami**. Najlepszy rozwój to taki, który zwiększa skuteczność w realnych projektach - twoich, dziś, w obszarze, który najbardziej boli.
 
 Wybierz jeden obszar, który dziś najbardziej ogranicza Twoją skuteczność w projekcie. **Nie ucz się wszystkiego.** Naucz się tego, co rozwiąże konkretny problem.
 
 ## Co dalej w serii
 
-Ostatni tekst serii: [ciągły rozwój w QA — przekleństwo czy zysk](/pl/blog/ciagly-rozwoj-w-qa-przeklenstwo-czy-zysk/) — refleksyjne podsumowanie i osobiste spojrzenie na presję rozwoju w IT.
+Ostatni tekst serii: [ciągły rozwój w QA - przekleństwo czy zysk](/pl/blog/ciagly-rozwoj-w-qa-przeklenstwo-czy-zysk/) - refleksyjne podsumowanie i osobiste spojrzenie na presję rozwoju w IT.
 
 Wcześniej w serii: [pomijanie QA](/pl/blog/dlaczego-nie-pomijac-qa-w-projektach/), [automatyzacja](/pl/blog/kiedy-warto-automatyzowac-testy/), [rozwój procesu QA](/pl/blog/dlaczego-rozwoj-zapewnienia-jakosci-jest-wazny/), [doświadczenie QA](/pl/blog/dlaczego-doswiadczenie-qa-jest-wazne/).

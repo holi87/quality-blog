@@ -8,7 +8,7 @@ readingTime: 9
 author: GH
 ---
 
-When an AI agent lands in your test repo with no extra instructions, it starts from what it can see: `package.json`, `playwright.config.ts`, a few `tests/` folders. Based on that, it guesses how you work. It guesses reasonably well — but it guesses.
+When an AI agent lands in your test repo with no extra instructions, it starts from what it can see: `package.json`, `playwright.config.ts`, a few `tests/` folders. Based on that, it guesses how you work. It guesses reasonably well - but it guesses.
 
 `AGENTS.md` is the file that turns guessing into knowledge. It's a convention analogous to `README.md`, only addressed to the models working in the repo, not to humans. In test repositories it's particularly valuable, because test automation carries a lot of tribal knowledge the agent won't extract from code alone: how tests run locally vs in CI, what tags mean, which fixtures are shared, and what you'd rather nobody touched.
 
@@ -20,9 +20,9 @@ You might ask: why not just dump everything into `README.md`?
 
 Three reasons:
 
-**Different reader, different needs.** `README.md` answers a human's questions — "what is this, how do I run it locally, who do I ping with questions." `AGENTS.md` answers an agent's questions — "what's the exact command, character by character; what am I not supposed to do; what style should new code follow."
+**Different reader, different needs.** `README.md` answers a human's questions - "what is this, how do I run it locally, who do I ping with questions." `AGENTS.md` answers an agent's questions - "what's the exact command, character by character; what am I not supposed to do; what style should new code follow."
 
-**Different format.** A good `README` is narrative. A good `AGENTS.md` is operational — commands, lists, clear "yes/no". Humans tolerate fluff. An agent takes fluff literally and loses the signal.
+**Different format.** A good `README` is narrative. A good `AGENTS.md` is operational - commands, lists, clear "yes/no". Humans tolerate fluff. An agent takes fluff literally and loses the signal.
 
 **Different rate of change.** `README.md` rarely moves. `AGENTS.md` is something you tune whenever you notice the agent repeating the same mistake ("ran all the tests again instead of just the changed ones"). It's a live document of "how we work here."
 
@@ -30,7 +30,7 @@ Three reasons:
 
 The skeleton that works for me in test automation repos:
 
-### 1. Short project description — one paragraph
+### 1. Short project description - one paragraph
 
 Don't repeat the README. Enough to say: what's tested, the stack the tests use, their scope (E2E, API, integration), and where this code sits in relation to the SUT (system under test).
 
@@ -76,11 +76,11 @@ Don't paste your entire coding stylebook here. Give 5–10 rules you actually wa
 
 An underrated section. Say it plainly:
 
-- "Don't edit files in `tests/legacy/` — scheduled for removal in Q3."
+- "Don't edit files in `tests/legacy/` - scheduled for removal in Q3."
 - "Don't add new dependencies without agreement."
 - "Don't use `page.waitForTimeout`."
 - "Don't write tests that depend on order."
-- "Don't generate selectors from CSS classes — we use `data-testid`."
+- "Don't generate selectors from CSS classes - we use `data-testid`."
 
 Without this section the agent will take "the next reasonable step," which will cost you hours of review later.
 
@@ -99,13 +99,13 @@ A short list. Example: "Every PR should contain: a test, repro steps (if the tes
 
 **Too much text.** I've seen 8-page `AGENTS.md` files. An agent given 8 pages treats the whole thing as one giant context and either ignores details or pulls the wrong priorities. Target: 1–2 pages. If it doesn't fit, cut.
 
-**Conflicts with the code.** "All API tests live in `tests/api/`" — meanwhile half of them are in `tests/integration/`. The agent trusts the document, not the code, and goes wrong. Treat `AGENTS.md` like code — update it with every structural change.
+**Conflicts with the code.** "All API tests live in `tests/api/`" - meanwhile half of them are in `tests/integration/`. The agent trusts the document, not the code, and goes wrong. Treat `AGENTS.md` like code - update it with every structural change.
 
 **No scope.** "Help with the tests" is not an instruction. "You can add new E2E tests under `tests/e2e/`, do not modify the Playwright config, do not add dependencies" is.
 
-**Contradictions.** "Keep tests short, no longer than 20 lines" next to "Always add comments explaining each step" — those break each other. Read the file top to bottom and hunt for pairs that fight.
+**Contradictions.** "Keep tests short, no longer than 20 lines" next to "Always add comments explaining each step" - those break each other. Read the file top to bottom and hunt for pairs that fight.
 
-**Marketing tone.** "Our team cares about quality and constantly learns" — that isn't an instruction, that's a company mission statement. Delete it. The agent doesn't need it.
+**Marketing tone.** "Our team cares about quality and constantly learns" - that isn't an instruction, that's a company mission statement. Delete it. The agent doesn't need it.
 
 ## Example: Playwright skeleton
 
@@ -138,7 +138,7 @@ Tests run against a dedicated staging environment.
 - Test data: isolated per test. Use the `createUser()` factory.
 
 ## Do not
-- Do not edit `tests/legacy/` — scheduled for removal.
+- Do not edit `tests/legacy/` - scheduled for removal.
 - Do not add new npm dependencies.
 - Do not write tests that depend on order.
 - Do not hardcode sleeps.
@@ -162,13 +162,13 @@ Similar structure, different commands, plus a few specifics:
 - in `conventions` add a rule about using `cy.session()` for login and a ban on `cy.wait(ms)`,
 - if you have custom commands in `support/commands.ts`, list the ones the agent should know, one line per command.
 
-A Cypress-specific pitfall: agents love generating `cy.get(...).should(...)` chains that break your conventions. A single line in "Do not" — "Use `cy.findByTestId('button')` instead of `cy.get('.button')`" — saves you half a review.
+A Cypress-specific pitfall: agents love generating `cy.get(...).should(...)` chains that break your conventions. A single line in "Do not" - "Use `cy.findByTestId('button')` instead of `cy.get('.button')`" - saves you half a review.
 
 ## API tests variant
 
 Priorities are different here. Add:
 
-- which **HTTP clients** you use (axios, supertest, got) — the agent generates different code for each,
+- which **HTTP clients** you use (axios, supertest, got) - the agent generates different code for each,
 - where **contracts** live (OpenAPI? Pact? internal schemas?) and whether the agent should validate against them,
 - how you handle **auth in tests** (token from `.env`? mock? a dedicated `/test-login` endpoint?),
 - your **assertion structure** (do you only check status, or also body vs schema),
@@ -190,7 +190,7 @@ If three times a week you're writing "don't use `waitForTimeout`", that rule eit
 A simple quality proxy: the count of files you accept from the agent as-is, vs the count you rewrite from scratch. A good `AGENTS.md` bumps the first number.
 
 **4. The second-team test.**
-Hand the repo and `AGENTS.md` to a team that hasn't worked on this project. Ask them to "add a test for scenario X" using an agent. If they get it right on the first pass — the file works. If they end up asking on Slack — you have gaps.
+Hand the repo and `AGENTS.md` to a team that hasn't worked on this project. Ask them to "add a test for scenario X" using an agent. If they get it right on the first pass - the file works. If they end up asking on Slack - you have gaps.
 
 ## Key takeaways
 
@@ -198,7 +198,7 @@ Hand the repo and `AGENTS.md` to a team that hasn't worked on this project. Ask 
 - Structure: description, setup, commands, conventions, "do not", scope, PR checklist.
 - Keep it to 1–2 pages. A longer file loses the signal.
 - The "Do not" section matters as much as the "Do".
-- Treat the file as code — update it whenever the repo structure changes.
+- Treat the file as code - update it whenever the repo structure changes.
 - Measure whether it works: via first-try commands, recurring review comments, and the second-team test.
 
-In the next post I'll show how to layer MCP on top of this — starting with the simplest but most useful QA case: search and fetch for evidence.
+In the next post I'll show how to layer MCP on top of this - starting with the simplest but most useful QA case: search and fetch for evidence.

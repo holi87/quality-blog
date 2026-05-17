@@ -29,8 +29,8 @@ Add *"Think step by step"* to complex tasks. The AI will better structure its re
 
 ### 4. Limit scope
 
-*"Answer in 3 sentences maximum"* — a simple constraint that dramatically improves response quality.
+*"Answer in 3 sentences maximum"* - a simple constraint that dramatically improves response quality.
 
 ### 5. Iterate
 
-The first result is rarely perfect. Treat your conversation with AI as a collaboration — give feedback, refine.
+The first result is rarely perfect. Treat your conversation with AI as a collaboration - give feedback, refine.

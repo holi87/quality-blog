@@ -12,8 +12,8 @@ At the start of a project, quality often rests on simple actions. The tester che
 
 This is the third article in the "Mature QA in practice" series. Earlier:
 
-- [why not skip QA](/en/blog/why-not-skip-qa-in-projects/) — broader value context,
-- [when to automate tests](/en/blog/when-to-automate-tests/) — tooling decisions.
+- [why not skip QA](/en/blog/why-not-skip-qa-in-projects/) - broader value context,
+- [when to automate tests](/en/blog/when-to-automate-tests/) - tooling decisions.
 
 Now back to process: how to recognize that QA is no longer keeping up, and how to evolve it step by step without descending into chaos.
 
@@ -21,11 +21,11 @@ Now back to process: how to recognize that QA is no longer keeping up, and how t
 
 A typical product evolution in which QA doesn't change:
 
-- in the beginning **one application** — tester clicks, ships, works,
-- then **a few modules** — first cross-regressions appear,
-- later **integrations** with external systems — bugs in "not my component",
-- then **roles, permissions, configurations** — combinatorics grows,
-- finally **multiple teams, environments and dependencies** — nobody really knows what works.
+- in the beginning **one application** - tester clicks, ships, works,
+- then **a few modules** - first cross-regressions appear,
+- later **integrations** with external systems - bugs in "not my component",
+- then **roles, permissions, configurations** - combinatorics grows,
+- finally **multiple teams, environments and dependencies** - nobody really knows what works.
 
 Testing methods need to keep pace with that complexity. If the team is trying to test a system 50× larger using the same methods as a year ago, regression will take 5 days, bugs will recur, and releases will be stressful.
 
@@ -35,17 +35,17 @@ It's not just **more tests**. Mature QA evolves on many axes.
 
 It can mean:
 
-- better **risk analysis** — we know where to look,
-- a better **test strategy** — we know what to test at which level,
-- **automation where it makes sense** — not everywhere,
-- **API and integration tests** — shifting weight away from the UI,
-- **test data control** — fixtures, state reset, seeds,
-- **stable environments** — tests aren't suspect by default,
-- a better **bug reporting process** — faster diagnosis, better prioritisation,
-- **QA involvement in requirements analysis** — gaps surfaced before code,
-- **production monitoring** — feedback into the test suite,
-- **post-release defect analysis** — learning from every incident,
-- **quality standards in the team** — definition of done, quality-aware code review.
+- better **risk analysis** - we know where to look,
+- a better **test strategy** - we know what to test at which level,
+- **automation where it makes sense** - not everywhere,
+- **API and integration tests** - shifting weight away from the UI,
+- **test data control** - fixtures, state reset, seeds,
+- **stable environments** - tests aren't suspect by default,
+- a better **bug reporting process** - faster diagnosis, better prioritisation,
+- **QA involvement in requirements analysis** - gaps surfaced before code,
+- **production monitoring** - feedback into the test suite,
+- **post-release defect analysis** - learning from every incident,
+- **quality standards in the team** - definition of done, quality-aware code review.
 
 Each of those can be evolved separately. Together they form a mature process.
 
@@ -53,17 +53,17 @@ Each of those can be evolved separately. Together they form a mature process.
 
 A practical list of warning signs. If you recognise 3+, take a hard look at the process.
 
-- **Regression takes too long** — days instead of hours.
-- Tests are **repeated manually without reflection** — "we always did it that way".
-- **Automation is unstable** — the team ignores red builds.
-- **Nobody trusts test results** — releases are decided "on a feeling".
-- **Bugs keep coming back** — regression is missing or ineffective.
-- **Requirements are vague** — QA only finds details during testing.
-- **QA enters too late** — after implementation.
-- **Releases are stressful** — the last week is chaos.
-- **Test environments are constantly broken** — diagnosis takes half a day.
-- **Production bugs are a surprise** — nobody saw them coming.
-- **The team doesn't know what was actually tested** — testing lives in the tester's head.
+- **Regression takes too long** - days instead of hours.
+- Tests are **repeated manually without reflection** - "we always did it that way".
+- **Automation is unstable** - the team ignores red builds.
+- **Nobody trusts test results** - releases are decided "on a feeling".
+- **Bugs keep coming back** - regression is missing or ineffective.
+- **Requirements are vague** - QA only finds details during testing.
+- **QA enters too late** - after implementation.
+- **Releases are stressful** - the last week is chaos.
+- **Test environments are constantly broken** - diagnosis takes half a day.
+- **Production bugs are a surprise** - nobody saw them coming.
+- **The team doesn't know what was actually tested** - testing lives in the tester's head.
 
 Each in isolation is survivable. Together they mean the QA process has been outgrown by the product.
 
@@ -90,32 +90,32 @@ A second tester in the old process is **an investment in preserving the state**.
 
 Two directions of modern QA evolution. Both matter.
 
-### Shift left — earlier in the cycle
+### Shift left - earlier in the cycle
 
 QA participates in:
 
-- **requirement analysis** — surfacing gaps, inconsistencies, unhandled scenarios,
-- **refinements** — asking about risk, edge data, integrations,
-- **acceptance criteria design** — definition of done with a QA lens,
-- **technical conversations** — testability of architecture, observability,
-- **risk analysis** — before the sprint, not after.
+- **requirement analysis** - surfacing gaps, inconsistencies, unhandled scenarios,
+- **refinements** - asking about risk, edge data, integrations,
+- **acceptance criteria design** - definition of done with a QA lens,
+- **technical conversations** - testability of architecture, observability,
+- **risk analysis** - before the sprint, not after.
 
 Effect: fewer bugs get created. The ones that do are caught faster.
 
-### Shift right — later in the cycle
+### Shift right - later in the cycle
 
 QA cares about what happens **after release**:
 
-- **monitoring** — alerts, business metrics, SLOs,
-- **logs** — what is actually happening in production,
-- **production bugs** — root-cause analysis, postmortems,
-- **user feedback** — support tickets, store ratings,
-- **incident analysis** — what went wrong, how to prevent it,
-- **observability** — being able to see what the system is doing.
+- **monitoring** - alerts, business metrics, SLOs,
+- **logs** - what is actually happening in production,
+- **production bugs** - root-cause analysis, postmortems,
+- **user feedback** - support tickets, store ratings,
+- **incident analysis** - what went wrong, how to prevent it,
+- **observability** - being able to see what the system is doing.
 
 Effect: faster reaction to real problems. Every incident is fuel for the next iteration of the process.
 
-In mature teams QA is at **both ends simultaneously** — not only in the middle when "code is ready".
+In mature teams QA is at **both ends simultaneously** - not only in the middle when "code is ready".
 
 ## Evolving QA and automation
 
@@ -136,18 +136,18 @@ Quality can't only be a tester's responsibility. This is one of the biggest cult
 
 Good QA cultivates a culture where:
 
-- **developers care about unit tests** — they don't push them "for later",
-- **POs sharpen requirements** — because vague requirements are a known risk,
-- **QA surfaces risk** — and speaks it out loud,
-- **the team jointly decides on releases** — not "the tester said it's fine",
-- **bugs are analysed without blame** — a learning culture, not a witch hunt,
-- **definition of done includes quality criteria** — not just "code merged".
+- **developers care about unit tests** - they don't push them "for later",
+- **POs sharpen requirements** - because vague requirements are a known risk,
+- **QA surfaces risk** - and speaks it out loud,
+- **the team jointly decides on releases** - not "the tester said it's fine",
+- **bugs are analysed without blame** - a learning culture, not a witch hunt,
+- **definition of done includes quality criteria** - not just "code merged".
 
 A team that shares responsibility for quality ships **measurably higher-quality products** than a team where quality is "QA's problem".
 
 ## How to evolve QA step by step
 
-A practical five-step model. Works on almost any project — from a two-person team to a platform with ten teams.
+A practical five-step model. Works on almost any project - from a two-person team to a platform with ten teams.
 
 ### Step 1: Map the current process
 
@@ -188,7 +188,7 @@ After 4–8 weeks check measurably:
 - fewer flaky tests?
 - better requirements quality (fewer last-minute questions)?
 
-If the effect is there — solidify. If not — understand why before trying something new.
+If the effect is there - solidify. If not - understand why before trying something new.
 
 ### Step 5: Repeat the cycle
 
@@ -208,12 +208,12 @@ A short list of common pitfalls:
 
 ## Summary
 
-QA must evolve because **the product, the technology and the organization also evolve**. Standing still isn't stability. It's slow loss of control over quality — invisible sprint by sprint, and obvious only when regression takes a week and the customer reports something that "used to work".
+QA must evolve because **the product, the technology and the organization also evolve**. Standing still isn't stability. It's slow loss of control over quality - invisible sprint by sprint, and obvious only when regression takes a week and the customer reports something that "used to work".
 
-Check which element of QA on your project most lags behind the current scale of the product. That's probably where to start — with one, measurable step.
+Check which element of QA on your project most lags behind the current scale of the product. That's probably where to start - with one, measurable step.
 
 ## Next in the series
 
-Next: [why QA experience is more than years on a CV](/en/blog/why-qa-experience-matters/) — moving from process to the human running it.
+Next: [why QA experience is more than years on a CV](/en/blog/why-qa-experience-matters/) - moving from process to the human running it.
 
 Earlier in the series: [skipping QA](/en/blog/why-not-skip-qa-in-projects/), [automation](/en/blog/when-to-automate-tests/).

@@ -117,8 +117,8 @@ const postCurrentPath = `/blog/${slug}/`;
 
   <script>
     function shortenTocLabel(text: string): string {
-      const lvl = text.match(/^Poziom\s+(\d+)\s*[—–-]\s*(.+)$/i)
-        ?? text.match(/^Level\s+(\d+)\s*[—–-]\s*(.+)$/i);
+      const lvl = text.match(/^Poziom\s+(\d+)\s*[-–-]\s*(.+)$/i)
+        ?? text.match(/^Level\s+(\d+)\s*[-–-]\s*(.+)$/i);
       if (lvl) return `${lvl[1]} · ${lvl[2]}`;
       const phase = text.match(/^Faza\s+[\d\s–-]+:\s*(.+)$/i)
         ?? text.match(/^Phase\s+[\d\s–-]+:\s*(.+)$/i);
@@ -568,7 +568,7 @@ const postCurrentPath = `/blog/${slug}/`;
     border-color: var(--p-green-fg);
   }
 
-  /* Light mode override for Shiki — use CSS vars --shiki-light swapping */
+  /* Light mode override for Shiki - use CSS vars --shiki-light swapping */
   :root[data-theme='light'] .astro-code,
   :root[data-theme='light'] .astro-code span {
     color: var(--shiki-light) !important;
@@ -593,7 +593,7 @@ const postCurrentPath = `/blog/${slug}/`;
     border: 1px solid var(--border);
   }
 
-  /* TOC — nested groups (JS-created, needs global scope) */
+  /* TOC - nested groups (JS-created, needs global scope) */
   .toc ol#toc-list { list-style: none; padding: 0; margin: 0; }
   .toc .toc-sub {
     list-style: none;

@@ -10,20 +10,20 @@ author: GH
 
 I have a picture in my head I see in every other engagement:
 
-An engineer with two monitors. On the left, Confluence with a folder *"Golden prompts."* On the right, Claude. Copy — paste — fill in `{project_name}`, `{requirements}`, `{output_format}` — Enter. Waits. Unhappy with the result, returns to Confluence, copies *"Golden prompt v2 — extended context (FINAL)."* Pastes, tweaks. Notes to themselves *"need to update v3."*
+An engineer with two monitors. On the left, Confluence with a folder *"Golden prompts."* On the right, Claude. Copy - paste - fill in `{project_name}`, `{requirements}`, `{output_format}` - Enter. Waits. Unhappy with the result, returns to Confluence, copies *"Golden prompt v2 - extended context (FINAL)."* Pastes, tweaks. Notes to themselves *"need to update v3."*
 
 I want to convince this person of one thing: **this isn't success. It's a symptom.**
 
 ## What a prompt library is really about
 
-Looking at the [Holak Scale](/en/blog/holak-scale/) — a 200-line prompt library isn't level 3 (frameworks), it's level 3 with **failure to cross to 4**. Why?
+Looking at the [Holak Scale](/en/blog/holak-scale/) - a 200-line prompt library isn't level 3 (frameworks), it's level 3 with **failure to cross to 4**. Why?
 
 Because you have a library when:
 
 - you repeat the same role / style / constraints in every prompt
 - you re-paste the project context every time
 - you manage prompt versions by hand
-- you create conventions like *"v1 — basic, v2 — with tests, v3 — with tests and security"*
+- you create conventions like *"v1 - basic, v2 - with tests, v3 - with tests and security"*
 
 All of these are **things that should live higher up**. In model settings (level 4), in context files (level 5), in advanced instructions (level 6).
 
@@ -35,9 +35,9 @@ Honest: it works in a sprint. A boilerplate 200-line prompt yields a boilerplate
 
 After three months you see:
 
-- **Model drift.** Anthropic / OpenAI ship a new model version — your prompts suddenly produce different outputs because they relied on specific regularities.
+- **Model drift.** Anthropic / OpenAI ship a new model version - your prompts suddenly produce different outputs because they relied on specific regularities.
 - **No transfer.** A new project = rewrite all prompts with the new project context. The work scales linearly with project count.
-- **Team divergence.** Two engineers have "their v3" of the same prompt — out of sync. A third wrote their own from scratch because *"those are stale."*
+- **Team divergence.** Two engineers have "their v3" of the same prompt - out of sync. A third wrote their own from scratch because *"those are stale."*
 - **No evolution.** Six months in, you're still at 3. Your industry has been at 5–6 for ages.
 
 ## How to break down a 200-line prompt
@@ -140,20 +140,20 @@ The point isn't to never write long prompts. The point is that a long prompt **s
 
 Trying a new technique? A long prompt is fine. Onboarding the model to an unfamiliar project? Fine. A one-off thing once a year? Fine.
 
-But if a prompt has a last-modified date from 3 months ago and you still copy it — it's not an experiment. It's level 3 with the anti-pattern.
+But if a prompt has a last-modified date from 3 months ago and you still copy it - it's not an experiment. It's level 3 with the anti-pattern.
 
 ## A test for whether you're in the trap
 
 Three questions:
 
-1. **When did you last change your custom instructions?** If "never" or "six months ago" — trap.
-2. **How much time do you spend in the AI tool weekly vs how much time writing / updating prompts?** If >20% is the latter — trap.
+1. **When did you last change your custom instructions?** If "never" or "six months ago" - trap.
+2. **How much time do you spend in the AI tool weekly vs how much time writing / updating prompts?** If >20% is the latter - trap.
 3. **Does a new team member start by asking "give me your prompt library"?** Yes = systemic trap.
 
-If you answered "yes" to any — pick one prompt from the library, run the three operations above, use it for a week, see.
+If you answered "yes" to any - pick one prompt from the library, run the three operations above, use it for a week, see.
 
 ## What's next
 
-[5 prompts that will change your AI work](/en/blog/ai-prompts/) is a good start. But if six months in those 5 prompts have become 50 and all live in Confluence — that's the signal to promote to a higher level, not write another prompt.
+[5 prompts that will change your AI work](/en/blog/ai-prompts/) is a good start. But if six months in those 5 prompts have become 50 and all live in Confluence - that's the signal to promote to a higher level, not write another prompt.
 
-A library isn't success. It's a necessary stage — and a symptom that it's time to move on.
+A library isn't success. It's a necessary stage - and a symptom that it's time to move on.

@@ -24,7 +24,7 @@ const topics = ['Home Assistant', 'Claude/ChatGPT', 'Automation', 'IoT', 'Prompt
 const totalPosts = allPosts.filter((p) => p.data.lang === locale && p.data.date <= now).length;
 const lastUpdate = posts[0]?.data.date;
 const alternatePaths = localizedAlternates('/pl/', '/en/');
-const seoDescription = 'A practical blog about AI, smart home and QA — Claude Code, MCP, local LLMs, prompt engineering, Home Assistant, test automation.';
+const seoDescription = 'A practical blog about AI, smart home and QA - Claude Code, MCP, local LLMs, prompt engineering, Home Assistant, test automation.';
 ---
 
 <BaseLayout
@@ -72,7 +72,7 @@ const seoDescription = 'A practical blog about AI, smart home and QA — Claude 
         </div>
         <div>
           <dt>Latest</dt>
-          <dd><span class="num">{lastUpdate ? lastUpdate.toLocaleDateString('en-US', { day: '2-digit', month: 'short' }) : '—'}</span></dd>
+          <dd><span class="num">{lastUpdate ? lastUpdate.toLocaleDateString('en-US', { day: '2-digit', month: 'short' }) : '-'}</span></dd>
         </div>
       </dl>
     </div>

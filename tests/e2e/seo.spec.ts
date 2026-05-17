@@ -58,7 +58,7 @@ test.describe('SEO and LLM discoverability', () => {
     const article = jsonLdItems.find((item) => item['@type'] === 'BlogPosting');
     expect(article).toMatchObject({
       '@id': 'https://quality-blog.eu/pl/blog/open-webui-frontend-do-lokalnego-llm/#article',
-      headline: 'Open WebUI — front jak ChatGPT do twojego lokalnego LLM',
+      headline: 'Open WebUI - front jak ChatGPT do twojego lokalnego LLM',
       inLanguage: 'pl',
       isAccessibleForFree: true,
       author: {

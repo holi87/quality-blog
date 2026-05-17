@@ -12,7 +12,7 @@ const translations = {
       highlight2: 'smart home',
       and: 'i',
       highlight3: 'QA',
-      description: 'Blog o jakości — w AI, w smart home, w testowaniu. Praktyczne poradniki, eksperymenty i wnioski z pracy. Bez paywalli i bez marketingowego szumu.',
+      description: 'Blog o jakości - w AI, w smart home, w testowaniu. Praktyczne poradniki, eksperymenty i wnioski z pracy. Bez paywalli i bez marketingowego szumu.',
     },
     posts: {
       latest: 'Ostatnie wpisy',
@@ -41,7 +41,7 @@ const translations = {
       highlight2: 'smart home',
       and: 'and',
       highlight3: 'QA',
-      description: 'A blog about quality — in AI, in smart home, in testing. Practical guides, experiments and lessons from the field. No paywalls, no marketing fluff.',
+      description: 'A blog about quality - in AI, in smart home, in testing. Practical guides, experiments and lessons from the field. No paywalls, no marketing fluff.',
     },
     posts: {
       latest: 'Latest posts',

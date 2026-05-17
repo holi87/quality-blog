@@ -1,6 +1,6 @@
 ---
 title: "Metryki QA, które biznes chce słyszeć"
-description: "Kompletny przewodnik po transformacji raportowania QA — od liczenia bugów do mówienia językiem wyników i decyzji biznesowych. Pięć metryk, trzy filary, jeden model."
+description: "Kompletny przewodnik po transformacji raportowania QA - od liczenia bugów do mówienia językiem wyników i decyzji biznesowych. Pięć metryk, trzy filary, jeden model."
 date: 2026-05-19
 tags: ["qa", "metryki", "leadership", "raportowanie"]
 lang: pl
@@ -12,23 +12,23 @@ author: FB
 
 <p class="fb-eyebrow">Seria: QA Leadership · Artykuł 1 z 9</p>
 
-<p class="fb-lead">Śledzisz defekty, pokrycie testami, wyniki wykonania — i masz poczucie, że poza własnym zespołem QA nikogo to nie obchodzi. Masz rację. I to nie jest Twoja wina.</p>
+<p class="fb-lead">Śledzisz defekty, pokrycie testami, wyniki wykonania - i masz poczucie, że poza własnym zespołem QA nikogo to nie obchodzi. Masz rację. I to nie jest Twoja wina.</p>
 
-Przez lata obserwowałem ten sam schemat: pieczołowicie przygotowane dashboardy, szczegółowe tabele z bugami — i kompletna cisza po stronie biznesu. Sprint review zakończony *„ok, dzięki"*, decyzje podejmowane intuicyjnie, bez oparcia o dane QA.
+Przez lata obserwowałem ten sam schemat: pieczołowicie przygotowane dashboardy, szczegółowe tabele z bugami - i kompletna cisza po stronie biznesu. Sprint review zakończony *„ok, dzięki"*, decyzje podejmowane intuicyjnie, bez oparcia o dane QA.
 
-Problem nie polega na braku danych. Mamy danych za dużo. Problem polega na tym, że **raportujemy aktywność zamiast wyników**. To nie jest problem techniczny — to jest problem komunikacji.
+Problem nie polega na braku danych. Mamy danych za dużo. Problem polega na tym, że **raportujemy aktywność zamiast wyników**. To nie jest problem techniczny - to jest problem komunikacji.
 
-<blockquote class="fb-quote">Metryka aktywności mówi, jak ciężko pracowałeś. Metryka wynikowa mówi, jaki był efekt. Biznes płaci za wyniki — i o wynikach chce słyszeć.</blockquote>
+<blockquote class="fb-quote">Metryka aktywności mówi, jak ciężko pracowałeś. Metryka wynikowa mówi, jaki był efekt. Biznes płaci za wyniki - i o wynikach chce słyszeć.</blockquote>
 
-Ten artykuł jest pierwszym w serii dziewięciu. Dowiesz się, jakie metryki zbierać, jak je interpretować i — co najważniejsze — jak opowiadać nimi historię, którą stakeholderzy rozumieją i na której mogą działać.
+Ten artykuł jest pierwszym w serii dziewięciu. Dowiesz się, jakie metryki zbierać, jak je interpretować i - co najważniejsze - jak opowiadać nimi historię, którą stakeholderzy rozumieją i na której mogą działać.
 
 ## Co biznes naprawdę słyszy
 
-Wyobraź sobie sprint review. QA prezentuje liczby. Stakeholderzy kiwają głowami. Decyzja zapada na czuja. Poniżej zestawione są dokładnie te same informacje o tym samym sprincie — w dwóch różnych językach.
+Wyobraź sobie sprint review. QA prezentuje liczby. Stakeholderzy kiwają głowami. Decyzja zapada na czuja. Poniżej zestawione są dokładnie te same informacje o tym samym sprincie - w dwóch różnych językach.
 
 <div class="fb-compare">
   <div class="fb-dp fb-dp-before">
-    <span class="fb-dp-tag">PRZED — Aktywność</span>
+    <span class="fb-dp-tag">PRZED - Aktywność</span>
     <div class="fb-dp-row"><span class="n">Bugs found</span><span class="v">47</span></div>
     <div class="fb-dp-row"><span class="n">Tests executed</span><span class="v">312</span></div>
     <div class="fb-dp-row"><span class="n">Pass rate</span><span class="v">94%</span></div>
@@ -36,7 +36,7 @@ Wyobraź sobie sprint review. QA prezentuje liczby. Stakeholderzy kiwają głowa
     <div class="fb-dp-verdict">Nikt nie czyta. Decyzja na czuja.</div>
   </div>
   <div class="fb-dp fb-dp-after">
-    <span class="fb-dp-tag">PO — Wyniki</span>
+    <span class="fb-dp-tag">PO - Wyniki</span>
     <div class="fb-dp-row"><span class="n">Defect Detection Ratio</span><span class="v">94% <span class="tg">↑</span></span></div>
     <div class="fb-dp-row"><span class="n">Escaped / Release</span><span class="v">1.2 <span class="tg">↓</span></span></div>
     <div class="fb-dp-row"><span class="n">Issues / Release</span><span class="v">8 <span class="tg">↓ 40%</span></span></div>
@@ -46,15 +46,15 @@ Wyobraź sobie sprint review. QA prezentuje liczby. Stakeholderzy kiwają głowa
   </div>
 </div>
 
-Lewa strona mówi, jak bardzo QA jest zajęte. Prawa odpowiada na pytanie, które biznes faktycznie zadaje: **czy możemy releasować i jak zmienia się jakość?** Ta zmiana nie wymaga nowych narzędzi — wymaga nowego podejścia do pytania, które chcesz swoimi danymi odpowiedzieć.
+Lewa strona mówi, jak bardzo QA jest zajęte. Prawa odpowiada na pytanie, które biznes faktycznie zadaje: **czy możemy releasować i jak zmienia się jakość?** Ta zmiana nie wymaga nowych narzędzi - wymaga nowego podejścia do pytania, które chcesz swoimi danymi odpowiedzieć.
 
-## Czego biznes naprawdę chce — trzy filary
+## Czego biznes naprawdę chce - trzy filary
 
-Stakeholderzy zadają trzy pytania — i to na nie powinny odpowiadać Twoje metryki QA. Nic więcej, nic mniej.
+Stakeholderzy zadają trzy pytania - i to na nie powinny odpowiadać Twoje metryki QA. Nic więcej, nic mniej.
 
-### Filar 1 — Pewność releasu
+### Filar 1 - Pewność releasu
 
-Jedno pytanie, jedna odpowiedź: **czy możemy wypuścić?** Release Confidence Score agreguje blokery, wyniki regresji i krytyczne ścieżki w jeden wskaźnik. Jeden numer — jedna decyzja na steering committee.
+Jedno pytanie, jedna odpowiedź: **czy możemy wypuścić?** Release Confidence Score agreguje blokery, wyniki regresji i krytyczne ścieżki w jeden wskaźnik. Jeden numer - jedna decyzja na steering committee.
 
 <div class="fb-conf-row">
   <div class="fb-cc fb-cc-r">
@@ -74,9 +74,9 @@ Jedno pytanie, jedna odpowiedź: **czy możemy wypuścić?** Release Confidence 
   </div>
 </div>
 
-### Filar 2 — Koszt defektów
+### Filar 2 - Koszt defektów
 
-Jeden escaped bug to nie *„+1 do licznika"*. To konkretna liczba godzin i złotówek. Kiedy zaczniesz to przeliczać — masz argument finansowy, który rozumie każdy CFO i każdy Engineering Manager.
+Jeden escaped bug to nie *„+1 do licznika"*. To konkretna liczba godzin i złotówek. Kiedy zaczniesz to przeliczać - masz argument finansowy, który rozumie każdy CFO i każdy Engineering Manager.
 
 <div class="fb-cost-grid">
   <div class="fb-cost-card">
@@ -106,14 +106,14 @@ Jeden escaped bug to nie *„+1 do licznika"*. To konkretna liczba godzin i zło
   </div>
 </div>
 
-### Filar 3 — Trendy jakości
+### Filar 3 - Trendy jakości
 
-Jeden sprint to nic. Cztery kwartały to historia — i bezpośredni dowód, że inwestycja w QA przynosi efekty. Trend escaped defect rate to jeden z najsilniejszych argumentów w rozmowie z zarządem, bo mówi o zwrocie z inwestycji.
+Jeden sprint to nic. Cztery kwartały to historia - i bezpośredni dowód, że inwestycja w QA przynosi efekty. Trend escaped defect rate to jeden z najsilniejszych argumentów w rozmowie z zarządem, bo mówi o zwrocie z inwestycji.
 
 <div class="fb-chart-card">
   <div class="fb-chart-head">
     <div>
-      <div class="fb-chart-title">Escaped Defect Rate — trend roczny</div>
+      <div class="fb-chart-title">Escaped Defect Rate - trend roczny</div>
       <div class="fb-chart-sub">Procent defektów odkrytych po deploymencie na produkcję</div>
     </div>
     <span class="fb-chart-badge">↓ 66% YoY</span>
@@ -128,7 +128,7 @@ Jeden sprint to nic. Cztery kwartały to historia — i bezpośredni dowód, że
 
 ## Pięć metryk, które razem opowiadają historię
 
-Każda z poniższych metryk odpowiada na jedno konkretne pytanie biznesowe. Ich połączenie tworzy narrację, którą stakeholderzy rozumieją i na której mogą działać. Osobno informują — razem opowiadają historię.
+Każda z poniższych metryk odpowiada na jedno konkretne pytanie biznesowe. Ich połączenie tworzy narrację, którą stakeholderzy rozumieją i na której mogą działać. Osobno informują - razem opowiadają historię.
 
 <div class="fb-table-wrap">
 <table class="fb-m-table">
@@ -157,12 +157,12 @@ Każda z poniższych metryk odpowiada na jedno konkretne pytanie biznesowe. Ich 
     </tr>
     <tr>
       <td class="fb-t-num">04</td>
-      <td><div class="fb-t-name">Escaped Bugs per Release</div><div class="fb-t-desc">Escaped per konkretny release — nie ogólny rate</div></td>
+      <td><div class="fb-t-name">Escaped Bugs per Release</div><div class="fb-t-desc">Escaped per konkretny release - nie ogólny rate</div></td>
       <td class="fb-t-q">Które releasey były ryzykowne i dlaczego?</td>
     </tr>
     <tr>
       <td class="fb-t-num">05</td>
-      <td><div class="fb-t-name">Number of Releases</div><div class="fb-t-desc">Metryka kontekstowa — normalizuje wszystkie powyższe</div></td>
+      <td><div class="fb-t-name">Number of Releases</div><div class="fb-t-desc">Metryka kontekstowa - normalizuje wszystkie powyższe</div></td>
       <td class="fb-t-q">Czy porównujemy jabłka z jabłkami?</td>
     </tr>
   </tbody>
@@ -172,8 +172,8 @@ Każda z poniższych metryk odpowiada na jedno konkretne pytanie biznesowe. Ich 
 <div class="fb-chart-card">
   <div class="fb-chart-head">
     <div>
-      <div class="fb-chart-title">DDR vs Escaped Bugs — trend kwartalny</div>
-      <div class="fb-chart-sub">Klasyczny zdrowy trend QA: DDR rośnie, escaped spada — jednocześnie</div>
+      <div class="fb-chart-title">DDR vs Escaped Bugs - trend kwartalny</div>
+      <div class="fb-chart-sub">Klasyczny zdrowy trend QA: DDR rośnie, escaped spada - jednocześnie</div>
     </div>
     <span class="fb-chart-badge">Q1–Q4 2025</span>
   </div>
@@ -189,8 +189,8 @@ Każda z poniższych metryk odpowiada na jedno konkretne pytanie biznesowe. Ich 
 <div class="fb-chart-card">
   <div class="fb-chart-head">
     <div>
-      <div class="fb-chart-title">Issues per Release — dojrzałość kodu</div>
-      <div class="fb-chart-sub">Spadek z 24 do 8 to 66% poprawa. Nie tylko QA — cały proces wytwórczy dojrzewa.</div>
+      <div class="fb-chart-title">Issues per Release - dojrzałość kodu</div>
+      <div class="fb-chart-sub">Spadek z 24 do 8 to 66% poprawa. Nie tylko QA - cały proces wytwórczy dojrzewa.</div>
     </div>
     <span class="fb-chart-badge">v2.1 → v2.5</span>
   </div>
@@ -202,12 +202,12 @@ Każda z poniższych metryk odpowiada na jedno konkretne pytanie biznesowe. Ich 
   </div>
 </div>
 
-Trzy releasey z rzędu poniżej 10 issues to moment, w którym możesz powiedzieć Engineering Managerowi: *„patrz, co zrobiliśmy razem przez ostatnie pół roku."* To jest rozmowa, którą data umożliwia — ale której bez danych nie ma.
+Trzy releasey z rzędu poniżej 10 issues to moment, w którym możesz powiedzieć Engineering Managerowi: *„patrz, co zrobiliśmy razem przez ostatnie pół roku."* To jest rozmowa, którą data umożliwia - ale której bez danych nie ma.
 
 <div class="fb-map">
   <span class="fb-map-eyebrow">Model mapowania</span>
   <h2 class="fb-map-h">QA → Business KPIs</h2>
-  <p class="fb-map-sub">Każda metryka QA ma swój odpowiednik w języku biznesu. Zadanie QA Leada to zbudować ten most — i każdą liczbę zakotwiczyć w pytaniu, które zadaje stakeholder na steering committee.</p>
+  <p class="fb-map-sub">Każda metryka QA ma swój odpowiednik w języku biznesu. Zadanie QA Leada to zbudować ten most - i każdą liczbę zakotwiczyć w pytaniu, które zadaje stakeholder na steering committee.</p>
   <div class="fb-map-grid">
     <div class="fb-m-card">
       <div class="fb-m-metric">Confidence Score</div>
@@ -234,18 +234,18 @@ Trzy releasey z rzędu poniżej 10 issues to moment, w którym możesz powiedzie
 
 ## Trzy antywzorce raportowania
 
-Nawet dobre dane można zaprezentować źle. Oto błędy, które najczęściej niszczą wiarygodność QA w oczach biznesu — i których wystarczy być świadomym, żeby ich unikać.
+Nawet dobre dane można zaprezentować źle. Oto błędy, które najczęściej niszczą wiarygodność QA w oczach biznesu - i których wystarczy być świadomym, żeby ich unikać.
 
 <div class="fb-anti-grid">
   <div class="fb-anti-card">
     <div class="fb-anti-num">01</div>
     <div class="fb-anti-title">Za dużo metryk</div>
-    <div class="fb-anti-desc">Dashboard z 20 wykresami jest przytłaczający. Kiedy wszystko jest ważne — nic nie jest ważne. Zacznij od 3 metryk, dodawaj stopniowo.</div>
+    <div class="fb-anti-desc">Dashboard z 20 wykresami jest przytłaczający. Kiedy wszystko jest ważne - nic nie jest ważne. Zacznij od 3 metryk, dodawaj stopniowo.</div>
   </div>
   <div class="fb-anti-card">
     <div class="fb-anti-num">02</div>
     <div class="fb-anti-title">Brak kontekstu</div>
-    <div class="fb-anti-desc">Samo „82%" bez trendu i celu nie mówi nic. Zawsze: liczba + kierunek + cel. Trend mówi skąd idziesz, cel — dokąd zmierzasz.</div>
+    <div class="fb-anti-desc">Samo „82%" bez trendu i celu nie mówi nic. Zawsze: liczba + kierunek + cel. Trend mówi skąd idziesz, cel - dokąd zmierzasz.</div>
   </div>
   <div class="fb-anti-card">
     <div class="fb-anti-num">03</div>
@@ -254,7 +254,7 @@ Nawet dobre dane można zaprezentować źle. Oto błędy, które najczęściej n
   </div>
 </div>
 
-## Co dalej — 9 artykułów, jeden temat
+## Co dalej - 9 artykułów, jeden temat
 
 <div class="fb-series">
   <div class="fb-series-eyebrow">Seria: Metryki QA, które biznes chce słyszeć</div>
@@ -269,35 +269,35 @@ Nawet dobre dane można zaprezentować źle. Oto błędy, które najczęściej n
     <li class="fb-s-item">
       <span class="fb-s-num">02</span>
       <div>
-        <div class="fb-s-title">Defect Detection Ratio — głęboki przewodnik</div>
+        <div class="fb-s-title">Defect Detection Ratio - głęboki przewodnik</div>
         <div class="fb-s-sub">Formuła, interpretacja, pułapki, przykłady liczbowe z życia</div>
       </div>
     </li>
     <li class="fb-s-item">
       <span class="fb-s-num">03</span>
       <div>
-        <div class="fb-s-title">Escaped Bugs &amp; Problems — pełne spektrum</div>
+        <div class="fb-s-title">Escaped Bugs &amp; Problems - pełne spektrum</div>
         <div class="fb-s-sub">Dlaczego liczyć więcej niż tylko bugi w kodzie aplikacji</div>
       </div>
     </li>
     <li class="fb-s-item">
       <span class="fb-s-num">04</span>
       <div>
-        <div class="fb-s-title">Issues per Release — miernik dojrzałości kodu</div>
+        <div class="fb-s-title">Issues per Release - miernik dojrzałości kodu</div>
         <div class="fb-s-sub">Jak ta metryka zmienia rozmowę z Engineering Managerem</div>
       </div>
     </li>
     <li class="fb-s-item">
       <span class="fb-s-num">05</span>
       <div>
-        <div class="fb-s-title">Escaped Bugs per Release — znajdź ryzykowny release</div>
+        <div class="fb-s-title">Escaped Bugs per Release - znajdź ryzykowny release</div>
         <div class="fb-s-sub">Pinpointowanie problemów, nie tylko obserwowanie trendów</div>
       </div>
     </li>
     <li class="fb-s-item">
       <span class="fb-s-num">06</span>
       <div>
-        <div class="fb-s-title">Number of Releases — metryka kontekstowa</div>
+        <div class="fb-s-title">Number of Releases - metryka kontekstowa</div>
         <div class="fb-s-sub">Dlaczego 3 bugi przy 2 releasach to dramat, a przy 15 to sukces</div>
       </div>
     </li>
@@ -311,7 +311,7 @@ Nawet dobre dane można zaprezentować źle. Oto błędy, które najczęściej n
     <li class="fb-s-item">
       <span class="fb-s-num">08</span>
       <div>
-        <div class="fb-s-title">Storytelling z metrykami — jak budować narrację</div>
+        <div class="fb-s-title">Storytelling z metrykami - jak budować narrację</div>
         <div class="fb-s-sub">Jak zamienić tabelę liczb w argument biznesowy</div>
       </div>
     </li>
@@ -319,7 +319,7 @@ Nawet dobre dane można zaprezentować źle. Oto błędy, które najczęściej n
       <span class="fb-s-num">09</span>
       <div>
         <div class="fb-s-title">3 antywzorce, które niszczą wiarygodność QA</div>
-        <div class="fb-s-sub">Za dużo metryk, brak kontekstu, żargon — i jak unikać każdego z nich</div>
+        <div class="fb-s-sub">Za dużo metryk, brak kontekstu, żargon - i jak unikać każdego z nich</div>
       </div>
     </li>
   </ul>

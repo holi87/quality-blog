@@ -1,6 +1,6 @@
-# Quality Cat — Knowledge Hub
+# Quality Cat - Knowledge Hub
 
-Platforma wiedzy prowadzona przez Quality Cat (qualitycat.pl). Blog informacyjno-edukacyjny o smart home i AI. Side project firmy — nie strona firmowa, a darmowa baza wiedzy budująca świadomość marki.
+Platforma wiedzy prowadzona przez Quality Cat (qualitycat.pl). Blog informacyjno-edukacyjny o smart home i AI. Side project firmy - nie strona firmowa, a darmowa baza wiedzy budująca świadomość marki.
 
 ## Technologia
 
@@ -10,7 +10,7 @@ Platforma wiedzy prowadzona przez Quality Cat (qualitycat.pl). Blog informacyjno
 - **Deploy:** Automatyczny z git push
 - **Języki:** Dwujęzyczna strona (PL + EN) z natywnym i18n Astro
 
-Nie jest potrzebny serwer — Astro generuje statyczne HTML/CSS/JS.
+Nie jest potrzebny serwer - Astro generuje statyczne HTML/CSS/JS.
 
 ## Styl wizualny
 
@@ -27,8 +27,8 @@ Nie jest potrzebny serwer — Astro generuje statyczne HTML/CSS/JS.
 
 ## Branding
 
-- **Logo:** Tekstowe — "qualitycat / wiedza" (z "cat" w kolorze akcentu)
-- **Powiązanie z firmą:** Subtelne — link do qualitycat.pl w stopce ("Projekt prowadzony przez Quality Cat")
+- **Logo:** Tekstowe - "qualitycat / wiedza" (z "cat" w kolorze akcentu)
+- **Powiązanie z firmą:** Subtelne - link do qualitycat.pl w stopce ("Projekt prowadzony przez Quality Cat")
 - **Ton komunikacji:** Merytoryczny, bez marketingowego szumu, dzielenie się wiedzą za darmo
 
 ## Struktura stron
@@ -52,7 +52,7 @@ Nie jest potrzebny serwer — Astro generuje statyczne HTML/CSS/JS.
 - Krótki opis inicjatywy i jej celu
 - Tematyka: smart home, AI, automatyzacja
 - Link do strony firmowej qualitycat.pl
-- Bez imion/zdjęć — anonimowy charakter
+- Bez imion/zdjęć - anonimowy charakter
 
 ## Dwujęzyczność
 
@@ -78,9 +78,9 @@ readingTime: 5
 ```
 
 Obsługiwane typy treści:
-- **Artykuł** — dłuższy tekst z nagłówkami, obrazkami, przykładami
-- **Porada** — krótka forma, 1-3 minuty czytania
-- **Snippet** — blok kodu z opisem
+- **Artykuł** - dłuższy tekst z nagłówkami, obrazkami, przykładami
+- **Porada** - krótka forma, 1-3 minuty czytania
+- **Snippet** - blok kodu z opisem
 
 Rozróżnienie przez tagi/kategorię, nie osobne kolekcje.
 

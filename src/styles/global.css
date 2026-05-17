@@ -1,5 +1,5 @@
 /* ──────────────────────────────────────────────────────────────────
-   quality blog — minimalist editorial theme
+   quality blog - minimalist editorial theme
    Geist (body/UI) · Lora (display italic) · JetBrains Mono (code)
    Warm-bone canvas in light, charcoal in dark. Muted pastel spots.
    ────────────────────────────────────────────────────────────────── */
@@ -12,7 +12,7 @@
 
 /* ─── Design tokens ──────────────────────────────────────────────── */
 :root {
-  /* Dark (charcoal) is the default — protects code-block readability */
+  /* Dark (charcoal) is the default - protects code-block readability */
   --bg:            #1f1f1d;
   --bg-elev:       #2a2a28;
   --bg-card:       #242422;
@@ -23,7 +23,7 @@
   --fg-muted:      #b9b6af;
   --fg-subtle:     #6e6c68;
 
-  /* Muted pastels — semantic spots only */
+  /* Muted pastels - semantic spots only */
   --p-red-bg:    #432122; --p-red-fg:    #ff9d9b;
   --p-blue-bg:   #1d3a4f; --p-blue-fg:   #8ed0f7;
   --p-green-bg:  #1f3322; --p-green-fg:  #9fd4a5;
@@ -197,7 +197,7 @@ samp {
   opacity: 0.7;
 }
 
-/* ─── Category color helpers — map to muted pastels ──────────────── */
+/* ─── Category color helpers - map to muted pastels ──────────────── */
 [data-cat]                       { --cat-bg: var(--bg-elev); --cat-fg: var(--fg-muted); --cat: var(--fg-muted); }
 [data-cat='ai']                  ,
 [data-cat='ai-tools']            ,

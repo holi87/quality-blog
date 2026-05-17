@@ -1,6 +1,6 @@
 ---
-title: "Skala Holaka v2.1e — enterprise. Model dojrzałości adopcji AI w organizacji"
-description: "12 poziomów dojrzałości AI w firmie — od oporu, przez agentowe workflow, po własny agentic OS dla konkretnych celów biznesowych. Wersja v2.1e rozdzielająca ścieżkę firmową od prywatnej."
+title: "Skala Holaka v2.1e - enterprise. Model dojrzałości adopcji AI w organizacji"
+description: "12 poziomów dojrzałości AI w firmie - od oporu, przez agentowe workflow, po własny agentic OS dla konkretnych celów biznesowych. Wersja v2.1e rozdzielająca ścieżkę firmową od prywatnej."
 date: 2026-05-18
 tags: ["ai", "adopcja", "enterprise", "strategia", "governance"]
 lang: pl
@@ -10,11 +10,11 @@ author:
   - KG
 ---
 
-Skala Holaka rozwija się szybciej niż większość modeli dojrzałości, bo szybciej niż one zmienia się to, co AI naprawdę potrafi. **Wersja 2.1** rozdziela jedną skalę na dwie ścieżki: **v2.1e** dla użycia zawodowego i **v2.1p** dla użycia prywatnego. Ten artykuł to wersja enterprise. Wersja prywatna ma osobny wpis: [Skala Holaka v2.1p — private](/pl/blog/skala-holaka-private/).
+Skala Holaka rozwija się szybciej niż większość modeli dojrzałości, bo szybciej niż one zmienia się to, co AI naprawdę potrafi. **Wersja 2.1** rozdziela jedną skalę na dwie ścieżki: **v2.1e** dla użycia zawodowego i **v2.1p** dla użycia prywatnego. Ten artykuł to wersja enterprise. Wersja prywatna ma osobny wpis: [Skala Holaka v2.1p - private](/pl/blog/skala-holaka-private/).
 
 ## Dlaczego dwie skale
 
-Skala v2 dobrze działała jako model ogólny, ale w praktyce mieszała dwa różne światy. W firmie najważniejsze są: wartość biznesowa, bezpieczeństwo, governance, proces, odpowiedzialność, koszty i audytowalność. W domu — wygoda, prywatność, zaufanie, codzienne nawyki, realna oszczędność czasu i nieprzekombinowanie. Próba mierzenia jedną linijką prowadziła do nieporozumień — ktoś z poziomu 9 w domu pytał, czy to znaczy, że jego firma „też dowozi 9". Nie znaczy.
+Skala v2 dobrze działała jako model ogólny, ale w praktyce mieszała dwa różne światy. W firmie najważniejsze są: wartość biznesowa, bezpieczeństwo, governance, proces, odpowiedzialność, koszty i audytowalność. W domu - wygoda, prywatność, zaufanie, codzienne nawyki, realna oszczędność czasu i nieprzekombinowanie. Próba mierzenia jedną linijką prowadziła do nieporozumień - ktoś z poziomu 9 w domu pytał, czy to znaczy, że jego firma „też dowozi 9". Nie znaczy.
 
 W v2.1e mierzymy **dojrzałość organizacji, zespołu lub procesu** w zawodowym wykorzystaniu AI. Nie mierzymy „czy firma ma ChatGPT". Mierzymy, czy AI realnie zmienia sposób pracy, czy jest bezpieczne, mierzalne, audytowalne i powiązane z wynikiem biznesowym.
 
@@ -23,9 +23,9 @@ W v2.1e mierzymy **dojrzałość organizacji, zespołu lub procesu** w zawodowym
 Cztery zmiany względem v2:
 
 1. **Skala rozdzielona** na enterprise (v2.1e) i private ([v2.1p](/pl/blog/skala-holaka-private/)).
-2. **Stałe osie oceny od poziomu 4** — zarządzanie kontekstem, świadomość modelu, oszczędność tokenów, weryfikowalność, odwracalność, bezpieczeństwo i prywatność.
+2. **Stałe osie oceny od poziomu 4** - zarządzanie kontekstem, świadomość modelu, oszczędność tokenów, weryfikowalność, odwracalność, bezpieczeństwo i prywatność.
 3. **Hooks na poziomie 8**, nie jako osobny poziom. To deterministyczna warstwa kontroli wokół agenta, nie autonomia.
-4. **Poziom 11 zdefiniowany jako agentic OS** — nie „więcej agentów", tylko zaprojektowany system pracy dla konkretnego celu biznesowego.
+4. **Poziom 11 zdefiniowany jako agentic OS** - nie „więcej agentów", tylko zaprojektowany system pracy dla konkretnego celu biznesowego.
 
 ## Mapa poziomów v2.1e
 
@@ -44,27 +44,27 @@ Cztery zmiany względem v2:
 | 10 | Orkiestracja wieloagentowa | Wiele agentów współpracuje pod nadzorem koordynatora lub workflow engine. |
 | 11 | Agentic OS dla celów biznesowych | Organizacja projektuje własny system operacyjny pracy agentów dla konkretnych rezultatów biznesowych. |
 
-## Poziom 0 — Opór / brak adopcji
+## Poziom 0 - Opór / brak adopcji
 
 Organizacja nie używa AI albo oficjalnie zakazuje użycia, mimo że pracownicy mogą korzystać z narzędzi prywatnie lub po cichu.
 
 - **Bariera:** strach, compliance, brak wiedzy, brak właściciela tematu.
-- **Sukces:** uczciwa decyzja — albo świadome „nie teraz", albo start kontrolowanego pilotażu.
+- **Sukces:** uczciwa decyzja - albo świadome „nie teraz", albo start kontrolowanego pilotażu.
 - **Pułapka:** udawanie, że AI nie istnieje, podczas gdy pojawia się shadow AI.
 
 **Sygnał przejścia wyżej:** organizacja potrafi nazwać dopuszczalne i niedopuszczalne użycia AI.
 
-## Poziom 1 — Podstawowy czat
+## Poziom 1 - Podstawowy czat
 
 Pracownicy używają AI jak wyszukiwarki albo generatora tekstów. Pytanie → odpowiedź. Brak wspólnych standardów.
 
 - **Bariera:** brak wiedzy, jak pytać i jak weryfikować.
 - **Sukces:** ludzie zaczynają używać AI do prostych zadań: streszczeń, maili, pomysłów, pierwszych wersji dokumentów.
-- **Pułapka:** fałszywe poczucie adopcji — „używamy AI", ale bez wzrostu kompetencji.
+- **Pułapka:** fałszywe poczucie adopcji - „używamy AI", ale bez wzrostu kompetencji.
 
 **Enterprise evidence:** pojedyncze użycia, brak repo promptów, brak polityki, brak miar.
 
-## Poziom 2 — Świadome promptowanie
+## Poziom 2 - Świadome promptowanie
 
 Pracownicy rozumieją, że AI potrzebuje celu, kontekstu, roli, ograniczeń i oczekiwanego formatu.
 
@@ -72,9 +72,9 @@ Pracownicy rozumieją, że AI potrzebuje celu, kontekstu, roli, ograniczeń i oc
 - **Sukces:** prompty zawierają cel, odbiorcę, dane wejściowe, ograniczenia i format wyniku.
 - **Pułapka:** wiara, że dobry prompt rozwiązuje wszystko.
 
-**Przykład.** Zamiast „Napisz test case'y" — lepiej: „Jesteś QA w projekcie bankowym. Na podstawie poniższych acceptance criteria przygotuj testy pozytywne, negatywne i brzegowe w formacie tabeli: ID, warunek, kroki, oczekiwany rezultat, ryzyko."
+**Przykład.** Zamiast „Napisz test case'y" - lepiej: „Jesteś QA w projekcie bankowym. Na podstawie poniższych acceptance criteria przygotuj testy pozytywne, negatywne i brzegowe w formacie tabeli: ID, warunek, kroki, oczekiwany rezultat, ryzyko."
 
-## Poziom 3 — Frameworki promptowania
+## Poziom 3 - Frameworki promptowania
 
 Zespół ma wspólne szablony: CRISP, role-task-context-format, few-shot, kryteria jakości, checklisty review.
 
@@ -84,7 +84,7 @@ Zespół ma wspólne szablony: CRISP, role-task-context-format, few-shot, kryter
 
 **Enterprise evidence:** prompt library, przykłady dobrych/złych promptów, szkolenia, review promptów.
 
-## Poziom 4 — Instrukcje niestandardowe i higiena tokenów
+## Poziom 4 - Instrukcje niestandardowe i higiena tokenów
 
 Organizacja zaczyna przenosić powtarzalne instrukcje z promptów do ustawień, instrukcji systemowych, custom instructions, konfiguracji asystentów i standardów projektowych.
 
@@ -94,9 +94,9 @@ To pierwszy poziom, na którym jawnie pojawia się **oszczędzanie tokenów i ko
 - **Sukces:** krótsze prompty, spójniejsze odpowiedzi, mniej kopiowania instrukcji.
 - **Pułapka:** instrukcje niestandardowe stają się śmietnikiem wszystkiego.
 
-**Nowość v2.1:** od tego poziomu oceniamy *model awareness* — czy użytkownik wie, kiedy użyć modelu szybkiego, kiedy reasoning, kiedy modelu kodowego, kiedy multimodalnego, a kiedy w ogóle nie używać AI.
+**Nowość v2.1:** od tego poziomu oceniamy *model awareness* - czy użytkownik wie, kiedy użyć modelu szybkiego, kiedy reasoning, kiedy modelu kodowego, kiedy multimodalnego, a kiedy w ogóle nie używać AI.
 
-## Poziom 5 — Kontekst projektowy
+## Poziom 5 - Kontekst projektowy
 
 Kontekst żyje przy projekcie: w `README.md`, `AGENTS.md`, `CLAUDE.md`, dokumentacji architektury, ADR-ach, zasadach testowania, definicjach domeny, słownikach i przykładach.
 
@@ -106,7 +106,7 @@ Kontekst żyje przy projekcie: w `README.md`, `AGENTS.md`, `CLAUDE.md`, dokument
 
 **Enterprise evidence:** pliki kontekstowe w repo, aktualizowane przy zmianach, używane w praktyce.
 
-## Poziom 6 — Zaawansowane instrukcje operacyjne
+## Poziom 6 - Zaawansowane instrukcje operacyjne
 
 Agent ma opisane zachowanie: kiedy pytać, kiedy działać samodzielnie, kiedy eskalować, czego nie robić, jak raportować, jak sprawdzać wynik.
 
@@ -121,7 +121,7 @@ Agent ma opisane zachowanie: kiedy pytać, kiedy działać samodzielnie, kiedy e
 - „Po zmianie testów uruchom tylko dotknięty zakres, a pełny regres zostaw do CI."
 - „Nie dotykaj danych produkcyjnych."
 
-## Poziom 7 — Skille, bazy wiedzy i ewaluacje
+## Poziom 7 - Skille, bazy wiedzy i ewaluacje
 
 Organizacja ma powtarzalne skille AI: generowanie raportów, analiza logów, review kodu, tworzenie testów, analiza wymagań, streszczenia spotkań, triage ticketów, pisanie release notes.
 
@@ -131,13 +131,13 @@ Pojawiają się też bazy wiedzy i RAG, ale z kontrolą jakości: źródła, akt
 - **Sukces:** agent korzysta z właściwej wiedzy i umiejętności bez ciągłego prowadzenia za rękę.
 - **Pułapka:** mnożenie skilli bez właścicieli i bez mierzenia jakości.
 
-**Nowość v2.1:** poziom 7 wymaga prostych **evals** — przykładów testowych, które sprawdzają, czy prompt, skill lub agent nadal działa po zmianie modelu, instrukcji albo danych.
+**Nowość v2.1:** poziom 7 wymaga prostych **evals** - przykładów testowych, które sprawdzają, czy prompt, skill lub agent nadal działa po zmianie modelu, instrukcji albo danych.
 
-## Poziom 8 — Narzędzia, MCP, konektory i hooks
+## Poziom 8 - Narzędzia, MCP, konektory i hooks
 
 Agent nie tylko pisze. Ma dostęp do narzędzi: repozytoriów, systemów ticketowych, dokumentacji, API, Slacka, poczty, kalendarzy, baz danych, środowisk testowych, CI/CD.
 
-MCP pasuje właśnie tutaj — to standard łączenia aplikacji LLM z zewnętrznymi źródłami danych i narzędziami.
+MCP pasuje właśnie tutaj - to standard łączenia aplikacji LLM z zewnętrznymi źródłami danych i narzędziami.
 
 **Hooks** są w v2.1 częścią tego poziomu. Pozwalają wymusić automatyczne kontrole przed, w trakcie lub po działaniu agenta: uruchomienie testów, lintów, skanów bezpieczeństwa, walidacji promptów, wymuszenia review, blokowania niedozwolonych komend, zapisu audytu.
 
@@ -147,13 +147,13 @@ MCP pasuje właśnie tutaj — to standard łączenia aplikacji LLM z zewnętrzn
 
 **Enterprise controls:** agent registry, osobna tożsamość agenta, least privilege, logi, limity kosztów, DLP, allowlista narzędzi, sandbox, approval dla działań ryzykownych.
 
-## Poziom 9 — Agentowe workflow
+## Poziom 9 - Agentowe workflow
 
 Człowiek definiuje cel, agent planuje kroki i realizuje zadanie. Człowiek nie prowadzi go po każdym kroku, ale sprawdza efekt, logi i decyzje.
 
 - **Bariera:** zaufanie, weryfikowalność i odwracalność.
 - **Sukces:** agent realizuje proces end-to-end w ograniczonym, znanym zakresie.
-- **Pułapka:** iluzja autonomii — agent działa sam, ale człowiek później poprawia 60% wyniku.
+- **Pułapka:** iluzja autonomii - agent działa sam, ale człowiek później poprawia 60% wyniku.
 
 **Przykłady enterprise:**
 
@@ -164,17 +164,17 @@ Człowiek definiuje cel, agent planuje kroki i realizuje zadanie. Człowiek nie 
 
 Na tym poziomie potrzebne są **guardrails** i **human review**. W praktyce produkcyjnej automatyczne walidacje i zatwierdzenia człowieka decydują, czy agent ma kontynuować, zatrzymać się czy poczekać na zgodę.
 
-## Poziom 10 — Orkiestracja wieloagentowa
+## Poziom 10 - Orkiestracja wieloagentowa
 
 Organizacja ma wiele wyspecjalizowanych agentów: analityk, researcher, developer, tester, reviewer, compliance checker, dokumentalista, release manager.
 
 - **Bariera:** projektowanie systemu agentów, a nie pojedynczego promptu.
 - **Sukces:** agenci współpracują w kontrolowanym procesie i dowożą wynik lepszy niż pojedynczy agent.
-- **Pułapka:** overengineering — wielu agentów tam, gdzie wystarczyłby jeden dobry workflow.
+- **Pułapka:** overengineering - wielu agentów tam, gdzie wystarczyłby jeden dobry workflow.
 
 Anthropic w swoich praktykach budowania agentów podkreśla, że skuteczne implementacje często wygrywają prostymi, komponowalnymi wzorcami, a nie nadmiernie skomplikowanymi frameworkami. To ważne ostrzeżenie dla poziomu 10: orkiestracja ma sens tylko wtedy, gdy złożoność zadania ją uzasadnia.
 
-## Poziom 11 — Agentic OS dla celów biznesowych
+## Poziom 11 - Agentic OS dla celów biznesowych
 
 To nowy poziom v2.1.
 
@@ -196,18 +196,18 @@ Organizacja potrafi zaprojektować własny **agentic operating system** dla konk
 
 **Przykładowe agentic OS w enterprise:**
 
-1. **QA Agentic OS** — analiza wymagań, generowanie testów, utrzymanie regresji, analiza flaky tests, raport jakości.
-2. **Release Agentic OS** — changelog, ryzyka, test impact analysis, komunikacja release, checklisty, rollback plan.
-3. **Compliance Agentic OS** — monitoring regulacji, mapowanie polityk, drafty procedur, evidence collection.
-4. **Customer Support Agentic OS** — triage, odpowiedzi, eskalacje, analiza sentymentu, baza wiedzy, jakość obsługi.
-5. **Finance Reporting Agentic OS** — zbieranie danych, wyjaśnianie odchyleń, przygotowanie narracji, kontrola źródeł.
-6. **Procurement Agentic OS** — analiza ofert, ryzyka dostawców, porównania, zgodność z polityką zakupową.
+1. **QA Agentic OS** - analiza wymagań, generowanie testów, utrzymanie regresji, analiza flaky tests, raport jakości.
+2. **Release Agentic OS** - changelog, ryzyka, test impact analysis, komunikacja release, checklisty, rollback plan.
+3. **Compliance Agentic OS** - monitoring regulacji, mapowanie polityk, drafty procedur, evidence collection.
+4. **Customer Support Agentic OS** - triage, odpowiedzi, eskalacje, analiza sentymentu, baza wiedzy, jakość obsługi.
+5. **Finance Reporting Agentic OS** - zbieranie danych, wyjaśnianie odchyleń, przygotowanie narracji, kontrola źródeł.
+6. **Procurement Agentic OS** - analiza ofert, ryzyka dostawców, porównania, zgodność z polityką zakupową.
 
-**Test poziomu 11:** czy możesz wskazać jeden konkretny proces biznesowy i powiedzieć: „tu AI nie jest dodatkiem, tylko warstwą operacyjną procesu — z celami, kontrolami, miernikami, audytem i właścicielem"?
+**Test poziomu 11:** czy możesz wskazać jeden konkretny proces biznesowy i powiedzieć: „tu AI nie jest dodatkiem, tylko warstwą operacyjną procesu - z celami, kontrolami, miernikami, audytem i właścicielem"?
 
 ## Granice, na które warto patrzeć
 
-**Granica 8→9.** Narzędzia to jeszcze nie autonomia. Możesz mieć MCP, hooks i 20 integracji, a agent nadal czeka na każdy krok człowieka. Przejście na 9 oznacza, że agent planuje, działa i raportuje — a człowiek przegląda efekt, nie każdy ruch.
+**Granica 8→9.** Narzędzia to jeszcze nie autonomia. Możesz mieć MCP, hooks i 20 integracji, a agent nadal czeka na każdy krok człowieka. Przejście na 9 oznacza, że agent planuje, działa i raportuje - a człowiek przegląda efekt, nie każdy ruch.
 
 **Granica 10→11.** Orkiestracja to jeszcze nie agentic OS. Wieloagentowy workflow można zbudować bez governance, bez właścicieli, bez audytu i bez metryk kosztu. Agentic OS to system pracy z celem biznesowym, nie demo zespołu agentów.
 
@@ -227,7 +227,7 @@ Osoba lub organizacja na wyższym poziomie nie pyta tylko „jakiego promptu uż
 
 ## Co dalej
 
-Wersja prywatna skali ma osobny artykuł: [Skala Holaka v2.1p — private](/pl/blog/skala-holaka-private/). Tam mierzy się dojrzałość codziennego użycia AI — dom, nauka, finanse, smart home, organizacja życia. Inne ryzyka, inne sukcesy, inne pułapki.
+Wersja prywatna skali ma osobny artykuł: [Skala Holaka v2.1p - private](/pl/blog/skala-holaka-private/). Tam mierzy się dojrzałość codziennego użycia AI - dom, nauka, finanse, smart home, organizacja życia. Inne ryzyka, inne sukcesy, inne pułapki.
 
 Wcześniejsze wersje: pierwotny [Model dojrzałości AI (v1)](/pl/blog/model-dojrzalosci-ai/) pozostaje dostępny jako kontekst historyczny. Treść v2.0 została w całości włączona do tej wersji v2.1e.
 
@@ -235,9 +235,9 @@ Wcześniejsze wersje: pierwotny [Model dojrzałości AI (v1)](/pl/blog/model-doj
 
 ## Historia wersji
 
-- **v1.0** — *Model dojrzałości adopcji AI*. Powstała w marcu 2026, opublikowana **15 kwietnia 2026**. Krótki model 11-poziomowy.
-- **v2.0** — *Skala Holaka*. Powstała w kwietniu 2026, opublikowana **20 kwietnia 2026**. Rozbudowa o diagnozę, anti-patterny i wymiar organizacyjny.
-- **v2.1e** (ten artykuł) — *enterprise*. Rozdzielenie ścieżki firmowej i prywatnej, hooks na poziomie 8, poziom 11 jako agentic OS. **18 maja 2026**.
-- **v2.1p** — *private*. Wersja prywatna opublikowana **17 maja 2026**. [Czytaj v2.1p →](/pl/blog/skala-holaka-private/)
+- **v1.0** - *Model dojrzałości adopcji AI*. Powstała w marcu 2026, opublikowana **15 kwietnia 2026**. Krótki model 11-poziomowy.
+- **v2.0** - *Skala Holaka*. Powstała w kwietniu 2026, opublikowana **20 kwietnia 2026**. Rozbudowa o diagnozę, anti-patterny i wymiar organizacyjny.
+- **v2.1e** (ten artykuł) - *enterprise*. Rozdzielenie ścieżki firmowej i prywatnej, hooks na poziomie 8, poziom 11 jako agentic OS. **18 maja 2026**.
+- **v2.1p** - *private*. Wersja prywatna opublikowana **17 maja 2026**. [Czytaj v2.1p →](/pl/blog/skala-holaka-private/)
 
 Skala pozostaje modelem rozwijanym iteracyjnie. AI, narzędzia i sposób pracy z agentami zmieniają się szybciej niż większość modeli dojrzałości, dlatego Skala Holaka będzie aktualizowana wraz z praktyką jej użycia w organizacjach i w życiu codziennym.

@@ -1,6 +1,6 @@
 ---
 title: "Biblioteka promptów to anti-pattern. Tak, ta z 200 linii"
-description: "Jeśli kopiujesz prompt z dokumentu — masz problem fazy 4, nie fazy 3. Czemu fetyszyzacja promptów to objaw braku ewolucji, jak rozłożyć 200-linijkowy prompt na custom instructions i kontekst projektu."
+description: "Jeśli kopiujesz prompt z dokumentu - masz problem fazy 4, nie fazy 3. Czemu fetyszyzacja promptów to objaw braku ewolucji, jak rozłożyć 200-linijkowy prompt na custom instructions i kontekst projektu."
 date: 2026-05-28
 tags: ["ai", "prompt-engineering", "skala-holaka", "antipaterny"]
 lang: pl
@@ -10,20 +10,20 @@ author: GH
 
 Mam w głowie obraz, który widzę w co drugim wdrożeniu:
 
-Inżynier, dwa monitory. Po lewej Confluence z folderem *„Złote prompty"*. Po prawej Claude. Kopiuj — wklej — uzupełnij `{project_name}`, `{requirements}`, `{output_format}` — Enter. Czeka. Niezadowolony z wyniku, wraca do Confluence, kopiuje *„Złoty prompt v2 — kontekst rozszerzony (FINAL)"*. Wkleja, koryguje. Pisze do siebie *„muszę zaktualizować v3"*.
+Inżynier, dwa monitory. Po lewej Confluence z folderem *„Złote prompty"*. Po prawej Claude. Kopiuj - wklej - uzupełnij `{project_name}`, `{requirements}`, `{output_format}` - Enter. Czeka. Niezadowolony z wyniku, wraca do Confluence, kopiuje *„Złoty prompt v2 - kontekst rozszerzony (FINAL)"*. Wkleja, koryguje. Pisze do siebie *„muszę zaktualizować v3"*.
 
 Tę osobę chcę przekonać do jednej rzeczy: **to nie jest sukces. To jest objaw**.
 
 ## Czego naprawdę dotyczy biblioteka promptów
 
-Patrząc na [Skalę Holaka](/pl/blog/skala-holaka/) — biblioteka 200-linijkowych promptów to nie poziom 3 (frameworki), tylko poziom 3 z **utykaniem przed 4**. Czemu?
+Patrząc na [Skalę Holaka](/pl/blog/skala-holaka/) - biblioteka 200-linijkowych promptów to nie poziom 3 (frameworki), tylko poziom 3 z **utykaniem przed 4**. Czemu?
 
 Bo bibliotekę masz wtedy, gdy:
 
 - powtarzasz tę samą rolę / styl / ograniczenia w każdym prompcie
 - przepisujesz kontekst projektu za każdym razem
 - zarządzasz wersjami promptów ręcznie
-- tworzysz konwencje *„v1 — basic, v2 — z testami, v3 — z testami i security"*
+- tworzysz konwencje *„v1 - basic, v2 - z testami, v3 - z testami i security"*
 
 Wszystko to są **rzeczy, które powinny żyć wyżej**. W ustawieniach modelu (poziom 4), w plikach kontekstowych (poziom 5), w zaawansowanych instrukcjach (poziom 6).
 
@@ -35,9 +35,9 @@ Trzeba uczciwie powiedzieć: w sprincie biblioteka działa. Sztampowy prompt na 
 
 Po trzech miesiącach widzisz:
 
-- **Drift modelu.** Anthropic / OpenAI zmieniają wersję modelu — twoje prompty nagle dają inne wyniki, bo bazowały na konkretnych regularnościach.
+- **Drift modelu.** Anthropic / OpenAI zmieniają wersję modelu - twoje prompty nagle dają inne wyniki, bo bazowały na konkretnych regularnościach.
 - **Brak transferu.** Nowy projekt = przepisz wszystkie prompty z konteksem nowego projektu. Skala roboty rośnie liniowo z liczbą projektów.
-- **Rozwarstwienie zespołu.** Dwóch inżynierów ma „swoją wersję v3" tego samego prompta — nieuzgodnione. Trzeci napisał własną od zera, bo *„te są stare"*.
+- **Rozwarstwienie zespołu.** Dwóch inżynierów ma „swoją wersję v3" tego samego prompta - nieuzgodnione. Trzeci napisał własną od zera, bo *„te są stare"*.
 - **Brak ewolucji.** Po pół roku nadal jesteś na 3. Twoja branża dawno jest na 5–6.
 
 ## Jak rozłożyć 200-linijkowy prompt
@@ -114,7 +114,7 @@ To 30 linii kontekstu projektu, które agent ma za każdym razem, gdy uruchamias
 
 ### Operacja 3: prompt zostaje minimalistyczny
 
-Zostaje tylko cel zadania. Z 200 linii — 5:
+Zostaje tylko cel zadania. Z 200 linii - 5:
 
 ```
 Endpoint POST /limits do tworzenia limitu kredytowego.
@@ -140,20 +140,20 @@ Nie chodzi o to, żeby nigdy nie pisać długich promptów. Chodzi o to, żeby d
 
 Eksperymentujesz z nową techniką? Długi prompt OK. Onboardujesz model do projektu, którego nie znasz? OK. Robisz raz w roku coś jednorazowego? OK.
 
-Ale jeśli prompt ma datę modyfikacji sprzed 3 miesięcy i ty go nadal kopiujesz — to nie jest eksperyment. To jest poziom 3 z anti-patternem.
+Ale jeśli prompt ma datę modyfikacji sprzed 3 miesięcy i ty go nadal kopiujesz - to nie jest eksperyment. To jest poziom 3 z anti-patternem.
 
 ## Test, czy jesteś w tej pułapce
 
 Trzy pytania:
 
-1. **Kiedy ostatnio zmieniłeś custom instructions?** Jeśli „nigdy" lub „pół roku temu" — pułapka.
-2. **Ile czasu spędzasz w narzędziu AI tygodniowo vs ile czasu spędzasz pisząc / aktualizując prompty?** Jeśli >20% to drugie — pułapka.
+1. **Kiedy ostatnio zmieniłeś custom instructions?** Jeśli „nigdy" lub „pół roku temu" - pułapka.
+2. **Ile czasu spędzasz w narzędziu AI tygodniowo vs ile czasu spędzasz pisząc / aktualizując prompty?** Jeśli >20% to drugie - pułapka.
 3. **Czy nowa osoba w zespole zaczyna od „daj mi twoją bibliotekę promptów"?** Tak = pułapka systemowa.
 
-Jeśli odpowiedziałeś „tak" na choć jedno — wybierz jeden prompt z biblioteki, rozłóż go zgodnie z trzema operacjami powyżej, używaj tydzień, zobacz.
+Jeśli odpowiedziałeś „tak" na choć jedno - wybierz jeden prompt z biblioteki, rozłóż go zgodnie z trzema operacjami powyżej, używaj tydzień, zobacz.
 
 ## Co dalej
 
-[5 promptów, które zmienią Twoją pracę z AI](/pl/blog/prompty-ai/) to dobry start. Ale jeśli po pół roku te 5 promptów stało się 50 i wszystkie żyją w Confluence — to znak, że czas na promocję do wyższego poziomu, nie kolejny prompt.
+[5 promptów, które zmienią Twoją pracę z AI](/pl/blog/prompty-ai/) to dobry start. Ale jeśli po pół roku te 5 promptów stało się 50 i wszystkie żyją w Confluence - to znak, że czas na promocję do wyższego poziomu, nie kolejny prompt.
 
-Biblioteka to nie sukces. Jest niezbędnym etapem — i objawem, że czas iść dalej.
+Biblioteka to nie sukces. Jest niezbędnym etapem - i objawem, że czas iść dalej.

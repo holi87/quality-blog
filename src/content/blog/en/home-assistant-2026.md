@@ -1,6 +1,6 @@
 ---
 title: "Getting Started with Home Assistant in 2026"
-description: "A complete beginner's guide — from choosing hardware to your first automation."
+description: "A complete beginner's guide - from choosing hardware to your first automation."
 date: 2026-04-12
 tags: ["smart-home", "home-assistant"]
 lang: en
@@ -10,17 +10,17 @@ author: GH
 
 ## What is Home Assistant?
 
-Home Assistant is an open-source home automation platform. It lets you manage all your smart home devices from one place — regardless of the manufacturer.
+Home Assistant is an open-source home automation platform. It lets you manage all your smart home devices from one place - regardless of the manufacturer.
 
 ## Where to start?
 
 ### 1. Choose your hardware
 
-The easiest start is **Home Assistant Green** — a ready-made device you just plug into your router. Alternatively, you can install HA on a Raspberry Pi 4/5 or as a virtual machine.
+The easiest start is **Home Assistant Green** - a ready-made device you just plug into your router. Alternatively, you can install HA on a Raspberry Pi 4/5 or as a virtual machine.
 
 ### 2. First integration
 
-After starting HA, it will automatically discover devices on your network. Start with something simple — like a Zigbee smart bulb.
+After starting HA, it will automatically discover devices on your network. Start with something simple - like a Zigbee smart bulb.
 
 ### 3. First automation
 

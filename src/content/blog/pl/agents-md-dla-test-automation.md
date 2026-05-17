@@ -8,7 +8,7 @@ readingTime: 9
 author: GH
 ---
 
-Kiedy agent AI dostaje Twoje repo testowe bez żadnej dodatkowej instrukcji, zaczyna od tego, co widzi: `package.json`, `playwright.config.ts`, kilka folderów `tests/`. Na tej podstawie zgaduje, jak pracujesz. Zgaduje całkiem nieźle — ale zgaduje.
+Kiedy agent AI dostaje Twoje repo testowe bez żadnej dodatkowej instrukcji, zaczyna od tego, co widzi: `package.json`, `playwright.config.ts`, kilka folderów `tests/`. Na tej podstawie zgaduje, jak pracujesz. Zgaduje całkiem nieźle - ale zgaduje.
 
 `AGENTS.md` to plik, który zamienia zgadywanie w wiedzę. To konwencja analogiczna do `README.md`, tylko adresowana do modeli pracujących w repo, nie do ludzi. W repozytoriach testowych daje szczególnie dużo wartości, bo test automation ma mnóstwo wiedzy plemiennej, której agent z samego kodu nie wyciągnie: jak uruchamia się testy lokalnie vs w CI, jakie tagi znaczą co, które fixtures są współdzielone, czego lepiej nie ruszać.
 
@@ -20,9 +20,9 @@ Można by zapytać: dlaczego nie wrzucić wszystkiego do `README.md`?
 
 Trzy powody:
 
-**Inni czytelnicy, inne potrzeby.** `README.md` odpowiada na pytania człowieka — „co to jest, jak odpalić lokalnie, do kogo pisać z pytaniami". `AGENTS.md` odpowiada na pytania agenta — „jaka jest komenda, dokładnie, literka po literce; czego mam nie robić; w jakim stylu mam pisać nowy kod".
+**Inni czytelnicy, inne potrzeby.** `README.md` odpowiada na pytania człowieka - „co to jest, jak odpalić lokalnie, do kogo pisać z pytaniami". `AGENTS.md` odpowiada na pytania agenta - „jaka jest komenda, dokładnie, literka po literce; czego mam nie robić; w jakim stylu mam pisać nowy kod".
 
-**Różny format.** Dobry `README` jest narracyjny. Dobry `AGENTS.md` jest operacyjny — komendy, listy, jasne „tak/nie". Ludzie tolerują lanie wody. Agent traktuje lanie wody dosłownie i gubi sygnał.
+**Różny format.** Dobry `README` jest narracyjny. Dobry `AGENTS.md` jest operacyjny - komendy, listy, jasne „tak/nie". Ludzie tolerują lanie wody. Agent traktuje lanie wody dosłownie i gubi sygnał.
 
 **Ewolucja w innym tempie.** `README.md` zmienia się rzadko. `AGENTS.md` dostrajasz, gdy zauważasz, że agent powtarza ten sam błąd („znowu uruchomił wszystkie testy zamiast tylko zmienionych"). To live document Twojego „jak tu u nas pracujemy".
 
@@ -30,7 +30,7 @@ Trzy powody:
 
 Mój szkielet, który sprawdza się dla repo test automation:
 
-### 1. Krótki opis projektu — jednym akapitem
+### 1. Krótki opis projektu - jednym akapitem
 
 Nie powtarzaj README. Wystarczy: co jest testowane, na jakim stacku są testy, jaki jest ich zakres (E2E, API, integracja), i gdzie ten kod żyje w relacji do SUT (system under test).
 
@@ -76,11 +76,11 @@ Tu nie wrzucaj całego coding stylebooka. Daj 5–10 reguł, które faktycznie c
 
 Niedoceniana sekcja. Napisz wprost:
 
-- „Nie modyfikuj plików w `tests/legacy/` — są do usunięcia w Q3."
+- „Nie modyfikuj plików w `tests/legacy/` - są do usunięcia w Q3."
 - „Nie dodawaj nowych zależności bez uzgodnienia."
 - „Nie używaj `page.waitForTimeout`."
 - „Nie pisz testów, które zależą od kolejności."
-- „Nie generuj selektorów po klasach CSS — używamy `data-testid`."
+- „Nie generuj selektorów po klasach CSS - używamy `data-testid`."
 
 Bez tej sekcji agent zrobi „kolejny sensowny krok", który Was potem kosztuje godziny review.
 
@@ -99,13 +99,13 @@ Krótka lista. Przykład: „Każdy PR powinien zawierać: test, opis kroków od
 
 **Za dużo tekstu.** Widziałem `AGENTS.md` na 8 stron. Agent, który dostaje 8 stron, potraktuje całość jako jeden wielki kontekst i albo zignoruje szczegóły, albo wyciągnie niewłaściwe priorytety. Cel: 1–2 strony. Jeśli nie mieścisz, tnij.
 
-**Konflikty z kodem.** „Wszystkie testy API są w `tests/api/`" — a połowa żyje w `tests/integration/`. Agent wierzy dokumentowi, nie kodowi, więc pójdzie źle. Traktuj `AGENTS.md` jak kod — aktualizuj przy każdej większej zmianie struktury.
+**Konflikty z kodem.** „Wszystkie testy API są w `tests/api/`" - a połowa żyje w `tests/integration/`. Agent wierzy dokumentowi, nie kodowi, więc pójdzie źle. Traktuj `AGENTS.md` jak kod - aktualizuj przy każdej większej zmianie struktury.
 
 **Brak scope.** „Pomagaj z testami" nie jest instrukcją. „Możesz dopisywać nowe testy E2E w `tests/e2e/`, nie modyfikuj konfiguracji Playwright, nie dodawaj zależności" jest.
 
-**Instrukcje wzajemnie sprzeczne.** „Pisz testy krótko, nie dłuższe niż 20 linii" obok „Zawsze dodawaj komentarze wyjaśniające każdy krok" — to się rozjeżdża. Przeczytaj plik po sobie i szukaj par, które się kłócą.
+**Instrukcje wzajemnie sprzeczne.** „Pisz testy krótko, nie dłuższe niż 20 linii" obok „Zawsze dodawaj komentarze wyjaśniające każdy krok" - to się rozjeżdża. Przeczytaj plik po sobie i szukaj par, które się kłócą.
 
-**Marketingowy ton.** „W naszym zespole dbamy o jakość i ciągle się uczymy" — to nie jest instrukcja, to jest misja firmy. Wywal. Agent tego nie potrzebuje.
+**Marketingowy ton.** „W naszym zespole dbamy o jakość i ciągle się uczymy" - to nie jest instrukcja, to jest misja firmy. Wywal. Agent tego nie potrzebuje.
 
 ## Przykład: szkielet dla Playwright
 
@@ -138,7 +138,7 @@ Tests run against a dedicated staging environment.
 - Test data: isolated per test. Use the `createUser()` factory.
 
 ## Do not
-- Do not edit `tests/legacy/` — scheduled for removal.
+- Do not edit `tests/legacy/` - scheduled for removal.
 - Do not add new npm dependencies.
 - Do not write tests that depend on order.
 - Do not hardcode sleeps.
@@ -168,7 +168,7 @@ Specyficzna pułapka Cypressa: agenci lubią generować łańcuchy `cy.get(...).
 
 Tu priorytety są inne. Dopisz:
 
-- jakich **klientów HTTP** używacie (axios, supertest, got) — agent inaczej generuje kod dla każdego,
+- jakich **klientów HTTP** używacie (axios, supertest, got) - agent inaczej generuje kod dla każdego,
 - gdzie żyją **kontrakty** (OpenAPI? Pact? wewnętrzne schematy?) i czy agent ma je walidować,
 - jak obsługujecie **autoryzację w testach** (token z `.env`? mock? osobny endpoint `/test-login`?),
 - **strukturę asercji** (czy walidujecie tylko status, czy też body vs schema),
@@ -190,7 +190,7 @@ Jeśli trzy razy w tygodniu piszesz „nie używaj `waitForTimeout`", to znaczy,
 Prosty surogat jakości: liczba plików, w których akceptujesz agenta bez zmian, vs tych, które piszesz od nowa. Dobre `AGENTS.md` podbija pierwszą liczbę.
 
 **4. Test drugiego zespołu.**
-Oddaj repo i `AGENTS.md` zespołowi, który nie pracował nad tym projektem. Daj im zadanie „dopisz test dla scenariusza X" z użyciem agenta. Jeśli wychodzi im pierwsze podejście — plik działa. Jeśli muszą pytać na Slacku — masz dziury.
+Oddaj repo i `AGENTS.md` zespołowi, który nie pracował nad tym projektem. Daj im zadanie „dopisz test dla scenariusza X" z użyciem agenta. Jeśli wychodzi im pierwsze podejście - plik działa. Jeśli muszą pytać na Slacku - masz dziury.
 
 ## Najważniejsze wnioski
 
@@ -198,7 +198,7 @@ Oddaj repo i `AGENTS.md` zespołowi, który nie pracował nad tym projektem. Daj
 - Struktura: opis, setup, komendy, konwencje, „nie rób tego", scope, PR checklist.
 - Trzymaj się 1–2 stron. Dłuższy plik gubi sygnał.
 - Sekcja „Do not" jest tak samo ważna jak „Do".
-- Traktuj plik jak kod — aktualizuj, gdy struktura repo się zmienia.
+- Traktuj plik jak kod - aktualizuj, gdy struktura repo się zmienia.
 - Mierz, czy plik działa: po trafionych komendach, powtarzalnych uwagach w review, i teście drugiego zespołu.
 
-W kolejnym wpisie pokażę, jak dołożyć do tego MCP — zaczynając od najprostszego, ale najbardziej użytecznego przypadku w QA: search i fetch po evidence.
+W kolejnym wpisie pokażę, jak dołożyć do tego MCP - zaczynając od najprostszego, ale najbardziej użytecznego przypadku w QA: search i fetch po evidence.

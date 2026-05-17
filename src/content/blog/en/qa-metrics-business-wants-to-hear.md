@@ -1,6 +1,6 @@
 ---
 title: "QA metrics the business actually wants to hear"
-description: "A complete guide to transforming QA reporting — from counting bugs to speaking the language of outcomes and business decisions. Five metrics, three pillars, one model."
+description: "A complete guide to transforming QA reporting - from counting bugs to speaking the language of outcomes and business decisions. Five metrics, three pillars, one model."
 date: 2026-05-19
 tags: ["qa", "metrics", "leadership", "reporting"]
 lang: en
@@ -12,23 +12,23 @@ author: FB
 
 <p class="fb-eyebrow">Series: QA Leadership · Article 1 of 9</p>
 
-<p class="fb-lead">You track defects, test coverage, execution results — and you have the feeling that outside your own QA team nobody cares. You're right. And it's not your fault.</p>
+<p class="fb-lead">You track defects, test coverage, execution results - and you have the feeling that outside your own QA team nobody cares. You're right. And it's not your fault.</p>
 
-For years I've watched the same pattern: meticulously prepared dashboards, detailed bug tables — and complete silence from the business side. Sprint review wrapped up with *"ok, thanks"*, decisions made by gut feel, with no anchor in QA data.
+For years I've watched the same pattern: meticulously prepared dashboards, detailed bug tables - and complete silence from the business side. Sprint review wrapped up with *"ok, thanks"*, decisions made by gut feel, with no anchor in QA data.
 
-The problem isn't a lack of data. We have too much data. The problem is that **we report activity instead of outcomes**. This isn't a technical problem — it's a communication problem.
+The problem isn't a lack of data. We have too much data. The problem is that **we report activity instead of outcomes**. This isn't a technical problem - it's a communication problem.
 
-<blockquote class="fb-quote">An activity metric tells you how hard you worked. An outcome metric tells you what the result was. The business pays for results — and that is what it wants to hear about.</blockquote>
+<blockquote class="fb-quote">An activity metric tells you how hard you worked. An outcome metric tells you what the result was. The business pays for results - and that is what it wants to hear about.</blockquote>
 
-This article is the first of nine in a series. You'll learn which metrics to collect, how to interpret them, and — most importantly — how to use them to tell a story that stakeholders understand and can act on.
+This article is the first of nine in a series. You'll learn which metrics to collect, how to interpret them, and - most importantly - how to use them to tell a story that stakeholders understand and can act on.
 
 ## What the business actually hears
 
-Picture a sprint review. QA presents numbers. Stakeholders nod. The decision is made by feel. Below are exactly the same facts about exactly the same sprint — in two different languages.
+Picture a sprint review. QA presents numbers. Stakeholders nod. The decision is made by feel. Below are exactly the same facts about exactly the same sprint - in two different languages.
 
 <div class="fb-compare">
   <div class="fb-dp fb-dp-before">
-    <span class="fb-dp-tag">BEFORE — Activity</span>
+    <span class="fb-dp-tag">BEFORE - Activity</span>
     <div class="fb-dp-row"><span class="n">Bugs found</span><span class="v">47</span></div>
     <div class="fb-dp-row"><span class="n">Tests executed</span><span class="v">312</span></div>
     <div class="fb-dp-row"><span class="n">Pass rate</span><span class="v">94%</span></div>
@@ -36,7 +36,7 @@ Picture a sprint review. QA presents numbers. Stakeholders nod. The decision is 
     <div class="fb-dp-verdict">Nobody reads it. Gut-feel decision.</div>
   </div>
   <div class="fb-dp fb-dp-after">
-    <span class="fb-dp-tag">AFTER — Outcomes</span>
+    <span class="fb-dp-tag">AFTER - Outcomes</span>
     <div class="fb-dp-row"><span class="n">Defect Detection Ratio</span><span class="v">94% <span class="tg">↑</span></span></div>
     <div class="fb-dp-row"><span class="n">Escaped / Release</span><span class="v">1.2 <span class="tg">↓</span></span></div>
     <div class="fb-dp-row"><span class="n">Issues / Release</span><span class="v">8 <span class="tg">↓ 40%</span></span></div>
@@ -46,15 +46,15 @@ Picture a sprint review. QA presents numbers. Stakeholders nod. The decision is 
   </div>
 </div>
 
-The left side describes how busy QA is. The right side answers the question the business actually asks: **can we release, and how is quality trending?** This shift doesn't require new tools — it requires a new approach to the question you want your data to answer.
+The left side describes how busy QA is. The right side answers the question the business actually asks: **can we release, and how is quality trending?** This shift doesn't require new tools - it requires a new approach to the question you want your data to answer.
 
-## What the business really wants — three pillars
+## What the business really wants - three pillars
 
-Stakeholders ask three questions — and those are the questions your QA metrics should answer. Nothing more, nothing less.
+Stakeholders ask three questions - and those are the questions your QA metrics should answer. Nothing more, nothing less.
 
-### Pillar 1 — Release confidence
+### Pillar 1 - Release confidence
 
-One question, one answer: **can we ship?** A Release Confidence Score aggregates blockers, regression results and critical paths into a single indicator. One number — one decision in the steering committee.
+One question, one answer: **can we ship?** A Release Confidence Score aggregates blockers, regression results and critical paths into a single indicator. One number - one decision in the steering committee.
 
 <div class="fb-conf-row">
   <div class="fb-cc fb-cc-r">
@@ -74,9 +74,9 @@ One question, one answer: **can we ship?** A Release Confidence Score aggregates
   </div>
 </div>
 
-### Pillar 2 — Cost of defects
+### Pillar 2 - Cost of defects
 
-One escaped bug isn't *"+1 to the counter"*. It's a concrete number of hours and currency. Once you start converting it — you have a financial argument that every CFO and every Engineering Manager understands.
+One escaped bug isn't *"+1 to the counter"*. It's a concrete number of hours and currency. Once you start converting it - you have a financial argument that every CFO and every Engineering Manager understands.
 
 <div class="fb-cost-grid">
   <div class="fb-cost-card">
@@ -106,14 +106,14 @@ One escaped bug isn't *"+1 to the counter"*. It's a concrete number of hours and
   </div>
 </div>
 
-### Pillar 3 — Quality trends
+### Pillar 3 - Quality trends
 
-A single sprint is nothing. Four quarters are a story — and direct evidence that investment in QA pays off. The escaped defect rate trend is one of the strongest arguments in a conversation with the board because it talks about return on investment.
+A single sprint is nothing. Four quarters are a story - and direct evidence that investment in QA pays off. The escaped defect rate trend is one of the strongest arguments in a conversation with the board because it talks about return on investment.
 
 <div class="fb-chart-card">
   <div class="fb-chart-head">
     <div>
-      <div class="fb-chart-title">Escaped Defect Rate — yearly trend</div>
+      <div class="fb-chart-title">Escaped Defect Rate - yearly trend</div>
       <div class="fb-chart-sub">Percentage of defects discovered after deployment to production</div>
     </div>
     <span class="fb-chart-badge">↓ 66% YoY</span>
@@ -128,7 +128,7 @@ A single sprint is nothing. Four quarters are a story — and direct evidence th
 
 ## Five metrics that together tell a story
 
-Each of the metrics below answers one specific business question. Combined, they form a narrative stakeholders understand and can act on. Individually they inform — together they tell a story.
+Each of the metrics below answers one specific business question. Combined, they form a narrative stakeholders understand and can act on. Individually they inform - together they tell a story.
 
 <div class="fb-table-wrap">
 <table class="fb-m-table">
@@ -157,12 +157,12 @@ Each of the metrics below answers one specific business question. Combined, they
     </tr>
     <tr>
       <td class="fb-t-num">04</td>
-      <td><div class="fb-t-name">Escaped Bugs per Release</div><div class="fb-t-desc">Escaped per specific release — not the overall rate</div></td>
+      <td><div class="fb-t-name">Escaped Bugs per Release</div><div class="fb-t-desc">Escaped per specific release - not the overall rate</div></td>
       <td class="fb-t-q">Which releases were risky and why?</td>
     </tr>
     <tr>
       <td class="fb-t-num">05</td>
-      <td><div class="fb-t-name">Number of Releases</div><div class="fb-t-desc">Context metric — normalises everything above</div></td>
+      <td><div class="fb-t-name">Number of Releases</div><div class="fb-t-desc">Context metric - normalises everything above</div></td>
       <td class="fb-t-q">Are we comparing apples to apples?</td>
     </tr>
   </tbody>
@@ -172,8 +172,8 @@ Each of the metrics below answers one specific business question. Combined, they
 <div class="fb-chart-card">
   <div class="fb-chart-head">
     <div>
-      <div class="fb-chart-title">DDR vs Escaped Bugs — quarterly trend</div>
-      <div class="fb-chart-sub">A classic healthy QA trend: DDR rises, escaped falls — at the same time</div>
+      <div class="fb-chart-title">DDR vs Escaped Bugs - quarterly trend</div>
+      <div class="fb-chart-sub">A classic healthy QA trend: DDR rises, escaped falls - at the same time</div>
     </div>
     <span class="fb-chart-badge">Q1–Q4 2025</span>
   </div>
@@ -189,8 +189,8 @@ Each of the metrics below answers one specific business question. Combined, they
 <div class="fb-chart-card">
   <div class="fb-chart-head">
     <div>
-      <div class="fb-chart-title">Issues per Release — code maturity</div>
-      <div class="fb-chart-sub">A drop from 24 to 8 is a 66% improvement. Not just QA — the whole delivery process is maturing.</div>
+      <div class="fb-chart-title">Issues per Release - code maturity</div>
+      <div class="fb-chart-sub">A drop from 24 to 8 is a 66% improvement. Not just QA - the whole delivery process is maturing.</div>
     </div>
     <span class="fb-chart-badge">v2.1 → v2.5</span>
   </div>
@@ -202,12 +202,12 @@ Each of the metrics below answers one specific business question. Combined, they
   </div>
 </div>
 
-Three releases in a row below 10 issues is the moment when you can tell the Engineering Manager: *"look what we did together over the last six months."* That's the conversation data enables — and the one you simply can't have without data.
+Three releases in a row below 10 issues is the moment when you can tell the Engineering Manager: *"look what we did together over the last six months."* That's the conversation data enables - and the one you simply can't have without data.
 
 <div class="fb-map">
   <span class="fb-map-eyebrow">Mapping model</span>
   <h2 class="fb-map-h">QA → Business KPIs</h2>
-  <p class="fb-map-sub">Every QA metric has its counterpart in business language. The QA Lead's job is to build that bridge — and to anchor each number in the question a stakeholder asks in the steering committee.</p>
+  <p class="fb-map-sub">Every QA metric has its counterpart in business language. The QA Lead's job is to build that bridge - and to anchor each number in the question a stakeholder asks in the steering committee.</p>
   <div class="fb-map-grid">
     <div class="fb-m-card">
       <div class="fb-m-metric">Confidence Score</div>
@@ -234,18 +234,18 @@ Three releases in a row below 10 issues is the moment when you can tell the Engi
 
 ## Three reporting anti-patterns
 
-Even good data can be presented badly. Here are the mistakes that most often destroy QA credibility in the eyes of the business — and which you only need to be aware of to avoid.
+Even good data can be presented badly. Here are the mistakes that most often destroy QA credibility in the eyes of the business - and which you only need to be aware of to avoid.
 
 <div class="fb-anti-grid">
   <div class="fb-anti-card">
     <div class="fb-anti-num">01</div>
     <div class="fb-anti-title">Too many metrics</div>
-    <div class="fb-anti-desc">A dashboard with 20 charts is overwhelming. When everything is important — nothing is. Start with 3 metrics, add gradually.</div>
+    <div class="fb-anti-desc">A dashboard with 20 charts is overwhelming. When everything is important - nothing is. Start with 3 metrics, add gradually.</div>
   </div>
   <div class="fb-anti-card">
     <div class="fb-anti-num">02</div>
     <div class="fb-anti-title">No context</div>
-    <div class="fb-anti-desc">Just "82%" with no trend and no goal says nothing. Always: number + direction + target. Trend says where you're coming from, target — where you're heading.</div>
+    <div class="fb-anti-desc">Just "82%" with no trend and no goal says nothing. Always: number + direction + target. Trend says where you're coming from, target - where you're heading.</div>
   </div>
   <div class="fb-anti-card">
     <div class="fb-anti-num">03</div>
@@ -254,7 +254,7 @@ Even good data can be presented badly. Here are the mistakes that most often des
   </div>
 </div>
 
-## What comes next — 9 articles, one topic
+## What comes next - 9 articles, one topic
 
 <div class="fb-series">
   <div class="fb-series-eyebrow">Series: QA metrics the business wants to hear</div>
@@ -269,36 +269,36 @@ Even good data can be presented badly. Here are the mistakes that most often des
     <li class="fb-s-item">
       <span class="fb-s-num">02</span>
       <div>
-        <div class="fb-s-title">Defect Detection Ratio — a deep guide</div>
+        <div class="fb-s-title">Defect Detection Ratio - a deep guide</div>
         <div class="fb-s-sub">Formula, interpretation, pitfalls, real-life numerical examples</div>
       </div>
     </li>
     <li class="fb-s-item">
       <span class="fb-s-num">03</span>
       <div>
-        <div class="fb-s-title">Escaped Bugs &amp; Problems — full spectrum</div>
+        <div class="fb-s-title">Escaped Bugs &amp; Problems - full spectrum</div>
         <div class="fb-s-sub">Why count more than just bugs in the application code</div>
       </div>
     </li>
     <li class="fb-s-item">
       <span class="fb-s-num">04</span>
       <div>
-        <div class="fb-s-title">Issues per Release — a code-maturity gauge</div>
+        <div class="fb-s-title">Issues per Release - a code-maturity gauge</div>
         <div class="fb-s-sub">How this metric reshapes the conversation with the Engineering Manager</div>
       </div>
     </li>
     <li class="fb-s-item">
       <span class="fb-s-num">05</span>
       <div>
-        <div class="fb-s-title">Escaped Bugs per Release — find the risky release</div>
+        <div class="fb-s-title">Escaped Bugs per Release - find the risky release</div>
         <div class="fb-s-sub">Pinpointing problems, not just watching trends</div>
       </div>
     </li>
     <li class="fb-s-item">
       <span class="fb-s-num">06</span>
       <div>
-        <div class="fb-s-title">Number of Releases — the context metric</div>
-        <div class="fb-s-sub">Why 3 bugs with 2 releases is a disaster, and with 15 — a success</div>
+        <div class="fb-s-title">Number of Releases - the context metric</div>
+        <div class="fb-s-sub">Why 3 bugs with 2 releases is a disaster, and with 15 - a success</div>
       </div>
     </li>
     <li class="fb-s-item">
@@ -311,7 +311,7 @@ Even good data can be presented badly. Here are the mistakes that most often des
     <li class="fb-s-item">
       <span class="fb-s-num">08</span>
       <div>
-        <div class="fb-s-title">Storytelling with metrics — building a narrative</div>
+        <div class="fb-s-title">Storytelling with metrics - building a narrative</div>
         <div class="fb-s-sub">How to turn a table of numbers into a business argument</div>
       </div>
     </li>
@@ -319,7 +319,7 @@ Even good data can be presented badly. Here are the mistakes that most often des
       <span class="fb-s-num">09</span>
       <div>
         <div class="fb-s-title">3 anti-patterns that destroy QA credibility</div>
-        <div class="fb-s-sub">Too many metrics, no context, jargon — and how to avoid each</div>
+        <div class="fb-s-sub">Too many metrics, no context, jargon - and how to avoid each</div>
       </div>
     </li>
   </ul>
