@@ -1,7 +1,7 @@
 ---
 title: "MCP i konektory — kiedy warto, kiedy to overengineering"
 description: "MCP to narzędzie, nie status. Każdy konektor to maintenance, ryzyko i powierzchnia ataku. Kryteria, kiedy MCP się opłaca, kiedy to lepsze niż integracja w kodzie, i drzewo decyzyjne przed dodaniem."
-date: 2026-05-29
+date: 2026-06-01
 tags: ["ai", "mcp", "claude-code", "tooling", "skala-holaka"]
 lang: pl
 readingTime: 8

@@ -1,7 +1,7 @@
 ---
 title: "Orkiestracja wieloagentowa — kiedy jeden agent wystarczy"
 description: "Poziom 10 w skali Holaka jest atrakcyjny dla CV, drogi w utrzymaniu. Sceptyczny take na zespoły agentów: kiedy realnie potrzebujesz wielu, kiedy jeden dobrze skonfigurowany wygrywa, i jak rozpoznać orkiestrację miernoty."
-date: 2026-06-01
+date: 2026-06-03
 tags: ["ai", "agenty", "claude-code", "skala-holaka", "orkiestracja"]
 lang: pl
 readingTime: 8

@@ -14,7 +14,10 @@ const otherLocale = locale === 'pl' ? 'en' : 'pl';
 const languageSwitchHref = alternatePaths?.[otherLocale] ?? getLocalePath(otherLocale, '/');
 
 const isHome = currentPath === '/' || currentPath === '';
-const isBlog = currentPath.startsWith('/blog');
+const aiAdoptionSlug = locale === 'pl' ? 'skala-holaka' : 'holak-scale';
+const aiAdoptionPath = getLocalePath(locale, `/blog/${aiAdoptionSlug}/`);
+const isAiAdoption = currentPath.includes(`/blog/${aiAdoptionSlug}`);
+const isBlog = currentPath.startsWith('/blog') && !isAiAdoption;
 const isAbout = currentPath.includes('o-projekcie') || currentPath.includes('about');
 ---
 
@@ -33,6 +36,9 @@ const isAbout = currentPath.includes('o-projekcie') || currentPath.includes('abo
       </a>
       <a href={getLocalePath(locale, '/blog/')} class:list={[{ active: isBlog }]}>
         <span>{strings.nav.blog}</span>
+      </a>
+      <a href={aiAdoptionPath} class:list={[{ active: isAiAdoption }]}>
+        <span>{strings.nav.aiAdoption}</span>
       </a>
       <a href={getLocalePath(locale, locale === 'pl' ? '/o-projekcie/' : '/about/')} class:list={[{ active: isAbout }]}>
         <span>{strings.nav.about}</span>

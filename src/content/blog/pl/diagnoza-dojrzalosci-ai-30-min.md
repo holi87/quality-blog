@@ -1,7 +1,7 @@
 ---
 title: "Jak zdiagnozować poziom dojrzałości AI w zespole w 30 minut"
 description: "Konkretny protokół oceny zespołu na skali Holaka — 8 pytań kalibrujących, 5 minut obserwacji w narzędziu i jednostronicowy raport. Bez ankiet, bez warsztatów, bez slajdów."
-date: 2026-05-20
+date: 2026-05-21
 tags: ["ai", "adopcja", "diagnoza", "zespoly", "skala-holaka"]
 lang: pl
 readingTime: 10

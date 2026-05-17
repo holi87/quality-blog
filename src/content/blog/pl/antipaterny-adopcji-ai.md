@@ -1,7 +1,7 @@
 ---
 title: "Anti-patterny adopcji AI — 7 sposobów na utknięcie"
 description: "Większość zespołów nie utyka z braku narzędzi, tylko na konkretnych wzorcach myślenia. Siedem najczęstszych anti-patternów ze skali Holaka, test rozpoznawczy, kto utyka i jak wyjść."
-date: 2026-05-22
+date: 2026-05-25
 tags: ["ai", "adopcja", "skala-holaka", "antipaterny", "zespoly"]
 lang: pl
 readingTime: 8

@@ -1,7 +1,7 @@
 ---
 title: "Biblioteka promptów to anti-pattern. Tak, ta z 200 linii"
 description: "Jeśli kopiujesz prompt z dokumentu — masz problem fazy 4, nie fazy 3. Czemu fetyszyzacja promptów to objaw braku ewolucji, jak rozłożyć 200-linijkowy prompt na custom instructions i kontekst projektu."
-date: 2026-05-27
+date: 2026-05-28
 tags: ["ai", "prompt-engineering", "skala-holaka", "antipaterny"]
 lang: pl
 readingTime: 7

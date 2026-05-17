@@ -1,7 +1,7 @@
 ---
 title: "How to Diagnose a Team's AI Maturity in 30 Minutes"
 description: "A concrete protocol for scoring a team on the Holak Scale — 8 calibration questions, 5 minutes of live observation and a one-page report. No surveys, no workshops, no slides."
-date: 2026-05-20
+date: 2026-05-21
 tags: ["ai", "adoption", "diagnosis", "teams", "holak-scale"]
 lang: en
 readingTime: 10

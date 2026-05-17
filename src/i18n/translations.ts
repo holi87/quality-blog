@@ -3,6 +3,7 @@ const translations = {
     nav: {
       home: 'Strona główna',
       blog: 'Blog',
+      aiAdoption: 'Adopcja AI',
       about: 'O projekcie',
     },
     hero: {
@@ -31,6 +32,7 @@ const translations = {
     nav: {
       home: 'Home',
       blog: 'Blog',
+      aiAdoption: 'AI Adoption',
       about: 'About',
     },
     hero: {

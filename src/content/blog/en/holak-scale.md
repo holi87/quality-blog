@@ -1,205 +1,243 @@
 ---
-title: "The Holak Scale — An Expanded AI Adoption Maturity Model"
-description: "11 levels from resistance to orchestration — with self-diagnosis, anti-patterns, and the organisational dimension. An expansion of the original maturity model."
-date: 2026-04-21T00:00:00+02:00
-tags: ["ai", "adoption", "teams", "strategy"]
+title: "Holak Scale v2.1e — enterprise. An AI adoption maturity model for organizations"
+description: "12 maturity levels of AI in the workplace — from resistance, through agent workflows, to a purpose-built agentic OS for concrete business outcomes. Version v2.1e splits the enterprise path from the private one."
+date: 2026-05-18
+tags: ["ai", "adoption", "enterprise", "strategy", "governance"]
 lang: en
-readingTime: 12
+readingTime: 14
 author:
   - GH
   - KG
 ---
 
-In mid-April 2026 I published a short [AI adoption maturity model](/en/blog/ai-maturity-model/) — 11 levels from resistance to orchestration. After conversations with readers and teams I've been helping with adoption, it became clear the model needed to be expanded. It lacked diagnostic tools, concrete examples, honest anti-patterns, and a clear separation between the individual and the organisational perspective. This version — **the Holak Scale** — closes those gaps.
+The Holak Scale evolves faster than most maturity models because what AI can actually do changes faster than they do. **Version 2.1** splits the single scale into two tracks: **v2.1e** for professional use and **v2.1p** for private use. This article is the enterprise version. The private version has its own post: [Holak Scale v2.1p — private](/en/blog/holak-scale-private/).
 
-## How to read this scale
+## Why two scales
 
-The scale has **11 positions (0–10)**, but *level 0* describes the state *before* adoption, not the first rung of maturity. Counting from zero is deliberate — refusal is a position worth naming.
+The v2 scale worked well as a general model, but in practice it conflated two different worlds. In a company, what matters is business value, security, governance, process, accountability, cost and auditability. At home — comfort, privacy, trust, daily habits, real time saved and not over-engineering. Trying to measure both with the same ruler led to misunderstandings — someone at home level 9 would ask whether that meant their company was also "shipping at 9". It doesn't.
 
-Each level is described through the same triangle:
+In v2.1e we measure the **maturity of an organization, team or process** in the professional use of AI. We don't measure "does the company have ChatGPT". We measure whether AI is genuinely changing the way work is done — whether it's safe, measurable, auditable, and tied to a business outcome.
 
-- **Barrier** — what you need to overcome to move up.
-- **Success** — what stable operation at this level looks like.
-- **Trap** — what causes people and companies to get stuck.
+## What's new in v2.1e
 
-The scale operates in **two dimensions**:
+Four changes versus v2:
 
-- **Individual** — where you are as a user.
-- **Organisational** — where your team / company is as a system.
+1. **Scale split** into enterprise (v2.1e) and private ([v2.1p](/en/blog/holak-scale-private/)).
+2. **Permanent assessment axes from level 4 onwards** — context management, model awareness, token/cost efficiency, verifiability, reversibility, security and privacy.
+3. **Hooks at level 8**, not as a separate level. Hooks are a deterministic control layer around the agent, not autonomy.
+4. **Level 11 defined as agentic OS** — not "more agents", but a system of work designed for a concrete business outcome.
 
-These two often diverge. A single engineer may sit at level 9 while their company is at level 3. Any adoption strategy has to account for both.
+## Levels map v2.1e
 
-## Level map
+| Level | Name | In one sentence |
+|---|---|---|
+| 0 | Resistance / no adoption | The organization does not use AI or uses it only informally. |
+| 1 | Basic chat | Employees ask AI ad hoc, without standards. |
+| 2 | Conscious prompting | People understand that context, goal and format shape the result. |
+| 3 | Prompting frameworks | The team uses repeatable prompt structures and templates. |
+| 4 | Custom instructions and token hygiene | Standing instructions, roles and preferences are not rewritten in every prompt. |
+| 5 | Project context | Project knowledge lives in files, repos and documentation, for humans and agents. |
+| 6 | Advanced operating instructions | The agent knows not only *what* to do but *how* to act, when to ask, what not to do. |
+| 7 | Skills, knowledge bases and evals | The organization builds repeatable AI skills, RAG, playbooks and test sets. |
+| 8 | Tools, MCP, connectors and hooks | AI acts on systems, but in a controlled environment with permissions and automated checks. |
+| 9 | Agent workflows | A human defines the goal; the agent plans and executes the process end-to-end under control. |
+| 10 | Multi-agent orchestration | Multiple agents collaborate under a coordinator or workflow engine. |
+| 11 | Agentic OS for business goals | The organization designs its own operating system for agent work, tied to concrete business outcomes. |
 
-| Phase | Level | Name | In one sentence |
-|-------|-------|------|-----------------|
-| Start | [0](#level-0) | [Resistance](#level-0) | No contact with AI |
-| Start | [1](#level-1) | [Basic chat](#level-1) | Question → answer |
-| Intentional use | [2](#level-2) | [Intentional prompting](#level-2) | Input quality = output quality |
-| Intentional use | [3](#level-3) | [Frameworks](#level-3) | CRISP, CoT, few-shot |
-| Intentional use | [4](#level-4) | [Custom instructions](#level-4) | The model knows you without being reminded |
-| Context and knowledge | [5](#level-5) | [Context files](#level-5) | README, AGENTS.md, claude.md |
-| Context and knowledge | [6](#level-6) | [Advanced instructions](#level-6) | Rules for behaviour and boundaries |
-| Context and knowledge | [7](#level-7) | [Skills and knowledge bases](#level-7) | Domain knowledge + capabilities |
-| Context and knowledge | [8](#level-8) | [Tools and MCP](#level-8) | Integration with systems |
-| Autonomy | [9](#level-9) | [Agentic workflow](#level-9) | Goal → autonomous execution |
-| Autonomy | [10](#level-10) | [Orchestration](#level-10) | A team of agents + a coordinator |
+## Level 0 — Resistance / no adoption
 
-## Phase 0–1: Start
+The organization does not use AI or officially forbids it, even though employees may be using tools privately or quietly.
 
-### Level 0
+- **Barrier:** fear, compliance, lack of knowledge, no topic owner.
+- **Success:** an honest decision — either a deliberate "not now" or the start of a controlled pilot.
+- **Trap:** pretending AI doesn't exist while shadow AI grows.
 
-**Resistance / no adoption.** The user doesn't use AI — due to lack of knowledge, fear, ethical decision, or company policy. Often accompanied by anxiety about job loss or distrust of the technology.
+**Signal to move up:** the organization can name what AI uses are acceptable and what aren't.
 
-- **Barrier:** emotions and professional identity.
-- **Success:** an honest, informed decision (not avoidance).
-- **Trap:** rationalising resistance with technical arguments ("it hallucinates", "there's no compliance") instead of admitting the real issue is fear.
+## Level 1 — Basic chat
 
-### Level 1
+Employees use AI as a search engine or text generator. Question → answer. No shared standards.
 
-**Basic chat — question → answer.** First interaction. The user treats the model like a search engine: types a question, gets an answer, sometimes follows up.
+- **Barrier:** not knowing how to ask or how to verify.
+- **Success:** people start using AI for simple tasks — summaries, emails, ideas, first drafts.
+- **Trap:** false sense of adoption — "we use AI", but skill levels don't grow.
 
-> Even experts come back here — and that's fine. Simple chat isn't shameful, it's a tool.
+**Enterprise evidence:** isolated uses, no prompt repo, no policy, no metrics.
 
-- **Barrier:** breaking through the first contact.
-- **Success:** naturally reaching for AI when small questions come up.
-- **Trap:** staying here for years with the belief "I use AI every day" — because you're using 2% of what it can do.
+## Level 2 — Conscious prompting
 
-**Start phase self-check:** you're here if you don't have your own account in any AI tool, or you only use it when someone shows you. The signal that you're moving up: you start noticing that answers vary in quality depending on *how* you ask.
+Employees understand that AI needs a goal, context, role, constraints and an expected format.
 
-## Phase 2–4: Intentional use
+- **Barrier:** moving from "I ask a question" to "I design an instruction".
+- **Success:** prompts contain goal, audience, inputs, constraints and output format.
+- **Trap:** belief that a good prompt solves everything.
 
-### Level 2
+**Example.** Instead of "Write test cases", try: "You are a QA engineer on a banking project. Based on the acceptance criteria below, prepare positive, negative and edge-case tests in a table format: ID, condition, steps, expected result, risk."
 
-**Intentional prompting — input quality drives output quality.** The user assigns a role ("you are a QA engineer, write tests"), provides context, sets constraints. Starts iterating instead of accepting the first answer.
+## Level 3 — Prompting frameworks
 
-- **Barrier:** the instinct "I write like I'm talking to a person" instead of "I write like I'm briefing a system that needs context".
-- **Success:** prompts include role, goal, context, and output format — without a framework, from experience.
-- **Trap:** the belief that "just being precise is enough" — without systemisation, every prompt has to be reinvented.
+The team has shared templates: CRISP, role-task-context-format, few-shot, quality criteria, review checklists.
 
-### Level 3
+- **Barrier:** discipline of using and maintaining templates.
+- **Success:** the team has a shared language for working with AI.
+- **Trap:** the "golden prompts" library grows into 200-line monsters.
 
-**Frameworks and prompt engineering.** CRISP, chain-of-thought, few-shot learning, ReAct. Structured templates, repeatable processes, personal prompt libraries.
+**Enterprise evidence:** prompt library, examples of good/bad prompts, training, prompt review.
 
-> This is where most AI-adopting organisations plateau. Frameworks give great results — but this is only the beginning of the road.
+## Level 4 — Custom instructions and token hygiene
 
-- **Barrier:** learning the techniques and disciplining their use.
-- **Success:** repeatable, high-quality results; the team shares a common prompting language.
-- **Trap:** prompt fetishism — prompts get longer and more baroque, instead of moving the repeated content into custom instructions.
+The organization starts moving repeatable instructions out of prompts and into settings, system instructions, custom instructions, assistant configurations and project standards.
 
-### Level 4
+This is the first level where **saving tokens and cost** appears explicitly. The point isn't to write shorter at any cost. The point is to stop paying daily for the same context.
 
-**Custom instructions — the model knows you without being reminded.** Custom instructions, system prompts, per-project settings. You no longer repeat every session "I'm a tester, I write in English, I like concise answers".
+- **Barrier:** investment in setup that only pays off over time.
+- **Success:** shorter prompts, more consistent answers, less copy-pasting of instructions.
+- **Trap:** custom instructions turn into a dumping ground for everything.
 
-**A typical day at level 4:** you open ChatGPT / Claude, type *"review this PR"*, and the model already knows which language to reply in, what style you use, and what to pay attention to — because you told it once, in the settings.
+**New in v2.1:** from this level we explicitly assess *model awareness* — does the user know when to use a fast model, when a reasoning model, when a code model, when multimodal, and when not to use AI at all.
 
-- **Barrier:** the time investment in a setup that won't pay off until next week.
-- **Success:** short prompts, long default context; consistency across sessions.
-- **Trap:** instructions balloon into a novel because you keep piling on after every problem — without review or pruning.
+## Level 5 — Project context
 
-**Intentional-use phase self-check:** you're here if you can tell a good prompt from a bad one when you see someone else's, and you have your own templates or custom instructions. The signal to move up: you start feeling you're copying the same context between projects and wish it lived "next to the code".
+Context lives next to the project: in `README.md`, `AGENTS.md`, `CLAUDE.md`, architecture docs, ADRs, test rules, domain definitions, glossaries and examples.
 
-## Phase 5–8: Context and knowledge
+- **Barrier:** treating AI documentation as an engineering element, not an add-on.
+- **Success:** a new human or agent understands the project faster.
+- **Trap:** the documentation is out of date, so the agent executes old rules.
 
-### Level 5
+**Enterprise evidence:** context files in the repo, updated alongside changes, actually used in practice.
 
-**Context files — per-project context.** `README.md`, [`AGENTS.md`](/en/blog/agents-md-for-test-automation/), `CLAUDE.md`, `.cursorrules`. AI agents get files that describe the project: what we're building, how it's structured, which conventions apply. You run the agent in a directory — it already knows what to do.
+## Level 6 — Advanced operating instructions
 
-- **Barrier:** accepting that writing documentation for AI is engineering work, not "overhead".
-- **Success:** a new team member (human or agent) is productive within an hour.
-- **Trap:** `CLAUDE.md` written once and never updated — it becomes mythology.
+The agent has a described behavior: when to ask, when to act on its own, when to escalate, what not to do, how to report, how to verify the result.
 
-### Level 6
+- **Barrier:** writing down norms that previously "lived in the team's head".
+- **Success:** the agent behaves consistently with the team's working culture.
+- **Trap:** instructions too rigid, blocking sensible action.
 
-**Advanced instructions — behaviour, rules, and boundaries.** Not "what to do" but "how to behave": when to ask, when to act autonomously, how to report back, what to avoid. The difference between a README and a full role specification.
+**Example rules:**
 
-- **Barrier:** articulating norms that used to live only in your head.
-- **Success:** the agent operates in line with the team's culture without your presence.
-- **Trap:** rigid rules where a good example would work better — overfitting to one scenario.
+- "Do not add dependencies without approval."
+- "Before changing CI configuration, propose a plan."
+- "After test changes run only the affected scope; leave the full regression to CI."
+- "Do not touch production data."
 
-### Level 7
+## Level 7 — Skills, knowledge bases and evals
 
-**Skills and knowledge bases — specialised capabilities and domain knowledge.** Dedicated skills ([bug reports into Jira](/en/blog/skill-for-bug-reports-in-jira/), log analysis, [building your own subagent](/en/blog/custom-subagent-claude-code-example/)), knowledge bases (documentation, standards, decision history). We don't reinvent the wheel — knowledge is organised.
+The organization has repeatable AI skills: report generation, log analysis, code review, test creation, requirements analysis, meeting summaries, ticket triage, release-note writing.
 
-- **Barrier:** information architecture and the decision of *what* to wrap into a skill versus leaving ad hoc.
-- **Success:** the agent reaches for the right tool by itself, without hand-holding.
-- **Trap:** multiplying skills "just in case" — no one uses them and no one remembers they exist.
+Knowledge bases and RAG also appear, but with quality control: sources, freshness, owners, versioning.
 
-### Level 8
+- **Barrier:** information architecture.
+- **Success:** the agent uses the right knowledge and skill without constant hand-holding.
+- **Trap:** multiplying skills without owners and without measuring quality.
 
-**Tools, MCP and connectors — integration with external systems.** The agent doesn't just write — it searches Slack, creates Jira tickets, reads emails, calls APIs, runs tests. [MCP (Model Context Protocol)](/en/blog/first-mcp-for-qa-search-fetch/) and connectors (e.g. [context7 for up-to-date docs](/en/blog/context7-mcp-up-to-date-docs-llm/)) let it act in the world.
+**New in v2.1:** level 7 requires simple **evals** — test cases that check whether a prompt, skill or agent still works after a model change, instruction change, or data change.
 
-- **Barrier:** security and permissions — *what* the agent can actually do, and *where*.
-- **Success:** the agent behaves like a new team member with access to the systems.
-- **Trap:** wiring everything to everything without audit — the first incident costs more than a year of savings.
+## Level 8 — Tools, MCP, connectors and hooks
 
-**Context-and-knowledge phase self-check:** you're here if your projects have context files you actually honour, and an agent can perform a task end-to-end without step-by-step instructions. The signal to move up: you start formulating high-level goals and are surprised you still have to break them into steps.
+The agent doesn't only write. It has access to tools: repositories, ticket systems, documentation, APIs, Slack, email, calendars, databases, test environments, CI/CD.
 
-## Between phase 8 and 9: the trust boundary
+MCP fits here — it's a standard for connecting LLM applications to external data sources and tools.
 
-This is **the single biggest jump in the scale** — and the one most weakly described in popular models. Up to and including level 8, the human leads and the agent executes. From level 9, the human defines the goal and the agent decides on the steps.
+**Hooks** are part of this level in v2.1. They let you enforce automated checks before, during or after the agent acts: running tests, lints, security scans, prompt validation, mandatory review, blocking forbidden commands, audit logging.
 
-The boundary isn't technical — the tools have existed for a while. The boundary is **organisational and psychological**: agreeing that something will happen without your per-decision involvement. Companies get stuck at 8 not for lack of MCP, but for lack of readiness to give up control. Engineers get stuck at 8 because they like steering.
+- **Barrier:** security, permissions, audit, ownership.
+- **Success:** the agent has access only to what it needs, and its actions are logged and controlled.
+- **Trap:** "let's plug everything into everything".
 
-Crossing requires two things: **verifiability** (it's easy to check what the agent did) and **reversibility** (it's easy to undo if it was wrong). Without them, level 9 is irresponsible. With them, it becomes the obvious next step.
+**Enterprise controls:** agent registry, separate agent identity, least privilege, logs, cost limits, DLP, tool allowlist, sandbox, approval for risky actions.
 
-## Phase 9–10: Autonomy
+## Level 9 — Agent workflows
 
-### Level 9
+A human defines the goal; the agent plans the steps and executes the task. The human doesn't drive every step but checks the outcome, logs and decisions.
 
-**Agentic workflow — goal → autonomous planning and execution.** The agent gets a high-level goal and plans the steps itself. *"Prepare release notes from the latest commits"* — the agent checks the repo, analyses the changes, writes the notes, proposes a draft.
+- **Barrier:** trust, verifiability, reversibility.
+- **Success:** the agent completes an end-to-end process within a known, bounded scope.
+- **Trap:** the illusion of autonomy — the agent acts alone, but the human later rewrites 60% of the output.
 
-> Paradox: the user returns to the "simple question" of level 1 — but the machinery underneath is entirely different.
+**Enterprise examples:**
 
-- **Barrier:** trust and verification systems.
-- **Success:** you delegate goals, not tasks; the agent flags you when it gets stuck.
-- **Trap:** the illusion of autonomy — the agent *seems* to work alone, but in practice 60% of your time is spent fixing things that "almost worked".
+- "Prepare release notes from the last sprint."
+- "Analyze production errors and propose priorities."
+- "Review this pull request, run tests, flag risks."
+- "Draft a customer reply based on the ticket history."
 
-### Level 10
+At this level **guardrails** and **human review** are essential. In production, automated validations and human approvals decide whether the agent should continue, stop or wait for sign-off.
 
-**Multi-agent orchestration — a team of agents with a coordinator.** Multiple [subagents](/en/blog/subagents-claude-code-what-and-why/), each specialised: one analyses, another codes, a third reviews, a fourth writes tests. The orchestrator coordinates order, resolves conflicts, aggregates results.
+## Level 10 — Multi-agent orchestration
 
-- **Barrier:** designing a system of agents, not writing prompts.
-- **Success:** complex goals are delivered without micromanagement; the human sets direction and verifies outcomes.
-- **Trap:** overengineering — three agents where one well-configured agent would do, because "it's trendy to have a team".
+The organization has multiple specialized agents: analyst, researcher, developer, tester, reviewer, compliance checker, documenter, release manager.
 
-**Autonomy phase self-check:** you're here if in the last week you delegated a goal whose execution you only reviewed at the end — and it was correct. The signal you're "past 10": you start designing systems in which an individual agent is an implementation detail.
+- **Barrier:** designing an agent *system*, not a single prompt.
+- **Success:** agents cooperate in a controlled process and deliver outcomes better than a single agent.
+- **Trap:** overengineering — many agents where one good workflow would do.
 
-## Anti-patterns — where people get stuck
+Anthropic, in its agent-building practices, emphasizes that effective implementations often win with simple, composable patterns rather than overly complex frameworks. That's an important warning for level 10: orchestration makes sense only when the task complexity justifies it.
 
-From observation:
+## Level 11 — Agentic OS for business goals
 
-- **Stuck at 1 with the "I use AI" myth.** Daily Q&A creates the feeling of adoption while skill growth is zero. Test: have you tried anything new in the last month?
-- **Stuck at 3 with prompt fetishism.** Libraries of "golden prompts" 200 lines each, instead of moving repeated content into instructions. Symptom: you copy a prompt from a document every time.
-- **False maturity at 8.** The company has MCP, integrations, and dashboards — but every workflow requires a human to approve every step. That's still level 6–7 dressed up as 8.
-- **Jumping from 4 to 9.** "Let's install an agent and let it run" — skipping the context-and-knowledge phase. The agent hallucinates, the team loses trust, they drop back to level 2 and declare that "AI doesn't work".
-- **Level 10 without level 9.** A team of agents where none handles a single goal well. Orchestrating mediocrity produces greater mediocrity.
+This is a new level in v2.1.
 
-## Organisation vs individual
+The organization can design its own **agentic operating system** for a specific business area. It's not about "more agents". It's about a coherent system where:
 
-The **individual** scale measures skill. The **organisational** scale measures the system: processes, institutional knowledge, governance, tools.
+- business goals are translated into workflows,
+- agents have roles, owners and a scope of responsibility,
+- tools are connected through controlled interfaces,
+- data has sources, owners and trust levels,
+- actions are logged,
+- costs are measured,
+- risky actions require approval,
+- mistakes can be undone,
+- governance is part of how it runs, not a document after the fact.
 
-Typical mismatches:
+- **Barrier:** moving from "we use AI" to "we are designing a new system of work".
+- **Success:** AI becomes the operating layer of a business process.
+- **Trap:** building a flashy platform without a clear business goal.
 
-- **Individual 9, organisation 2.** A single engineer uses agents autonomously at home, but has to turn them off at work "for compliance". A waste of talent.
-- **Individual 3, organisation 7.** The company has great context files, skills, MCP — but users copy prompts from Confluence because they don't understand what's available. A waste of infrastructure.
-- **Individual 5, organisation 5 (aligned).** A rare, healthy state. Usually means the company is actively investing in education and engineers have a voice in tooling.
+**Example enterprise agentic OS:**
 
-When measuring an organisation, look at the **median**, not the maximum. One leader at level 9 does not make the company mature.
+1. **QA Agentic OS** — requirements analysis, test generation, regression maintenance, flaky-test analysis, quality reports.
+2. **Release Agentic OS** — changelog, risks, test-impact analysis, release communication, checklists, rollback plan.
+3. **Compliance Agentic OS** — regulation monitoring, policy mapping, procedure drafts, evidence collection.
+4. **Customer Support Agentic OS** — triage, replies, escalations, sentiment analysis, knowledge base, quality of service.
+5. **Finance Reporting Agentic OS** — data collection, variance explanations, narrative preparation, source control.
+6. **Procurement Agentic OS** — offer analysis, supplier risk, comparisons, procurement-policy compliance.
 
-## Where this model fails
+**Level 11 test:** can you point to one concrete business process and say, "here AI is not an add-on, it's the operating layer of the process — with goals, controls, metrics, audit and an owner"?
 
-Honestly:
+## Boundaries worth watching
 
-- **The scale is linear; the world isn't.** In practice you jump between levels depending on the task. In writing emails you're at 1, in code you're at 8. That's normal.
-- **Not all levels are equally valuable.** The jump from 1 to 4 yields more than from 8 to 10. The model shows a trajectory, not a priority.
-- **Tools move faster than the scale.** Level 8 in 2025 (first MCP deployments) is not level 8 in Q2 2026. The scale describes the *kind* of capability, not specific products.
-- **There's no ethics here.** You can be at level 10 and still be doing something harmful. Technical maturity isn't moral maturity.
+**Boundary 8→9.** Tools are not yet autonomy. You can have MCP, hooks and 20 integrations, and the agent will still wait for every human step. Moving to 9 means the agent plans, acts and reports — and the human reviews the outcome, not every move.
+
+**Boundary 10→11.** Orchestration is not yet an agentic OS. You can build a multi-agent workflow without governance, owners, audit or cost metrics. An agentic OS is a system of work with a business goal, not a demo of an agent crew.
+
+## v2.1e anti-patterns
+
+- **Shadow AI.** No policy, so everyone uses what they want on data they shouldn't.
+- **Prompt cargo cult.** Copying other people's "mega-prompts" without understanding the context.
+- **Integrations without governance.** An agent with access to the whole infra without identity, audit or approval.
+- **Agents without owners.** They run in production but no one knows who is accountable for them.
+- **OS without a goal.** A platform with a dashboard, cost meters and a slide deck — but no real business process it serves.
+
+## Model awareness
+
+In v2.1, maturity also includes model awareness. The same prompt doesn't have to work the same way on different models. A fast model is instructed differently than a reasoning model, a code model differently than a small model, a long-context model differently than a multimodal one.
+
+A more mature person or organization doesn't only ask "which prompt should I use?" — they also ask: **which model, at what cost, with what level of reasoning and what kind of validation, is right for this task?**
 
 ## What's next
 
-If this scale helps you in a conversation with your team — use it, cite it, adapt it. If you see gaps, get in touch via [holak.net.pl](https://holak.net.pl) or the contact channel on this blog. Version 3 is coming later this year — together with Konrad "Gumiś" Gomulski we're collecting deployment data and running experiments.
+The private version of the scale has its own article: [Holak Scale v2.1p — private](/en/blog/holak-scale-private/). It measures the maturity of everyday AI use — home, learning, finance, smart home, life organization. Different risks, different successes, different traps.
+
+Earlier versions: the original [AI maturity model (v1)](/en/blog/ai-maturity-model/) remains available as historical context. The v2.0 content has been folded into this v2.1e article.
 
 ---
 
-*By Grzegorz Holak — Quality Cat, experience from Sii Polska and Santander Corporate & Investment Banking. Originally published at [holak.net.pl](https://holak.net.pl). Version 1 of the model: [AI Adoption Maturity Model](/en/blog/ai-maturity-model/).*
+## Version history
+
+- **v1.0** — *AI adoption maturity model*. Created in March 2026, published **15 April 2026**. A short 11-level model.
+- **v2.0** — *Holak Scale*. Created in April 2026, published **20 April 2026**. Expanded with diagnosis, anti-patterns and the organizational dimension.
+- **v2.1e** (this article) — *enterprise*. Splits enterprise and private tracks, places hooks at level 8, defines level 11 as agentic OS. **18 May 2026**.
+- **v2.1p** — *private*. Private version published **17 May 2026**. [Read v2.1p →](/en/blog/holak-scale-private/)
+
+The scale remains an iteratively evolving model. AI, tools and the way we work with agents change faster than most maturity models, which is why the Holak Scale will keep being updated as it gets used in organizations and everyday life.

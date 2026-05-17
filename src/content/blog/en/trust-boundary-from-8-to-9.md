@@ -1,7 +1,7 @@
 ---
 title: "The Trust Boundary — How to Actually Cross from 8 to 9 on the Holak Scale"
 description: "The hardest jump on the Holak Scale isn't technical. Verifiability and reversibility as a framework, a readiness checklist, and two case studies — one team that made it, one that dropped back to 2."
-date: 2026-05-21
+date: 2026-05-22
 tags: ["ai", "agents", "adoption", "holak-scale", "governance"]
 lang: en
 readingTime: 9

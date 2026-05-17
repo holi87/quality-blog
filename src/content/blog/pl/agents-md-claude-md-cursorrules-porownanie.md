@@ -1,7 +1,7 @@
 ---
 title: "AGENTS.md vs CLAUDE.md vs .cursorrules — który plik kontekstowy do czego"
 description: "Trzy formaty plików kontekstowych dla agentów AI to nie chaos — każdy ma niszę. Co czyta który agent, co wrzucać do każdego, jak utrzymać w synchronizacji i czego nie kopiować 1:1."
-date: 2026-05-28
+date: 2026-05-29
 tags: ["ai", "agents-md", "claude-code", "skala-holaka", "kontekst"]
 lang: pl
 readingTime: 8

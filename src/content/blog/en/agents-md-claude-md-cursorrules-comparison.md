@@ -1,7 +1,7 @@
 ---
 title: "AGENTS.md vs CLAUDE.md vs .cursorrules — Which Context File for What"
 description: "Three context-file formats for AI agents aren't chaos — each has a niche. What each agent reads, what to put in each, how to keep them in sync, and what not to copy 1:1."
-date: 2026-05-28
+date: 2026-05-29
 tags: ["ai", "agents-md", "claude-code", "holak-scale", "context"]
 lang: en
 readingTime: 8

@@ -1,7 +1,7 @@
 ---
 title: "Where the Holak Scale Fails — Self-Criticism"
 description: "Every model is a tool, not a truth. Six places where the Holak Scale actually fails when working with teams, plus reader feedback to address in version 3."
-date: 2026-06-03
+date: 2026-06-05
 tags: ["ai", "adoption", "holak-scale", "self-criticism"]
 lang: en
 readingTime: 6

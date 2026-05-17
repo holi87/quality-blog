@@ -1,7 +1,7 @@
 ---
 title: "Gdzie skala Holaka zawodzi — autokrytyka"
 description: "Każdy model jest narzędziem, nie prawdą. Sześć miejsc, w których skala Holaka realnie zawodzi w pracy z zespołami, plus feedback od czytelników, który warto zaadresować w wersji 3."
-date: 2026-06-03
+date: 2026-06-05
 tags: ["ai", "adopcja", "skala-holaka", "autokrytyka"]
 lang: pl
 readingTime: 6

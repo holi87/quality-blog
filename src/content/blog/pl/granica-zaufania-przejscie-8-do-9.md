@@ -1,7 +1,7 @@
 ---
 title: "Granica zaufania — jak realnie przeskoczyć z 8 na 9 w skali Holaka"
 description: "Najtrudniejszy skok w skali Holaka nie jest techniczny. Sprawdzalność i odwracalność jako framework, checklist gotowości i dwa case'y — jeden który przeszedł, jeden który spadł do 2."
-date: 2026-05-21
+date: 2026-05-22
 tags: ["ai", "agenty", "adopcja", "skala-holaka", "governance"]
 lang: pl
 readingTime: 9

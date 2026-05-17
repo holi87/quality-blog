@@ -1,7 +1,7 @@
 ---
 title: "MCP and Connectors — When It Helps, When It's Overengineering"
 description: "MCP is a tool, not a status. Each connector is maintenance, risk, and attack surface. Criteria for when MCP pays off, when it beats a coded integration, and a decision tree before adding one."
-date: 2026-05-29
+date: 2026-06-01
 tags: ["ai", "mcp", "claude-code", "tooling", "holak-scale"]
 lang: en
 readingTime: 8

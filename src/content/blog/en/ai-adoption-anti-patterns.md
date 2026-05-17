@@ -1,7 +1,7 @@
 ---
 title: "AI Adoption Anti-Patterns — 7 Ways to Get Stuck"
 description: "Most teams don't get stuck because of missing tools — they get stuck on specific patterns of thinking. The seven most common anti-patterns from the Holak Scale, a recognition test, who gets caught, and how to get out."
-date: 2026-05-22
+date: 2026-05-25
 tags: ["ai", "adoption", "holak-scale", "anti-patterns", "teams"]
 lang: en
 readingTime: 8

@@ -1,205 +1,243 @@
 ---
-title: "Skala Holaka — rozbudowany model dojrzałości adopcji AI"
-description: "11 poziomów od oporu do orkiestracji — z diagnozą, anti-patternami i wymiarem organizacyjnym. Rozwinięcie autorskiego modelu dojrzałości AI."
-date: 2026-04-21T00:00:00+02:00
-tags: ["ai", "adopcja", "zespoly", "strategia"]
+title: "Skala Holaka v2.1e — enterprise. Model dojrzałości adopcji AI w organizacji"
+description: "12 poziomów dojrzałości AI w firmie — od oporu, przez agentowe workflow, po własny agentic OS dla konkretnych celów biznesowych. Wersja v2.1e rozdzielająca ścieżkę firmową od prywatnej."
+date: 2026-05-18
+tags: ["ai", "adopcja", "enterprise", "strategia", "governance"]
 lang: pl
-readingTime: 12
+readingTime: 14
 author:
   - GH
   - KG
 ---
 
-W połowie kwietnia 2026 opublikowałem krótki [model dojrzałości adopcji AI](/pl/blog/model-dojrzalosci-ai/) — 11 poziomów od oporu do orkiestracji. Po rozmowach z czytelnikami i zespołami, którym pomagam we wdrożeniach, stało się jasne, że model wymaga rozbudowy. Brakowało narzędzi do diagnozy, konkretów z życia, uczciwego pokazania anti-patternów i rozdzielenia perspektywy jednostki od organizacji. Ta wersja — **skala Holaka** — zamyka te luki.
+Skala Holaka rozwija się szybciej niż większość modeli dojrzałości, bo szybciej niż one zmienia się to, co AI naprawdę potrafi. **Wersja 2.1** rozdziela jedną skalę na dwie ścieżki: **v2.1e** dla użycia zawodowego i **v2.1p** dla użycia prywatnego. Ten artykuł to wersja enterprise. Wersja prywatna ma osobny wpis: [Skala Holaka v2.1p — private](/pl/blog/skala-holaka-private/).
 
-## Jak czytać tę skalę
+## Dlaczego dwie skale
 
-Skala ma **11 pozycji (0–10)**, ale „poziom 0" to stan *przed* adopcją, a nie pierwszy stopień dojrzałości. Liczenie od zera jest świadome — chcę pokazać, że odmowa też jest pozycją, którą warto nazwać.
+Skala v2 dobrze działała jako model ogólny, ale w praktyce mieszała dwa różne światy. W firmie najważniejsze są: wartość biznesowa, bezpieczeństwo, governance, proces, odpowiedzialność, koszty i audytowalność. W domu — wygoda, prywatność, zaufanie, codzienne nawyki, realna oszczędność czasu i nieprzekombinowanie. Próba mierzenia jedną linijką prowadziła do nieporozumień — ktoś z poziomu 9 w domu pytał, czy to znaczy, że jego firma „też dowozi 9". Nie znaczy.
 
-Każdy poziom opisuję tym samym trójkątem:
+W v2.1e mierzymy **dojrzałość organizacji, zespołu lub procesu** w zawodowym wykorzystaniu AI. Nie mierzymy „czy firma ma ChatGPT". Mierzymy, czy AI realnie zmienia sposób pracy, czy jest bezpieczne, mierzalne, audytowalne i powiązane z wynikiem biznesowym.
 
-- **Bariera** — co trzeba pokonać, żeby wejść wyżej.
-- **Sukces** — jak wygląda stabilne funkcjonowanie na tym poziomie.
-- **Pułapka** — co sprawia, że ludzie i firmy utykają.
+## Co nowego w v2.1e
 
-Skala działa w **dwóch wymiarach**:
+Cztery zmiany względem v2:
 
-- **Indywidualnym** — gdzie jesteś Ty jako użytkownik.
-- **Organizacyjnym** — gdzie jest Twój zespół / firma jako system.
+1. **Skala rozdzielona** na enterprise (v2.1e) i private ([v2.1p](/pl/blog/skala-holaka-private/)).
+2. **Stałe osie oceny od poziomu 4** — zarządzanie kontekstem, świadomość modelu, oszczędność tokenów, weryfikowalność, odwracalność, bezpieczeństwo i prywatność.
+3. **Hooks na poziomie 8**, nie jako osobny poziom. To deterministyczna warstwa kontroli wokół agenta, nie autonomia.
+4. **Poziom 11 zdefiniowany jako agentic OS** — nie „więcej agentów", tylko zaprojektowany system pracy dla konkretnego celu biznesowego.
 
-Te dwa wymiary często się rozjeżdżają. Pojedynczy inżynier bywa na poziomie 9, kiedy jego firma jest na 3. Strategia wdrożeniowa musi uwzględniać oba.
+## Mapa poziomów v2.1e
 
-## Mapa poziomów
+| Poziom | Nazwa | Jednym zdaniem |
+|---|---|---|
+| 0 | Opór / brak adopcji | Organizacja nie używa AI albo używa go wyłącznie nieformalnie. |
+| 1 | Podstawowy czat | Pracownicy pytają AI ad hoc, bez standardów. |
+| 2 | Świadome promptowanie | Ludzie rozumieją, że kontekst, cel i format wpływają na wynik. |
+| 3 | Frameworki promptowania | Zespół używa powtarzalnych struktur promptów i szablonów. |
+| 4 | Instrukcje niestandardowe i higiena tokenów | Stałe instrukcje, role i preferencje nie są przepisywane w każdym promptcie. |
+| 5 | Kontekst projektowy | Wiedza o projekcie żyje w plikach, repozytoriach i dokumentacji dla ludzi oraz agentów. |
+| 6 | Zaawansowane instrukcje operacyjne | Agent wie nie tylko *co* robić, ale *jak* działać, kiedy pytać i czego nie robić. |
+| 7 | Skille, bazy wiedzy i ewaluacje | Organizacja buduje powtarzalne umiejętności AI, RAG, playbooki i zestawy testów. |
+| 8 | Narzędzia, MCP, konektory i hooks | AI działa na systemach, ale w kontrolowanym środowisku z uprawnieniami i automatycznymi kontrolami. |
+| 9 | Agentowe workflow | Człowiek definiuje cel, agent planuje i realizuje proces end-to-end z kontrolą. |
+| 10 | Orkiestracja wieloagentowa | Wiele agentów współpracuje pod nadzorem koordynatora lub workflow engine. |
+| 11 | Agentic OS dla celów biznesowych | Organizacja projektuje własny system operacyjny pracy agentów dla konkretnych rezultatów biznesowych. |
 
-| Faza | Poziom | Nazwa | Jednym zdaniem |
-|------|--------|-------|----------------|
-| Start | [0](#poziom-0) | [Opór](#poziom-0) | Brak kontaktu z AI |
-| Start | [1](#poziom-1) | [Podstawowy czat](#poziom-1) | Pytanie → odpowiedź |
-| Świadome użycie | [2](#poziom-2) | [Świadome promptowanie](#poziom-2) | Jakość inputu = jakość outputu |
-| Świadome użycie | [3](#poziom-3) | [Frameworki](#poziom-3) | CRISP, CoT, few-shot |
-| Świadome użycie | [4](#poziom-4) | [Instrukcje niestandardowe](#poziom-4) | Model zna Cię bez przypominania |
-| Kontekst i wiedza | [5](#poziom-5) | [Pliki kontekstowe](#poziom-5) | README, AGENTS.md, claude.md |
-| Kontekst i wiedza | [6](#poziom-6) | [Zaawansowane instrukcje](#poziom-6) | Reguły zachowań i granic |
-| Kontekst i wiedza | [7](#poziom-7) | [Skille i bazy wiedzy](#poziom-7) | Wiedza domenowa + umiejętności |
-| Kontekst i wiedza | [8](#poziom-8) | [Narzędzia i MCP](#poziom-8) | Integracja z systemami |
-| Autonomia | [9](#poziom-9) | [Agentowy workflow](#poziom-9) | Cel → autonomiczna realizacja |
-| Autonomia | [10](#poziom-10) | [Orkiestracja](#poziom-10) | Zespół agentów + koordynator |
+## Poziom 0 — Opór / brak adopcji
 
-## Faza 0–1: Start
+Organizacja nie używa AI albo oficjalnie zakazuje użycia, mimo że pracownicy mogą korzystać z narzędzi prywatnie lub po cichu.
 
-### Poziom 0
+- **Bariera:** strach, compliance, brak wiedzy, brak właściciela tematu.
+- **Sukces:** uczciwa decyzja — albo świadome „nie teraz", albo start kontrolowanego pilotażu.
+- **Pułapka:** udawanie, że AI nie istnieje, podczas gdy pojawia się shadow AI.
 
-**Opór / brak adopcji.** Użytkownik nie korzysta z AI — z powodu braku wiedzy, obaw, decyzji etycznej lub niezgody firmowej. Często towarzyszy temu lęk przed utratą pracy albo nieufność wobec technologii.
+**Sygnał przejścia wyżej:** organizacja potrafi nazwać dopuszczalne i niedopuszczalne użycia AI.
 
-- **Bariera:** emocje i tożsamość zawodowa.
-- **Sukces:** uczciwa, poinformowana decyzja (a nie unik).
-- **Pułapka:** racjonalizowanie oporu argumentami technicznymi („halucynuje", „nie ma compliance") zamiast przyznania, że problemem jest strach.
+## Poziom 1 — Podstawowy czat
 
-### Poziom 1
+Pracownicy używają AI jak wyszukiwarki albo generatora tekstów. Pytanie → odpowiedź. Brak wspólnych standardów.
 
-**Podstawowy czat — pytanie → odpowiedź.** Pierwsza interakcja. Użytkownik traktuje model jak wyszukiwarkę: wpisuje pytanie, dostaje odpowiedź, czasem doprecyzowuje.
+- **Bariera:** brak wiedzy, jak pytać i jak weryfikować.
+- **Sukces:** ludzie zaczynają używać AI do prostych zadań: streszczeń, maili, pomysłów, pierwszych wersji dokumentów.
+- **Pułapka:** fałszywe poczucie adopcji — „używamy AI", ale bez wzrostu kompetencji.
 
-> Nawet eksperci wracają tutaj — i to jest OK. Prosty czat to nie wstyd, to narzędzie.
+**Enterprise evidence:** pojedyncze użycia, brak repo promptów, brak polityki, brak miar.
 
-- **Bariera:** przełamanie pierwszego kontaktu.
-- **Sukces:** naturalne sięganie po AI przy drobnych pytaniach.
-- **Pułapka:** zatrzymanie się tu na lata z przekonaniem „używam AI codziennie" — bo używasz 2% jego możliwości.
+## Poziom 2 — Świadome promptowanie
 
-**Diagnoza fazy Start:** jesteś tu, jeśli nie masz własnego konta w żadnym narzędziu AI albo używasz go tylko wtedy, gdy ktoś Ci pokazuje. Sygnał przejścia dalej: zaczynasz zauważać, że odpowiedzi bywają różnej jakości w zależności od tego, *jak* pytasz.
+Pracownicy rozumieją, że AI potrzebuje celu, kontekstu, roli, ograniczeń i oczekiwanego formatu.
 
-## Faza 2–4: Świadome użycie
+- **Bariera:** przejście od „zadaję pytanie" do „projektuję instrukcję".
+- **Sukces:** prompty zawierają cel, odbiorcę, dane wejściowe, ograniczenia i format wyniku.
+- **Pułapka:** wiara, że dobry prompt rozwiązuje wszystko.
 
-### Poziom 2
+**Przykład.** Zamiast „Napisz test case'y" — lepiej: „Jesteś QA w projekcie bankowym. Na podstawie poniższych acceptance criteria przygotuj testy pozytywne, negatywne i brzegowe w formacie tabeli: ID, warunek, kroki, oczekiwany rezultat, ryzyko."
 
-**Świadome promptowanie — jakość inputu wpływa na jakość outputu.** Użytkownik nadaje rolę („jesteś QA, napisz testy"), kontekst, ograniczenia. Zaczyna iterować zamiast akceptować pierwszą odpowiedź.
+## Poziom 3 — Frameworki promptowania
 
-- **Bariera:** odruch „piszę jak do człowieka" zamiast „piszę jak do systemu, który potrzebuje kontekstu".
-- **Sukces:** prompty zawierają rolę, cel, kontekst, format wyjścia — bez frameworka, z doświadczenia.
-- **Pułapka:** przekonanie, że „wystarczy być precyzyjnym" — bez systematyzacji każdy prompt trzeba wymyślać od nowa.
+Zespół ma wspólne szablony: CRISP, role-task-context-format, few-shot, kryteria jakości, checklisty review.
 
-### Poziom 3
+- **Bariera:** dyscyplina stosowania i utrzymania szablonów.
+- **Sukces:** zespół ma wspólny język pracy z AI.
+- **Pułapka:** biblioteka „złotych promptów" rośnie do 200-liniowych potworków.
 
-**Frameworki i prompt engineering.** CRISP, chain-of-thought, few-shot learning, ReAct. Ustrukturyzowane szablony, powtarzalne procesy, własne biblioteki promptów.
+**Enterprise evidence:** prompt library, przykłady dobrych/złych promptów, szkolenia, review promptów.
 
-> Tu zatrzymuje się większość organizacji wdrażających AI. Frameworki dają świetne wyniki — ale to dopiero początek drogi.
+## Poziom 4 — Instrukcje niestandardowe i higiena tokenów
 
-- **Bariera:** nauka technik i dyscyplina stosowania.
-- **Sukces:** powtarzalne, wysokiej jakości wyniki; zespół ma wspólny język promptowania.
-- **Pułapka:** fetyszyzacja promptów — coraz dłuższe, coraz bardziej barokowe, zamiast przenieść powtarzającą się treść do instrukcji niestandardowych.
+Organizacja zaczyna przenosić powtarzalne instrukcje z promptów do ustawień, instrukcji systemowych, custom instructions, konfiguracji asystentów i standardów projektowych.
 
-### Poziom 4
+To pierwszy poziom, na którym jawnie pojawia się **oszczędzanie tokenów i kosztów**. Nie chodzi o to, żeby pisać krócej za wszelką cenę. Chodzi o to, żeby nie płacić codziennie za ten sam kontekst.
 
-**Instrukcje niestandardowe — model zna Cię bez przypominania.** Custom instructions, system prompts, ustawienia per-projekt. Nie powtarzasz co sesję „jestem testerem, piszę po polsku, lubię zwięzłe odpowiedzi".
+- **Bariera:** inwestycja w setup, który zwraca się dopiero po czasie.
+- **Sukces:** krótsze prompty, spójniejsze odpowiedzi, mniej kopiowania instrukcji.
+- **Pułapka:** instrukcje niestandardowe stają się śmietnikiem wszystkiego.
 
-**Typowy dzień na poziomie 4:** otwierasz ChatGPT / Claude, piszesz *„zrób review tego PR-a"*, a model już wie w jakim języku odpowiadać, jakiego stylu używasz i na co zwracać uwagę — bo powiedziałeś mu to raz, w ustawieniach.
+**Nowość v2.1:** od tego poziomu oceniamy *model awareness* — czy użytkownik wie, kiedy użyć modelu szybkiego, kiedy reasoning, kiedy modelu kodowego, kiedy multimodalnego, a kiedy w ogóle nie używać AI.
 
-- **Bariera:** inwestycja czasu w setup, który zwróci się dopiero za tydzień.
-- **Sukces:** krótkie prompty, długi kontekst domyślny; spójność między sesjami.
-- **Pułapka:** instrukcje rosną do rozmiarów powieści, bo dorzucasz przy każdym problemie — bez przeglądów i usuwania.
+## Poziom 5 — Kontekst projektowy
 
-**Diagnoza fazy Świadome użycie:** jesteś tu, jeśli rozpoznajesz różnicę między dobrym a złym promptem u kogoś innego i masz własne szablony lub custom instructions. Sygnał przejścia dalej: czujesz, że kopiujesz ten sam kontekst między projektami i marzysz o tym, żeby żył „przy kodzie".
+Kontekst żyje przy projekcie: w `README.md`, `AGENTS.md`, `CLAUDE.md`, dokumentacji architektury, ADR-ach, zasadach testowania, definicjach domeny, słownikach i przykładach.
 
-## Faza 5–8: Kontekst i wiedza
+- **Bariera:** potraktowanie dokumentacji dla AI jako elementu inżynierii, nie dodatku.
+- **Sukces:** nowy człowiek lub agent szybciej rozumie projekt.
+- **Pułapka:** dokumentacja jest nieaktualna, więc agent wykonuje stare zasady.
 
-### Poziom 5
+**Enterprise evidence:** pliki kontekstowe w repo, aktualizowane przy zmianach, używane w praktyce.
 
-**Pliki kontekstowe — kontekst per-projekt.** `README.md`, [`AGENTS.md`](/pl/blog/agents-md-dla-test-automation/), `CLAUDE.md`, `.cursorrules`. Agenci AI otrzymują pliki opisujące projekt: co budujemy, jaka jest struktura, jakie konwencje. Uruchamiasz agenta w katalogu — on już wie, co robić.
+## Poziom 6 — Zaawansowane instrukcje operacyjne
 
-- **Bariera:** przyjęcie, że pisanie dokumentacji dla AI to praca inżynierska, nie „narzut".
-- **Sukces:** nowy członek zespołu (człowiek lub agent) jest produktywny w godzinę.
-- **Pułapka:** `CLAUDE.md` pisany raz i nigdy nieaktualizowany — staje się mitologią.
+Agent ma opisane zachowanie: kiedy pytać, kiedy działać samodzielnie, kiedy eskalować, czego nie robić, jak raportować, jak sprawdzać wynik.
 
-### Poziom 6
+- **Bariera:** spisanie norm, które wcześniej były „w głowie zespołu".
+- **Sukces:** agent zachowuje się zgodnie z kulturą pracy zespołu.
+- **Pułapka:** zbyt sztywne instrukcje, które blokują sensowne działanie.
 
-**Zaawansowane instrukcje — definicja zachowań, reguł i granic.** Nie „co robić", tylko „jak się zachowywać": kiedy pytać, kiedy działać autonomicznie, jak raportować, czego nie robić. Różnica między prostym README a pełną specyfikacją roli.
+**Przykład zasad:**
 
-- **Bariera:** umiejętność artykułowania norm, które do tej pory były w głowie.
-- **Sukces:** agent działa zgodnie z kulturą zespołu bez Twojej obecności.
-- **Pułapka:** sztywne reguły w miejscach, gdzie lepiej działałby dobry przykład — overfitting do jednego scenariusza.
+- „Nie dodawaj zależności bez zgody."
+- „Przed zmianą konfiguracji CI zaproponuj plan."
+- „Po zmianie testów uruchom tylko dotknięty zakres, a pełny regres zostaw do CI."
+- „Nie dotykaj danych produkcyjnych."
 
-### Poziom 7
+## Poziom 7 — Skille, bazy wiedzy i ewaluacje
 
-**Skille i bazy wiedzy — wyspecjalizowane umiejętności i wiedza domenowa.** Dedykowane skille ([raporty bugów do Jiry](/pl/blog/skill-do-raportu-bugow-w-jirze/), analiza logów, [budowa własnego subagenta](/pl/blog/wlasny-subagent-claude-code-przyklad/)), bazy wiedzy (dokumentacja, standardy, historia decyzji). Nie wymyślamy koła na nowo — wiedza jest zorganizowana.
+Organizacja ma powtarzalne skille AI: generowanie raportów, analiza logów, review kodu, tworzenie testów, analiza wymagań, streszczenia spotkań, triage ticketów, pisanie release notes.
 
-- **Bariera:** architektura informacji i decyzja *co* zamknąć w skillu, a co zostawić ad hoc.
-- **Sukces:** agent sięga po właściwe narzędzie sam, bez prowadzenia za rękę.
-- **Pułapka:** mnożenie skilli „na wszelki wypadek" — nikt ich nie używa i nikt nie pamięta, że istnieją.
+Pojawiają się też bazy wiedzy i RAG, ale z kontrolą jakości: źródła, aktualność, właściciele, wersjonowanie.
 
-### Poziom 8
+- **Bariera:** architektura informacji.
+- **Sukces:** agent korzysta z właściwej wiedzy i umiejętności bez ciągłego prowadzenia za rękę.
+- **Pułapka:** mnożenie skilli bez właścicieli i bez mierzenia jakości.
 
-**Narzędzia, MCP i konektory — integracja z zewnętrznymi systemami.** Agent nie tylko pisze — przeszukuje Slacka, tworzy zadania w Jira, czyta maile, odpytuje API, uruchamia testy. [MCP (Model Context Protocol)](/pl/blog/pierwszy-mcp-dla-qa-search-fetch/) i konektory (np. [context7 do aktualnej dokumentacji](/pl/blog/context7-mcp-aktualna-dokumentacja-llm/)) pozwalają mu działać w świecie.
+**Nowość v2.1:** poziom 7 wymaga prostych **evals** — przykładów testowych, które sprawdzają, czy prompt, skill lub agent nadal działa po zmianie modelu, instrukcji albo danych.
 
-- **Bariera:** bezpieczeństwo i uprawnienia — *co* i *gdzie* agent może realnie zrobić.
-- **Sukces:** agent jak nowy członek zespołu z dostępem do systemów.
-- **Pułapka:** podłączanie wszystkiego do wszystkiego bez audytu — pierwsza awaria kosztuje więcej niż cały rok oszczędności.
+## Poziom 8 — Narzędzia, MCP, konektory i hooks
 
-**Diagnoza fazy Kontekst i wiedza:** jesteś tu, jeśli Twoje projekty mają pliki kontekstowe, których sam przestrzegasz, a agent potrafi wykonać zadanie end-to-end bez instrukcji „krok po kroku". Sygnał przejścia dalej: zaczynasz formułować cele wysokopoziomowe i dziwisz się, że wciąż musisz rozpisywać je na kroki.
+Agent nie tylko pisze. Ma dostęp do narzędzi: repozytoriów, systemów ticketowych, dokumentacji, API, Slacka, poczty, kalendarzy, baz danych, środowisk testowych, CI/CD.
 
-## Między fazą 8 a 9: granica zaufania
+MCP pasuje właśnie tutaj — to standard łączenia aplikacji LLM z zewnętrznymi źródłami danych i narzędziami.
 
-To jest **najważniejszy skok w całej skali** — i najsłabiej opisany w popularnych modelach. Do poziomu 8 włącznie człowiek prowadzi, agent wykonuje. Od poziomu 9 to człowiek definiuje cel, a agent sam decyduje o krokach.
+**Hooks** są w v2.1 częścią tego poziomu. Pozwalają wymusić automatyczne kontrole przed, w trakcie lub po działaniu agenta: uruchomienie testów, lintów, skanów bezpieczeństwa, walidacji promptów, wymuszenia review, blokowania niedozwolonych komend, zapisu audytu.
 
-Granica nie jest techniczna — narzędzia istnieją od dawna. Granica jest **organizacyjna i psychologiczna**: zgoda na to, że coś zostanie zrobione bez Twojej każdej decyzji. Firmy utykają na 8 nie z powodu braku MCP, tylko z powodu braku gotowości do oddania kontroli. Inżynierowie utykają na 8, bo lubią sterować.
+- **Bariera:** bezpieczeństwo, uprawnienia, audyt, ownership.
+- **Sukces:** agent ma dostęp tylko do tego, czego potrzebuje, a jego działania są logowane i kontrolowane.
+- **Pułapka:** „podłączmy wszystko do wszystkiego".
 
-Przejście wymaga dwóch rzeczy: **sprawdzalności** (łatwo zweryfikować, co agent zrobił) i **odwracalności** (łatwo cofnąć, jeśli zrobił źle). Bez tych dwóch poziom 9 jest nieodpowiedzialny. Z nimi — staje się oczywistym krokiem.
+**Enterprise controls:** agent registry, osobna tożsamość agenta, least privilege, logi, limity kosztów, DLP, allowlista narzędzi, sandbox, approval dla działań ryzykownych.
 
-## Faza 9–10: Autonomia
+## Poziom 9 — Agentowe workflow
 
-### Poziom 9
+Człowiek definiuje cel, agent planuje kroki i realizuje zadanie. Człowiek nie prowadzi go po każdym kroku, ale sprawdza efekt, logi i decyzje.
 
-**Agentowy workflow — cel → autonomiczne planowanie i realizacja.** Agent dostaje cel wysokopoziomowy i sam planuje kroki. *„Przygotuj release notes na podstawie ostatnich commitów"* — agent sprawdza repo, analizuje zmiany, pisze notatki, proponuje draft.
+- **Bariera:** zaufanie, weryfikowalność i odwracalność.
+- **Sukces:** agent realizuje proces end-to-end w ograniczonym, znanym zakresie.
+- **Pułapka:** iluzja autonomii — agent działa sam, ale człowiek później poprawia 60% wyniku.
 
-> Paradoks: użytkownik wraca do „prostego pytania" z poziomu 1 — ale machina pod spodem jest zupełnie inna.
+**Przykłady enterprise:**
 
-- **Bariera:** zaufanie i system weryfikacji.
-- **Sukces:** delegujesz cele, nie zadania; agent zgłasza się sam, gdy utknie.
-- **Pułapka:** iluzja autonomii — agent *wydaje się* robić sam, ale w praktyce 60% Twojego czasu zjadają poprawki tego, co „prawie działa".
+- „Przygotuj release notes z ostatniego sprintu."
+- „Zrób analizę błędów z produkcji i zaproponuj priorytety."
+- „Przejrzyj pull request, uruchom testy, zgłoś ryzyka."
+- „Przygotuj draft odpowiedzi dla klienta na podstawie historii ticketu."
 
-### Poziom 10
+Na tym poziomie potrzebne są **guardrails** i **human review**. W praktyce produkcyjnej automatyczne walidacje i zatwierdzenia człowieka decydują, czy agent ma kontynuować, zatrzymać się czy poczekać na zgodę.
 
-**Orkiestracja wieloagentowa — zespół agentów z koordynatorem.** Wielu [subagentów](/pl/blog/subagenci-claude-code-co-to-i-po-co/), każdy ze swoją specjalizacją: jeden analizuje, drugi koduje, trzeci robi review, czwarty pisze testy. Orkiestrator koordynuje kolejność, rozwiązuje konflikty, agreguje wyniki.
+## Poziom 10 — Orkiestracja wieloagentowa
 
-- **Bariera:** projektowanie systemu agentów, a nie pisanie promptów.
-- **Sukces:** złożone cele realizowane bez mikrozarządzania; człowiek ustala kierunek i weryfikuje efekt.
-- **Pułapka:** overengineering — trzech agentów tam, gdzie wystarczyłby jeden dobrze skonfigurowany, bo „modno jest mieć zespół".
+Organizacja ma wiele wyspecjalizowanych agentów: analityk, researcher, developer, tester, reviewer, compliance checker, dokumentalista, release manager.
 
-**Diagnoza fazy Autonomia:** jesteś tu, jeśli w ciągu ostatniego tygodnia delegowałeś agentowi cel, którego realizację sprawdziłeś dopiero na końcu — i była poprawna. Sygnał, że jesteś „powyżej 10": zaczynasz projektować systemy, w których pojedynczy agent to szczegół implementacyjny.
+- **Bariera:** projektowanie systemu agentów, a nie pojedynczego promptu.
+- **Sukces:** agenci współpracują w kontrolowanym procesie i dowożą wynik lepszy niż pojedynczy agent.
+- **Pułapka:** overengineering — wielu agentów tam, gdzie wystarczyłby jeden dobry workflow.
 
-## Anti-patterny — gdzie ludzie utykają
+Anthropic w swoich praktykach budowania agentów podkreśla, że skuteczne implementacje często wygrywają prostymi, komponowalnymi wzorcami, a nie nadmiernie skomplikowanymi frameworkami. To ważne ostrzeżenie dla poziomu 10: orkiestracja ma sens tylko wtedy, gdy złożoność zadania ją uzasadnia.
 
-Z obserwacji:
+## Poziom 11 — Agentic OS dla celów biznesowych
 
-- **Utknięcie na 1 z mitem „używam AI".** Codzienne Q&A daje poczucie adopcji, maskując zerowy wzrost umiejętności. Test: czy w ostatnim miesiącu wypróbowałeś cokolwiek nowego?
-- **Utknięcie na 3 z fetyszem promptów.** Biblioteki „złotych promptów" na 200 linii każdy, zamiast przeniesienia powtarzalnej treści do instrukcji. Objaw: kopiujesz prompt z dokumentu za każdym razem.
-- **Fałszywa dojrzałość na 8.** Firma ma MCP, integracje i dashboardy — ale każdy workflow wymaga człowieka do zatwierdzenia każdego kroku. To wciąż poziom 6–7 przebrany za 8.
-- **Skok z 4 na 9.** „Zainstalujemy agenta, niech sam działa" — bez fazy kontekstu i wiedzy. Agent halucynuje, zespół traci zaufanie, wraca do poziomu 2 i mówi, że „AI nie działa".
-- **Poziom 10 bez poziomu 9.** Zespół agentów, z których żaden nie radzi sobie z pojedynczym celem. Orkiestracja miernoty daje większą miernotę.
+To nowy poziom v2.1.
 
-## Organizacja vs jednostka
+Organizacja potrafi zaprojektować własny **agentic operating system** dla konkretnego obszaru biznesowego. Nie chodzi o „więcej agentów". Chodzi o spójny system, w którym:
 
-Skala dla **jednostki** mierzy umiejętność. Skala dla **organizacji** mierzy system: procesy, wiedzę instytucjonalną, governance, narzędzia.
+- cele biznesowe są przetłumaczone na workflow,
+- agenci mają role, właścicieli i zakres odpowiedzialności,
+- narzędzia są podłączone przez kontrolowane interfejsy,
+- dane mają źródła, właścicieli i poziomy zaufania,
+- działania są logowane,
+- koszty są mierzone,
+- ryzykowne akcje wymagają approval,
+- błędy da się cofnąć,
+- governance jest częścią działania, a nie dokumentem po fakcie.
 
-Typowe rozjazdy:
+**Bariera:** przejście z „używamy AI" do „projektujemy nowy system pracy".
+**Sukces:** AI staje się warstwą operacyjną procesu biznesowego.
+**Pułapka:** budowa efektownej platformy bez jasnego celu biznesowego.
 
-- **Jednostka 9, organizacja 2.** Pojedynczy inżynier używa agentów autonomicznie w pracy domowej, ale w firmie musi ich wyłączyć „bo compliance". Marnotrawstwo talentu.
-- **Jednostka 3, organizacja 7.** Firma ma świetne pliki kontekstowe, skille, MCP — ale użytkownicy kopiują prompty z Confluence, bo nie rozumieją, co mają pod ręką. Marnotrawstwo infrastruktury.
-- **Jednostka 5, organizacja 5 (wyrównane).** Rzadki, zdrowy stan. Zwykle oznacza, że firma aktywnie inwestuje w edukację, a inżynierowie mają głos w doborze narzędzi.
+**Przykładowe agentic OS w enterprise:**
 
-Mierząc organizację, sprawdzaj **medianę**, nie maksimum. Jeden lider na 9 nie czyni firmy dojrzałą.
+1. **QA Agentic OS** — analiza wymagań, generowanie testów, utrzymanie regresji, analiza flaky tests, raport jakości.
+2. **Release Agentic OS** — changelog, ryzyka, test impact analysis, komunikacja release, checklisty, rollback plan.
+3. **Compliance Agentic OS** — monitoring regulacji, mapowanie polityk, drafty procedur, evidence collection.
+4. **Customer Support Agentic OS** — triage, odpowiedzi, eskalacje, analiza sentymentu, baza wiedzy, jakość obsługi.
+5. **Finance Reporting Agentic OS** — zbieranie danych, wyjaśnianie odchyleń, przygotowanie narracji, kontrola źródeł.
+6. **Procurement Agentic OS** — analiza ofert, ryzyka dostawców, porównania, zgodność z polityką zakupową.
 
-## Gdzie ten model zawodzi
+**Test poziomu 11:** czy możesz wskazać jeden konkretny proces biznesowy i powiedzieć: „tu AI nie jest dodatkiem, tylko warstwą operacyjną procesu — z celami, kontrolami, miernikami, audytem i właścicielem"?
 
-Uczciwie:
+## Granice, na które warto patrzeć
 
-- **Skala jest liniowa, świat nie.** W praktyce skacze się między poziomami w zależności od zadania. W pisaniu maili jesteś na 1, w kodzie na 8. To normalne.
-- **Nie wszystkie poziomy są równie wartościowe.** Przeskok z 1 na 4 daje większy zysk niż z 8 na 10. Model pokazuje trajektorię, nie priorytet.
-- **Narzędzia się zmieniają szybciej niż skala.** Poziom 8 z 2025 (pierwsze MCP w użyciu) to nie to samo, co poziom 8 z Q2 2026. Skala opisuje *rodzaj* umiejętności, nie konkretne produkty.
-- **Nie ma tu etyki.** Można być na poziomie 10 i robić coś szkodliwego. Dojrzałość techniczna nie jest dojrzałością moralną.
+**Granica 8→9.** Narzędzia to jeszcze nie autonomia. Możesz mieć MCP, hooks i 20 integracji, a agent nadal czeka na każdy krok człowieka. Przejście na 9 oznacza, że agent planuje, działa i raportuje — a człowiek przegląda efekt, nie każdy ruch.
+
+**Granica 10→11.** Orkiestracja to jeszcze nie agentic OS. Wieloagentowy workflow można zbudować bez governance, bez właścicieli, bez audytu i bez metryk kosztu. Agentic OS to system pracy z celem biznesowym, nie demo zespołu agentów.
+
+## Anti-patterny v2.1e
+
+- **Shadow AI.** Brak polityki, więc każdy używa, czego chce, na danych, których nie powinien.
+- **Prompt cargo cult.** Kopiowanie cudzych „mega-promptów" bez zrozumienia kontekstu.
+- **Integracje bez governance.** Agent z dostępem do całej infry bez identity, audytu i approval.
+- **Agenci bez właścicieli.** Działają na produkcji, ale nikt nie wie, kto za nich odpowiada.
+- **OS bez celu.** Platforma z dashboardem, kosztami i prezentacją, ale bez procesu biznesowego, który realnie obsługuje.
+
+## Świadomość modeli
+
+W v2.1 dojrzałość obejmuje też świadomość modeli. Ten sam prompt nie musi działać tak samo na różnych modelach. Inaczej instruuje się model szybki, inaczej reasoning model, inaczej model kodowy, inaczej model mały, a inaczej model z dużym kontekstem.
+
+Osoba lub organizacja na wyższym poziomie nie pyta tylko „jakiego promptu użyć?", ale też: **który model, z jakim kosztem, z jakim poziomem rozumowania i z jaką walidacją jest właściwy dla tego zadania?**
 
 ## Co dalej
 
-Jeśli ta skala Ci się przyda w rozmowie z zespołem — korzystaj, cytuj, adaptuj. Jeśli widzisz w niej luki, napisz do mnie na [holak.net.pl](https://holak.net.pl) albo przez kanał kontaktu na blogu. Wersja 3 powstanie jeszcze w tym roku — z Konradem „Gumisiem" Gomulskim zbieramy dane z wdrożeń i eksperymentujemy.
+Wersja prywatna skali ma osobny artykuł: [Skala Holaka v2.1p — private](/pl/blog/skala-holaka-private/). Tam mierzy się dojrzałość codziennego użycia AI — dom, nauka, finanse, smart home, organizacja życia. Inne ryzyka, inne sukcesy, inne pułapki.
+
+Wcześniejsze wersje: pierwotny [Model dojrzałości AI (v1)](/pl/blog/model-dojrzalosci-ai/) pozostaje dostępny jako kontekst historyczny. Treść v2.0 została w całości włączona do tej wersji v2.1e.
 
 ---
 
-*Opracowanie: Grzegorz Holak — Quality Cat, doświadczenie z Sii Polska i Santander Corporate & Investment Banking. Pierwotna publikacja: [holak.net.pl](https://holak.net.pl). Wersja 1 modelu: [Model dojrzałości adopcji AI](/pl/blog/model-dojrzalosci-ai/).*
+## Historia wersji
+
+- **v1.0** — *Model dojrzałości adopcji AI*. Powstała w marcu 2026, opublikowana **15 kwietnia 2026**. Krótki model 11-poziomowy.
+- **v2.0** — *Skala Holaka*. Powstała w kwietniu 2026, opublikowana **20 kwietnia 2026**. Rozbudowa o diagnozę, anti-patterny i wymiar organizacyjny.
+- **v2.1e** (ten artykuł) — *enterprise*. Rozdzielenie ścieżki firmowej i prywatnej, hooks na poziomie 8, poziom 11 jako agentic OS. **18 maja 2026**.
+- **v2.1p** — *private*. Wersja prywatna opublikowana **17 maja 2026**. [Czytaj v2.1p →](/pl/blog/skala-holaka-private/)
+
+Skala pozostaje modelem rozwijanym iteracyjnie. AI, narzędzia i sposób pracy z agentami zmieniają się szybciej niż większość modeli dojrzałości, dlatego Skala Holaka będzie aktualizowana wraz z praktyką jej użycia w organizacjach i w życiu codziennym.

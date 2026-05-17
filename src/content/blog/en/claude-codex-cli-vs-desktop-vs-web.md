@@ -1,7 +1,7 @@
 ---
 title: "Claude and Codex: CLI vs Desktop vs Web — Where You Actually Ship Work"
 description: "Three access channels to the same models differ in what they can touch. A practical comparison of Claude Code and Codex CLI against desktop apps and web interfaces."
-date: 2026-05-18
+date: 2026-05-20
 tags: ["ai", "claude-code", "codex", "tools", "workflow"]
 lang: en
 readingTime: 12

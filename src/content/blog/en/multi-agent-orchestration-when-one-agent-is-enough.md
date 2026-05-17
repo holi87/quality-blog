@@ -1,7 +1,7 @@
 ---
 title: "Multi-Agent Orchestration — When One Agent Is Enough"
 description: "Level 10 on the Holak Scale is attractive for a CV, expensive to maintain. A skeptical take on agent teams: when you actually need many, when one well-configured agent wins, and how to spot orchestrating mediocrity."
-date: 2026-06-01
+date: 2026-06-03
 tags: ["ai", "agents", "claude-code", "holak-scale", "orchestration"]
 lang: en
 readingTime: 8

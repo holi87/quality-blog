@@ -1,7 +1,7 @@
 ---
 title: "Jednostka 9, firma 2 — co robić z rozjazdem dojrzałości AI"
 description: "Większość firm mierzy maksimum zamiast mediany. Jak wykryć rozjazd między dojrzałością jednostki a organizacji, jak liczyć medianę i co realnie zrobić jeśli jesteś inżynierem na 9 w firmie na 2."
-date: 2026-05-25
+date: 2026-05-27
 tags: ["ai", "adopcja", "skala-holaka", "zespoly", "governance"]
 lang: pl
 readingTime: 9

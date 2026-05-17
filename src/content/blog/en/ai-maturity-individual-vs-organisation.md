@@ -1,7 +1,7 @@
 ---
 title: "Individual 9, Company 2 — What to Do About AI Maturity Gaps"
 description: "Most companies measure the maximum instead of the median. How to detect a gap between individual and organisational maturity, how to compute the median, and what to actually do if you're a level-9 engineer in a level-2 company."
-date: 2026-05-25
+date: 2026-05-27
 tags: ["ai", "adoption", "holak-scale", "teams", "governance"]
 lang: en
 readingTime: 9

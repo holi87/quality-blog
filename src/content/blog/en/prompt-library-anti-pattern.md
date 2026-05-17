@@ -1,7 +1,7 @@
 ---
 title: "A Prompt Library Is an Anti-Pattern. Yes, the 200-Line One"
 description: "If you copy prompts from a document, you have a phase-4 problem, not a phase-3 one. Why prompt fetishism is a symptom of stalled evolution, and how to break a 200-line prompt down into custom instructions and project context."
-date: 2026-05-27
+date: 2026-05-28
 tags: ["ai", "prompt-engineering", "holak-scale", "anti-patterns"]
 lang: en
 readingTime: 7
