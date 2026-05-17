@@ -1,10 +1,10 @@
 ---
-title: "MCP i konektory — kiedy warto, kiedy to overengineering"
-description: "MCP to narzędzie, nie status. Każdy konektor to maintenance, ryzyko i powierzchnia ataku. Kryteria, kiedy MCP się opłaca, kiedy to lepsze niż integracja w kodzie, i drzewo decyzyjne przed dodaniem."
+title: "MCP, CLI czy hook — kiedy który tool, kiedy MCP to overengineering"
+description: "MCP to narzędzie, nie status. Każdy konektor to maintenance, ryzyko i powierzchnia ataku. Kryteria, kiedy MCP się opłaca, kiedy lepsze jest CLI / slash command / hook, drzewo decyzyjne i ścieżka migracji CLI → MCP."
 date: 2026-06-01
-tags: ["ai", "mcp", "claude-code", "tooling", "skala-holaka"]
+tags: ["ai", "mcp", "cli", "claude-code", "tooling", "skala-holaka"]
 lang: pl
-readingTime: 8
+readingTime: 13
 author: GH
 ---
 
@@ -145,6 +145,87 @@ Próba zwrócenia uwagi: nie każdy MCP musi być wielkim projektem. „Mały MC
 - audit log per call
 
 To **lepszy wzór** niż „mamy general-purpose MCP do wszystkiego". Ten ostatni szybko staje się odpowiedzialny za wszystko i niczego.
+
+## Zanim sięgniesz po MCP — rozważ CLI
+
+MCP to nie jedyna ścieżka. W połowie przypadków, w których zespoły dodają konektor, **slash command albo skrypt CLI** wykonują tę samą pracę za ułamek kosztu utrzymania.
+
+Konkretnie chodzi o trzy formy:
+
+- **Slash commands w Claude Code / Codex / Cursor** — plik markdown z instrukcją, wywoływany `/nazwa`. Zero infrastruktury, dystrybucja przez repo (`.claude/commands/`).
+- **CLI wrappery w Bash toolu** — `gh`, `jira-cli`, `slack-cli`, `curl + jq`, `aws`, `kubectl`, własny skrypt w `~/.local/bin/`. Agent woła komendę przez Bash, my widzimy ją w shell history.
+- **Skrypty Python / Node** — `scripts/release-notes.py`, `scripts/jira-triage.ts`. Stałe w repo, wersjonowane, testowalne.
+
+### Kiedy CLI bije MCP
+
+- **Pojedynczy user.** Nie ma sensu stawiać serwera dla siebie. `~/.local/bin/jira-create` + alias robi to samo.
+- **Eksperyment.** Sprawdzasz, czy automatyzacja w ogóle ma sens. Skrypt → tydzień użycia → decyzja. MCP wymusza setup, którego nie chcesz wyrzucać.
+- **Read-only audit / one-shot.** „Wyciągnij listę PR-ów z ostatniego tygodnia" — `gh pr list --json ...` + `jq`. Nie dorabiaj do tego serwera.
+- **Działa wszędzie.** CLI uruchomisz w Claude Code, Codex, Cursor, vanilla terminalu, w CI, na cudzym laptopie. MCP wymaga konfiguracji per-klient.
+- **Niski blast radius.** Skrypt z `--dry-run` i jasnym scope (jeden user, jedna komenda) ma mniejszą powierzchnię ataku niż serwer MCP nasłuchujący stale.
+- **Audit za darmo.** Shell history + `script` + centralny `~/.zsh_history` na backupie. Albo logowanie w samym skrypcie. Nie potrzebujesz CloudWatcha.
+
+### Kiedy CLI jest gorsze niż MCP
+
+- **Wielu użytkowników, ten sam workflow.** Każdy musi sam zainstalować skrypt, ustawić credentials, śledzić wersję. MCP rozwiązuje to centralnie.
+- **Akcje z write do prod + compliance.** Audit przez shell history nie wystarczy — trzeba centralnego logu z atrybucją.
+- **Wymuszone zachowanie agenta.** Jeśli agent ma ZAWSZE używać tej funkcji w określony sposób — MCP wpisany do allowlisty bije skrypt, który agent może zignorować.
+- **Złożone schematy danych.** Jeśli tool zwraca strukturyzowaną odpowiedź, którą agent ma dalej parsować — MCP z schematem wygrywa nad surowym JSON-em z `curl`.
+
+### Konkretne pary CLI ↔ MCP
+
+| Use case | CLI / script | MCP — kiedy |
+|---|---|---|
+| Tworzenie ticketów Jira | `jira create -p PROJ -t Bug --summary "..."` | gdy 3+ osoby, write + audit |
+| Wysyłka do Slack | `curl -X POST webhook ... \| jq` | gdy potrzebne kontrolowane channele + DLP |
+| Status deploya | `gh run list --workflow=deploy.yml --limit=5` | rzadko — read-only, niskie ROI |
+| Search dokumentacji | `rg`, `grep`, `context7` (sam jest MCP) | dla zewnętrznych baz wiedzy z auth |
+| Generowanie release notes | `scripts/release-notes.py` | gdy ma czytać z 5+ źródeł z różnym auth |
+| PR review | `gh pr view 123 --json ...` | gdy team-wide policy z guardrailami |
+
+**Heurystyka:** zacznij od CLI. Migruj do MCP, gdy spełnione kryteria z sekcji „Migracja".
+
+## Trade-off: CLI vs MCP vs Hook
+
+Każdy ma inny target. Trzymanie ich osobno upraszcza decyzje.
+
+| Wymiar | CLI / skrypt / slash command | MCP server | Hook |
+|---|---|---|---|
+| Wywołuje | agent (przez Bash) lub user | agent (allowlist tool) | runtime (auto, przed/po akcji) |
+| Inicjatywa | model decyduje, kiedy odpalić | model decyduje, kiedy odpalić | wymuszone — agent nie pomija |
+| Audit | shell history / log skryptu | strukturyzowany log per call | wbudowany w runtime |
+| Scope | per user, per repo, per box | per zespół / org, scentralizowany | per sesja / per akcja |
+| Setup | 5 min — plik w repo | 2–6h — serwer, deploy, auth | godzina — config |
+| Maintenance | minimalny, edytujesz plik | regularny — wersje, CVE, auth | minimalny, ale wymaga testów |
+| Blast radius | ograniczony scopem skryptu | zależny od permissions; jeśli źle skonfigurowany — duży | mały — hook nie ma własnego state'u |
+| Dystrybucja | git, brew, npm | rejestr MCP, dokumentacja, onboarding | repo, `.claude/settings.json` |
+| Idealne dla | osobistych workflows, prototypów, audytów, one-shot | team-wide write actions z governance | wymuszanie polityk: testy, linty, blokady, audit |
+| Anti-use | wymuszone zachowanie agenta na wielu osobach | personal automation jednego usera | autonomia (hook nie zastępuje agentic workflow) |
+
+W praktyce **wszystkie trzy współistnieją w dojrzałym setupie**. CLI dla 80% personalnej pracy. MCP dla team-wide write z audytem. Hooks dla deterministycznych guardraili wokół tego wszystkiego.
+
+## Migracja CLI → MCP — kiedy promować
+
+Skrypt zaczyna być MCP-kandydatem, gdy spełnia 3+ z poniższych:
+
+1. **3+ użytkowników regularnie.** Każdy ma własną kopię. Wersje się rozjeżdżają. Onboarding nowego = pół dnia.
+2. **Write z compliance.** Akcja zmienia stan w prod / klienckim / regulowanym systemie i audyt po fakcie nie wystarcza.
+3. **Centralny audit wymagany.** Shell history per laptop nie wystarcza — bezpieczeństwo, SOC2, ISO chcą jednego punktu logowania.
+4. **Stabilny kontrakt.** Schemat wejścia / wyjścia nie zmienia się co tydzień. MCP nie jest dobrym miejscem na eksperyment z API.
+5. **Allowlist w polityce zespołu.** Chcesz wymusić, że agent używa TEGO toola, nie improwizuje własnego.
+6. **Cross-toolingowe użycie.** Ten sam workflow ma działać w Claude Code, Codex, Cursor, Open WebUI. MCP daje jedną implementację, kilka konsumentów.
+
+Jeśli spełnione 0–2 punkty — zostań przy CLI. Jeśli 3+ — pisz MCP.
+
+**Migracja krokowa:**
+
+1. Stabilizujesz skrypt CLI (test, README, semver).
+2. Identyfikujesz `tools` w MCP: każda komenda CLI = jeden tool, z jasnym input schema.
+3. Wrapper MCP wywołuje pod spodem ten sam CLI. Logika nie duplikuje się.
+4. Przez pierwszy miesiąc oba istnieją równolegle. Monitorujesz użycie.
+5. Wyłączasz CLI w team-config, zostawiasz na lokalnym laptopie ownera.
+
+Antypattern: **MCP zamiast CLI**, gdy nikt z zespołu poza tobą tego nie używa. To kosztuje 4× więcej i daje 0× więcej wartości.
 
 ## Co dalej
 
