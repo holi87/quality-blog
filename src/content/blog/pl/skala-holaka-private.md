@@ -16,7 +16,7 @@ Skala Holaka **v2.1p** mierzy prywatną dojrzałość korzystania z AI w codzien
 
 Nie chodzi o to, żeby „żyć przez AI". Chodzi o to, żeby AI pomagało tam, gdzie realnie zmniejsza chaos, oszczędza czas, poprawia decyzje i wspiera cele użytkownika.
 
-UNESCO opisuje *AI competency* jako zestaw kompetencji potrzebnych do odpowiedzialnego i kreatywnego funkcjonowania w świecie AI, obejmujący m.in. podejście human-centred, etykę, techniki AI i projektowanie systemów AI. To dobrze pasuje do wersji prywatnej: AI ma wspierać człowieka, a nie przejmować za niego odpowiedzialność.
+UNESCO opisuje *kompetencje AI* jako zestaw umiejętności potrzebnych do odpowiedzialnego i kreatywnego funkcjonowania w świecie AI, obejmujący m.in. podejście skoncentrowane na człowieku, etykę, techniki AI i projektowanie systemów AI. To dobrze pasuje do wersji prywatnej: AI ma wspierać człowieka, a nie przejmować za niego odpowiedzialność.
 
 ## Mapa poziomów v2.1p
 
@@ -161,11 +161,11 @@ Kilka agentów lub ról współpracuje nad jednym celem. Nie musi to być techni
 - *Agent dietetyczny* planuje jedzenie.
 - *Agent logistyczny* planuje zakupy i zadania.
 - *Agent smart home* sprawdza automatyzacje.
-- *Agent reviewer* szuka ryzyk i przeciążenia.
+- *Agent recenzent* szuka ryzyk i przeciążenia.
 
 - **Bariera:** koordynacja i prostota.
 - **Sukces:** wiele obszarów życia działa spójniej.
-- **Pułapka:** domowy overengineering - więcej systemu niż korzyści.
+- **Pułapka:** domowe przekombinowanie - więcej systemu niż korzyści.
 
 ## Poziom 11 - Prywatny agentic OS
 
@@ -183,7 +183,7 @@ Nie chodzi o pełną autonomię. Chodzi o spójny system wsparcia.
 - **automatyzacje** - przypomnienia, listy, smart home, podsumowania,
 - **kontrola** - co AI może zrobić samo, a co wymaga zgody,
 - **prywatność** - jakie dane są zakazane lub ograniczone,
-- **przegląd** - tygodniowy lub miesięczny review.
+- **przegląd** - tygodniowy lub miesięczny rytuał porządkowania systemu.
 
 - **Bariera:** zaprojektowanie systemu, który pomaga, a nie męczy.
 - **Sukces:** AI realnie zmniejsza chaos codzienności.
@@ -196,24 +196,24 @@ Nie chodzi o pełną autonomię. Chodzi o spójny system wsparcia.
 | Obszar | v2.1e - enterprise | v2.1p - private |
 |---|---|---|
 | Cel | Wynik biznesowy, jakość, szybkość, ryzyko, koszty | Lepsze życie codzienne, mniej chaosu, oszczędność czasu |
-| Ryzyko | Compliance, dane, reputacja, audyt, uprawnienia | Prywatność, nadmierne zaufanie, chaos automatyzacji |
-| Governance | Formalny właściciel, polityki, rejestr agentów | Osobiste zasady i granice |
-| Poziom 8 | Narzędzia, MCP, hooks, identity, logging | Kalendarz, notatki, smart home, budżet, automatyzacje |
+| Ryzyko | Zgodność regulacyjna, dane, reputacja, audyt, uprawnienia | Prywatność, nadmierne zaufanie, chaos automatyzacji |
+| Ład organizacyjny | Formalny właściciel, polityki, rejestr agentów | Osobiste zasady i granice |
+| Poziom 8 | Narzędzia, MCP, hooks, tożsamość, logi | Kalendarz, notatki, smart home, budżet, automatyzacje |
 | Poziom 9 | Agent realizuje proces biznesowy | Agent realizuje codzienny workflow |
 | Poziom 10 | Wieloagentowa orkiestracja procesów | Kilka ról/agentów do koordynacji życia |
 | Poziom 11 | Agentic OS dla procesu lub domeny biznesowej | Life OS / Home OS dla celów prywatnych |
 
-## Anti-patterny v2.1p
+## Antywzorce v2.1p
 
 - **AI zamiast decyzji.** Pytanie AI o wszystko, zwłaszcza w sprawach, w których powinieneś zdecydować sam (zdrowie, finanse, relacje).
 - **Wrzucanie wszystkiego do czatu.** Dane medyczne, finansowe, prywatne dokumenty bez refleksji nad polityką prywatności narzędzia.
 - **Chaos automatyzacji.** Hooks i automatyzacje rosną szybciej, niż użytkownik je rozumie. Rano lampa zapala się, bo „kiedyś było zimno" - i nikt nie wie dlaczego.
-- **Profil-Frankenstein.** Custom instructions rosną do 2000 słów sprzecznych preferencji.
+- **Profil-Frankenstein.** Instrukcje niestandardowe rosną do 2000 słów sprzecznych preferencji.
 - **Life OS bez życia.** System tak rozbudowany, że obsługa OS-a zajmuje więcej czasu niż samo życie.
 
 ## Co dalej
 
-Wersja firmowa skali ma osobny artykuł: [Skala Holaka v2.1e - enterprise](/pl/blog/skala-holaka/). Tam mierzy się dojrzałość AI w organizacjach: governance, MCP, agentic OS dla procesu biznesowego.
+Wersja firmowa skali ma osobny artykuł: [Skala Holaka v2.1e - enterprise](/pl/blog/skala-holaka/). Tam mierzy się dojrzałość AI w organizacjach: ład organizacyjny, MCP, agentic OS dla procesu biznesowego.
 
 Wcześniejsza wersja: [Model dojrzałości AI (v1)](/pl/blog/model-dojrzalosci-ai/) jako kontekst historyczny. Treść v2.0 została włączona do wersji v2.1e i v2.1p.
 

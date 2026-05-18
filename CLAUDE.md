@@ -92,6 +92,12 @@ Lista bloga (`/{locale}/blog/`) ma client-side filter po tagach (chips + query s
 - Dodając stronę: duplikuj w `src/pages/pl/` i `src/pages/en/`. Nazwa pliku może być zlokalizowana, np. `about.astro` (EN) vs `o-projekcie.astro` (PL).
 - Po zmianach w stronach, layoutach, treści, SEO lub LLM endpointach uruchom `npm run build` i `npx playwright test`.
 - **Myślniki: tylko krótkie `-` (hyphen, U+002D).** Nie używaj em-dasha `—` (U+2014) ani en-dasha `–` (U+2013) - ani w treści postów, ani w tytułach, opisach, frontmatterze, komponentach, tłumaczeniach UI ani docs. Dotyczy wszystkich plików w repo (md, astro, ts, css, json, yml). Jeśli model AI wstawia szerokie myślniki przy generowaniu treści, zamień je na hyphen przed commitem.
+- **Polskie posty unikają angielskich wstawek.** W treści `src/content/blog/pl/**` pisz po polsku - nie wstawiaj angielskich słów ani fraz, jeśli istnieje naturalny polski odpowiednik. Wyjątki:
+  - Nazwy własne i produkty: Jira, Confluence, Java, Astro, ChatGPT, Claude, GitHub, Slack, Anthropic, OpenAI itp.
+  - Akronimy zakorzenione w branży: MCP, RAG, ADR, DLP, CI/CD, OS, QA, API.
+  - Pojęcia ukute w tekście jako nazwy konceptów (np. "agentic OS", "Life OS", "hooks" jako warstwa na poziomie 8 Skali Holaka) - traktuj je jak nazwy własne.
+  - Loanwordy mocno zakorzenione w polskim IT bez sensownego odpowiednika (np. "smart home", "framework").
+  Tłumacz: "guardrails", "human review", "approval", "evals", "compliance", "governance", "identity", "logging", "shadow AI", "model awareness", "custom instructions", "overengineering", "release notes", "pull request", "dashboard", "anti-pattern", role agentów (researcher → badacz, developer → programista, reviewer → recenzent, release manager → menedżer wydań). Jeśli musisz użyć terminu po angielsku dla jednoznaczności, podaj polski odpowiednik w nawiasie. Wersja EN (`src/content/blog/en/**`) pozostaje pełna i naturalna po angielsku - reguła dotyczy tylko PL.
 
 ## Git workflow
 
