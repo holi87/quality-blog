@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { aboutPageJsonLd, localizedAlternates, organizationJsonLd, websiteJsonLd } from '../../lib/seo';
 
 const alternatePaths = localizedAlternates('/pl/o-projekcie/', '/en/about/');
-const seoDescription = 'O quality blog i Quality Cat: Grzegorz Holak, Julia Sielska, Konrad „Gumiś" Gomulski i Filip Barszcz oraz kontekst doświadczeń związanych z Sii Polska, Santander Corporate & Investment Banking i ABB Polska.';
+const seoDescription = 'O quality blog i Quality Cat: blog o QA, testowaniu i zapewnieniu jakości, AI, smart home i automatyzacji. Grzegorz Holak, Julia Sielska, Konrad „Gumiś" Gomulski i Filip Barszcz oraz kontekst doświadczeń związanych z Sii Polska, Santander Corporate & Investment Banking i ABB Polska.';
 ---
 
 <BaseLayout
@@ -23,8 +23,10 @@ const seoDescription = 'O quality blog i Quality Cat: Grzegorz Holak, Julia Siel
         <h1 class="display">O projekcie <em>Quality Blog</em>.</h1>
         <p class="lede">
           <strong>quality blog</strong> to miejsce, w którym dzielimy się praktyczną wiedzą
-          o smart home i sztucznej inteligencji. Bez marketingowego szumu, bez paywalli -
-          po prostu przydatne treści.
+          o <strong>QA, testowaniu i zapewnieniu jakości</strong> oprogramowania, sztucznej inteligencji,
+          smart home i automatyzacji. Nazwa nie jest przypadkiem - jakość to nasz codzienny
+          chleb, dopiero potem dochodzą AI i Home Assistant. Bez marketingowego szumu,
+          bez paywalli - po prostu przydatne treści.
         </p>
       </div>
     </div>
@@ -33,6 +35,20 @@ const seoDescription = 'O quality blog i Quality Cat: Grzegorz Holak, Julia Siel
       <div class="col">
         <p class="eyebrow">Tematyka</p>
         <ul class="topic-list">
+          <li>
+            <span class="dot" style="--c: var(--accent)"></span>
+            <div>
+              <strong>QA i testowanie</strong>
+              <p>zapewnienie jakości, strategie testów, dojrzałość QA, Skala Holaka, automatyzacja testów, jakość w bankowości</p>
+            </div>
+          </li>
+          <li>
+            <span class="dot" style="--c: var(--accent-3)"></span>
+            <div>
+              <strong>AI</strong>
+              <p>prompt engineering, Claude Code, lokalne LLM, MCP, praktyczne zastosowania w QA i developerce</p>
+            </div>
+          </li>
           <li>
             <span class="dot" style="--c: var(--accent-2)"></span>
             <div>
@@ -43,15 +59,8 @@ const seoDescription = 'O quality blog i Quality Cat: Grzegorz Holak, Julia Siel
           <li>
             <span class="dot" style="--c: var(--accent)"></span>
             <div>
-              <strong>AI</strong>
-              <p>prompt engineering, narzędzia AI, praktyczne zastosowania</p>
-            </div>
-          </li>
-          <li>
-            <span class="dot" style="--c: var(--accent-3)"></span>
-            <div>
               <strong>Automatyzacja</strong>
-              <p>od domu po procesy biznesowe</p>
+              <p>od testów i procesów QA, po dom i pracę biurową</p>
             </div>
           </li>
         </ul>
@@ -63,7 +72,11 @@ const seoDescription = 'O quality blog i Quality Cat: Grzegorz Holak, Julia Siel
           Blog prowadzi
           <a href="https://qualitycat.com.pl" target="_blank" rel="noopener">Quality Cat</a>
           - firma założona przez <strong>Julię Sielską</strong> i <strong>Grzegorza Holaka</strong>, która wierzy,
-          że dobra wiedza powinna być dostępna dla każdego.
+          że dobra wiedza powinna być dostępna dla każdego. Zespół tworzą testerzy
+          i inżynierowie QA z banków, korporacji i software house'ów - stąd „Quality" w nazwie.
+          QA i testowanie to nasz punkt wyjścia: piszemy o tym, jak nie psuć produktów,
+          jak budować dojrzałe procesy testowe i jak wykorzystać AI, automatyzację oraz
+          dobre nawyki ze smart home do podnoszenia jakości na co dzień.
         </p>
         <p class="eyebrow manifest-label">Manifest</p>
         <blockquote>
@@ -80,7 +93,9 @@ const seoDescription = 'O quality blog i Quality Cat: Grzegorz Holak, Julia Siel
           <p class="author-role">Współzałożycielka Quality Cat · ABB Polska</p>
           <p class="author-bio">
             Współzałożycielka <a href="https://qualitycat.com.pl" target="_blank" rel="noopener"><strong>Quality Cat</strong></a>.
-            Na co dzień pracuje z systemami ERP w <strong>ABB Polska</strong> i testuje szalone pomysły Grzegorza w ich domu.
+            Na co dzień pracuje z systemami ERP w <strong>ABB Polska</strong>, gdzie zapewnienie jakości procesów
+            biznesowych spotyka się z testami integracyjnymi. Testuje też szalone pomysły Grzegorza w ich domu -
+            traktując smart home jak kolejne środowisko pod test acceptance.
           </p>
         </article>
         <article class="author-card">
@@ -88,9 +103,10 @@ const seoDescription = 'O quality blog i Quality Cat: Grzegorz Holak, Julia Siel
           <p class="author-role">QA Architect @ SCIB · Senior TDE @ Sii Polska</p>
           <p class="author-bio">
             <strong>QA Architect</strong> w Santander Corporate &amp; Investment Banking i
-            <strong>Senior TDE</strong> w Sii Polska. Współzałożyciel
+            <strong>Senior TDE</strong> w Sii Polska. Projektuje strategie testów, dojrzałość QA i podejście
+            do jakości w środowisku bankowym, a po godzinach łączy QA z AI i automatyzacją. Współzałożyciel
             <a href="https://qualitycat.com.pl" target="_blank" rel="noopener"><strong>Quality Cat</strong></a>,
-            pomysłodawca bloga i idei dzielenia się nabytą wiedzą. Więcej na
+            pomysłodawca bloga, autor <strong>Skali Holaka</strong> dotyczącej dojrzałości pracy z AI. Więcej na
             <a href="https://holak.net.pl" target="_blank" rel="noopener">holak.net.pl</a>.
           </p>
         </article>
@@ -98,16 +114,18 @@ const seoDescription = 'O quality blog i Quality Cat: Grzegorz Holak, Julia Siel
           <h3 class="author-name">Konrad „Gumiś" Gomulski</h3>
           <p class="author-role">Senior TDE @ Sii Polska</p>
           <p class="author-bio">
-            <strong>Senior TDE</strong> w Sii Polska. Wspiera blog od początku - nawet jeśli
-            bezpośrednio jego wpisów jest niewiele, to czyta i weryfikuje wszystkie pozostałe.
+            <strong>Senior TDE</strong> w Sii Polska, doświadczony tester i automatyk. Wspiera blog od początku -
+            nawet jeśli bezpośrednio jego wpisów jest niewiele, to czyta, weryfikuje i recenzuje wszystkie pozostałe,
+            wnosząc inżynierską perspektywę na jakość kodu i testów.
           </p>
         </article>
         <article class="author-card">
           <h3 class="author-name">Filip Barszcz</h3>
           <p class="author-role">QA Chapter Lead @ SCIB</p>
           <p class="author-bio">
-            <strong>QA Chapter Lead</strong> w Santander Corporate &amp; Investment Banking.
-            Razem z Grzegorzem walczy o lepszą jakość na co dzień.
+            <strong>QA Chapter Lead</strong> w Santander Corporate &amp; Investment Banking. Prowadzi zespoły
+            QA i ustawia standardy testowania w produktach bankowych. Razem z Grzegorzem walczy o lepszą jakość
+            na co dzień - od poziomu procesu po pojedynczy test case.
           </p>
         </article>
       </div>
