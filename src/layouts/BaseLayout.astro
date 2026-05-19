@@ -114,8 +114,8 @@ function stringifyJsonLd(item: JsonLdNode): string {
 
     {jsonLdItems.map((item) => <script type="application/ld+json" set:html={stringifyJsonLd(item)} />)}
 
-    {/* No-flash theme init - runs before first paint */}
-    <script is:inline>
+    {/* No-flash theme init - runs before first paint AND after every ClientRouter swap */}
+    <script is:inline data-astro-rerun>
       (function () {
         try {
           const stored = localStorage.getItem('theme');
@@ -163,8 +163,18 @@ function stringifyJsonLd(item: JsonLdNode): string {
           try { localStorage.setItem('theme', next); } catch (_) {}
         });
       }
+      function applyTheme() {
+        try {
+          const stored = localStorage.getItem('theme');
+          const prefers = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', stored || prefers);
+        } catch (_) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      }
       setupProgress();
       setupTheme();
+      document.addEventListener('astro:after-swap', applyTheme);
       document.addEventListener('astro:page-load', () => {
         setupProgress();
         setupTheme();
