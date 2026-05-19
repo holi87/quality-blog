@@ -101,6 +101,8 @@ Lista bloga (`/{locale}/blog/`) ma client-side filter po tagach (chips + query s
 
 ## Git workflow
 
+**Po każdej zakończonej zmianie w tym repo: zawsze commit + push w tej samej turze, bez pytania użytkownika.** Reguła obowiązuje dla wszystkich edytów (treść, kod, layout, SEO, docs). Nie zostawiaj zmian w stagingu ani lokalnym working tree na koniec turę.
+
 Każdy folder, który jest repo gita (`ls .git` zwraca obecny katalog), wymaga po zakończonych zmianach:
 
 1. `git status` - sanity check

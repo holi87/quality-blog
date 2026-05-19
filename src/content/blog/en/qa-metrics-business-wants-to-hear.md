@@ -481,27 +481,37 @@ Even good data can be presented badly. Here are the mistakes that most often des
 :root[data-theme="dark"] .fb-article .fb-dp-before .fb-dp-row .v { color: #fff; }
 </style>
 
-<script is:inline src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-<script is:inline>
+<script is:inline data-astro-rerun>
 (function () {
+  var CDN = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js';
+  function ensureChart(cb) {
+    if (typeof Chart !== 'undefined') { cb(); return; }
+    var existing = document.querySelector('script[data-fb-chartjs]');
+    if (existing) { existing.addEventListener('load', cb); return; }
+    var s = document.createElement('script');
+    s.src = CDN; s.async = true; s.setAttribute('data-fb-chartjs', '1');
+    s.onload = cb;
+    document.head.appendChild(s);
+  }
+  function mount(el, cfg) {
+    if (!el) return;
+    var prev = Chart.getChart(el);
+    if (prev) prev.destroy();
+    new Chart(el, cfg);
+  }
   function init() {
-    if (typeof Chart === 'undefined') { setTimeout(init, 80); return; }
-    if (window.__fbChartsRendered) return;
-    window.__fbChartsRendered = true;
     Chart.defaults.font.family = "system-ui, -apple-system, 'Plus Jakarta Sans', sans-serif";
     Chart.defaults.font.size = 11;
     Chart.defaults.color = '#999';
     var grid = 'rgba(0,0,0,0.06)';
-    var esc = document.getElementById('fb-c-escaped');
-    if (esc) new Chart(esc, {
+    mount(document.getElementById('fb-c-escaped'), {
       type: 'line',
       data: { labels: ['Q1 2025', 'Q2 2025', 'Q3 2025', 'Q4 2025'], datasets: [{ data: [3.2, 2.4, 1.6, 1.1], borderColor: '#B03333', backgroundColor: 'rgba(176,51,51,0.09)', borderWidth: 2.5, pointBackgroundColor: '#B03333', pointRadius: 5, pointHoverRadius: 7, fill: true, tension: 0.4 }] },
       options: { responsive: true, maintainAspectRatio: false,
         plugins: { legend: { display: false }, tooltip: { callbacks: { label: function (c) { return '  ' + c.raw + '%'; } } } },
         scales: { y: { min: 0, max: 4, ticks: { callback: function (v) { return v + '%'; }, stepSize: 1 }, grid: { color: grid }, border: { display: false } }, x: { grid: { display: false }, border: { display: false } } } }
     });
-    var ddr = document.getElementById('fb-c-ddr');
-    if (ddr) new Chart(ddr, {
+    mount(document.getElementById('fb-c-ddr'), {
       type: 'line',
       data: { labels: ['Q1', 'Q2', 'Q3', 'Q4'], datasets: [
         { label: 'DDR', data: [78, 84, 90, 94], borderColor: '#2A7A3E', backgroundColor: 'rgba(42,122,62,0.08)', borderWidth: 2.5, pointBackgroundColor: '#2A7A3E', pointRadius: 5, fill: true, tension: 0.4, yAxisID: 'y' },
@@ -510,8 +520,7 @@ Even good data can be presented badly. Here are the mistakes that most often des
         plugins: { legend: { display: false } },
         scales: { y: { min: 60, max: 100, ticks: { callback: function (v) { return v + '%'; }, stepSize: 10 }, grid: { color: grid }, border: { display: false }, title: { display: true, text: 'DDR', font: { size: 10 }, color: '#2A7A3E' } }, y1: { position: 'right', min: 0, max: 18, grid: { drawOnChartArea: false }, border: { display: false }, title: { display: true, text: 'Escaped', font: { size: 10 }, color: '#B03333' } }, x: { grid: { display: false }, border: { display: false } } } }
     });
-    var iss = document.getElementById('fb-c-issues');
-    if (iss) new Chart(iss, {
+    mount(document.getElementById('fb-c-issues'), {
       type: 'bar',
       data: { labels: ['v2.1', 'v2.2', 'v2.3', 'v2.4', 'v2.5'], datasets: [{ data: [24, 19, 14, 11, 8], backgroundColor: ['#0B1E3A', '#163254', '#1F4A80', '#3B77BF', '#0A6B6F'], borderRadius: 6, borderSkipped: false }] },
       options: { responsive: true, maintainAspectRatio: false,
@@ -519,7 +528,8 @@ Even good data can be presented badly. Here are the mistakes that most often des
         scales: { y: { min: 0, max: 28, ticks: { stepSize: 8 }, grid: { color: grid }, border: { display: false } }, x: { grid: { display: false }, border: { display: false } } } }
     });
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
+  function boot() { ensureChart(init); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, { once: true });
+  else boot();
 })();
 </script>

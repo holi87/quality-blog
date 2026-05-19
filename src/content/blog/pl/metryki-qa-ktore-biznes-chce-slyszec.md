@@ -524,19 +524,30 @@ Nawet dobre dane można zaprezentować źle. Oto błędy, które najczęściej n
 :root[data-theme="dark"] .fb-article .fb-dp-before .fb-dp-row .v { color: #fff; }
 </style>
 
-<script is:inline src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-<script is:inline>
+<script is:inline data-astro-rerun>
 (function () {
+  var CDN = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js';
+  function ensureChart(cb) {
+    if (typeof Chart !== 'undefined') { cb(); return; }
+    var existing = document.querySelector('script[data-fb-chartjs]');
+    if (existing) { existing.addEventListener('load', cb); return; }
+    var s = document.createElement('script');
+    s.src = CDN; s.async = true; s.setAttribute('data-fb-chartjs', '1');
+    s.onload = cb;
+    document.head.appendChild(s);
+  }
+  function mount(el, cfg) {
+    if (!el) return;
+    var prev = Chart.getChart(el);
+    if (prev) prev.destroy();
+    new Chart(el, cfg);
+  }
   function init() {
-    if (typeof Chart === 'undefined') { setTimeout(init, 80); return; }
-    if (window.__fbChartsRendered) return;
-    window.__fbChartsRendered = true;
     Chart.defaults.font.family = "system-ui, -apple-system, 'Plus Jakarta Sans', sans-serif";
     Chart.defaults.font.size = 11;
     Chart.defaults.color = '#999';
     var grid = 'rgba(0,0,0,0.06)';
-    var esc = document.getElementById('fb-c-escaped');
-    if (esc) new Chart(esc, {
+    mount(document.getElementById('fb-c-escaped'), {
       type: 'line',
       data: {
         labels: ['Q1 2025', 'Q2 2025', 'Q3 2025', 'Q4 2025'],
@@ -559,8 +570,7 @@ Nawet dobre dane można zaprezentować źle. Oto błędy, które najczęściej n
         }
       }
     });
-    var ddr = document.getElementById('fb-c-ddr');
-    if (ddr) new Chart(ddr, {
+    mount(document.getElementById('fb-c-ddr'), {
       type: 'line',
       data: {
         labels: ['Q1', 'Q2', 'Q3', 'Q4'],
@@ -580,8 +590,7 @@ Nawet dobre dane można zaprezentować źle. Oto błędy, które najczęściej n
         }
       }
     });
-    var iss = document.getElementById('fb-c-issues');
-    if (iss) new Chart(iss, {
+    mount(document.getElementById('fb-c-issues'), {
       type: 'bar',
       data: {
         labels: ['v2.1', 'v2.2', 'v2.3', 'v2.4', 'v2.5'],
@@ -594,7 +603,8 @@ Nawet dobre dane można zaprezentować źle. Oto błędy, które najczęściej n
       }
     });
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
+  function boot() { ensureChart(init); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, { once: true });
+  else boot();
 })();
 </script>
