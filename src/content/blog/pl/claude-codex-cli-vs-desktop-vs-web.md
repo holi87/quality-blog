@@ -18,7 +18,7 @@ Ten wpis to neutralny przegląd kanałów dostępu dla Claude i Codex, ułożony
 - **Desktop** (Claude Desktop, ChatGPT Desktop): te same modele co web plus lokalny MCP, drag-and-drop plików z dysku, skróty systemowe, artefakty/canvas. Świetne do rozmowy z plikami z dysku bez wystawiania ich do CI.
 - **CLI** (Claude Code, Codex CLI): pełen dostęp do file systemu, git, bash, hooków, subagentów, własnych skilli, MCP-serwerów, worktree i tasków w tle. To jest narzędzie do dowożenia kodu, nie tylko do rozmowy.
 
-Jeżeli kupujesz tylko jeden plan i tylko jedno narzędzie do pracy z kodem, kup CLI. Jeżeli kupujesz pakiet do pracy mieszanej, weź CLI plus desktop, a web traktuj jako bonus.
+Web zazwyczaj jest dostępny w wariancie darmowym, a dostęp do desktopa i CLI najczęściej odblokowują dopiero płatne plany (Claude Pro/Max, ChatGPT Plus/Pro/Business). Jeżeli AI ma realnie usprawnić ci pracę z kodem, warto w taki plan zainwestować - sam web tego nie udźwignie. Jeżeli wybierasz tylko jedno narzędzie do kodu, postaw na CLI. Jeżeli składasz pakiet do pracy mieszanej, weź CLI plus desktop, a web traktuj jako bonus do telefonu i share linków.
 
 ## Co naprawdę dostajesz w każdym kanale
 
