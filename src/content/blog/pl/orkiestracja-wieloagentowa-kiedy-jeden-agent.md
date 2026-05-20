@@ -119,7 +119,7 @@ Sygnały:
 4. Powtórz dla każdego.
 5. **Po wszystkich** wróć do pytania: czy multi-agent jest jeszcze potrzebny?
 
-Często odpowiedź brzmi nie. Bo zbudowałeś po drodze 4 dobrych agentów, każdy z których obsługuje swój zakres niezależnie.
+Często odpowiedź brzmi nie. Bo po drodze powstało 4 dobrych agentów, każdy z których obsługuje swój zakres niezależnie.
 
 ## Test gotowości do orkiestracji
 

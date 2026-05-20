@@ -54,7 +54,7 @@ Objawy, które warto rozpoznać:
 - uczysz się rzeczy, **których nie używasz** ani w pracy, ani w realnej perspektywie zmiany,
 - ciągle **porównujesz się z innymi** - szczególnie z tymi, którzy mają inne tło,
 - masz poczucie, że **nic nie umiesz**, mimo że robisz to, co robisz, dobrze,
-- **skaczesz między narzędziami** - co kwartał nowy framework, żadnego nie opanowałeś porządnie,
+- **skaczesz między narzędziami** - co kwartał nowy framework, żadnego porządnie nie znasz,
 - **nie widzisz efektów** rozwoju w codziennej pracy,
 - rozwój **zabiera całą energię po pracy**, kosztem życia prywatnego,
 - uczysz się **ze strachu, a nie z potrzeby**.
@@ -152,7 +152,7 @@ Praktyczna propozycja, która działa w wielu zespołach.
 - **Notatki z projektu.** Własna baza wiedzy - bugi, wzorce, decyzje. Buduje się sama, jeśli prowadzisz.
 - **Mini-projekty.** Czasem warto zrobić coś poza pracą - niewielkie, ale **dokończone**.
 - **Rozmowy z zespołem.** Najtańsza i najlepsza forma nauki - co kolega zrobił, dlaczego, jakie napotkał problemy.
-- **Analiza własnych błędów.** Każdy bug, który przeoczyłeś, to lekcja.
+- **Analiza własnych błędów.** Każdy przeoczony bug to lekcja.
 - **Przerwy bez poczucia winy.** Tygodnie albo miesiące, w których po prostu **dobrze robisz swoją robotę** i nic poza tym. To zdrowe.
 
 ## Rozwój w pracy czy po pracy?

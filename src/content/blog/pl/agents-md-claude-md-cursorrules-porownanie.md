@@ -158,7 +158,7 @@ Test: otwórz oba pliki i policz wspólne linie. Jeśli >40% - masz duplikację.
 
 ## Anti-pattern: dokumentacja-cmentarz
 
-Spisałeś raz, nigdy nie zaktualizowałeś. Pisałem o tym [w anti-patternach adopcji](/pl/blog/antipaterny-adopcji-ai/) - ale warto powtórzyć, bo to dotyczy każdego z trzech formatów.
+Spisane raz, nigdy nie zaktualizowane. Pisałem o tym [w anti-patternach adopcji](/pl/blog/antipaterny-adopcji-ai/) - ale warto powtórzyć, bo to dotyczy każdego z trzech formatów.
 
 **Test:** otwórz CLAUDE.md i powiedz, co tam zmieniło się w ostatnim miesiącu. Cisza = cmentarz.
 

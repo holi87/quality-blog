@@ -36,7 +36,7 @@ Możesz w każdej chwili przerwać przez `/goal clear`. Możesz też podejrzeć 
 
 **Anti-drift w długich sesjach.** Refaktor obejmujący 12 plików, batch publikacji 6 wpisów w dwóch językach, migracja schematu z testami - to wszystko klasyczne sytuacje, w których agent rezygnuje po pierwszych trzech zadaniach. Z `/goal` tego nie robi.
 
-**Definition of Done w jednej linijce.** Przestajesz pytać „a zrobiłeś jeszcze X?”. Warunek jest kontraktem; albo spełniony, albo nie. Mniej negocjacji, mniej dopytywania.
+**Definition of Done w jednej linijce.** Przestajesz pytać „a zrobione już X?”. Warunek jest kontraktem; albo spełniony, albo nie. Mniej negocjacji, mniej dopytywania.
 
 **Survives compaction.** Klasyczny problem: dłuższa sesja → kompresja historii → agent zapomina, po co tu jest. `/goal` jest wstrzykiwany do każdej tury niezależnie od kompresji, więc cel przeżywa nawet bardzo długie konwersacje.
 
@@ -134,7 +134,7 @@ Hook nie pozwolił mi się zatrzymać po pierwszym kroku. Co ważne, w trakcie u
 - **Goal z disjunkcją** („A albo B”) - agent wybierze łatwiejsze.
 - **Goal kolidujący z user feedback** - chcesz przerwać, hook blokuje. Świadomie używaj `/goal clear`.
 - **Goal niemożliwy do spełnienia** - agent będzie próbował w nieskończoność. Sprawdź realność warunku przed ustawieniem.
-- **Goal w trybie auto-approve bez supervisji** - niebezpieczne. Agent z mocnym warunkiem i pełnym dostępem do narzędzi może zrobić rzeczy, których nie chciałeś. Zostaw człowieka w pętli na kroki destrukcyjne.
+- **Goal w trybie auto-approve bez supervisji** - niebezpieczne. Agent z mocnym warunkiem i pełnym dostępem do narzędzi może zrobić rzeczy, których nie chcesz. Zostaw człowieka w pętli na kroki destrukcyjne.
 
 ## Praktyczne tipy
 

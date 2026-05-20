@@ -26,7 +26,7 @@ Nie ma `prompt:` ani parametrów. Forward kontekstu jest automatyczny. To jest c
 Z dokumentacji Claude Code wynikają cztery momenty:
 
 1. **PRZED substantive work.** Zanim napiszesz rozwiązanie albo zacementujesz interpretację problemu. To jest kluczowy moment - najtaniej skorygować kierunek tu, najdrożej po tygodniu pracy
-2. **Gdy zaciąłeś się.** Errors recurring, approach nie konwerguje, wyniki nie pasują do hipotezy
+2. **Gdy praca utknęła.** Errors recurring, approach nie konwerguje, wyniki nie pasują do hipotezy
 3. **Przy zmianie podejścia.** Zanim porzucisz aktualną ścieżkę - może wystarczy mniejsza korekta
 4. **Przed deklaracją „gotowe".** Final check, czy nic istotnego nie zostało
 
@@ -69,8 +69,8 @@ W praktyce wygląda to tak:
 
 Advisor czasem się myli. Ma pełen transkrypt, ale nie odpalał kodu - opinia, nie wynik. Trzy wzorce, kiedy ignorować:
 
-- **Empiryczna sprzeczność.** Wykonałeś krok, dał inny wynik, niż advisor przewidywał. Trzymaj się dowodu, advisor mógł niedoceniać twoich tool results
-- **Primary source contradiction.** Advisor mówi „ta funkcja nie istnieje w bibliotece X", ale właśnie czytałeś dokumentację, która ją pokazuje. Dokumentacja > opinia
+- **Empiryczna sprzeczność.** Wykonany krok dał inny wynik, niż advisor przewidywał. Trzymaj się dowodu, advisor mógł niedoceniać twoich tool results
+- **Primary source contradiction.** Advisor mówi „ta funkcja nie istnieje w bibliotece X", ale dokumentacja właśnie ją pokazuje. Dokumentacja > opinia
 - **Passing self-test ≠ advisor wrong.** Odwrotny case: jeśli twój test przeszedł, ale advisor mówi „masz bug" - to nie znaczy, że advisor się myli. Twój test może nie sprawdzać tego, na co advisor wskazuje. Sprawdź dokładnie
 
 Reguła: jeśli masz primary-source evidence sprzeczne z advisorem, zostań przy evidence, ale rozważ jedno więcej wywołanie z reconcile prompt: „znalazłem X, sugerujesz Y, jaka konkretna konsystencja rozstrzyga?".

@@ -176,7 +176,7 @@ Możliwe ścieżki rozwoju w QA:
 
 Wybór ścieżki zależy od **mocnych stron, zainteresowań i rynku**. Nie ma jednej dobrej odpowiedzi. Najgorsza odpowiedź to: „muszę zostać automatykiem, bo wszyscy to robią".
 
-Jeśli sprawia ci satysfakcję rozmowa z biznesem, analiza wymagań, identyfikowanie luk w procesach - ścieżka business-oriented albo Quality Coach może być **lepsza dla ciebie i lepsza dla firmy**, niż gdybyś próbował na siłę nauczyć się Playwrighta.
+Jeśli sprawia ci satysfakcję rozmowa z biznesem, analiza wymagań, identyfikowanie luk w procesach - ścieżka business-oriented albo Quality Coach może być **lepsza dla ciebie i lepsza dla firmy**, niż próba uczenia się Playwrighta na siłę.
 
 ## Czego nie warto się uczyć (na razie)
 

@@ -146,11 +146,11 @@ Ale jeśli prompt ma datę modyfikacji sprzed 3 miesięcy i ty go nadal kopiujes
 
 Trzy pytania:
 
-1. **Kiedy ostatnio zmieniłeś custom instructions?** Jeśli „nigdy" lub „pół roku temu" - pułapka.
+1. **Kiedy ostatnio były zmieniane custom instructions?** Jeśli „nigdy" lub „pół roku temu" - pułapka.
 2. **Ile czasu spędzasz w narzędziu AI tygodniowo vs ile czasu spędzasz pisząc / aktualizując prompty?** Jeśli >20% to drugie - pułapka.
 3. **Czy nowa osoba w zespole zaczyna od „daj mi twoją bibliotekę promptów"?** Tak = pułapka systemowa.
 
-Jeśli odpowiedziałeś „tak" na choć jedno - wybierz jeden prompt z biblioteki, rozłóż go zgodnie z trzema operacjami powyżej, używaj tydzień, zobacz.
+Jeśli choć raz odpowiedź to „tak" - wybierz jeden prompt z biblioteki, rozłóż go zgodnie z trzema operacjami powyżej, używaj tydzień, zobacz.
 
 ## Co dalej
 

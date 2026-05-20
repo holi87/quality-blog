@@ -171,7 +171,7 @@ Mierzysz: czas odpowiedzi, peak RAM, jakość (kompiluje? działa? halucynuje?).
 
 Trzy zdania:
 
-Po pierwsze, **default na 16 GB Mac mini M4 zmienił się z „Qwen2.5-Coder + Gemma 3" na „gpt-oss-20b + Gemma 4 e4b"**. Jeżeli pobrałeś coś rok temu i nie odświeżałeś - odśwież.
+Po pierwsze, **default na 16 GB Mac mini M4 zmienił się z „Qwen2.5-Coder + Gemma 3" na „gpt-oss-20b + Gemma 4 e4b"**. Jeżeli na dysku leży coś sprzed roku i nie było odświeżane - odśwież.
 
 Po drugie, **lokalny LLM przestaje być zabawką**. gpt-oss-20b z reasoning effort levels naprawdę pomaga w realnych zadaniach. Halucynacji jest zauważalnie mniej niż w klasie 7B sprzed pół roku. To nie zastąpi Claude'a w agentowym kodowaniu, ale do dużej części codziennej pracy wystarczy.
 

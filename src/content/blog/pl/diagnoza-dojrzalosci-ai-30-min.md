@@ -26,7 +26,7 @@ Tyle. Nic więcej nie potrzebujesz, żeby zaplanować pierwszy krok.
 
 ## Format sesji
 
-30 minut, 1:1, kamera nie jest wymagana. Lepiej w narzędziu z chatem, do którego rozmówca ma już dostęp - żebyś mógł poprosić go o pokazanie czegoś na żywo.
+30 minut, 1:1, kamera nie jest wymagana. Lepiej w narzędziu z chatem, do którego rozmówca ma już dostęp - żeby można było poprosić o pokazanie czegoś na żywo.
 
 Harmonogram:
 
@@ -59,7 +59,7 @@ Osiem pytań, po dwa na fazę. Nie pytaj „na którym jesteś poziomie" - odpow
 ### Faza Autonomia (poziom 9–10)
 
 7. *„Opowiedz o ostatnim zadaniu, które agent zrobił od początku do końca - bez Twojej ingerencji w środku."* - brak = poniżej 9. Krótka relacja = 9. „Codziennie mam takie zadania" + przykład = pewne 9.
-8. *„Czy w ostatnim miesiącu projektowałeś system kilku agentów współpracujących? Co to było?"* - nie = nie ponad 9. Tak + zrozumiały opis = 10.
+8. *„Czy w ostatnim miesiącu projektowałaś/eś system kilku agentów współpracujących? Co to było?"* - nie = nie ponad 9. Tak + zrozumiały opis = 10.
 
 ## Obserwacja na żywo (5 minut)
 

@@ -84,7 +84,7 @@ Thread to mesh IPv6 na 2.4 GHz, technicznie bardzo podobny do Zigbee, ale z jedn
 
 **Co to zmienia praktycznie:**
 
-- "Bramką" Thread nie jest dedykowane pudełko - jest nią **Thread border router**. A border routery już masz, jeśli kupiłeś HomePoda mini, Apple TV 4K, Nest Hub 2. generacji albo Amazon Echo (wybrane modele).
+- "Bramką" Thread nie jest dedykowane pudełko - jest nią **Thread border router**. A border routery już masz, jeśli w domu jest HomePod mini, Apple TV 4K, Nest Hub 2. generacji albo Amazon Echo (wybrane modele).
 - Urządzenia Thread odpowiadają szybciej niż Zigbee - latencja rzędu 100 ms vs 300–500 ms przy przeciętnej instalacji Zigbee.
 - Thread nie zastąpi Zigbee z dnia na dzień - w 2026 liczba urządzeń Thread to około 5–10% tego, co oferuje Zigbee.
 

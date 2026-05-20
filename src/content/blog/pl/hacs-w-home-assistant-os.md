@@ -28,13 +28,13 @@ Konkretnie HACS potrafi instalować pięć typów elementów: **integracje** (tz
 
 ## Dlaczego warto to mieć?
 
-Najkrótsza odpowiedź: bo Home Assistant „z pudełka” jest bardzo dobry, ale nie obsługuje wszystkiego i nie wygląda tak, jak byś chciał.
+Najkrótsza odpowiedź: bo Home Assistant „z pudełka” jest bardzo dobry, ale nie obsługuje wszystkiego i nie wygląda tak, jak chcesz.
 
 Home Assistant ma setki oficjalnych integracji - i to świetne integracje, utrzymywane przez zespół core. Ale cały ekosystem smart home jest tak szeroki, że niemożliwe jest, żeby 400 wolontariuszy pokryło wszystkie urządzenia, wszystkie usługi i wszystkie pomysły, które przychodzą ludziom do głowy. HACS zapełnia tę lukę. Niektórzy autorzy nie mają po prostu czasu, żeby przejść przez proces akceptacji do oficjalnego repozytorium HA (który wymaga testów, dokumentacji, zgodności z wytycznymi). Inni robią rzeczy, których HA oficjalnie nie akceptuje - na przykład integracje oparte na web scrapingu, gdy dostawca usługi nie udostępnia API (kłania się tu np. wiele integracji z polskimi sieciami energetycznymi, aplikacjami samochodowymi czy lokalnymi serwisami pogodowymi).
 
-Drugi filar HACS-a to **warstwa wizualna**. Domyślny interfejs Home Assistant jest funkcjonalny, ale dość oszczędny. Jeśli widziałeś gdziekolwiek ten piękny, minimalistyczny, nowoczesny dashboard Home Assistant z YouTube’a - masz gwarancję graniczącą z pewnością, że jest zbudowany na jakiejś karcie z HACS-a. `mushroom-cards` dały fali minimalistycznych interfejsów zamach, `button-card` pozwala zrobić praktycznie dowolny przycisk, `mini-graph-card` rysuje o niebo ładniejsze wykresy niż wbudowana karta historii, a `bubble-card` zrewolucjonizował nowoczesne układy panelu. Żadna z tych rzeczy nie jest dostępna bez HACS-a.
+Drugi filar HACS-a to **warstwa wizualna**. Domyślny interfejs Home Assistant jest funkcjonalny, ale dość oszczędny. Jeśli kiedykolwiek widać było ten piękny, minimalistyczny, nowoczesny dashboard Home Assistant z YouTube’a - masz gwarancję graniczącą z pewnością, że jest zbudowany na jakiejś karcie z HACS-a. `mushroom-cards` dały fali minimalistycznych interfejsów zamach, `button-card` pozwala zrobić praktycznie dowolny przycisk, `mini-graph-card` rysuje o niebo ładniejsze wykresy niż wbudowana karta historii, a `bubble-card` zrewolucjonizował nowoczesne układy panelu. Żadna z tych rzeczy nie jest dostępna bez HACS-a.
 
-Trzeci powód jest bardziej pragmatyczny: **tempo rozwoju**. Oficjalne integracje HA wchodzą w 2-tygodniowym cyklu wydawniczym i muszą być przetestowane. HACS pozwala deweloperom publikować nowe wersje kiedy chcą, co oznacza, że integracja do nowego urządzenia pojawia się w HACS-ie tygodniami albo miesiącami przed tym, jak (o ile w ogóle) trafi do core. Jeśli kupiłeś nową zabawkę IoT i nie ma jej na liście integracji HA, pierwsze miejsce, gdzie warto zajrzeć, to HACS.
+Trzeci powód jest bardziej pragmatyczny: **tempo rozwoju**. Oficjalne integracje HA wchodzą w 2-tygodniowym cyklu wydawniczym i muszą być przetestowane. HACS pozwala deweloperom publikować nowe wersje kiedy chcą, co oznacza, że integracja do nowego urządzenia pojawia się w HACS-ie tygodniami albo miesiącami przed tym, jak (o ile w ogóle) trafi do core. Jeśli masz nową zabawkę IoT i nie ma jej na liście integracji HA, pierwsze miejsce, gdzie warto zajrzeć, to HACS.
 
 Czwarty, trochę ukryty powód - **długa droga do usprawnień**. Niektóre z najbardziej popularnych dziś integracji zaczęły życie w HACS, a dopiero po latach trafiły do oficjalnego HA. HACS jest poligonem, gdzie ciekawe pomysły dojrzewają, zanim staną się mainstreamem.
 
@@ -52,7 +52,7 @@ I ostatni mit: **HACS to nie jest coś, co instaluje się raz i zapomina.** O ty
 
 Tu muszę założyć kapelusz inżyniera QA, który podłącza się do mnie na co dzień w pracy. HACS jest potężnym narzędziem, ale wprowadza do twojej instalacji HA kod napisany przez nieznanych ci ludzi. Twórcy HA powtarzają to jak mantrę: *HACS może destabilizować system*. I mają rację.
 
-Po pierwsze, **kod z HACS-a ma pełny dostęp do twojej instalacji Home Assistant**. Może czytać twoje tokeny, stan urządzeń, historię, wszystko. Zanim zainstalujesz integrację, która synchronizuje ci lokalizację telefonu z jakimś egzotycznym serwisem, zastanów się, komu zaufałeś.
+Po pierwsze, **kod z HACS-a ma pełny dostęp do twojej instalacji Home Assistant**. Może czytać twoje tokeny, stan urządzeń, historię, wszystko. Zanim zainstalujesz integrację, która synchronizuje ci lokalizację telefonu z jakimś egzotycznym serwisem, zastanów się, komu ufasz.
 
 Po drugie, **custom components mogą zepsuć aktualizację HA**. Kiedy ekipa core HA zmienia wewnętrzne API (a zmienia regularnie, bo rozwój trwa), wszystkie niezaktualizowane integracje z HACS-a mogą przestać działać albo, w gorszym scenariuszu, uniemożliwić uruchomienie HA po restarcie. Nie żartuję - widziałem to na własnym systemie i widziałem to u znajomych. Dlatego **zawsze** przed aktualizacją HA warto sprawdzić release notes pod kątem sekcji „Breaking Changes” i spojrzeć, czy któraś z twoich integracji z HACS-a nie jest wymieniona jako źródło problemów.
 
@@ -60,13 +60,13 @@ Po trzecie, **projekty z HACS-a są porzucane**. Autor zainteresuje się czymś 
 
 Po czwarte, **kopia zapasowa przed instalacją to nie sugestia, to wymóg**. W Home Assistant OS masz wbudowany mechanizm backupów (`Ustawienia → System → Kopie zapasowe`). Przed instalacją HACS-a i przed każdą większą operacją z HACS-em wykonaj backup i - to ważne - **pobierz go na inne urządzenie**. Kopia zapasowa, która leży na tym samym dysku co rozwalony system, ma ograniczoną wartość.
 
-Jeśli po tych ostrzeżeniach uznałeś, że jesteś gotowy, a twoja instalacja jest stabilna i masz świeży backup - jedziemy.
+Jeśli po tych ostrzeżeniach masz pewność, że jesteś przygotowana/y, instalacja jest stabilna i jest świeży backup - jedziemy.
 
 ## Czego potrzebujesz przed instalacją
 
 Zestaw wymagań jest krótki, ale kompletny:
 
-1. **Działająca instalacja Home Assistant OS (albo Supervised).** Ta instrukcja dotyczy HAOS - dla wersji Container albo Core procedura jest inna (tam używa się skryptu `wget -O - https://get.hacs.xyz | bash -` z poziomu kontenera lub terminala). Jeśli nie wiesz, jakiego typu masz instalację, zatrzymaj się i sprawdź w `Ustawienia → System → Informacje`. Dokumentacja HACS-a mówi wprost: jeśli nie wiesz, czego używasz, nie powinieneś instalować HACS-a.
+1. **Działająca instalacja Home Assistant OS (albo Supervised).** Ta instrukcja dotyczy HAOS - dla wersji Container albo Core procedura jest inna (tam używa się skryptu `wget -O - https://get.hacs.xyz | bash -` z poziomu kontenera lub terminala). Jeśli nie wiesz, jakiego typu masz instalację, zatrzymaj się i sprawdź w `Ustawienia → System → Informacje`. Dokumentacja HACS-a mówi wprost: jeśli nie wiesz, czego używasz, nie instaluj HACS-a.
 2. **Home Assistant w miarę aktualny.** HACS 2.0 działa z każdą w miarę świeżą wersją HA, ale dla bezpieczeństwa warto być co najmniej na ostatnim wydaniu z poprzedniego kwartału.
 3. **Konto GitHub.** Obowiązkowe. HACS pobiera paczki z GitHuba i wymaga autoryzacji przez twoje konto. Jeśli nie masz, załóż przed instalacją na `github.com/signup` - jest darmowe i nie trzeba nic więcej. Kilka pytań, które często słyszę: nie, konto nie musi być publiczne; nie, nie musisz nic tam pushować; nie, HACS nie dostaje dostępu do twoich repo.
 4. **Świeża kopia zapasowa HA pobrana na inne urządzenie.** Powtarzam się, ale nie za wiele razy.
@@ -125,7 +125,7 @@ Restart zajmuje zwykle 30-90 sekund. Poczekaj, aż interfejs wróci i poprosi ci
 
 Teraz trzeba dopiąć HACS-a do HA jako integrację. Przejdź do `Ustawienia → Urządzenia i usługi`.
 
-**Uwaga**: bardzo często w tym miejscu HACS „nie widać” na liście dostępnych do dodania integracji, nawet jeśli poprawnie zainstalowałeś wszystko powyżej. Dokumentacja HACS-a wymienia to wprost: musisz **wyczyścić cache przeglądarki** albo wykonać twarde odświeżenie strony (`Ctrl+Shift+R`). Potem działa.
+**Uwaga**: bardzo często w tym miejscu HACS „nie widać” na liście dostępnych do dodania integracji, nawet jeśli wszystko powyżej zostało poprawnie zainstalowane. Dokumentacja HACS-a wymienia to wprost: musisz **wyczyścić cache przeglądarki** albo wykonać twarde odświeżenie strony (`Ctrl+Shift+R`). Potem działa.
 
 W prawym dolnym rogu kliknij **+ Dodaj integrację**. W wyszukiwarce wpisz `HACS` i wybierz go z listy.
 
@@ -179,7 +179,7 @@ Jeśli coś poszło nie tak, najczęstsze scenariusze wyglądają tak.
 
 **„Dodatek Get HACS wyrzuca błąd przy pobieraniu”.** Sprawdź połączenie sieciowe HA z internetem. Najłatwiej: uruchom w `Deweloper → Usługi` usługę `homeassistant.check_config` - jeśli działa, HA ma internet. Jeśli nie, problem jest sieciowy. Sprawdź DNS (AdGuard, Pi-hole, własny DNS na routerze - wszystko to może blokować niektóre domeny).
 
-**„Autoryzacja GitHuba nie chce zadziałać, kod wygasa za szybko.”** Kod jest ważny 15 minut. Jeśli zasiadłeś do tego z przerwami - po prostu wyjdź z ekranu konfiguracji integracji, dodaj integrację HACS od nowa i powtórz proces. Dostaniesz nowy kod.
+**„Autoryzacja GitHuba nie chce zadziałać, kod wygasa za szybko.”** Kod jest ważny 15 minut. Jeśli proces był z przerwami - po prostu wyjdź z ekranu konfiguracji integracji, dodaj integrację HACS od nowa i powtórz proces. Dostaniesz nowy kod.
 
 **„HACS się zainstalował, ale po restarcie HA nie startuje.”** Najgorszy scenariusz, ale rozwiązywalny. Najpierw spróbuj przez SSH (dodatek Terminal & SSH z zaawansowanego trybu) zajrzeć do logów HA (`cat /config/home-assistant.log`). Jeśli widzisz jasno, że winna jest któraś integracja z custom_components, usuń jej katalog przez SSH i zrestartuj. Jeśli nie wiesz, co się stało - przywracasz backup z kroku 1.
 
@@ -189,9 +189,9 @@ Jeśli coś poszło nie tak, najczęstsze scenariusze wyglądają tak.
 
 Żeby nie zostawiać cię z pustym interfejsem, moje subiektywne rekomendacje na pierwsze kilka instalacji - rzeczy, które prawie każdy użytkownik HA doceni.
 
-Jeśli chcesz ładniejszy wygląd dashboardów: **Mushroom Cards** (nowoczesny, minimalistyczny styl), **Mini Graph Card** (wykresy historii znacznie ładniejsze od wbudowanych), **Button Card** (elastyczne przyciski z dowolną zawartością) i **Card Mod** (pozwala dorzucić CSS do dowolnej karty - gdy jesteś gotowy na więcej kontroli).
+Jeśli chcesz ładniejszy wygląd dashboardów: **Mushroom Cards** (nowoczesny, minimalistyczny styl), **Mini Graph Card** (wykresy historii znacznie ładniejsze od wbudowanych), **Button Card** (elastyczne przyciski z dowolną zawartością) i **Card Mod** (pozwala dorzucić CSS do dowolnej karty - gdy chcesz więcej kontroli).
 
-Jeśli masz oświetlenie: **Adaptive Lighting**. To integracja, która automatycznie dostosowuje barwę i jasność świateł do pory dnia, symulując naturalne światło słoneczne. Po dwóch tygodniach przestaniesz pamiętać, że kiedyś miałeś ten sam biały kolor lamp całą dobę.
+Jeśli masz oświetlenie: **Adaptive Lighting**. To integracja, która automatycznie dostosowuje barwę i jasność świateł do pory dnia, symulując naturalne światło słoneczne. Po dwóch tygodniach przestaniesz pamiętać, że kiedyś lampy miały ten sam biały kolor całą dobę.
 
 Jeśli interesuje cię alarm: **Alarmo**. Pełna obsługa stref, kodów użytkowników, opóźnień, integracji z czujnikami ruchu i otwarcia. Robi z HA normalny system alarmowy.
 
@@ -205,6 +205,6 @@ Każde z nich to osobny temat na osobny post. Ale jeśli chcesz od razu zobaczy�
 
 HACS to coś, bez czego zaawansowana instalacja Home Assistant praktycznie nie istnieje. Daje dostęp do ekosystemu kilku tysięcy społecznościowych projektów - od integracji do urządzeń, których HA oficjalnie nie obsługuje, po wizualne elementy, które zmienią twój dashboard z „funkcjonalnego” w „pokazuję to każdemu, kto wejdzie”. Cena za tę moc to odpowiedzialność: kod od nieznanych autorów, ryzyko destabilizacji przy aktualizacjach, konieczność pilnowania, co masz zainstalowane, i twarda higiena backupów.
 
-Jeśli przeszedłeś przez tę instrukcję, masz już HACS-a działającego i masz przed sobą kilka wieczorów ciekawej zabawy. Moja ostatnia rada jest banalna, ale naprawdę kluczowa: **nie instaluj zbyt wielu rzeczy naraz i testuj po każdej instalacji**. Minimalizm w HACS-ie popłaca długofalowo. Lepiej mieć pięć solidnie sprawdzonych rozszerzeń niż trzydzieści, z których połowa nie działa.
+Jeśli ta instrukcja jest już za tobą, masz HACS-a działającego i masz przed sobą kilka wieczorów ciekawej zabawy. Moja ostatnia rada jest banalna, ale naprawdę kluczowa: **nie instaluj zbyt wielu rzeczy naraz i testuj po każdej instalacji**. Minimalizm w HACS-ie popłaca długofalowo. Lepiej mieć pięć solidnie sprawdzonych rozszerzeń niż trzydzieści, z których połowa nie działa.
 
 Powodzenia - i nie zapomnij zrobić kolejnego backupu, zanim zaczniesz klikać.

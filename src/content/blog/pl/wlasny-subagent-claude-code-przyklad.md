@@ -173,7 +173,7 @@ Trzy klasyczne, które widzę najczęściej:
 
 - **Tools: \***. Wygodne, ale agent dostaje też Bash. Jeśli to read-only research agent, daj `Read, Grep, Glob, WebSearch` - nic więcej. Bezpieczniej i Claude wie czego się spodziewać
 - **Brak Write w writer-agencie.** Często ludzie zapominają. Agent zwraca tekst „w odpowiedzi", użytkownik kopiuje ręcznie. Marnotrawstwo - daj `Write` i każ zapisać samemu
-- **Bash bez precyzji.** Jeśli agent ma Bash do `npm test`, a ty założyłeś read-only, możesz dostać surprise. Ogranicz w prompcie: „use Bash ONLY for npm test, never for git or filesystem changes"
+- **Bash bez precyzji.** Jeśli agent ma Bash do `npm test`, a w założeniu miał być read-only, możesz dostać surprise. Ogranicz w prompcie: „use Bash ONLY for npm test, never for git or filesystem changes"
 
 ## Iteracja
 

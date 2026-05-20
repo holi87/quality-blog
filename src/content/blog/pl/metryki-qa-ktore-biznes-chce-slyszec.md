@@ -18,7 +18,7 @@ Przez lata obserwowałem ten sam schemat: pieczołowicie przygotowane dashboardy
 
 Problem nie polega na braku danych. Mamy danych za dużo. Problem polega na tym, że **raportujemy aktywność zamiast wyników**. To nie jest problem techniczny - to jest problem komunikacji.
 
-<blockquote class="fb-quote">Metryka aktywności mówi, jak ciężko pracowałeś. Metryka wynikowa mówi, jaki był efekt. Biznes płaci za wyniki - i o wynikach chce słyszeć.</blockquote>
+<blockquote class="fb-quote">Metryka aktywności mówi, ile wysiłku włożono w pracę. Metryka wynikowa mówi, jaki był efekt. Biznes płaci za wyniki - i o wynikach chce słyszeć.</blockquote>
 
 Ten artykuł jest pierwszym w serii dziewięciu. Dowiesz się, jakie metryki zbierać, jak je interpretować i - co najważniejsze - jak opowiadać nimi historię, którą stakeholderzy rozumieją i na której mogą działać.
 

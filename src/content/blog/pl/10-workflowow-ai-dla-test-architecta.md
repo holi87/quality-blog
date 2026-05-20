@@ -74,9 +74,9 @@ Zysk: konsystencja przy każdym releasie. Nigdy nie zapomnisz punktu, bo checkli
 
 Niejasne wymaganie typu „system ma być szybki" jest klasykiem. Test Architect musi to zamienić w coś mierzalnego.
 
-Workflow: wrzucasz wymaganie i prosisz o rozbicie na konkretne scenariusze z warunkami akceptacji. Model generuje 5–7 interpretacji. Zwykle 2 są bzdurne, 3 są bezpieczne ale powierzchowne, 1–2 to realnie dobre pytania, które poniosłabyś na refinement.
+Workflow: wrzucasz wymaganie i prosisz o rozbicie na konkretne scenariusze z warunkami akceptacji. Model generuje 5–7 interpretacji. Zwykle 2 są bzdurne, 3 są bezpieczne ale powierzchowne, 1–2 to realnie dobre pytania, które warto zabrać na refinement.
 
-To jest workflow, w którym AI nie zastępuje myślenia analitycznego. Robi coś innego: rozszerza przestrzeń możliwych interpretacji szybciej, niż zrobiłabyś to sama. Twoja rola - selekcja.
+To jest workflow, w którym AI nie zastępuje myślenia analitycznego. Robi coś innego: rozszerza przestrzeń możliwych interpretacji szybciej, niż dałoby się zrobić ręcznie. Twoja rola - selekcja.
 
 Zysk: wchodzisz na refinement z pytaniami, a nie z domysłami.
 

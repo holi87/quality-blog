@@ -205,7 +205,7 @@ Nie chodzi o pełną autonomię. Chodzi o spójny system wsparcia.
 
 ## Antywzorce v2.1p
 
-- **AI zamiast decyzji.** Pytanie AI o wszystko, zwłaszcza w sprawach, w których powinieneś zdecydować sam (zdrowie, finanse, relacje).
+- **AI zamiast decyzji.** Pytanie AI o wszystko, zwłaszcza w sprawach, w których trzeba zdecydować samodzielnie (zdrowie, finanse, relacje).
 - **Wrzucanie wszystkiego do czatu.** Dane medyczne, finansowe, prywatne dokumenty bez refleksji nad polityką prywatności narzędzia.
 - **Chaos automatyzacji.** Hooks i automatyzacje rosną szybciej, niż użytkownik je rozumie. Rano lampa zapala się, bo „kiedyś było zimno" - i nikt nie wie dlaczego.
 - **Profil-Frankenstein.** Instrukcje niestandardowe rosną do 2000 słów sprzecznych preferencji.

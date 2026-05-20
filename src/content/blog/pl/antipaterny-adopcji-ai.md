@@ -20,7 +20,7 @@ Pisaliśmy go razem, bo każdy z nas widzi inną stronę tych historii. Konrad -
 
 **Co to jest:** codzienne pytania do ChatGPT lub Claude'a, ale zawsze w trybie *„zapytaj - dostaniesz odpowiedź"*. Nic więcej. Brak iteracji, brak kontekstu, brak ustawień.
 
-**Test:** *„Co nowego w pracy z AI próbowałeś w ostatnim miesiącu?"* - jeśli odpowiedź brzmi „nic, ale codziennie używam" → utknięcie na 1.
+**Test:** *„Co nowego w pracy z AI próbowałaś/eś w ostatnim miesiącu?"* - jeśli odpowiedź brzmi „nic, ale codziennie używam" → utknięcie na 1.
 
 **Kto utyka:** najczęściej menedżerowie, którzy uznali, że adopcja = używanie. Także inżynierowie, którzy testowali kilka modeli i wybrali jeden.
 

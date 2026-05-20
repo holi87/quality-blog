@@ -36,7 +36,7 @@ Plus dziesiątki dedykowanych: `code-reviewer`, `frontend-developer`, `python-ex
 
 Każdy subagent ma w definicji pole `description`. Claude czyta opisy wszystkich dostępnych subagentów i dopasowuje do twojego zadania. Czasem pomaga jawnie wskazać: w `Agent` tool use jest parametr `subagent_type`. Jeśli go nie podasz, Claude wybierze sam (zwykle `general-purpose`).
 
-Praktyka: jeśli widzisz, że Claude woła nie tego agenta, którego chciałbyś, dwie rzeczy mogą być nie tak:
+Praktyka: jeśli widzisz, że Claude woła nie tego agenta, którego chcesz, dwie rzeczy mogą być nie tak:
 
 - Zła `description` w definicji agenta - za szeroka („wszystko") albo za wąska („tylko gdy plik nazywa się foo.ts")
 - Twoje zadanie jest niejednoznaczne - Claude nie wie, czy to research, czy implementacja
@@ -78,7 +78,7 @@ Anti-pattern, który widzę najczęściej: spawning subagent „znajdź wszystki
 Trzy rzeczy, o których warto pamiętać:
 
 - **Subagent nie widzi twojej rozmowy.** Musisz mu napisać brief od zera. Jeśli założysz „on wie, o czym rozmawiamy" - nie wie. Brief = task + relevant context + expected output format
-- **Wynik to tekst, nie diff.** Subagent zwraca podsumowanie, nie pełny output. Jeśli kazałeś mu pisać kod, sprawdź, czy realnie zapisał plik (trust but verify)
+- **Wynik to tekst, nie diff.** Subagent zwraca podsumowanie, nie pełny output. Jeśli zlecone było pisanie kodu, sprawdź, czy realnie zapisał plik (trust but verify)
 - **Background agents są wygodne, ale niewidoczne do końca.** `run_in_background: true` pozwala odpalić agenta i kontynuować - ale dopóki nie skończy, nie wiesz, jak idzie. Pasuje do długich zadań z jasnym deliverable
 
 ## Przykład end-to-end

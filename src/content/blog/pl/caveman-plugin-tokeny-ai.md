@@ -91,8 +91,8 @@ Caveman to nie jest „must have". To jest „warto spróbować", pod warunkiem,
 
 Po pierwsze, generujesz wystarczająco dużo wywołań LLM, żeby 70% oszczędności tokenów output miało realny wpływ na rachunek albo na latencję. Jeśli pracujesz z Claude Code dorywczo - oszczędność będzie kosmetyczna.
 
-Po drugie, jesteś gotów świadomie przełączać tryby zamiast zostawić plugin włączony na sztywno. Caveman bez samokontroli to generowanie niezrozumiałych wypowiedzi w nieodpowiednich kontekstach - co ostatecznie zmarnuje więcej czasu niż zaoszczędziło tokenów.
+Po drugie, jesteś w stanie świadomie przełączać tryby zamiast zostawić plugin włączony na sztywno. Caveman bez samokontroli to generowanie niezrozumiałych wypowiedzi w nieodpowiednich kontekstach - co ostatecznie zmarnuje więcej czasu niż zaoszczędziło tokenów.
 
 Największą wartością, poza oszczędnościami, jest dla mnie jednak to, że caveman **nazwał problem**, który wcześniej tylko czułem. Gadatliwość modelu to nie jest cecha, to jest domyślne ustawienie - wynik decyzji projektowej Anthropic o tonie komunikacji. Caveman pokazuje, że można to zmienić jedną flagą, że substancja techniczna nie ginie, i że wybór między „uprzejmym" a „funkcjonalnym" modelem jest wyborem użytkownika, nie dostawcy.
 
-Jeżeli chcesz sam zobaczyć, jak to wygląda: zainstaluj plugin, popracuj z nim tydzień, a potem wyłącz. Zobaczysz, że wracasz do znacznie gadatliwszego świata, niż pamiętałeś. I wtedy będziesz wiedział, ile ten plugin naprawdę Ci daje.
+Jeżeli chcesz sam zobaczyć, jak to wygląda: zainstaluj plugin, popracuj z nim tydzień, a potem wyłącz. Zobaczysz, że wracasz do znacznie gadatliwszego świata, niż się pamięta. I wtedy będzie jasne, ile ten plugin naprawdę Ci daje.

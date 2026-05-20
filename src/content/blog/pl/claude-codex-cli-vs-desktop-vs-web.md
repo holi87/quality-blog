@@ -10,7 +10,7 @@ author: GH
 
 Anthropic i OpenAI udostępniają te same modele w trzech kanałach: linii poleceń, aplikacji desktop oraz przez przeglądarkę. Z punktu widzenia jakości odpowiedzi różnica jest niewielka - silnik jest ten sam. Z punktu widzenia tego, **co naprawdę można zrobić w jednej sesji**, różnica jest fundamentalna. Web odpowiada na pytania, desktop pomaga myśleć, CLI dowozi kod.
 
-Ten wpis to neutralny przegląd kanałów dostępu dla Claude i Codex, ułożony tak, żebyś wiedział, gdzie warto zainwestować pierwszą godzinę konfiguracji, a gdzie wystarczy zalogować się przez przeglądarkę.
+Ten wpis to neutralny przegląd kanałów dostępu dla Claude i Codex, ułożony tak, żeby było jasne, gdzie warto zainwestować pierwszą godzinę konfiguracji, a gdzie wystarczy zalogować się przez przeglądarkę.
 
 ## TL;DR
 
@@ -80,7 +80,7 @@ To uproszczenie - pojawiają się aktualizacje i sytuacja zmienia się szybko - 
 ### Web wygrywa, gdy
 
 - Jesteś na czyjejś maszynie, telefonie, w przeglądarce kioskowej i nie zainstalujesz nic.
-- Chcesz wysłać współpracownikowi link do dokładnej rozmowy, którą prowadziłeś.
+- Chcesz wysłać współpracownikowi link do konkretnej, prowadzonej wcześniej rozmowy.
 - Robisz szybki research bez plików - pytanie, odpowiedź, koniec.
 - Pokazujesz coś na warsztacie i nie chcesz pokazywać struktury swoich repo.
 - Korzystasz z code interpretera w sandboxie do jednorazowej analizy CSV, którą i tak chcesz mieć w chmurze.

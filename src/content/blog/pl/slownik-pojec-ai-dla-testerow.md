@@ -47,7 +47,7 @@ Tu pojęcia mylą się najczęściej, bo marketing AI lubi mówić „agent" o c
 
 **Workflow** to predeterminowana sekwencja kroków. Ty decydujesz, co po czym następuje. Model wykonuje konkretny etap (np. generuje scenariusz), ale nie decyduje o tym, czy iść dalej, czy wrócić.
 
-**Agent** to model, któremu dałeś pętlę, narzędzia i cel - i który sam decyduje, jakie narzędzie wywołać w następnym kroku, aż uzna zadanie za zakończone.
+**Agent** to model, który dostał pętlę, narzędzia i cel - i który sam decyduje, jakie narzędzie wywołać w następnym kroku, aż uzna zadanie za zakończone.
 
 Praktyczne kryterium: jeśli potrafisz narysować diagram z jasnymi strzałkami i warunkami, prawdopodobnie chcesz workflow. Jeśli problem ma charakter eksploracyjny („przejrzyj raport z ostatnich 10 buildów i znajdź flaky testy, zbierz evidence, zaproponuj kolejność napraw"), agent ma sens.
 

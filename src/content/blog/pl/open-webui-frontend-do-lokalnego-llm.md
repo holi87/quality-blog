@@ -119,7 +119,7 @@ Nie jest to skomplikowane. Każdy tool to ~30 linii Pythona. Ale zsumowane razem
 
 ## Open WebUI vs konkurencja
 
-Krótkie ABC alternatyw, na wypadek gdybyś rozważał inne opcje:
+Krótkie ABC alternatyw, na wypadek rozważania innych opcji:
 
 **[AnythingLLM](https://anythingllm.com/)** - bardziej „enterprise-y", ma wbudowane workspaces, multi-tenant, wbudowany agent-builder. Ciężar instalacji większy, więcej konfiguracji. Wybierałbym dla zespołu 10+ osób.
 
