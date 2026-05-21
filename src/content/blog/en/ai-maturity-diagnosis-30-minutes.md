@@ -8,7 +8,7 @@ readingTime: 10
 author: GH
 ---
 
-The [Holak Scale](/en/blog/holak-scale/) describes 11 levels of AI adoption, from resistance to orchestration. The question that comes up in every conversation with a manager is: **"OK, but how do I know where my team is?"**
+The [Holak Scale v2.1e](/en/blog/holak-scale/) describes 12 levels of AI adoption, from resistance to a custom agentic OS. The question that comes up in every conversation with a manager is: **"OK, but how do I know where my team is?"**
 
 The answer is simple: in 30 minutes. No surveys, no full-day workshop, no slides. Below is the protocol I use with clients.
 
@@ -56,10 +56,10 @@ Eight questions, two per phase. Don't ask "which level are you on?" - the answer
 5. *"Show me an AGENTS.md or CLAUDE.md from any project of yours."* - no such file = level 4 or below. File exists, last touched six months ago = level 5 with the documentation-graveyard anti-pattern. File touched this week = 6.
 6. *"Do you use any MCP / connectors / AI plugins? If so, name three and tell me when each last didn't disappoint you."* - none = 5–7. Names + concrete stories = 8. List with no stories = 6–7 dressed up as 8.
 
-### Autonomy phase (level 9–10)
+### Autonomy phase (level 9–11)
 
 7. *"Tell me about the most recent task an agent did end-to-end - without you intervening in the middle."* - none = below 9. Short anecdote = 9. "I have one daily" + example = solid 9.
-8. *"In the last month, have you designed a system of multiple agents collaborating? What was it?"* - no = not above 9. Yes + a coherent description = 10.
+8. *"In the last month, have you designed a system of multiple agents collaborating? What was it? Does that system serve a specific business process with owners, audit logs and cost metrics?"* - no = not above 9. Multi-agent process without owners and metrics = 10. A designed agentic OS for a concrete business outcome (e.g. QA, releases, compliance, customer support) with owners, logs, cost controls and a rollback procedure = 11.
 
 ## Live observation (5 minutes)
 
@@ -75,10 +75,12 @@ Signals:
 - **Invokes a skill / project / configured workspace** - level 5–7.
 - **Performs MCP actions (writes a file, pushes, posts to Slack)** - level 8.
 - **Types a goal and walks away from the screen** - level 9.
+- **Shows a panel of multiple agents with roles and logs** - level 10.
+- **Talks about a business process with an owner, audit logs, cost metrics and a rollback procedure** - level 11.
 
 ## Scoring
 
-For each question, record a level 0–10. Then:
+For each question, record a level 0–11. Then:
 
 - **Individual level** = median across 8 questions + observation. Median, not maximum. The most common beginner error: "I have custom instructions, so I'm at 4" - but every other answer says 2.
 - **Organisational level** = inferred through questions 5, 6, 8. Probe: *"Is this your personal setup or the official company stack?"* If personal, the organisation is lower.
@@ -101,8 +103,8 @@ Email after the session:
 Interviewee: Name Surname, role, company
 Session date: YYYY-MM-DD, duration: 30 min
 
-Individual level: [X / 10]
-Organisational level per interviewee: [Y / 10]
+Individual level: [X / 11]
+Organisational level per interviewee: [Y / 11]
 Gap: [description or "none"]
 
 Recommendations:

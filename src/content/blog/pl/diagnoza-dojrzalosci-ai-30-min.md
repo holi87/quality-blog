@@ -8,7 +8,7 @@ readingTime: 10
 author: GH
 ---
 
-[Skala Holaka](/pl/blog/skala-holaka/) opisuje 11 poziomów adopcji AI od oporu do orkiestracji. Pytanie, które wraca w każdej rozmowie z menedżerem brzmi: **„OK, ale skąd mam wiedzieć, gdzie jest mój zespół?"**
+[Skala Holaka v2.1e](/pl/blog/skala-holaka/) opisuje 12 poziomów adopcji AI od oporu po agentic OS. Pytanie, które wraca w każdej rozmowie z menedżerem brzmi: **„OK, ale skąd mam wiedzieć, gdzie jest mój zespół?"**
 
 Odpowiedź jest prosta: w 30 minut. Bez ankiet, bez warsztatu na cały dzień, bez slajdów. Poniżej protokół, którego używam u klientów.
 
@@ -56,10 +56,10 @@ Osiem pytań, po dwa na fazę. Nie pytaj „na którym jesteś poziomie" - odpow
 5. *„Pokaż AGENTS.md albo CLAUDE.md z jakiegokolwiek twojego projektu."* - nie ma takiego pliku = poziom 4 lub niżej. Plik istnieje i jest sprzed pół roku = 5 (z anti-patternem dokumentacja-cmentarz). Plik istnieje i ma datę z ostatniego tygodnia = 6.
 6. *„Czy korzystasz z jakichś MCP / connectorów / wtyczek do AI? Jeśli tak, wymień trzy i powiedz, kiedy ostatnio cię nie zawiodły."* - zero = 5–7. Wymieni i opowie konkretnie = 8. Wymieni listę bez konkretów = 6–7 udający 8.
 
-### Faza Autonomia (poziom 9–10)
+### Faza Autonomia (poziom 9–11)
 
 7. *„Opowiedz o ostatnim zadaniu, które agent zrobił od początku do końca - bez Twojej ingerencji w środku."* - brak = poniżej 9. Krótka relacja = 9. „Codziennie mam takie zadania" + przykład = pewne 9.
-8. *„Czy w ostatnim miesiącu projektowałaś/eś system kilku agentów współpracujących? Co to było?"* - nie = nie ponad 9. Tak + zrozumiały opis = 10.
+8. *„Czy w ostatnim miesiącu projektowałaś/eś system kilku agentów współpracujących? Co to było? Czy ten system obsługuje konkretny proces biznesowy z właścicielami, audytem i metrykami kosztu?"* - nie = nie ponad 9. Wieloagentowy proces bez właścicieli i metryk = 10. Zaprojektowany agentic OS dla konkretnego celu biznesowego (np. QA, wydania, zgodność, obsługa klienta) z właścicielami, logami, kontrolami kosztu i procedurą wycofania = 11.
 
 ## Obserwacja na żywo (5 minut)
 
@@ -75,10 +75,12 @@ Sygnały:
 - **Wywołuje skill / projekt / przestrzeń z konfiguracją** - poziom 5–7.
 - **Wykonuje MCP-owe akcje (zapis pliku, push, wysłanie do Slacka)** - poziom 8.
 - **Wpisuje cel i odchodzi od ekranu** - poziom 9.
+- **Pokazuje panel kilku agentów z rolami i logami** - poziom 10.
+- **Mówi o procesie biznesowym z właścicielem, audytem, metrykami kosztu i procedurą wycofania** - poziom 11.
 
 ## Scoring
 
-Dla każdego pytania zapisuj poziom 0–10. Na końcu:
+Dla każdego pytania zapisuj poziom 0–11. Na końcu:
 
 - **Poziom jednostki** = mediana z 8 pytań + obserwacja. Mediana, nie maksimum. Najczęstszy błąd początkujący „mam custom instructions więc jestem na 4" - ale wszystkie inne odpowiedzi mówią 2.
 - **Poziom organizacji** = oceniany pośrednio przez pytania 5, 6, 8. Dopytaj: *„Czy to jest twoja prywatna konfiguracja, czy oficjalny stack firmowy?"* Jeśli prywatna - organizacja jest niżej.
@@ -101,8 +103,8 @@ Po sesji wyślij mailem to:
 Rozmówca: Imię Nazwisko, rola, firma
 Data sesji: YYYY-MM-DD, czas trwania: 30 min
 
-Poziom jednostki: [X / 10]
-Poziom organizacji w opinii rozmówcy: [Y / 10]
+Poziom jednostki: [X / 11]
+Poziom organizacji w opinii rozmówcy: [Y / 11]
 Rozjazd: [opis lub "brak"]
 
 Rekomendacje:
