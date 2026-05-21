@@ -102,7 +102,7 @@ Jeśli twój use case to żadne z powyższych - wracaj do jednego agenta.
 
 ## Anti-pattern „orkiestracja miernoty"
 
-Cytat ze [Skali Holaka](/pl/blog/skala-holaka/): *„Trzech agentów z których żaden nie radzi sobie z pojedynczym celem. Orkiestracja miernoty daje większą miernotę."*
+Sformułowanie z wcześniejszych wersji [Skali Holaka](/pl/blog/skala-holaka/): *„Trzech agentów z których żaden nie radzi sobie z pojedynczym celem. Orkiestracja miernoty daje większą miernotę."* W v2.1e ten wzorzec wraca pod hasłem *„OS bez celu"* - platforma z agentami, ale bez procesu biznesowego, który realnie obsługuje.
 
 Sygnały:
 

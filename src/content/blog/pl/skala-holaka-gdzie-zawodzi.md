@@ -10,7 +10,7 @@ author:
   - KG
 ---
 
-[Skala Holaka](/pl/blog/skala-holaka/) ma sekcję *„Gdzie ten model zawodzi"* - cztery punkty, każdy w 2 zdaniach. Po dziesiątkach diagnoz i rozmów z czytelnikami widzimy, że to za mało.
+[Skala Holaka](/pl/blog/skala-holaka/) w wersji v2 miała sekcję *„Gdzie ten model zawodzi"* - cztery punkty, każdy w 2 zdaniach. Po dziesiątkach diagnoz i rozmów z czytelnikami widzimy, że to za mało. Wersja v2.1e zmieniła strukturę skali (12 poziomów, agentic OS na 11), ale autokrytyka dotyczy spraw, które żadna kosmetyczna iteracja nie rozwiązuje - dlatego przenosimy ją do osobnego wpisu.
 
 Ten artykuł rozwija autokrytykę. Bo każdy model jest narzędziem, nie prawdą - a w tej skali są miejsca, w których konsekwentnie myli ludzi.
 

@@ -102,7 +102,7 @@ If your use case is none of the above - go back to one agent.
 
 ## The "orchestrating mediocrity" anti-pattern
 
-Quote from the [Holak Scale](/en/blog/holak-scale/): *"Three agents none of which handle a single goal well. Orchestrating mediocrity produces greater mediocrity."*
+A phrase from earlier versions of the [Holak Scale](/en/blog/holak-scale/): *"Three agents none of which handle a single goal well. Orchestrating mediocrity produces greater mediocrity."* In v2.1e the same pattern returns as *"OS with no purpose"* - a platform with agents but no business process it actually serves.
 
 Signals:
 

@@ -10,7 +10,7 @@ author:
   - KG
 ---
 
-The [Holak Scale](/en/blog/holak-scale/) has a section *"Where this model fails"* - four points, each in 2 sentences. After dozens of diagnoses and conversations with readers, we see it's not enough.
+The v2 [Holak Scale](/en/blog/holak-scale/) had a section *"Where this model fails"* - four points, each in 2 sentences. After dozens of diagnoses and conversations with readers, we see it's not enough. Version v2.1e changed the structure of the scale (12 levels, agentic OS at 11), but the self-criticism is about issues no cosmetic iteration solves - which is why we're moving it into a dedicated post.
 
 This article expands the self-criticism. Because every model is a tool, not a truth - and there are places where this scale consistently misleads people.
 
