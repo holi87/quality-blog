@@ -639,8 +639,23 @@ Spoiler: almost never. And what we leave out is often more important than what w
 :root[data-theme="dark"] .fb-article .fb-step-title,
 :root[data-theme="dark"] .fb-article .fb-tl-title,
 :root[data-theme="dark"] .fb-article .fb-biz-text,
-:root[data-theme="dark"] .fb-article .fb-s-title,
-:root[data-theme="dark"] .fb-article .fb-danger-table td:first-child { color: #fff; }
+:root[data-theme="dark"] .fb-article .fb-s-title { color: #fff; }
+:root[data-theme="dark"] .fb-article .fb-formula-note,
+:root[data-theme="dark"] .fb-article .fb-src-desc,
+:root[data-theme="dark"] .fb-article .fb-season-desc,
+:root[data-theme="dark"] .fb-article .fb-step-text,
+:root[data-theme="dark"] .fb-article .fb-tl-text,
+:root[data-theme="dark"] .fb-article .fb-tl-q,
+:root[data-theme="dark"] .fb-article .fb-trap-text,
+:root[data-theme="dark"] .fb-article .fb-chart-sub,
+:root[data-theme="dark"] .fb-article .fb-chart-legend,
+:root[data-theme="dark"] .fb-article .fb-s-sub,
+:root[data-theme="dark"] .fb-article .fb-biz-context,
+:root[data-theme="dark"] .fb-article .fb-w-table td { color: #c9c9c9; }
+:root[data-theme="dark"] .fb-article .fb-formula-box:not(.fb-weighted) .fb-formula,
+:root[data-theme="dark"] .fb-article .fb-s-num { color: #fff; }
+:root[data-theme="dark"] .fb-article .fb-danger-table td { color: #4a4a4a; }
+:root[data-theme="dark"] .fb-article .fb-danger-table td:first-child { color: #111; }
 </style>
 
 <script is:inline data-astro-rerun>
