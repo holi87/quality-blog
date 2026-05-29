@@ -33,14 +33,14 @@ Mimo wszystkich pułapek - rozwój **realnie się opłaca**, gdy jest świadomy.
 
 Konkretne korzyści:
 
-- **większa pewność siebie** - w rozmowach technicznych, na refinementach, w decyzjach release,
-- **większa samodzielność** - mniej zależności od developerów, devopsów, biznesu,
+- **większa pewność siebie** - w rozmowach technicznych, na refinementach, w decyzjach o wydaniu,
+- **większa samodzielność** - mniej zależności od programistów, devopsów, biznesu,
 - **lepsze decyzje testowe** - wiesz, kiedy automat, kiedy ręczne, kiedy nie testować w ogóle,
 - **większy wpływ na projekt** - twoje opinie są słyszane, bo poparte kompetencjami,
 - **lepsze możliwości zawodowe** - łatwiejsze zmiany pracy, awanse, role-by-choice,
 - **mniejszy strach przed zmianą pracy** - wiesz, że poradzisz sobie w innym kontekście,
 - **większa elastyczność** - przy zmianach w projekcie nie tracisz gruntu,
-- **łatwiejsza komunikacja z developerami i biznesem** - bo rozumiesz oba światy.
+- **łatwiejsza komunikacja z programistami i biznesem** - bo rozumiesz oba światy.
 
 To są **konkretne, mierzalne efekty**, nie marketingowe hasła. Tester z umiejętnościami SQL + API + podstaw automatyzacji ma realnie inne perspektywy niż tester wyłącznie manualny - i to widać w ofertach, wynagrodzeniu i swobodzie pracy.
 
@@ -69,7 +69,7 @@ QA jest szeroką dziedziną. **Nie każdy musi być jednocześnie ekspertem od**
 
 - automatyzacji UI,
 - testów API,
-- performance,
+- wydajności,
 - security,
 - chmury,
 - DevOps,
@@ -98,8 +98,8 @@ Dwa kierunki rozwoju, oba sensowne.
 Przykłady:
 
 - automatyzacja testów (od podstaw do architektury frameworka),
-- testy wydajnościowe (od pierwszego k6 do projektowania scenariuszy load),
-- testy bezpieczeństwa (od OWASP Top 10 do penetration testing),
+- testy wydajnościowe (od pierwszego k6 do projektowania scenariuszy obciążeniowych),
+- testy bezpieczeństwa (od OWASP Top 10 do testów penetracyjnych),
 - architektura testów (strategia dla całej organizacji),
 - zarządzanie jakością (QA Lead, Quality Coach).
 
@@ -180,7 +180,7 @@ Nie tylko **certyfikatem**. Realne efekty rozwoju widać, gdy:
 - potrafisz **zaproponować usprawnienie** procesu lub strategii testów,
 - twoje testy dają **większą wartość** - wykrywają więcej, mniej generują szumu,
 - zespół częściej **pyta cię o ryzyko** - bo wie, że masz odpowiedzi,
-- czujesz **większą pewność** w rozmowach technicznych z developerami i biznesem.
+- czujesz **większą pewność** w rozmowach technicznych z programistami i biznesem.
 
 Każdy z tych efektów jest mierzalny - nawet jeśli nie cyfrą, to wyraźnie wyczuwalny. Jeśli po roku rozwoju **nic z tego nie widać**, kierunek był zły.
 

@@ -18,7 +18,7 @@ Trzy formaty narodziły się w odpowiedzi na ten sam problem (agent nie zna moje
 
 - **`.cursorrules`** - pierwszy, od Cursor. Krótkie reguły, „nie używaj X, używaj Y". Plik leży w korzeniu repo, Cursor czyta go automatycznie.
 - **`CLAUDE.md`** - wprowadzone z Claude Code. Bardziej opisowe, „kontekst projektu plus konwencje". Claude Code automatycznie wczytuje plik z root + dowolnego katalogu nadrzędnego.
-- **`AGENTS.md`** - najbardziej generyczny, propagowany od mid-2025. Zamysł: jeden plik, który zrozumie każdy nowoczesny agent - Claude Code, Codex, Cursor, Aider, etc.
+- **`AGENTS.md`** - najbardziej generyczny, propagowany od połowy 2025. Zamysł: jeden plik, który zrozumie każdy nowoczesny agent - Claude Code, Codex, Cursor, Aider itd.
 
 W praktyce: rynek nie ujednolicił się. Każde narzędzie czyta swój format, niektóre czytają wszystkie.
 
@@ -26,7 +26,7 @@ W praktyce: rynek nie ujednolicił się. Każde narzędzie czyta swój format, n
 
 | Narzędzie | AGENTS.md | CLAUDE.md | .cursorrules |
 |-----------|-----------|-----------|--------------|
-| Claude Code | tak (jako fallback) | **główny** | nie |
+| Claude Code | tak (awaryjnie) | **główny** | nie |
 | Cursor agent | tak | tak | **główny** |
 | Codex CLI | **główny** | tak | częściowo |
 | Aider | tak | tak | nie |
@@ -36,7 +36,7 @@ W praktyce: rynek nie ujednolicił się. Każde narzędzie czyta swój format, n
 
 ## Co wrzucać do każdego
 
-Każdy format ma trochę inny *spirit*. Mieszanie ich na zasadzie *„kopiuj 1:1"* daje gorsze efekty niż wykorzystanie różnic.
+Każdy format ma trochę inny *charakter*. Mieszanie ich na zasadzie *„kopiuj 1:1"* daje gorsze efekty niż wykorzystanie różnic.
 
 ### CLAUDE.md - kontekst i sposób pracy
 
@@ -44,8 +44,8 @@ Najpojemniejszy z trzech. Tutaj wjeżdża:
 
 - cel projektu w 2 zdaniach
 - stack technologiczny
-- konwencje kodu (tylko te, które są lokalne dla projektu - ogólne idą do custom instructions)
-- workflow gita / branching / commit message style
+- konwencje kodu (tylko te, które są lokalne dla projektu - ogólne idą do instrukcji własnych)
+- przepływ pracy w gicie / rozgałęzianie / styl wiadomości commitów
 - jak uruchomić, jak zbudować, jak przetestować
 - znane pułapki („nie ruszaj X bo Y")
 - mapa katalogów jeśli nieoczywista
@@ -93,9 +93,9 @@ Krótkie, dyrektywne. Optymalizowane pod „nie pisz Y, pisz X":
 - Don't use `index.ts` re-export barrels.
 ```
 
-Idealnie 10–30 linii. Większe = sygnał że treść powinna pójść do CLAUDE.md albo do system prompta.
+Idealnie 10-30 linii. Większe = sygnał że treść powinna pójść do CLAUDE.md albo do promptu systemowego.
 
-### AGENTS.md - workflow agenta i protokół działania
+### AGENTS.md - przepływ pracy agenta i protokół działania
 
 Najmniej standardowy z trzech, ale nabrał własnego charakteru: tu opisujesz **jak agent powinien się zachować w tym projekcie**:
 
@@ -104,9 +104,9 @@ Najmniej standardowy z trzech, ale nabrał własnego charakteru: tu opisujesz **
 - *„nigdy nie pushuj bezpośrednio do main"*
 - *„przed pushem uruchom `npm run lint`"*
 
-[Mam osobny post o AGENTS.md w kontekście test automation](/pl/blog/agents-md-dla-test-automation/) - tam jest szczegół dla repozytoriów Playwright/Cypress/API.
+[Mam osobny post o AGENTS.md w kontekście automatyzacji testów](/pl/blog/agents-md-dla-test-automation/) - tam jest szczegół dla repozytoriów Playwright/Cypress/API.
 
-## Strategia multi-tool
+## Strategia wielonarzędziowa
 
 Jeśli zespół używa Claude Code + Cursor + sporadycznie Codex, masz 3 opcje:
 
@@ -119,7 +119,7 @@ ln -s CLAUDE.md AGENTS.md
 
 Wada: `.cursorrules` ma inny format (krótkie reguły), więc symlink nie pasuje.
 
-### Opcja 2: jeden plik z headerami per narzędzie
+### Opcja 2: jeden plik z nagłówkami na narzędzie
 
 ```markdown
 # Project context
@@ -136,7 +136,7 @@ Wada: `.cursorrules` ma inny format (krótkie reguły), więc symlink nie pasuje
 
 Nie wszystkie narzędzia rozumieją te sekcje. W praktyce każde czyta cały plik. Działa średnio.
 
-### Opcja 3: trzy oddzielne pliki + cross-link
+### Opcja 3: trzy oddzielne pliki + wzajemne odnośniki
 
 To rozwiązanie, które realnie polecam. W korzeniu repo:
 
@@ -150,29 +150,29 @@ CLAUDE.md       # pełen kontekst projektu, stack, komendy
 
 `.cursorrules` ma na końcu *„For full project context see CLAUDE.md."*
 
-## Anti-pattern: kopia 1:1 między plikami
+## Antywzorzec: kopia 1:1 między plikami
 
 Najczęstszy błąd: zespół kopiuje treść CLAUDE.md do AGENTS.md, bo „obydwa narzędzia tego potrzebują". Po miesiącu pliki rozjeżdżają się. Ktoś edytuje jeden, ktoś drugi. Agent dostaje sprzeczne sygnały.
 
-Test: otwórz oba pliki i policz wspólne linie. Jeśli >40% - masz duplikację. Refaktor: zostaw treść w jednym, w drugim link.
+Test: otwórz oba pliki i policz wspólne linie. Jeśli >40% - masz duplikację. Refaktoryzacja: zostaw treść w jednym, w drugim link.
 
-## Anti-pattern: dokumentacja-cmentarz
+## Antywzorzec: dokumentacja-cmentarz
 
-Spisane raz, nigdy nie zaktualizowane. Pisałem o tym [w anti-patternach adopcji](/pl/blog/antipaterny-adopcji-ai/) - ale warto powtórzyć, bo to dotyczy każdego z trzech formatów.
+Spisane raz, nigdy nie zaktualizowane. Pisałem o tym [w antywzorcach adopcji](/pl/blog/antipaterny-adopcji-ai/) - ale warto powtórzyć, bo to dotyczy każdego z trzech formatów.
 
 **Test:** otwórz CLAUDE.md i powiedz, co tam zmieniło się w ostatnim miesiącu. Cisza = cmentarz.
 
-**Wyjście:** dodaj do retro pytanie *„czy CLAUDE.md zgadza się z tym, jak teraz pracujemy?"*. Każda zmiana w workflow = PR do pliku.
+**Wyjście:** dodaj do retrospektywy pytanie *„czy CLAUDE.md zgadza się z tym, jak teraz pracujemy?"*. Każda zmiana w przepływie pracy = PR do pliku.
 
 ## Czego nie wrzucać
 
 Niezależnie od formatu, kilka rzeczy do CLAUDE.md / AGENTS.md / .cursorrules **nie należy**:
 
-- **Sekretów** - żadne API keys, hasła, tokeny. Plik jest w repo (zwykle public lub szeroko widoczny).
-- **Danych klientów** - nawet zanonimizowane „real-life examples".
-- **Stylowych preferencji ogólnych** (np. „lubię zwięzłe odpowiedzi") - to do custom instructions globalnie, nie do per-projekt pliku.
+- **Sekretów** - żadne klucze API, hasła, tokeny. Plik jest w repo (zwykle publiczny lub szeroko widoczny).
+- **Danych klientów** - nawet zanonimizowane „przykłady z życia".
+- **Stylowych preferencji ogólnych** (np. „lubię zwięzłe odpowiedzi") - to do instrukcji własnych globalnie, nie do pliku per projekt.
 - **Historii decyzji** (np. „rozważaliśmy X i Y, wybraliśmy Z") - to do ADR-ów (Architecture Decision Records) lub osobnego `docs/`.
-- **Roadmapy / TODO** - to do issue trackera, nie do kontekstu agenta.
+- **Map drogowych / list TODO** - to do systemu zgłoszeń, nie do kontekstu agenta.
 
 ## Co dalej
 
@@ -180,4 +180,4 @@ Jeśli twój projekt nie ma żadnego z tych plików - zacznij od **CLAUDE.md w k
 
 Jeśli masz wszystkie trzy, ale duplikują się - refaktor zgodnie z opcją 3 z tego postu.
 
-Jeśli masz jeden plik z 2023 roku - udajesz że jesteś na poziomie 5. Realnie wracasz do 4 z anti-patternem. Wyjście: weekend, refresh, retro.
+Jeśli masz jeden plik z 2023 roku - udajesz że jesteś na poziomie 5. Realnie wracasz do 4 z antywzorcem. Wyjście: weekend, odświeżenie, retrospektywa.
