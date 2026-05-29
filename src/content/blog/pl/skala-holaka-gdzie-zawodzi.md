@@ -1,6 +1,6 @@
 ---
 title: "Gdzie skala Holaka zawodzi - autokrytyka"
-description: "Każdy model jest narzędziem, nie prawdą. Sześć miejsc, w których skala Holaka realnie zawodzi w pracy z zespołami, plus feedback od czytelników, który warto zaadresować w wersji 3."
+description: "Każdy model jest narzędziem, nie prawdą. Sześć miejsc, w których skala Holaka realnie zawodzi w pracy z zespołami, plus informacje zwrotne od czytelników, które warto zaadresować w wersji 3."
 date: 2026-06-05
 tags: ["ai", "adopcja", "skala-holaka", "autokrytyka"]
 lang: pl
@@ -24,7 +24,7 @@ W realnych zespołach jest inaczej:
 
 - W kodowaniu inżynier jest na 8.
 - W pisaniu maili - na 1 (otwiera czyste okno, jedno pytanie).
-- W analizie danych - na 4 (custom instructions dla R/Python, ale brak skilli).
+- W analizie danych - na 4 (instrukcje własne dla R/Python, ale brak skilli).
 - W obsłudze klienta - na 0 (nie używa AI w ogóle).
 
 Ten sam człowiek. Cztery różne poziomy w cztery różne dni.
@@ -37,24 +37,24 @@ Skala traktuje wszystkie kroki tak samo. *„Z 1 na 2"* wygląda jak *„z 9 na 
 
 W praktyce krzywa wartości jest mocno wybrzuszona w pierwszej połowie:
 
-- Skok 1 → 4: 50–70% maksymalnej wartości adopcji. Tania, szybka, dla większości użytkowników wystarczająca.
-- Skok 4 → 8: kolejne 25%. Wymaga discipline organizacyjnej, dużo dłuższy.
+- Skok 1 → 4: 50-70% maksymalnej wartości adopcji. Tania, szybka, dla większości użytkowników wystarczająca.
+- Skok 4 → 8: kolejne 25%. Wymaga dyscypliny organizacyjnej, dużo dłuższy.
 - Skok 8 → 10: ostatnie 5%. Drogie, ryzykowne, sensowne dla bardzo wąskiej grupy zastosowań.
 
-Dla 90% zespołów **celowanie w 4–5 daje większy ROI** niż celowanie w 10. Tego nie widać w skali.
+Dla 90% zespołów **celowanie w 4-5 daje większy ROI** niż celowanie w 10. Tego nie widać w skali.
 
 **Czego brakuje:** mapy wartości / kosztu per skok. Wersja 3 będzie miała tę krzywą jako diagram obok skali.
 
 ## 3. Narzędzia się starzeją
 
-Skala opisuje *rodzaj* umiejętności, ale gdy ludzie ją czytają - myślą *tools*. *„Poziom 8 to MCP"* - i już mieli rację w 2025, ale w 2026 to znaczy co innego.
+Skala opisuje *rodzaj* umiejętności, ale gdy ludzie ją czytają - myślą *narzędzia*. *„Poziom 8 to MCP"* - i już mieli rację w 2025, ale w 2026 to znaczy co innego.
 
 Konkretne starzenie:
 
 - Poziom 5 w 2025 = pisanie `.cursorrules`. W 2026 = AGENTS.md / CLAUDE.md / .cursorrules - trzy formaty, [każdy do innej rzeczy](/pl/blog/agents-md-claude-md-cursorrules-porownanie/).
-- Poziom 7 w 2025 = własne skille. W 2026 = plugin marketplace + community-shared skille - inna ekonomia.
+- Poziom 7 w 2025 = własne skille. W 2026 = plugin marketplace + skille współdzielone przez społeczność - inna ekonomia.
 - Poziom 8 w 2025 = pierwsze MCP w użyciu. W 2026 = pytanie nie „czy mam MCP" tylko „[czy nie mam za dużo](/pl/blog/mcp-kiedy-warto-kiedy-overengineering/)".
-- Poziom 10 w 2025 = autonomous agents demo. W 2026 = sceptyczne pytanie [„czy nie wystarczy jeden agent"](/pl/blog/orkiestracja-wieloagentowa-kiedy-jeden-agent/).
+- Poziom 10 w 2025 = demo agentów autonomicznych. W 2026 = sceptyczne pytanie [„czy nie wystarczy jeden agent"](/pl/blog/orkiestracja-wieloagentowa-kiedy-jeden-agent/).
 
 **Czego brakuje:** wersjonowanie skali. Wersja 3 będzie miała datę i listę narzędzi referencyjnych per poziom, eksplicytnie oznaczonych jako *„stan na Q2 2026, sprawdź czy aktualne"*.
 
@@ -71,7 +71,7 @@ Można być na poziomie 10 i:
 
 Dojrzałość techniczna ≠ dojrzałość moralna. A skala sugeruje, że „wyżej" zawsze jest *lepiej*.
 
-**Czego brakuje:** wymiar etyczny / governance jako osobna oś. Wersja 3 może wprowadzić skalę 2D - *technical maturity* × *ethical maturity*. Albo szóstą fazę. Otwarte pytanie.
+**Czego brakuje:** wymiar etyczny / nadzór jako osobna oś. Wersja 3 może wprowadzić skalę 2D - *dojrzałość techniczna* × *dojrzałość etyczna*. Albo szóstą fazę. Otwarte pytanie.
 
 ## 5. Ludzie identyfikują się z poziomem
 
@@ -87,15 +87,15 @@ Konsekwencje:
 
 **Czego brakuje:** wyraźniejsze formowanie skali jako stanu, nie cechy. Wersja 3 będzie miała eksplicytne *„poziom jest stanem czasowym, zależnym od kontekstu, nie tożsamością"*.
 
-## 6. Brak feedback loop'a po publikacji
+## 6. Brak pętli informacji zwrotnej po publikacji
 
 W oryginalnej skali nie było mechanizmu zbierania doświadczeń. *„Wersja 3 powstanie, kiedy uzbieram materiał"* brzmi dobrze, ale nie ma kanału.
 
-W ciągu kilku tygodni po publikacji dostaliśmy mailem ~30 historii wdrożeń. Każda zawierała coś, czego skala nie pokrywa. Ale 30 maili w skrzynce ≠ ustrukturyzowany feedback.
+W ciągu kilku tygodni po publikacji dostaliśmy mailem ~30 historii wdrożeń. Każda zawierała coś, czego skala nie pokrywa. Ale 30 maili w skrzynce ≠ ustrukturyzowana informacja zwrotna.
 
-**Czego brakuje:** ankieta / formularz do diagnoz. Wersja 3 może mieć dedicated GitHub repo z templatkami case studies, albo prostą stronę zbierającą wpisy.
+**Czego brakuje:** ankieta / formularz do diagnoz. Wersja 3 może mieć dedykowane repo na GitHubie z szablonami studiów przypadku, albo prostą stronę zbierającą wpisy.
 
-## Feedback od czytelników - co się powtarza
+## Informacje zwrotne od czytelników - co się powtarza
 
 W mailach, które dostaliśmy:
 
