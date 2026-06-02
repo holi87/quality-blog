@@ -398,14 +398,14 @@ Spoiler: this is the metric that often reveals the problem lies not with QA but 
     <li class="fb-s-item fb-s-done">
       <span class="fb-s-num">01</span>
       <div>
-        <div class="fb-s-title">The complete guide <span class="fb-s-badge-done">read</span></div>
+        <div class="fb-s-title"><a href="/en/blog/qa-metrics-business-wants-to-hear/">The complete guide</a> <span class="fb-s-badge-done">read</span></div>
         <div class="fb-s-sub">Diagnosis, three pillars, five metrics, the QA → KPI mapping model</div>
       </div>
     </li>
     <li class="fb-s-item fb-s-done">
       <span class="fb-s-num">02</span>
       <div>
-        <div class="fb-s-title">Defect Detection Ratio <span class="fb-s-badge-done">read</span></div>
+        <div class="fb-s-title"><a href="/en/blog/defect-detection-ratio-measure-qa-effectiveness/">Defect Detection Ratio</a> <span class="fb-s-badge-done">read</span></div>
         <div class="fb-s-sub">Formula, thresholds, historical data, seasonality, pitfalls</div>
       </div>
     </li>
@@ -502,10 +502,10 @@ Spoiler: this is the metric that often reveals the problem lies not with QA but 
 .fb-inc-time { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fb-gold); margin-bottom: 14px; }
 .fb-inc-line { display: flex; gap: 12px; margin-bottom: 10px; align-items: flex-start; }
 .fb-inc-line:last-child { margin-bottom: 0; }
-.fb-inc-t { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); min-width: 42px; padding-top: 3px; flex-shrink: 0; }
+.fb-inc-t { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.52); min-width: 42px; padding-top: 3px; flex-shrink: 0; }
 .fb-inc-msg { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.82); }
 .fb-inc-alert { color: #FCA5A5; }
-.fb-inc-note { color: rgba(255,255,255,0.5); font-style: italic; }
+.fb-inc-note { color: rgba(255,255,255,0.64); font-style: italic; }
 
 /* TAXONOMY */
 .fb-tax-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 24px 0; }
@@ -527,7 +527,7 @@ Spoiler: this is the metric that often reveals the problem lies not with QA but 
 .fb-tax-integ .fb-tax-share { background: #EDE9FE; color: var(--fb-purple); }
 .fb-tax-regr .fb-tax-share { background: #FEE2E2; color: var(--fb-red); }
 .fb-tax-desc { font-size: 13px; color: var(--fb-muted); line-height: 1.55; margin-bottom: 10px; }
-.fb-tax-examples { font-size: 11px; color: var(--fb-faint); }
+.fb-tax-examples { font-size: 11px; color: #707070; }
 .fb-tax-examples span { display: block; padding: 2px 0; }
 .fb-tax-examples span::before { content: '→ '; }
 
@@ -576,7 +576,7 @@ Spoiler: this is the metric that often reveals the problem lies not with QA but 
 .fb-cost-section { background: var(--fb-navy); border-radius: 16px; padding: 40px 36px; margin: 40px 0; }
 .fb-cost-eyebrow { display: block; font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fb-gold); margin-bottom: 10px; }
 .fb-cost-h { font-family: Georgia, serif; color: #fff !important; margin: 0 0 8px; font-size: 1.6rem; font-weight: 500; line-height: 1.2; }
-.fb-cost-intro { color: rgba(255,255,255,0.55) !important; font-size: 15px; margin-bottom: 26px; }
+.fb-cost-intro { color: rgba(255,255,255,0.72) !important; font-size: 15px; margin-bottom: 26px; }
 .fb-cost-types { display: grid; gap: 14px; }
 .fb-cost-type { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 22px; display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: start; }
 @media (max-width: 540px) { .fb-cost-type { grid-template-columns: 1fr; } .fb-ct-total { text-align: left; } }
@@ -587,21 +587,21 @@ Spoiler: this is the metric that often reveals the problem lies not with QA but 
 .fb-ct-reg { background: rgba(248,113,113,0.2); color: #FCA5A5; }
 .fb-ct-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; }
 .fb-ct-breakdown { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-.fb-ct-item { font-size: 11px; color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); padding: 3px 9px; border-radius: 6px; }
-.fb-ct-note { margin-top: 8px; font-size: 12px; color: rgba(255,255,255,0.35); }
+.fb-ct-item { font-size: 11px; color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.08); padding: 3px 9px; border-radius: 6px; }
+.fb-ct-note { margin-top: 8px; font-size: 12px; color: rgba(255,255,255,0.56); }
 .fb-ct-total { text-align: right; align-self: center; }
 .fb-ct-hrs { font-family: Georgia, serif; font-size: 2rem; font-weight: 500; line-height: 1; color: #fff; }
-.fb-ct-unit { font-size: 10px; color: rgba(255,255,255,0.35); margin-top: 3px; }
+.fb-ct-unit { font-size: 10px; color: rgba(255,255,255,0.55); margin-top: 3px; }
 .fb-ct-risk { font-size: 11px; margin-top: 4px; font-weight: 600; }
 .fb-ct-high { color: #FCA5A5; }
 .fb-ct-med { color: #FCD34D; }
 .fb-ct-crit { color: #F87171; }
 .fb-cost-summary { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px 24px; margin-top: 20px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
-.fb-cs-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.fb-cs-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.58); margin-bottom: 4px; }
 .fb-cs-val { font-family: Georgia, serif; font-size: 1.8rem; font-weight: 500; color: #fff; line-height: 1; }
 .fb-cs-red { color: #FCA5A5; }
 .fb-cs-blue { color: #93C5FD; }
-.fb-cs-sub { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 4px; }
+.fb-cs-sub { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 4px; }
 
 /* CHARTS */
 .fb-chart-card { background: var(--fb-surface); border: 1px solid var(--fb-border); border-radius: 12px; padding: 22px; margin: 28px 0; }
@@ -640,6 +640,8 @@ Spoiler: this is the metric that often reveals the problem lies not with QA but 
 .fb-s-title { font-size: 14px; font-weight: 600; color: #111; }
 .fb-s-current .fb-s-title { color: var(--fb-gold); }
 .fb-s-done .fb-s-title { color: var(--fb-muted); }
+.fb-s-title a { color: inherit; text-decoration: none; border-bottom: 1px dashed var(--fb-border); transition: color 0.15s; }
+.fb-s-title a:hover { color: var(--fb-gold); border-bottom-color: var(--fb-gold); }
 .fb-s-sub { font-size: 12px; color: var(--fb-faint); margin-top: 3px; }
 .fb-s-now { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: var(--fb-gold-pale); color: var(--fb-gold); padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
 .fb-s-badge-done { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: var(--fb-teal-pale); color: var(--fb-teal); padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
@@ -661,6 +663,17 @@ Spoiler: this is the metric that often reveals the problem lies not with QA but 
 :root[data-theme="dark"] .fb-article .fb-cl-title,
 :root[data-theme="dark"] .fb-article .fb-biz-text,
 :root[data-theme="dark"] .fb-article .fb-summary-lead { color: #fff; }
+:root[data-theme="dark"] .fb-article .fb-collect-desc,
+:root[data-theme="dark"] .fb-article .fb-step-text,
+:root[data-theme="dark"] .fb-article .fb-cl-desc,
+:root[data-theme="dark"] .fb-article .fb-chart-sub,
+:root[data-theme="dark"] .fb-article .fb-chart-legend,
+:root[data-theme="dark"] .fb-article .fb-biz-context,
+:root[data-theme="dark"] .fb-article .fb-s-sub,
+:root[data-theme="dark"] .fb-article .fb-sg-label { color: #c9c9c9; }
+:root[data-theme="dark"] .fb-article .fb-s-title { color: #fff; }
+:root[data-theme="dark"] .fb-article .fb-s-done .fb-s-title { color: #c9c9c9; }
+:root[data-theme="dark"] .fb-article .fb-s-current .fb-s-title { color: var(--fb-gold); }
 </style>
 
 <script is:inline data-astro-rerun>
