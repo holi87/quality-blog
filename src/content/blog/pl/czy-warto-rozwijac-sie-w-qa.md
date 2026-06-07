@@ -1,7 +1,7 @@
 ---
 title: "Czy warto rozwijać się w QA, jeśli „przecież umiem już testować”?"
 description: "Rozwój w QA to nie tylko nauka automatyzacji. To lepsze rozumienie produktu, ryzyka, technologii, biznesu i pracy zespołu."
-date: 2026-06-19
+date: 2026-06-24
 tags: ["qa", "rozwoj", "kariera", "kompetencje"]
 lang: pl
 readingTime: 16

@@ -1,7 +1,7 @@
 ---
 title: "Dlaczego QA nie może stać w miejscu, gdy produkt i zespół idą do przodu?"
 description: "Zapewnienie jakości musi rozwijać się razem z produktem, technologią i zespołem. Sprawdź, dlaczego stare podejście do QA z czasem przestaje wystarczać."
-date: 2026-06-17
+date: 2026-06-18
 tags: ["qa", "proces", "dojrzalosc", "shift-left", "shift-right"]
 lang: pl
 readingTime: 17

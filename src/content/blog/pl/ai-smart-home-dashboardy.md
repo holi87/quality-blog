@@ -1,7 +1,7 @@
 ---
 title: "AI w Smart Home, część 3: Dom, który pokazuje sens - dashboardy projektowane z pomocą AI"
 description: "Trzecia część mini-serii o AI w smart home. Pokazuję, jak używać AI do projektowania dashboardów Home Assistant: od informacji architektonicznej, przez układ widoków, po karty, statusy, dashboard techniczny i czytelne opisy."
-date: 2026-06-22
+date: 2026-06-29
 tags: ["ai", "smart home", "home assistant", "dashboardy", "ux"]
 lang: pl
 readingTime: 13
