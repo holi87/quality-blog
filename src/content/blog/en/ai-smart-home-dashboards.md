@@ -1,7 +1,7 @@
 ---
 title: "AI in Smart Home, Part 3: A Home That Shows What Matters - Dashboards Designed with AI"
 description: "The third part of the AI in smart home mini-series. We use AI to design Home Assistant dashboards: from information architecture and view structure to cards, status summaries, technical dashboards, and readable labels."
-date: 2026-06-29
+date: 2026-06-22
 tags: ["ai", "smart home", "home assistant", "dashboards", "ux"]
 lang: en
 readingTime: 13

@@ -1,7 +1,7 @@
 ---
 title: "AI in Smart Home, Part 4: Is a Mini Smart Home Worth It on a Construction Site?"
 description: "A smart home does not have to start after moving in. On a construction site, it can run in a mini version: tracking temperature and humidity, sending reports, detecting warning thresholds, combining sensor data with camera events, and helping document risks."
-date: 2026-06-22
+date: 2026-06-29
 tags: ["ai", "smart home", "home assistant", "home construction", "monitoring", "cameras"]
 lang: en
 readingTime: 13

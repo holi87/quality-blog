@@ -1,7 +1,7 @@
 ---
 title: "AI w Smart Home, część 4: Czy warto mieć smart home w wersji mini na budowie?"
 description: "Smart home nie musi zaczynać się dopiero po przeprowadzce. Na budowie może działać w wersji mini: mierzyć temperaturę i wilgotność, wysyłać raporty, wykrywać przekroczenia progów, łączyć dane z kamerami i pomagać dokumentować ryzyka."
-date: 2026-06-22
+date: 2026-06-29
 tags: ["ai", "smart home", "home assistant", "budowa domu", "monitoring", "kamery"]
 lang: pl
 readingTime: 13
