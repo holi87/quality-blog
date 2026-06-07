@@ -1,7 +1,7 @@
 ---
 title: "Ciągły rozwój w QA: przekleństwo, konieczność czy realny zysk?"
 description: "Ciągły rozwój w QA może być źródłem przewagi, ale też presji i zmęczenia. Sprawdź, jak rozwijać się świadomie, bez chaosu i wypalenia."
-date: 2026-06-25
+date: 2026-07-01
 tags: ["qa", "rozwoj", "kariera", "wypalenie"]
 lang: pl
 readingTime: 15

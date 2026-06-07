@@ -1,7 +1,7 @@
 ---
 title: "Continuous growth in QA: curse, necessity, or real gain?"
 description: "Continuous growth in QA can be a competitive edge - or a source of pressure and exhaustion. Here's how to grow deliberately, without chaos or burnout."
-date: 2026-06-25
+date: 2026-07-01
 tags: ["qa", "growth", "career", "burnout"]
 lang: en
 readingTime: 15

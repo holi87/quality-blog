@@ -1,7 +1,7 @@
 ---
 title: "Is it worth growing in QA if you 'already know how to test'?"
 description: "Growth in QA isn't just automation. It's better understanding of the product, risk, technology, business and how a team works together."
-date: 2026-06-24
+date: 2026-06-26
 tags: ["qa", "growth", "career", "competencies"]
 lang: en
 readingTime: 16

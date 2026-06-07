@@ -1,7 +1,7 @@
 ---
 title: "Why QA experience is more than years on a CV"
 description: "QA experience isn't just tool knowledge. It's the ability to predict risk, ask the right questions, and recognise problems before they become bugs."
-date: 2026-06-19
+date: 2026-06-25
 tags: ["qa", "experience", "tester-role", "risk"]
 lang: en
 readingTime: 16
