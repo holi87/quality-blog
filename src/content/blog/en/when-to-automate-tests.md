@@ -1,7 +1,7 @@
 ---
 title: "When to automate tests, and when automation is a waste of time"
 description: "Test automation isn't always the right answer. Here's when it's worth automating, what to leave manual, and how to make conscious QA decisions."
-date: 2026-06-11
+date: 2026-06-12
 tags: ["qa", "automation", "testing", "strategy"]
 lang: en
 readingTime: 18

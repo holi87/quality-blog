@@ -1,7 +1,7 @@
 ---
 title: "Why QA can't stand still while the product and team move forward"
 description: "Quality assurance must evolve with the product, the technology and the team. Here's why old QA approaches stop working as systems grow."
-date: 2026-06-12
+date: 2026-06-17
 tags: ["qa", "process", "maturity", "shift-left", "shift-right"]
 lang: en
 readingTime: 17

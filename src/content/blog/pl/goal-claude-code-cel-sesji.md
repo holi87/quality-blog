@@ -1,7 +1,7 @@
 ---
 title: "Komenda /goal w Claude Code - kontrakt sesji, który nie pozwala agentowi się poddać"
 description: "Jak /goal w Claude Code wymusza dokończenie pracy przez sesyjny hook Stop. Plusy, minusy, kiedy stosować, jak formułować warunek i czemu to ważne dla QA."
-date: 2026-06-08
+date: 2026-06-10
 tags: ["claude-code", "ai", "workflow", "qa"]
 lang: pl
 readingTime: 8

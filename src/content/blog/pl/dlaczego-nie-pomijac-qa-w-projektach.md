@@ -1,7 +1,7 @@
 ---
 title: "Dlaczego pomijanie QA w projekcie prawie zawsze kosztuje więcej, niż się wydaje?"
 description: "QA nie jest dodatkiem do projektu. Sprawdź, dlaczego pomijanie zapewnienia jakości prowadzi do opóźnień, błędów, chaosu i utraty zaufania użytkowników."
-date: 2026-06-10
+date: 2026-06-11
 tags: ["qa", "jakosc", "proces", "zespol"]
 lang: pl
 readingTime: 17

@@ -1,7 +1,7 @@
 ---
 title: "Dlaczego doświadczenie QA jest czymś więcej niż liczbą lat w CV?"
 description: "Doświadczenie QA to nie tylko znajomość narzędzi. To umiejętność przewidywania ryzyk, zadawania właściwych pytań i szybkiego rozpoznawania problemów."
-date: 2026-06-15
+date: 2026-06-18
 tags: ["qa", "doswiadczenie", "rola-testera", "ryzyko"]
 lang: pl
 readingTime: 16

@@ -1,7 +1,7 @@
 ---
 title: "Kiedy warto automatyzować testy, a kiedy automatyzacja jest stratą czasu?"
 description: "Automatyzacja testów nie zawsze jest najlepszą odpowiedzią. Sprawdź, kiedy warto automatyzować, czego nie automatyzować i jak podejmować świadome decyzje QA."
-date: 2026-06-11
+date: 2026-06-12
 tags: ["qa", "automatyzacja", "testy", "strategia"]
 lang: pl
 readingTime: 18

@@ -1,7 +1,7 @@
 ---
 title: "Why skipping QA on a project almost always costs more than it seems"
 description: "QA isn't an add-on. Skipping quality assurance leads to delays, bugs, chaos and lost user trust. Here's why it almost never pays off."
-date: 2026-06-10
+date: 2026-06-11
 tags: ["qa", "quality", "process", "team"]
 lang: en
 readingTime: 17

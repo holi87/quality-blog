@@ -1,7 +1,7 @@
 ---
 title: "The /goal command in Claude Code - a session contract that won't let the agent give up"
 description: "How /goal in Claude Code enforces completion through a session-scoped Stop hook. Pros, cons, when to use it, how to phrase the condition, and why it matters for QA."
-date: 2026-06-08
+date: 2026-06-10
 tags: ["claude-code", "ai", "workflow", "qa"]
 lang: en
 readingTime: 8
