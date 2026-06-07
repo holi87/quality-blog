@@ -153,3 +153,9 @@ Success depends entirely on the quality of the condition. That's not a tooling p
 For [test architects and people rolling AI into QA processes](/en/blog/holak-scale/), `/goal` is a real governance tool - it builds confidence that the session ends where we wanted, not where the agent decided was enough.
 
 Next time you start a multi-step task with Claude Code, try to phrase a one-sentence Definition of Done. Type `/goal "..."`. The rest of the session looks different.
+
+---
+
+## Addendum: `/goal` is in Codex too
+
+`/goal` has also shown up in Codex. That matters: the session contract stops being one tool's quirk and becomes a pattern portable across agents. The idea itself doesn't change - it's still a runtime-enforced Definition of Done. If you work in both tools, the same goal templates carry over no matter which agent you're in.

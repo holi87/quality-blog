@@ -153,3 +153,9 @@ Sukces zależy w stu procentach od jakości warunku. To nie problem narzędzia, 
 Dla [architektów testów i osób wdrażających AI do procesu QA](/pl/blog/skala-holaka/) `/goal` jest realnym narzędziem nadzoru - buduje pewność, że sesja kończy się tam, gdzie chcieliśmy, a nie tam, gdzie agent uznał za wystarczające.
 
 Następnym razem, gdy zaczynasz wielokrokową pracę z Claude Code, spróbuj sformułować jednozdaniową Definicję Ukończenia. Wpisz `/goal "..."`. Reszta sesji wygląda inaczej.
+
+---
+
+## Dopisek: `/goal` jest też w Codex
+
+`/goal` pojawił się również w Codex. To istotne: kontrakt sesji przestaje być specyfiką jednego narzędzia i staje się wzorcem przenośnym między agentami. Sama idea się nie zmienia - to wciąż wymuszona w czasie działania Definicja Ukończenia. Jeśli pracujesz w obu narzędziach, te same szablony goal-ów zadziałają niezależnie od tego, w którym agencie akurat jesteś.
