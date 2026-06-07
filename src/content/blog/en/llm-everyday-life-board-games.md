@@ -5,7 +5,7 @@ date: 2026-06-12
 tags: ["ai", "llm", "chatgpt", "claude", "board games", "productivity"]
 lang: en
 readingTime: 9
-author: GH
+author: [JS, GH]
 ---
 
 There are moments at the board game table that almost every player knows. The game has been going for two hours. Cards, tokens, markers, a main board, player boards, maybe an expansion and a few campaign rules are spread across the table. Suddenly someone asks: “does this card trigger before combat or after combat?”, “do these bonuses stack?”, “can I take this action if I do not have the resource?”, “what does the rulebook say about ties?” Someone grabs the rulebook. Someone else searches the FAQ on their phone. A third player says: “we played it this way last time.” A fourth player is sure last time was wrong.

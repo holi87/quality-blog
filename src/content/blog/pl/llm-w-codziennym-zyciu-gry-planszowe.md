@@ -5,7 +5,7 @@ date: 2026-06-12
 tags: ["ai", "llm", "chatgpt", "claude", "gry planszowe", "produktywność"]
 lang: pl
 readingTime: 9
-author: GH
+author: [JS, GH]
 ---
 
 Są takie momenty przy planszówkach, które zna prawie każdy gracz. Gra trwa już dwie godziny. Na stole leżą karty, znaczniki, żetony, plansza główna, planszetki graczy, może jeszcze dodatek i kilka zasad z kampanii. Nagle pojawia się pytanie: „czy ta karta działa przed walką, czy po walce?”, „czy ten bonus się sumuje?”, „czy mogę wykonać tę akcję, jeśli nie mam zasobu?”, „czy instrukcja mówi coś o remisie?”. Ktoś bierze instrukcję. Ktoś inny szuka FAQ w telefonie. Trzecia osoba mówi: „gramy tak jak ostatnio”. Czwarta jest pewna, że ostatnio graliśmy źle.
