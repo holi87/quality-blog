@@ -32,7 +32,7 @@ Mniej istotne, ale warte odnotowania:
 
 ## Twardy sufit 16 GB - co się mieści, co nie
 
-Powtarzam zasadę z poprzedniego wpisu, bo to fundament: po systemie i otwartych aplikacjach zostaje ci ~10–12 GB. W tym budżecie musi się zmieścić **model + kontekst + ewentualnie embedder**, jeśli używasz RAG-a.
+Powtarzam zasadę z poprzedniego wpisu, bo to fundament: po systemie i otwartych aplikacjach zostaje ci ~10-12 GB. W tym budżecie musi się zmieścić **model + kontekst + ewentualnie embedder**, jeśli używasz RAG-a.
 
 Czego nie odpalisz na 16 GB (oszczędza czas pobierania):
 
@@ -57,11 +57,11 @@ Teraz po kolei, co i do czego.
 
 Mój domyślny model do „pomyśl ze mną" jest dziś Gemma 4 e4b. Powody:
 
-- **Multimodal natywnie.** Wrzucam screenshot błędu z Playwrighta, model widzi i komentuje. Wcześniej wymagało to osobnego modelu vision (np. LLaVA), który dokładał kolejne 4–5 GB do RAM-u.
+- **Multimodal natywnie.** Wrzucam screenshot błędu z Playwrighta, model widzi i komentuje. Wcześniej wymagało to osobnego modelu vision (np. LLaVA), który dokładał kolejne 4-5 GB do RAM-u.
 - **128k kontekstu** - wystarczy, żeby wepchnąć kilka plików projektu i zadać pytanie cross-file.
 - **Audio na wejściu** - to nowość, której nie przetestowałem jeszcze produkcyjnie, ale zapowiada się ciekawie do transkrypcji notatek głosowych.
 - **~5 GB w q4** - zostaje sporo miejsca na kontekst i embeddingi.
-- **Szybkość ~50–60 t/s na M4** - czuje się jak normalny chat.
+- **Szybkość ~50-60 t/s na M4** - czuje się jak normalny chat.
 
 Co mu zarzucam: w długich rozmowach gubi nici. Po 30 wymianach zaczyna zapominać o instrukcjach z system prompta. Dla zadań „odpowiedz na pytanie, podsumuj, zaproponuj" - bez zarzutu. Dla wieloetapowego planowania - przełączam się na coś większego.
 
@@ -73,7 +73,7 @@ Tu kalkulacje są trudniejsze, bo flagowe modele kodowania są ogromne. Realnie 
 
 **Klasa lekka - Qwen2.5-Coder 7B q4** (~5 GB)
 
-Sprawdzony, stabilny, szeroko wspierany. Fill-in-middle (FIM) - czyli model rozumie „wstaw kod między te dwie linie", co czyni go użytecznym w autocomplete IDE. Na M4 daje 30–40 t/s. Realnie potrafi:
+Sprawdzony, stabilny, szeroko wspierany. Fill-in-middle (FIM) - czyli model rozumie „wstaw kod między te dwie linie", co czyni go użytecznym w autocomplete IDE. Na M4 daje 30-40 t/s. Realnie potrafi:
 
 - napisać poprawny test pytest/Playwright z opisu funkcji,
 - zaproponować refactor pojedynczej funkcji,
@@ -93,7 +93,7 @@ To jest model, który mnie najbardziej zaskoczył. Specyfikacja:
 - Function calling, web browsing, structured outputs natywnie
 - Pełen dostęp do reasoning trace (czyli widzisz „myśli" modelu, nie tylko odpowiedź)
 
-Na M4 16 GB daje **15–25 t/s**, czasami szybciej w trybie `low` reasoning. Ollama wspiera MXFP4 natywnie, bez dodatkowej konwersji. Jakość kodowania jest istotnie wyższa niż w Qwen2.5-Coder 7B - bliżej GPT-3.5/4-Mini niż lokalnej alternatywy 7B.
+Na M4 16 GB daje **15-25 t/s**, czasami szybciej w trybie `low` reasoning. Ollama wspiera MXFP4 natywnie, bez dodatkowej konwersji. Jakość kodowania jest istotnie wyższa niż w Qwen2.5-Coder 7B - bliżej GPT-3.5/4-Mini niż lokalnej alternatywy 7B.
 
 Czego mu zarzucam: pierwsza wersja `gpt-oss-20b` ma momenty, w których przesadnie cenzuruje (typowe dla OpenAI'a). Da się to obejść system promptem, ale nie zniknie zupełnie. Dla niektórych zadań research-owych może to być deal-breaker.
 
@@ -101,7 +101,7 @@ Mój nowy default do bardziej skomplikowanych zadań kodowych w trybie offline.
 
 **Klasa ciężka - czy jest sens próbować?**
 
-Qwen3-Coder-Next (80B total, 3B active w MoE) na papierze wygląda fenomenalnie: SWE-bench 58.7%, ze scaffoldingiem 70%+. Problem: 80B totalnych wag, nawet w q4, to ~40 GB. Na 16 GB pamięci nie wjedzie. Można teoretycznie offloadować na SSD, ale wtedy spadasz do 1–2 t/s i to przestaje być narzędzie.
+Qwen3-Coder-Next (80B total, 3B active w MoE) na papierze wygląda fenomenalnie: SWE-bench 58.7%, ze scaffoldingiem 70%+. Problem: 80B totalnych wag, nawet w q4, to ~40 GB. Na 16 GB pamięci nie wjedzie. Można teoretycznie offloadować na SSD, ale wtedy spadasz do 1-2 t/s i to przestaje być narzędzie.
 
 Dla tej klasy modeli realnie potrzebujesz Mac Studio z 64+ GB. Jeżeli rozważasz upgrade i kodowanie jest twoim głównym use case'em - to jest argument.
 
@@ -120,7 +120,7 @@ Alternatywa: **Qwen3 z trybem `/think`** - gdy model dostaje sygnał, że ma „
 
 ## Embeddings - fundament RAG-a
 
-Embeddings to nie LLM. To znacznie mniejsze modele (50M–500M parametrów), które zamieniają tekst na wektor liczbowy. Bez nich nie ma sensownego RAG-a, semantic search po dokumentach, ani porządnego clusteringa.
+Embeddings to nie LLM. To znacznie mniejsze modele (50M - 500M parametrów), które zamieniają tekst na wektor liczbowy. Bez nich nie ma sensownego RAG-a, semantic search po dokumentach, ani porządnego clusteringa.
 
 Trzy modele, które polecam w 2026:
 
@@ -136,11 +136,11 @@ Krótkie ABC, bo nazewnictwo czasem myli:
 
 - **q4_K_M** - sweet spot dla większości modeli. 4-bitowe wagi z mixed precision dla istotniejszych warstw. ~50% jakości q8 przy 25% rozmiaru.
 - **q5_K_M / q6_K** - krok wyżej, dla wymagających. Modele 7B nadal mieszczą się w 16 GB w q5, więc warto rozważyć.
-- **q8** - „prawie fp16". Niemal bez utraty jakości, ale rozmiar 2x. Realnie tylko dla małych modeli (1B–3B).
+- **q8** - „prawie fp16". Niemal bez utraty jakości, ale rozmiar 2x. Realnie tylko dla małych modeli (1B - 3B).
 - **q2_K / q3_K** - desperacja. Mocno obniżona jakość. Tylko gdy nie ma innej opcji.
 - **MXFP4** - nowość 2026 od OpenAI. 4.25 bita na parametr w „microscaling FP4". Lepsza jakość niż klasyczne 4-bit przy podobnym rozmiarze. Natywnie wspierane w Ollama dla gpt-oss.
 
-Mój domyślny wybór: **q4_K_M dla wszystkiego ≥7B, q5_K_M dla 3B–4B, MXFP4 dla gpt-oss**. Schodzę niżej tylko jeśli nie ma innej opcji.
+Mój domyślny wybór: **q4_K_M dla wszystkiego ≥7B, q5_K_M dla 3B - 4B, MXFP4 dla gpt-oss**. Schodzę niżej tylko jeśli nie ma innej opcji.
 
 ## Mój daily driver setup na 16 GB
 
@@ -165,7 +165,7 @@ Jeżeli chcesz zobaczyć różnicę między modelami na własnej maszynie, polec
 2. **Prompt 2 (reasoning)**: „Wyjaśnij w trzech krokach, co robi ten regex: `^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$`."
 3. **Prompt 3 (multimodal)**: dla Gemma 4 e4b - wrzuć screenshot błędu w konsoli, zapytaj „co to za błąd i co go najczęściej powoduje".
 
-Mierzysz: czas odpowiedzi, peak RAM, jakość (kompiluje? działa? halucynuje?). Po dwóch–trzech rundach wiesz, który model do którego zadania pasuje **na twojej maszynie**, a nie na benchmark-cherry-picked grafikach z Twittera.
+Mierzysz: czas odpowiedzi, peak RAM, jakość (kompiluje? działa? halucynuje?). Po dwóch - trzech rundach wiesz, który model do którego zadania pasuje **na twojej maszynie**, a nie na benchmark-cherry-picked grafikach z Twittera.
 
 ## Wnioski 2026
 
@@ -175,6 +175,6 @@ Po pierwsze, **default na 16 GB Mac mini M4 zmienił się z „Qwen2.5-Coder + G
 
 Po drugie, **lokalny LLM przestaje być zabawką**. gpt-oss-20b z reasoning effort levels naprawdę pomaga w realnych zadaniach. Halucynacji jest zauważalnie mniej niż w klasie 7B sprzed pół roku. To nie zastąpi Claude'a w agentowym kodowaniu, ale do dużej części codziennej pracy wystarczy.
 
-Po trzecie - i najważniejsze - **16 GB to nadal sufit, nie „wystarczy zawsze"**. Modele klasy 27B+ dense, Kimi K2.5, DeepSeek V4 są poza naszym zasięgiem i to się nie zmieni. Jeżeli w pracy potrzebujesz tej klasy lokalnie - patrz na 64–128 GB Mac Studio. Jeżeli wystarczy ci „dobre 7B–20B" - Mac mini M4 16 GB jest sensowny.
+Po trzecie - i najważniejsze - **16 GB to nadal sufit, nie „wystarczy zawsze"**. Modele klasy 27B+ dense, Kimi K2.5, DeepSeek V4 są poza naszym zasięgiem i to się nie zmieni. Jeżeli w pracy potrzebujesz tej klasy lokalnie - patrz na 64-128 GB Mac Studio. Jeżeli wystarczy ci „dobre 7B - 20B" - Mac mini M4 16 GB jest sensowny.
 
 W [następnym wpisie](/pl/blog/open-webui-frontend-do-lokalnego-llm) - Open WebUI jako frontend, który zamienia te modele w „lokalnego ChatGPT" dla całej rodziny lub zespołu, bez pisania jednej linii kodu.

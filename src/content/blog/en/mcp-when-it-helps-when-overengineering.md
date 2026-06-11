@@ -195,7 +195,7 @@ Each targets something different. Keeping them separate simplifies decisions.
 | Initiative | model decides when to fire | model decides when to fire | forced - the agent can't skip it |
 | Audit | shell history / script log | structured log per call | built into the runtime |
 | Scope | per user, per repo, per box | per team / org, centralized | per session / per action |
-| Setup | 5 min - a file in the repo | 2–6h - server, deploy, auth | an hour - config |
+| Setup | 5 min - a file in the repo | 2-6h - server, deploy, auth | an hour - config |
 | Maintenance | minimal, edit the file | regular - versions, CVEs, auth | minimal, but needs tests |
 | Blast radius | bounded by script scope | depends on permissions; misconfigured - large | small - hooks don't carry state |
 | Distribution | git, brew, npm | MCP registry, docs, onboarding | repo, `.claude/settings.json` |
@@ -215,7 +215,7 @@ A script becomes an MCP candidate when 3+ of these are true:
 5. **Allowlist in team policy.** You want to enforce that the agent uses THIS tool, not something it improvised.
 6. **Cross-tooling use.** The same workflow must run in Claude Code, Codex, Cursor, Open WebUI. MCP gives you one implementation, many consumers.
 
-If 0–2 are true - stay with the CLI. If 3+ - write the MCP.
+If 0-2 are true - stay with the CLI. If 3+ - write the MCP.
 
 **Stepwise migration:**
 
@@ -233,4 +233,4 @@ If you're considering your first MCP - start with [the first MCP for QA: search/
 
 If you have several MCP and don't know which to keep - audit against the decision tree. Keep those that pass all 6 steps.
 
-If your team boasts *"we have 15 MCP"* - that's a sign of getting stuck at level 7–8 with the [skill-bloat / MCP-everything anti-pattern](/en/blog/ai-adoption-anti-patterns/). Tool count is not a maturity measure. Count of well-chosen, well-maintained ones - yes.
+If your team boasts *"we have 15 MCP"* - that's a sign of getting stuck at level 7-8 with the [skill-bloat / MCP-everything anti-pattern](/en/blog/ai-adoption-anti-patterns/). Tool count is not a maturity measure. Count of well-chosen, well-maintained ones - yes.

@@ -26,7 +26,7 @@ Od oporu do orkiestracji - 11 poziomów wykorzystania AI w organizacji. Sprawdź
 | Autonomia | 9 | Agentowy workflow | Cel → autonomiczna realizacja |
 | Autonomia | 10 | Orkiestracja | Zespół agentów + koordynator |
 
-## Faza 0–1: Start
+## Faza 0-1: Start
 
 ### Poziom 0 - Opór / brak adopcji
 
@@ -48,7 +48,7 @@ Pierwsza interakcja z AI w formie prostego Q&A. Użytkownik traktuje model jak w
 - Kluczowa bariera to **emocje**, nie umiejętności.
 - Sukces = przełamanie oporu i pierwsze pozytywne doświadczenie.
 
-## Faza 2–4: Świadome użycie
+## Faza 2-4: Świadome użycie
 
 ### Poziom 2 - Świadome promptowanie
 
@@ -76,7 +76,7 @@ Custom instructions, system prompts, ustawienia per-projekt. Użytkownik nie pow
 - Kluczowa bariera to **wiedza** - trzeba poznać techniki promptowania.
 - Sukces = powtarzalne, wysokiej jakości wyniki z AI.
 
-## Faza 5–8: Kontekst i wiedza
+## Faza 5-8: Kontekst i wiedza
 
 ### Poziom 5 - Pliki kontekstowe
 
@@ -108,7 +108,7 @@ Agent nie tylko „pisze" - korzysta z narzędzi: przeszukuje Slacka, tworzy zad
 - Kluczowa bariera to **architektura** - jak zorganizować kontekst, skille i narzędzia.
 - Sukces = agent, który rozumie projekt bez powtarzania instrukcji.
 
-## Faza 9–10: Autonomia
+## Faza 9-10: Autonomia
 
 ### Poziom 9 - Agentowy workflow
 

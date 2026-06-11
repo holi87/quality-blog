@@ -16,7 +16,7 @@ Uwaga wstępna: w każdym z tych workflowów **human in the loop** jest standard
 
 ## 1. Review strategii testów
 
-Typowe wejście: dokument strategii testów na 4–6 stron. Typowe wyjście z ręcznego review: jedno spotkanie, na którym zauważacie trzy luki.
+Typowe wejście: dokument strategii testów na 4-6 stron. Typowe wyjście z ręcznego review: jedno spotkanie, na którym zauważacie trzy luki.
 
 Z AI: promptujesz model z pełnym dokumentem i pytaniem w stylu „wskaż obszary niepokryte, sprzeczności wewnętrzne, i założenia wymagające walidacji". Dostajesz listę, którą przeglądasz w 10 minut. Część to szum, część to realne luki.
 
@@ -74,7 +74,7 @@ Zysk: konsystencja przy każdym releasie. Nigdy nie zapomnisz punktu, bo checkli
 
 Niejasne wymaganie typu „system ma być szybki" jest klasykiem. Test Architect musi to zamienić w coś mierzalnego.
 
-Workflow: wrzucasz wymaganie i prosisz o rozbicie na konkretne scenariusze z warunkami akceptacji. Model generuje 5–7 interpretacji. Zwykle 2 są bzdurne, 3 są bezpieczne ale powierzchowne, 1–2 to realnie dobre pytania, które warto zabrać na refinement.
+Workflow: wrzucasz wymaganie i prosisz o rozbicie na konkretne scenariusze z warunkami akceptacji. Model generuje 5-7 interpretacji. Zwykle 2 są bzdurne, 3 są bezpieczne ale powierzchowne, 1-2 to realnie dobre pytania, które warto zabrać na refinement.
 
 To jest workflow, w którym AI nie zastępuje myślenia analitycznego. Robi coś innego: rozszerza przestrzeń możliwych interpretacji szybciej, niż dałoby się zrobić ręcznie. Twoja rola - selekcja.
 
@@ -104,7 +104,7 @@ To paradoksalny workflow, bo polega na tym, że AI pomaga Ci **nie pisać** test
 
 Scenariusz: dostajesz prośbę „zautomatyzujmy ten scenariusz". Przed pisaniem kodu promptujesz model z opisem scenariusza i pytasz o analizę w kategoriach: koszt utrzymania, stabilność (czy nie będzie flaky), wartość biznesowa vs koszt wykonania manualnego, alternatywy (unit test zamiast E2E, monitoring zamiast testu).
 
-Model zwraca zwykle 2–3 argumenty „za" i 2–3 „przeciw". Część jest oczywista, ale ta jedna uwaga o flakiness w obszarze X (bo już zauważył wzorzec w Waszym changelogu) - to wartość.
+Model zwraca zwykle 2-3 argumenty „za" i 2-3 „przeciw". Część jest oczywista, ale ta jedna uwaga o flakiness w obszarze X (bo już zauważył wzorzec w Waszym changelogu) - to wartość.
 
 To rozmowa z seniorem, której możesz zawsze dostępny być wirtualnie.
 

@@ -104,7 +104,7 @@ When invoked, you receive a topic outline. You produce two Markdown files
 Before writing, you must:
 1. Glob `src/content/blog/pl/*.md` and `src/content/blog/en/*.md` to know
    existing posts and their slugs (for crosslinks).
-2. Read 2–3 recent posts from each locale to absorb tone, structure,
+2. Read 2-3 recent posts from each locale to absorb tone, structure,
    typical section count, and crosslink patterns.
 3. Check the schedule (which dates are taken) - pick the next free
    weekday that's not a Polish public holiday.
@@ -188,7 +188,7 @@ Three iterations are usually enough for the agent to behave stably. If after fiv
 
 ## When a custom agent pays off
 
-Rule of thumb: if you repeat the same type of task three times a week, a custom agent pays for itself. Writing one is 30–60 minutes; each invocation saves 2–5 minutes of briefing (the agent already has the prompt).
+Rule of thumb: if you repeat the same type of task three times a week, a custom agent pays for itself. Writing one is 30-60 minutes; each invocation saves 2-5 minutes of briefing (the agent already has the prompt).
 
 Three real examples where an agent pays off fast:
 

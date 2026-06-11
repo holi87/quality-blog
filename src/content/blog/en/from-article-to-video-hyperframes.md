@@ -40,13 +40,13 @@ The third operation is a single call to action. „Read the full post to see the
 
 Structurally I split the video into four phases of seven to ten seconds each.
 
-**Hook (0–7 s)** is a statement, question or observation that stops the scroll. It has to be specific and slightly provocative - „Today we'll talk about `AGENTS.md` in testing" is too bland. „Your AI agent gets a test repo and spends the first minute guessing - that costs you money" works better.
+**Hook (0-7 s)** is a statement, question or observation that stops the scroll. It has to be specific and slightly provocative - „Today we'll talk about `AGENTS.md` in testing" is too bland. „Your AI agent gets a test repo and spends the first minute guessing - that costs you money" works better.
 
-**Problem (7–15 s)** justifies the hook. It refers concretely to a familiar frustration - for example, „on every PR you explain to the agent that you use `data-testid`, not CSS classes". The viewer has to recognise their own situation in it.
+**Problem (7-15 s)** justifies the hook. It refers concretely to a familiar frustration - for example, „on every PR you explain to the agent that you use `data-testid`, not CSS classes". The viewer has to recognise their own situation in it.
 
-**Demo (15–30 s)** shows the concrete. A file fragment, a diagram, a quick before/after comparison. Visually, the most important phase - this is where the viewer decides whether the topic applies to them.
+**Demo (15-30 s)** shows the concrete. A file fragment, a diagram, a quick before/after comparison. Visually, the most important phase - this is where the viewer decides whether the topic applies to them.
 
-**Takeaway (30–45 s)** leaves one thing to remember plus one call to action. „File structure: setup, commands, conventions, *don't-do-this* section. Full post linked below".
+**Takeaway (30-45 s)** leaves one thing to remember plus one call to action. „File structure: setup, commands, conventions, *don't-do-this* section. Full post linked below".
 
 Each phase has its own role. Hook stops. Problem justifies. Demo convinces. Takeaway routes onward. Removing any of them breaks the whole piece.
 

@@ -51,7 +51,7 @@ Real observation: a team with 5 agents spends **70% of maintenance time on inter
 
 Every handoff = passing context. Each agent has its system prompt. Each discussion round = N × tokens.
 
-Numbers: a single agent solving a task = 5–10K tokens. A five-agent orchestration of the same task = 40–80K tokens. That's **8x the cost** for a marginally better result (usually 10–20%, sometimes worse).
+Numbers: a single agent solving a task = 5-10K tokens. A five-agent orchestration of the same task = 40-80K tokens. That's **8x the cost** for a marginally better result (usually 10-20%, sometimes worse).
 
 ### Debug cost
 

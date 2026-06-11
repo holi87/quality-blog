@@ -8,7 +8,7 @@ readingTime: 10
 author: GH
 ---
 
-Late in March I got an Anthropic API bill that I wasn't ready for. Not because I was using Claude more than usual - rather because I'd moved to long agentic sessions where every round contained politely-phrased replies, gentle introductions, and careful summaries of what was about to happen. When I pulled the stats from the logs, it turned out that roughly **60–70% of the generated tokens were narration around the actual answer** - "Sure!", "Happy to help", "Let me take a look", "The reason this happens is likely...". Technically nothing was wrong with any of it. Financially and operationally, all of it was waste.
+Late in March I got an Anthropic API bill that I wasn't ready for. Not because I was using Claude more than usual - rather because I'd moved to long agentic sessions where every round contained politely-phrased replies, gentle introductions, and careful summaries of what was about to happen. When I pulled the stats from the logs, it turned out that roughly **60-70% of the generated tokens were narration around the actual answer** - "Sure!", "Happy to help", "Let me take a look", "The reason this happens is likely...". Technically nothing was wrong with any of it. Financially and operationally, all of it was waste.
 
 That was the moment I stumbled across a plugin called `caveman`. Slogan: *why use many token when few do trick*. Idea: force the model to talk like a caveman. No articles, no intros, no hedging. At a glance, it looks like a joke. In practice it turned out to be one of the most interesting tools I've added to Claude Code this quarter - not because it fixes everything, but because it shows very precisely *where* the model wastes tokens, and gives you a switch.
 

@@ -64,7 +64,7 @@ This is the section the agent uses most. The less ambiguity, the better.
 
 ### 4. Conventions
 
-Don't paste your entire coding stylebook here. Give 5–10 rules you actually want to enforce:
+Don't paste your entire coding stylebook here. Give 5-10 rules you actually want to enforce:
 
 - how we name test files (`*.spec.ts` vs `*.test.ts`),
 - how we name tests (pattern: "should … when …" or present-tense sentences),
@@ -97,7 +97,7 @@ A short list. Example: "Every PR should contain: a test, repro steps (if the tes
 
 ## Pitfalls I see most often
 
-**Too much text.** I've seen 8-page `AGENTS.md` files. An agent given 8 pages treats the whole thing as one giant context and either ignores details or pulls the wrong priorities. Target: 1–2 pages. If it doesn't fit, cut.
+**Too much text.** I've seen 8-page `AGENTS.md` files. An agent given 8 pages treats the whole thing as one giant context and either ignores details or pulls the wrong priorities. Target: 1-2 pages. If it doesn't fit, cut.
 
 **Conflicts with the code.** "All API tests live in `tests/api/`" - meanwhile half of them are in `tests/integration/`. The agent trusts the document, not the code, and goes wrong. Treat `AGENTS.md` like code - update it with every structural change.
 
@@ -196,7 +196,7 @@ Hand the repo and `AGENTS.md` to a team that hasn't worked on this project. Ask 
 
 - `AGENTS.md` is operational instructions for the agent, not a narrative about the project.
 - Structure: description, setup, commands, conventions, "do not", scope, PR checklist.
-- Keep it to 1–2 pages. A longer file loses the signal.
+- Keep it to 1-2 pages. A longer file loses the signal.
 - The "Do not" section matters as much as the "Do".
 - Treat the file as code - update it whenever the repo structure changes.
 - Measure whether it works: via first-try commands, recurring review comments, and the second-team test.

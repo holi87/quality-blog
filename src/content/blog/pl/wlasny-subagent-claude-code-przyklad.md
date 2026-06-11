@@ -104,7 +104,7 @@ When invoked, you receive a topic outline. You produce two Markdown files
 Before writing, you must:
 1. Glob `src/content/blog/pl/*.md` and `src/content/blog/en/*.md` to know
    existing posts and their slugs (for crosslinks).
-2. Read 2–3 recent posts from each locale to absorb tone, structure,
+2. Read 2-3 recent posts from each locale to absorb tone, structure,
    typical section count, and crosslink patterns.
 3. Check the schedule (which dates are taken) - pick the next free
    weekday that's not a Polish public holiday.
@@ -188,7 +188,7 @@ Trzy iteracje wystarczą zwykle, by agent działał stabilnie. Jeśli po pięciu
 
 ## Kiedy własny agent się opłaca
 
-Reguła kciuka: jeśli powtarzasz ten sam typ zadania ze trzy razy w tygodniu, własny agent się opłaca. Pisanie agenta to 30–60 minut, każde wywołanie oszczędza 2–5 minut briefingu (bo agent ma już prompt).
+Reguła kciuka: jeśli powtarzasz ten sam typ zadania ze trzy razy w tygodniu, własny agent się opłaca. Pisanie agenta to 30-60 minut, każde wywołanie oszczędza 2-5 minut briefingu (bo agent ma już prompt).
 
 Trzy realne przykłady, gdzie agent płaci za siebie szybko:
 

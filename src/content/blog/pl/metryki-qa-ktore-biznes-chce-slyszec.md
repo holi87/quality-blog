@@ -175,7 +175,7 @@ Każda z poniższych metryk odpowiada na jedno konkretne pytanie biznesowe. Ich 
       <div class="fb-chart-title">DDR vs Escaped Bugs - trend kwartalny</div>
       <div class="fb-chart-sub">Klasyczny zdrowy trend QA: DDR rośnie, escaped spada - jednocześnie</div>
     </div>
-    <span class="fb-chart-badge">Q1–Q4 2025</span>
+    <span class="fb-chart-badge">Q1 - Q4 2025</span>
   </div>
   <div class="fb-chart-legend">
     <span class="fb-lg"><span class="fb-ld" style="background:#2A7A3E"></span>DDR (%)</span>

@@ -93,7 +93,7 @@ Short, directive. Optimised for "don't write Y, write X":
 - Don't use `index.ts` re-export barrels.
 ```
 
-Ideally 10–30 lines. Larger = a signal the content should move to CLAUDE.md or the system prompt.
+Ideally 10-30 lines. Larger = a signal the content should move to CLAUDE.md or the system prompt.
 
 ### AGENTS.md - agent workflow and protocol
 

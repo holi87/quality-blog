@@ -16,8 +16,8 @@ Ten artykuł rozwija temat. Dla **menedżerów** - jak realnie zmierzyć organiz
 
 Dwa systemy uczą się w innym tempie:
 
-- **Jednostka** uczy się w 2–6 tygodni. Custom instructions, CLAUDE.md, MCP - narzędzia są publiczne, tutoriale są darmowe, sprzężenie zwrotne natychmiastowe.
-- **Organizacja** uczy się w 12–24 miesięcy. Każdy nowy stack wymaga: review security, RBAC, polityki danych, szkolenia, change management, budżetu.
+- **Jednostka** uczy się w 2-6 tygodni. Custom instructions, CLAUDE.md, MCP - narzędzia są publiczne, tutoriale są darmowe, sprzężenie zwrotne natychmiastowe.
+- **Organizacja** uczy się w 12-24 miesięcy. Każdy nowy stack wymaga: review security, RBAC, polityki danych, szkolenia, change management, budżetu.
 
 Rozjazd jest naturalny. Problem zaczyna się, gdy obie strony **udają, że go nie ma**.
 
@@ -51,8 +51,8 @@ Rzadki, zdrowy stan. Firma inwestuje w edukację, inżynierowie mają głos w do
 
 **Metoda:**
 
-1. **Próbka.** Wylosuj 15–30 osób ze wszystkich poziomów struktury. Nie ochotników - losowo.
-2. **Diagnoza.** Użyj [protokołu 30-minutowego](/pl/blog/diagnoza-dojrzalosci-ai-30-min/) per osoba. Tak, to 7–15 godzin sumarycznie.
+1. **Próbka.** Wylosuj 15-30 osób ze wszystkich poziomów struktury. Nie ochotników - losowo.
+2. **Diagnoza.** Użyj [protokołu 30-minutowego](/pl/blog/diagnoza-dojrzalosci-ai-30-min/) per osoba. Tak, to 7-15 godzin sumarycznie.
 3. **Dystrybucja.** Zapisz wszystkie poziomy w arkuszu. Histogram. Mediana, nie średnia.
 4. **Spread.** Mediana + min + max + p25 i p75. Spread pokazuje, czy firma jest jednorodna.
 
@@ -70,7 +70,7 @@ Realna sytuacja, którą widzimy często. Pięć opcji, od najmniej do najbardzi
 
 Wykorzystaj to, na co firma się zgadza, w maksymalnym zakresie. Custom instructions w narzędziu, które masz oficjalnie. Pliki kontekstowe w prywatnym branchu (nie w prod repo). Skille lokalnie.
 
-**Limit:** dojdziesz do 4–5 w pracy. Pełne 9 zostaje w pet projektach.
+**Limit:** dojdziesz do 4-5 w pracy. Pełne 9 zostaje w pet projektach.
 
 ### Opcja 2: bycie chartem
 
@@ -92,7 +92,7 @@ Negocjuj z managerem rolę formalną. 20% etatu na adopcję, mierzalne cele, bud
 
 ### Opcja 5: zmiana pracy
 
-Brzmi radykalnie, ale w 2026 to realna opcja. Firmy na 5–6 aktywnie rekrutują z firm na 2. Pomiar rynku jest prosty: jeśli twoja praca regularnie blokuje ci użycie narzędzi, których uczą się juniorzy w innych firmach - czas iść.
+Brzmi radykalnie, ale w 2026 to realna opcja. Firmy na 5-6 aktywnie rekrutują z firm na 2. Pomiar rynku jest prosty: jeśli twoja praca regularnie blokuje ci użycie narzędzi, których uczą się juniorzy w innych firmach - czas iść.
 
 **Limit:** decyzja osobista, nie taktyczna.
 
@@ -102,7 +102,7 @@ Druga strona: masz świetną infrastrukturę i nikt jej nie używa.
 
 **Co działa:**
 
-1. **Internal champions.** Wybierz 1–2 osoby per zespół, daj im 10% czasu na bycie „przewodnikiem". Mierz wzrost użycia w ich zespole.
+1. **Internal champions.** Wybierz 1-2 osoby per zespół, daj im 10% czasu na bycie „przewodnikiem". Mierz wzrost użycia w ich zespole.
 2. **Buddy programs.** Pair nowego użytkownika z championem na 2 tygodnie. Krytyczna metryka: ile prompts/dzień przed i po.
 3. **Use case library.** Konkretne, krótkie nagrania *„jak Iwona oszczędza 45 minut tygodniowo na X"*. Nie generyczne *„AI zwiększa produktywność"*.
 4. **Defaults.** Custom instructions zespołowe pre-defined. Skille widoczne w UI. CLAUDE.md w każdym repo z template'em do uzupełnienia.

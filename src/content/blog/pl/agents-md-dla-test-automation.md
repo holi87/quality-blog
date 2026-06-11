@@ -64,7 +64,7 @@ Agent z tej sekcji korzysta najczęściej. Im mniej dwuznaczności, tym lepiej.
 
 ### 4. Conventions
 
-Tu nie wrzucaj całego coding stylebooka. Daj 5–10 reguł, które faktycznie chcesz egzekwować:
+Tu nie wrzucaj całego coding stylebooka. Daj 5-10 reguł, które faktycznie chcesz egzekwować:
 
 - jak nazywamy pliki testowe (`*.spec.ts` vs `*.test.ts`),
 - jak nazywamy testy (pattern: „should … when …" albo zdania w czasie teraźniejszym),
@@ -97,7 +97,7 @@ Krótka lista. Przykład: „Każdy PR powinien zawierać: test, opis kroków od
 
 ## Pułapki, które spotykam najczęściej
 
-**Za dużo tekstu.** Widziałem `AGENTS.md` na 8 stron. Agent, który dostaje 8 stron, potraktuje całość jako jeden wielki kontekst i albo zignoruje szczegóły, albo wyciągnie niewłaściwe priorytety. Cel: 1–2 strony. Jeśli nie mieścisz, tnij.
+**Za dużo tekstu.** Widziałem `AGENTS.md` na 8 stron. Agent, który dostaje 8 stron, potraktuje całość jako jeden wielki kontekst i albo zignoruje szczegóły, albo wyciągnie niewłaściwe priorytety. Cel: 1-2 strony. Jeśli nie mieścisz, tnij.
 
 **Konflikty z kodem.** „Wszystkie testy API są w `tests/api/`" - a połowa żyje w `tests/integration/`. Agent wierzy dokumentowi, nie kodowi, więc pójdzie źle. Traktuj `AGENTS.md` jak kod - aktualizuj przy każdej większej zmianie struktury.
 
@@ -196,7 +196,7 @@ Oddaj repo i `AGENTS.md` zespołowi, który nie pracował nad tym projektem. Daj
 
 - `AGENTS.md` to operacyjne instrukcje dla agenta, nie narracja o projekcie.
 - Struktura: opis, setup, komendy, konwencje, „nie rób tego", scope, PR checklist.
-- Trzymaj się 1–2 stron. Dłuższy plik gubi sygnał.
+- Trzymaj się 1-2 stron. Dłuższy plik gubi sygnał.
 - Sekcja „Do not" jest tak samo ważna jak „Do".
 - Traktuj plik jak kod - aktualizuj, gdy struktura repo się zmienia.
 - Mierz, czy plik działa: po trafionych komendach, powtarzalnych uwagach w review, i teście drugiego zespołu.

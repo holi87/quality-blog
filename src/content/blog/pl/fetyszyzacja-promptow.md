@@ -38,7 +38,7 @@ Po trzech miesiącach widzisz:
 - **Drift modelu.** Anthropic / OpenAI zmieniają wersję modelu - twoje prompty nagle dają inne wyniki, bo bazowały na konkretnych regularnościach.
 - **Brak transferu.** Nowy projekt = przepisz wszystkie prompty z konteksem nowego projektu. Skala roboty rośnie liniowo z liczbą projektów.
 - **Rozwarstwienie zespołu.** Dwóch inżynierów ma „swoją wersję v3" tego samego prompta - nieuzgodnione. Trzeci napisał własną od zera, bo *„te są stare"*.
-- **Brak ewolucji.** Po pół roku nadal jesteś na 3. Twoja branża dawno jest na 5–6.
+- **Brak ewolucji.** Po pół roku nadal jesteś na 3. Twoja branża dawno jest na 5-6.
 
 ## Jak rozłożyć 200-linijkowy prompt
 
@@ -122,7 +122,7 @@ Body: customer_id, amount (>0), currency (PLN/EUR/USD), expires_at.
 Walidacja przez Pydantic. Audit log przez structlog.
 ```
 
-Tyle. Model zna twój styl (custom instructions), zna projekt (CLAUDE.md), wykonuje zadanie (prompt). Jesteś na 4–5, biblioteka jest niepotrzebna.
+Tyle. Model zna twój styl (custom instructions), zna projekt (CLAUDE.md), wykonuje zadanie (prompt). Jesteś na 4-5, biblioteka jest niepotrzebna.
 
 ## „Ale ja używam 50 różnych zadań, nie jednego"
 

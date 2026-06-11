@@ -28,11 +28,11 @@ We wrote it together because each of us sees a different side of these stories. 
 
 1. Note 5 recurring question types from the last week.
 2. Build one prompt template per type - with role, context, format.
-3. For a week, use only the templates. After a week you're at 2–3.
+3. For a week, use only the templates. After a week you're at 2-3.
 
 ## 2. Prompt fetishism - stuck at 3
 
-**What it is:** a library of "golden prompts" in Confluence or Notion. Each is 100–300 lines. You copy from the doc, substitute variables, send.
+**What it is:** a library of "golden prompts" in Confluence or Notion. Each is 100-300 lines. You copy from the doc, substitute variables, send.
 
 **Test:** *"Show me the prompt you use daily. Where do you copy it from?"* - if from a document, if it's long, if you're proud of the structure → prompt fetishism.
 
@@ -43,7 +43,7 @@ We wrote it together because each of us sees a different side of these stories. 
 1. Pick the prompt you use most often.
 2. Extract the content that doesn't change (role, style, constraints) - move it to custom instructions.
 3. Extract project-specific knowledge - move it to [AGENTS.md / CLAUDE.md](/en/blog/agents-md-for-test-automation/).
-4. Leave only the task goal in the prompt. It should fit in 3–5 lines. You're at 4+.
+4. Leave only the task goal in the prompt. It should fit in 3-5 lines. You're at 4+.
 
 ## 3. Documentation graveyard - stuck at 5
 
@@ -76,7 +76,7 @@ We wrote it together because each of us sees a different side of these stories. 
 
 Target: <8 skills, each described in 1 sentence, each with an owner.
 
-## 5. False maturity 8 - faking 8 from 6–7
+## 5. False maturity 8 - faking 8 from 6-7
 
 **What it is:** the company boasts: *"we have MCP, we have connectors, we have 15 integrations."* But every agent action requires a manual click to approve. A human is still leading step by step.
 

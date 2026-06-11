@@ -180,7 +180,7 @@ Example: if the biggest pain is long regression → priority is automating criti
 
 ### Step 4: Measure the effect
 
-After 4–8 weeks check measurably:
+After 4-8 weeks check measurably:
 
 - shorter regression time? (5 days → 1 day?)
 - fewer production bugs in the area?

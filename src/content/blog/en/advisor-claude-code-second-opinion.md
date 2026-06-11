@@ -37,7 +37,7 @@ In my workflow: on tasks longer than a few steps, I call advisor at least twice 
 Advisor isn't an oracle. Don't call it:
 
 - **For every step.** Each call forwards the full context - expensive and slow. If your plan is clear and the next step is an obvious "run the test," advisor won't help
-- **After a short 1–2 step task.** Call overhead > value of a second opinion
+- **After a short 1-2 step task.** Call overhead > value of a second opinion
 - **When you know exactly what to do.** If the problem is obvious (typo, missing import), advisor adds nothing
 - **As a substitute for writing code.** Advisor won't solve it for you - it gives an opinion, the decision stays with you
 
@@ -95,7 +95,7 @@ Task: refactor an auth middleware class with a feature flag toggle.
 9. Fix references → re-test → commit → push
 ```
 
-Two advisor calls, both on decision boundaries. I didn't call advisor between steps 4–5 or 5–6 because that part was mechanical.
+Two advisor calls, both on decision boundaries. I didn't call advisor between steps 4-5 or 5-6 because that part was mechanical.
 
 ## Anti-patterns
 

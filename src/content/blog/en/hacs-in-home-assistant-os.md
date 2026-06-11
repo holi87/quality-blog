@@ -119,7 +119,7 @@ If you see errors instead (e.g. GitHub denial, network timeout) - it's usually a
 
 Go to `Developer Tools → YAML` and click **Restart Home Assistant**. Alternatively: `Settings → System → top of the page → Restart → Restart Home Assistant`. Note - you need to restart **Home Assistant Core**, not the whole host.
 
-The restart usually takes 30–90 seconds. Wait for the UI to come back and ask you to log in again.
+The restart usually takes 30-90 seconds. Wait for the UI to come back and ask you to log in again.
 
 ### Step 6. Add the HACS integration
 

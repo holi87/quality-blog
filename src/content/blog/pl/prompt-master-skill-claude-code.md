@@ -92,7 +92,7 @@ Skill jest dobry w gramatyce promptingu i typowych wzorcach. Nie zastąpi:
 - **Aktualnych zmian w narzędziu** - MJ co miesiąc dodaje/usuwa parametry, skill ma wiedzę do daty cutoff
 - **Twoich preferencji estetycznych** - czy lubisz raczej miękkie cienie, czy ostre kontrasty
 
-Traktuj output jako 80% rozwiązania, nie 100%. Pierwszy wygenerowany prompt zostawi 1–2 rzeczy do dopolerowania ręcznie.
+Traktuj output jako 80% rozwiązania, nie 100%. Pierwszy wygenerowany prompt zostawi 1-2 rzeczy do dopolerowania ręcznie.
 
 ## Anti-patterns
 

@@ -32,47 +32,47 @@ Schedule:
 
 | Time | What | Goal |
 |------|------|------|
-| 0–5 min | Context | Role, industry, tools, time using AI |
-| 5–20 min | 8 calibration questions | Data for scoring |
-| 20–25 min | Live observation | Validation of claims |
-| 25–30 min | Feedback | Spoken summary + one written recommendation |
+| 0-5 min | Context | Role, industry, tools, time using AI |
+| 5-20 min | 8 calibration questions | Data for scoring |
+| 20-25 min | Live observation | Validation of claims |
+| 25-30 min | Feedback | Spoken summary + one written recommendation |
 
 ## Calibration questions
 
 Eight questions, two per phase. Don't ask "which level are you on?" - the answers are distorted. Ask about behaviour.
 
-### Start phase (level 0–1)
+### Start phase (level 0-1)
 
 1. *"Show me how you usually start a session with AI. What do you actually type?"* - looking for: no account vs one-off try vs habit. No account = below 1.
-2. *"When did AI last surprise you - good or bad?"* - no such moment = level 0–1. A fresh surprise = at least 2.
+2. *"When did AI last surprise you - good or bad?"* - no such moment = level 0-1. A fresh surprise = at least 2.
 
-### Intentional use phase (level 2–4)
+### Intentional use phase (level 2-4)
 
-3. *"Do you have a prompt template you use more than once a month? Show me one."* - none = level 1–2. A "cite 3 sources" template = 3. A template with role, goal, constraints, output format = 3.
-4. *"What's in your custom instructions / model settings?"* - "nothing, never touched it" = level 1–3. A few lines about yourself = 4. Half a page reviewed quarterly = solid 4.
+3. *"Do you have a prompt template you use more than once a month? Show me one."* - none = level 1-2. A "cite 3 sources" template = 3. A template with role, goal, constraints, output format = 3.
+4. *"What's in your custom instructions / model settings?"* - "nothing, never touched it" = level 1-3. A few lines about yourself = 4. Half a page reviewed quarterly = solid 4.
 
-### Context and knowledge phase (level 5–8)
+### Context and knowledge phase (level 5-8)
 
 5. *"Show me an AGENTS.md or CLAUDE.md from any project of yours."* - no such file = level 4 or below. File exists, last touched six months ago = level 5 with the documentation-graveyard anti-pattern. File touched this week = 6.
-6. *"Do you use any MCP / connectors / AI plugins? If so, name three and tell me when each last didn't disappoint you."* - none = 5–7. Names + concrete stories = 8. List with no stories = 6–7 dressed up as 8.
+6. *"Do you use any MCP / connectors / AI plugins? If so, name three and tell me when each last didn't disappoint you."* - none = 5-7. Names + concrete stories = 8. List with no stories = 6-7 dressed up as 8.
 
-### Autonomy phase (level 9–11)
+### Autonomy phase (level 9-11)
 
 7. *"Tell me about the most recent task an agent did end-to-end - without you intervening in the middle."* - none = below 9. Short anecdote = 9. "I have one daily" + example = solid 9.
 8. *"In the last month, have you designed a system of multiple agents collaborating? What was it? Does that system serve a specific business process with owners, audit logs and cost metrics?"* - no = not above 9. Multi-agent process without owners and metrics = 10. A designed agentic OS for a concrete business outcome (e.g. QA, releases, compliance, customer support) with owners, logs, cost controls and a rollback procedure = 11.
 
 ## Live observation (5 minutes)
 
-The most important part. It typically corrects the self-assessment downward by 1–2 levels.
+The most important part. It typically corrects the self-assessment downward by 1-2 levels.
 
 Ask: *"Open your favourite AI tool and do something you do once a week. Think out loud."*
 
 Signals:
 
-- **Opens a clean window with no settings** - level 1–2, regardless of what they said earlier.
+- **Opens a clean window with no settings** - level 1-2, regardless of what they said earlier.
 - **Pastes a prompt from a document** - prompt fetishism, level 3 with the anti-pattern.
 - **The model already knows the context, the prompt is short** - level 4+.
-- **Invokes a skill / project / configured workspace** - level 5–7.
+- **Invokes a skill / project / configured workspace** - level 5-7.
 - **Performs MCP actions (writes a file, pushes, posts to Slack)** - level 8.
 - **Types a goal and walks away from the screen** - level 9.
 - **Shows a panel of multiple agents with roles and logs** - level 10.
@@ -80,7 +80,7 @@ Signals:
 
 ## Scoring
 
-For each question, record a level 0–11. Then:
+For each question, record a level 0-11. Then:
 
 - **Individual level** = median across 8 questions + observation. Median, not maximum. The most common beginner error: "I have custom instructions, so I'm at 4" - but every other answer says 2.
 - **Organisational level** = inferred through questions 5, 6, 8. Probe: *"Is this your personal setup or the official company stack?"* If personal, the organisation is lower.
@@ -89,7 +89,7 @@ For each question, record a level 0–11. Then:
 
 Signals that the self-assessment is inflated:
 
-- **"We have MCP" with no answer to "who authorises actions"** - still level 6–7 dressed up as 8.
+- **"We have MCP" with no answer to "who authorises actions"** - still level 6-7 dressed up as 8.
 - **"I use it daily" with no distinction between tasks** - daily Q&A is still level 1.
 - **"The whole team is at X" with no sample** - an average in a management memo is not a diagnosis.
 - **"We had a prompt-engineering training"** - training doesn't change levels, behaviour does.
@@ -121,8 +121,8 @@ From the last few dozen diagnoses:
 
 - Median in engineering teams: **3** (frameworks, prompt libraries).
 - Median in management teams: **2** (chat, occasional use).
-- Most common gap: individual 4–5, organisation 2. *"I'm at 5, but at work I have to stick to vanilla ChatGPT because nothing else is approved."*
-- Most common inflated self-assessment: by 2 levels. *"I'm at 7"* → actually 4–5 after observation.
+- Most common gap: individual 4-5, organisation 2. *"I'm at 5, but at work I have to stick to vanilla ChatGPT because nothing else is approved."*
+- Most common inflated self-assessment: by 2 levels. *"I'm at 7"* → actually 4-5 after observation.
 
 ## What's next
 

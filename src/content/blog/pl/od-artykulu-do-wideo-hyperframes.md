@@ -40,13 +40,13 @@ Trzecia operacja: jedno wezwanie do działania. „Przeczytaj pełny wpis, żeby
 
 Strukturalnie dzielę video na cztery fazy po siedem do dziesięciu sekund.
 
-**Hook (0–7 s)** to stwierdzenie, pytanie albo obserwacja, która zatrzymuje scrollowanie. Musi być konkretna i lekko prowokacyjna - „Dziś porozmawiamy o `AGENTS.md` w kontekście testowania" jest za słabe. „Twój AI agent dostaje repo testowe i przez pierwszą minutę zgaduje - to kosztuje cię pieniądze" działa lepiej.
+**Hook (0-7 s)** to stwierdzenie, pytanie albo obserwacja, która zatrzymuje scrollowanie. Musi być konkretna i lekko prowokacyjna - „Dziś porozmawiamy o `AGENTS.md` w kontekście testowania" jest za słabe. „Twój AI agent dostaje repo testowe i przez pierwszą minutę zgaduje - to kosztuje cię pieniądze" działa lepiej.
 
-**Problem (7–15 s)** uzasadnia hook. W miarę konkretnie odwołuje się do znanej frustracji - na przykład „przy każdym PR tłumaczysz agentowi, że używamy `data-testid`, a nie klas CSS". Widz musi rozpoznać w tym własną sytuację.
+**Problem (7-15 s)** uzasadnia hook. W miarę konkretnie odwołuje się do znanej frustracji - na przykład „przy każdym PR tłumaczysz agentowi, że używamy `data-testid`, a nie klas CSS". Widz musi rozpoznać w tym własną sytuację.
 
-**Demo (15–30 s)** pokazuje konkret. Fragment pliku, diagram, szybkie porównanie „bez i z". To najważniejsza część wizualnie - na tym etapie widz decyduje, czy temat ma dla niego zastosowanie.
+**Demo (15-30 s)** pokazuje konkret. Fragment pliku, diagram, szybkie porównanie „bez i z". To najważniejsza część wizualnie - na tym etapie widz decyduje, czy temat ma dla niego zastosowanie.
 
-**Takeaway (30–45 s)** zostawia jedną rzecz do zapamiętania plus jedno wezwanie do działania. „Struktura pliku: setup, komendy, konwencje, sekcja *nie rób tego*. Link do pełnego wpisu pod filmem".
+**Takeaway (30-45 s)** zostawia jedną rzecz do zapamiętania plus jedno wezwanie do działania. „Struktura pliku: setup, komendy, konwencje, sekcja *nie rób tego*. Link do pełnego wpisu pod filmem".
 
 Każda z tych faz ma inne zadanie. Hook zatrzymuje. Problem uzasadnia. Demo przekonuje. Takeaway prowadzi dalej. Wyjęcie którejkolwiek rozbija całość.
 

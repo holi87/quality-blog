@@ -16,7 +16,7 @@ A preface: in every one of these workflows, **human in the loop** is the default
 
 ## 1. Test strategy review
 
-Typical input: a 4–6 page test strategy document. Typical output from a manual review: one meeting in which you spot three gaps.
+Typical input: a 4-6 page test strategy document. Typical output from a manual review: one meeting in which you spot three gaps.
 
 With AI: you prompt the model with the full document and a question like "point out uncovered areas, internal contradictions, and assumptions that need validation." You get a list you skim in 10 minutes. Some is noise, some is real gaps.
 
@@ -74,7 +74,7 @@ The win: consistency across every release. You never forget an item because the 
 
 A fuzzy requirement like "the system should be fast" is a classic. The Test Architect has to convert it into something measurable.
 
-The workflow: you paste the requirement and ask for a breakdown into concrete scenarios with acceptance criteria. The model generates 5–7 interpretations. Usually 2 are nonsense, 3 are safe but shallow, 1–2 are genuinely good questions you'd take to refinement.
+The workflow: you paste the requirement and ask for a breakdown into concrete scenarios with acceptance criteria. The model generates 5-7 interpretations. Usually 2 are nonsense, 3 are safe but shallow, 1-2 are genuinely good questions you'd take to refinement.
 
 This is a workflow where AI doesn't replace analytical thinking. It does something else: it expands the space of possible interpretations faster than you would alone. Your role - curation.
 
@@ -104,7 +104,7 @@ A paradoxical workflow, because it relies on AI helping you **not write** a test
 
 Scenario: you get the ask "let's automate this scenario." Before writing code, you prompt the model with the scenario description and ask for analysis across: maintenance cost, stability (will it be flaky?), business value vs manual execution cost, alternatives (unit test instead of E2E, monitoring instead of a test).
 
-The model typically returns 2–3 arguments "for" and 2–3 "against." Some are obvious, but that one note about flakiness in area X (because it already spotted the pattern in your changelog) - that's value.
+The model typically returns 2-3 arguments "for" and 2-3 "against." Some are obvious, but that one note about flakiness in area X (because it already spotted the pattern in your changelog) - that's value.
 
 It's a conversation with a senior you can have on demand.
 

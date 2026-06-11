@@ -68,7 +68,7 @@ Subagent kosztuje. Każdy = nowy context window do napełnienia, każdy = czas l
 
 - Wiesz dokładnie który plik chcesz przeczytać. Po prostu zawołaj `Read` w głównym wątku
 - Szukasz konkretnego symbolu. `grep` przez Bash jest szybsze niż `Explore`
-- Robisz krótkie 1–2 step zadanie. Subagent tu tylko dodaje overhead
+- Robisz krótkie 1-2 step zadanie. Subagent tu tylko dodaje overhead
 - Potrzebujesz pełnego output do dalszej decyzji. Subagent zwraca podsumowanie, raw output ginie
 
 Anti-pattern, który widzę najczęściej: spawning subagent „znajdź wszystkie pliki .ts". `find . -name "*.ts"` przez Bash robi to samo w 10 ms zamiast 30 sekund.

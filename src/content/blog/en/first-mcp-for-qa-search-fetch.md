@@ -18,7 +18,7 @@ In this post I'll show how to start from the simplest possible MCP for QA - a se
 
 Before you write a line of code, let's name the problem precisely.
 
-The evidence a QA person wants at hand typically lives in 4–6 places:
+The evidence a QA person wants at hand typically lives in 4-6 places:
 
 - **Application logs** (Datadog, Grafana, CloudWatch, Kibana) - text, usually big, needs filtering by time and service.
 - **Test reports** (Allure, Playwright HTML report, custom dashboards) - tree structure, with screenshots and traces.
@@ -56,7 +56,7 @@ For `search`, every result should have:
 - **id** - a stable identifier you can later pass to `fetch`.
 - **source** - where it came from (e.g. `jira`, `allure`, `confluence`, `datadog`).
 - **title** - a short name (ticket, test name, page title).
-- **snippet** - 1–3 sentences of context - what the model sees before it decides whether to pull the full content.
+- **snippet** - 1-3 sentences of context - what the model sees before it decides whether to pull the full content.
 - **url** - a link a human can open to see the original.
 - **timestamp** - when it was created / last modified.
 

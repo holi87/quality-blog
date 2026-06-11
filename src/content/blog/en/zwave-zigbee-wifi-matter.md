@@ -40,7 +40,7 @@ Wi-Fi is tempting because it's simple: you buy a bulb, scan a QR code, install s
 **When Wi-Fi sabotages your project:**
 
 - Battery sensors - a Wi-Fi device either keeps the connection open or wakes the radio for every poll. A CR2032 cell lasts weeks, not years.
-- 30+ devices at home - a typical home router starts choking at 50–80 clients, and a smart home can easily add 40 units in the first year.
+- 30+ devices at home - a typical home router starts choking at 50-80 clients, and a smart home can easily add 40 units in the first year.
 - Cloud dependency - most cheap Wi-Fi devices talk through the manufacturer's server. The vendor goes down, your ecosystem goes down with it. Tuya has been the loudest example of this over recent years.
 
 There's a way out: **ESPHome** or **Tasmota** - open-source firmware that you flash onto ESP32/ESP8266-based devices to run fully local. It's a great option for tinkerers, but stops being "plug and play".
@@ -51,14 +51,14 @@ Zigbee in 2026 is the smart home workhorse. Low power, mesh, hundreds of compati
 
 **Why it still wins:**
 
-- An Aqara temperature sensor on a CR2032 lasts 2–3 years.
+- An Aqara temperature sensor on a CR2032 lasts 2-3 years.
 - The mesh self-expands - every mains-powered device (bulb, plug) acts as a router and forwards the signal.
 - Zigbee2MQTT and ZHA in Home Assistant are mature integrations supporting 4000+ devices.
-- Price and selection: a door/window sensor costs $10–15, motion sensor $12–25, bulb $8–20, plug $10–20. On top of that a huge catalog - AliExpress, Amazon, local stores - with multiple parallel brands for each device category. This is the non-obvious but critical argument: when you want to outfit an entire house with sensors (windows, doors, motion, temperature, humidity, leaks), only Zigbee and Wi-Fi deliver the real "lots + cheap" combo. Z-Wave and Thread aren't anywhere near that scale today.
+- Price and selection: a door/window sensor costs $10-15, motion sensor $12-25, bulb $8-20, plug $10-20. On top of that a huge catalog - AliExpress, Amazon, local stores - with multiple parallel brands for each device category. This is the non-obvious but critical argument: when you want to outfit an entire house with sensors (windows, doors, motion, temperature, humidity, leaks), only Zigbee and Wi-Fi deliver the real "lots + cheap" combo. Z-Wave and Thread aren't anywhere near that scale today.
 
 **Where it hurts:**
 
-- The 2.4 GHz band collides with Wi-Fi. If your router broadcasts on channel 6 and Zigbee sits on channel 15–20, both networks drop packets. Fix: force Wi-Fi onto channel 1, Zigbee onto 25, and move the coordinator a meter away from the router with a USB extension.
+- The 2.4 GHz band collides with Wi-Fi. If your router broadcasts on channel 6 and Zigbee sits on channel 15-20, both networks drop packets. Fix: force Wi-Fi onto channel 1, Zigbee onto 25, and move the coordinator a meter away from the router with a USB extension.
 - Pairing devices can be moody - some sensors need a 10-second button hold, others three taps within three seconds.
 - Vendors sometimes implement Zigbee clusters in nonstandard ways, which for Home Assistant means "the device pairs, but not everything works".
 
@@ -74,7 +74,7 @@ Z-Wave runs on 868 MHz in Europe - a band free of Wi-Fi, Bluetooth, and microwav
 
 **Pricing and availability:**
 
-Z-Wave costs roughly twice as much as Zigbee and has several times fewer SKUs available in Europe. Fibaro (a Polish company, ironically) makes premium gear, but a motion sensor can run $80–120 vs $12–25 for a Zigbee equivalent.
+Z-Wave costs roughly twice as much as Zigbee and has several times fewer SKUs available in Europe. Fibaro (a Polish company, ironically) makes premium gear, but a motion sensor can run $80-120 vs $12-25 for a Zigbee equivalent.
 
 For most people, Z-Wave is overkill. But if Zigbee refuses to work across 20 meters and two walls - Z-Wave will deliver.
 
@@ -85,8 +85,8 @@ Thread is an IPv6 mesh on 2.4 GHz, technically very close to Zigbee but with one
 **What it changes in practice:**
 
 - The Thread "hub" isn't a dedicated box - it's a **Thread border router**. And you already own border routers if you have a HomePod mini, Apple TV 4K, 2nd-gen Nest Hub, or certain Amazon Echo models.
-- Thread devices respond faster than Zigbee - around 100 ms latency vs 300–500 ms on an average Zigbee install.
-- Thread won't replace Zigbee overnight - in 2026 the number of Thread devices is roughly 5–10% of what Zigbee offers.
+- Thread devices respond faster than Zigbee - around 100 ms latency vs 300-500 ms on an average Zigbee install.
+- Thread won't replace Zigbee overnight - in 2026 the number of Thread devices is roughly 5-10% of what Zigbee offers.
 
 **Who ships Thread:**
 
@@ -139,7 +139,7 @@ Some Zigbee hubs (Aqara M3, Hue Bridge) expose their Zigbee devices as Matter to
 
 ## 2026 traps nobody talks about out loud
 
-**2.4 GHz collision.** Wi-Fi (channels 1–13), Zigbee (channels 11–26), and Thread (channels 11–26) share the same band. If the router broadcasts on channel 6, Zigbee on 15, and Thread on 17 - they can choke each other. Good practice: Wi-Fi on channel 1, Zigbee on channel 25, Thread on channel 15. And physical distance between antennas - at least a meter.
+**2.4 GHz collision.** Wi-Fi (channels 1-13), Zigbee (channels 11-26), and Thread (channels 11-26) share the same band. If the router broadcasts on channel 6, Zigbee on 15, and Thread on 17 - they can choke each other. Good practice: Wi-Fi on channel 1, Zigbee on channel 25, Thread on channel 15. And physical distance between antennas - at least a meter.
 
 **Border router ≠ border router.** Treat a HomePod as a border router for Apple Home. Echo as a border router for Alexa. Nest Hub for Google. Matter supports multi-admin in theory; in practice, border routers from different vendors sometimes sync poorly. Home Assistant SkyConnect in Thread mode is a neutral option for enthusiasts.
 

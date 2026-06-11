@@ -37,7 +37,7 @@ W moim workflow: na zadaniach dłuższych niż kilka kroków wołam advisor mini
 Advisor nie jest wyrocznią. Nie wołaj:
 
 - **Dla każdego kroku.** Każde wywołanie to forward całego kontekstu - drogo i wolno. Jeśli twój plan jest jasny i kolejny krok to oczywiste „uruchom test", advisor nie pomoże
-- **Po krótkim 1–2 step zadaniu.** Overhead wywołania > wartość second opinion
+- **Po krótkim 1-2 step zadaniu.** Overhead wywołania > wartość second opinion
 - **Gdy wiesz dokładnie co zrobić.** Jeśli problem jest oczywisty (typo w kodzie, missing import), advisor nic nie wniesie
 - **Jako substytut pisania kodu.** Advisor nie rozwiąże za ciebie - daje opinię, decyzja zostaje twoja
 
@@ -94,7 +94,7 @@ Zadanie: refaktor klasy auth middleware z opcją feature flag.
 9. Fix references → re-test → commit → push
 ```
 
-Dwa wywołania advisora, oba na granicach decyzyjnych. Nie wołałem advisora między krokami 4–5 ani 5–6, bo to było mechaniczne.
+Dwa wywołania advisora, oba na granicach decyzyjnych. Nie wołałem advisora między krokami 4-5 ani 5-6, bo to było mechaniczne.
 
 ## Anti-patterns
 

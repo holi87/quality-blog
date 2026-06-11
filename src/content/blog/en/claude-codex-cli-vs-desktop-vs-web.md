@@ -70,7 +70,7 @@ Codex CLI has an analogous toolset, with a different config layout (`~/.codex/`)
 | Automation / cron            | no                   | no                   | yes                  |
 | Shareable links              | yes                  | no                   | no                   |
 | Mobile (phone)               | yes                  | no                   | no (unless SSH)      |
-| Onboarding cost              | a minute             | 5 minutes            | 15–30 minutes        |
+| Onboarding cost              | a minute             | 5 minutes            | 15-30 minutes        |
 | Audit trail                  | UI history           | UI history           | logs, git history    |
 
 This is a simplification - updates ship and the situation changes fast - but the overall direction has been stable for months.

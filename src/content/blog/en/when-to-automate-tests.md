@@ -72,7 +72,7 @@ Automation doesn't have to cover everything, but it should **protect the most im
 
 Automation makes sense when requirements and interfaces don't change every day. If a screen, API or business rule is **still being built and frequently reworked**, premature automation generates a lot of rework.
 
-A practical rule: if a scenario has survived 2–3 releases without major changes, it's probably ready to automate.
+A practical rule: if a scenario has survived 2-3 releases without major changes, it's probably ready to automate.
 
 ### When the manual test is boring, long, and error-prone
 

@@ -128,6 +128,6 @@ If you're at 8 and aiming for 9 this quarter:
 6. **Monitor for a week** - track "actions requiring correction"
 7. **Scale to area #2** - only when #1 is stable
 
-Crossing 8→9 isn't a weekend job. It's 6–12 disciplined weeks. But after the first successful crossing the next ones go faster, because the framework already exists.
+Crossing 8→9 isn't a weekend job. It's 6-12 disciplined weeks. But after the first successful crossing the next ones go faster, because the framework already exists.
 
 Earlier sketch - in the [Holak Scale](/en/blog/holak-scale/). This is the framework. In [Evaluating agent output](/en/blog/evaluating-agent-output/) - how to validate the result once you're actually at 9.

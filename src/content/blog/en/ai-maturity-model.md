@@ -26,7 +26,7 @@ From resistance to orchestration - 11 levels of AI utilisation in an organisatio
 | Autonomy | 9 | Agentic workflow | Goal → autonomous execution |
 | Autonomy | 10 | Orchestration | Agent team + coordinator |
 
-## Phase 0–1: Getting started
+## Phase 0-1: Getting started
 
 ### Level 0 - Resistance / no adoption
 
@@ -48,7 +48,7 @@ First interaction with AI in a simple Q&A format. The user treats the model like
 - The key barrier is **emotional**, not technical.
 - Success = overcoming resistance and having a first positive experience.
 
-## Phase 2–4: Intentional use
+## Phase 2-4: Intentional use
 
 ### Level 2 - Intentional prompting
 
@@ -76,7 +76,7 @@ Custom instructions, system prompts, per-project settings. The user no longer re
 - The key barrier is **knowledge** - learning prompting techniques.
 - Success = repeatable, high-quality AI outputs.
 
-## Phase 5–8: Context & knowledge
+## Phase 5-8: Context & knowledge
 
 ### Level 5 - Context files
 
@@ -108,7 +108,7 @@ The agent doesn't just "write" - it uses tools: searches Slack, creates Jira tic
 - The key barrier is **architecture** - how to organise context, skills, and tools.
 - Success = an agent that understands the project without repeating instructions.
 
-## Phase 9–10: Autonomy
+## Phase 9-10: Autonomy
 
 ### Level 9 - Agentic workflow
 

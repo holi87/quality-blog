@@ -30,25 +30,25 @@ Lokalny stack nie jest *zamiast* Claude'a czy GPT-4. Jest *obok*, dla zadań, kt
 
 Apple Silicon ma jedną cechę, która zmienia kalkulacje vs PC: **unified memory**. CPU i GPU dzielą tę samą pulę RAM-u. Nie ma osobnego VRAM-u, nie ma kopiowania tensorów przez PCIe. To wielki plus dla LLM-ów, bo wagi modelu mogą być ładowane raz i serwowane bezpośrednio przez Metal/MLX.
 
-Minus jest banalny, ale brutalny: ile masz, tyle masz. 16 GB to **całość** dla systemu, aplikacji i modelu. Po włączonym macOS-ie, Safari, Slacku i edytorze zostaje ci realnie ~10–12 GB na model. Wszystko, co przekracza ten budżet, albo wyswapuje na SSD i będzie się czołgać, albo nie wystartuje w ogóle.
+Minus jest banalny, ale brutalny: ile masz, tyle masz. 16 GB to **całość** dla systemu, aplikacji i modelu. Po włączonym macOS-ie, Safari, Slacku i edytorze zostaje ci realnie ~10-12 GB na model. Wszystko, co przekracza ten budżet, albo wyswapuje na SSD i będzie się czołgać, albo nie wystartuje w ogóle.
 
 Praktyczna mapa pamięci dla 16 GB:
 
-- **Modele 3B–4B w q4** (~2–3 GB) - wjeżdża luźno, można obok mieć kontekst, embedder i sensowną listę otwartych aplikacji.
-- **Modele 7B–8B w q4** (~5–6 GB) - sweet spot. Działa, zostaje miejsce na 32k–128k kontekstu, M4 daje 30–50 tokenów na sekundę.
-- **Modele 13B–14B w q4** (~9–10 GB) - graniczne. Działa, jeśli zamkniesz inne ciężkie procesy. ~12–18 t/s. Komfort spada, ale nie jest fatalnie.
+- **Modele 3B - 4B w q4** (~2-3 GB) - wjeżdża luźno, można obok mieć kontekst, embedder i sensowną listę otwartych aplikacji.
+- **Modele 7B - 8B w q4** (~5-6 GB) - sweet spot. Działa, zostaje miejsce na 32k - 128k kontekstu, M4 daje 30-50 tokenów na sekundę.
+- **Modele 13B - 14B w q4** (~9-10 GB) - graniczne. Działa, jeśli zamkniesz inne ciężkie procesy. ~12-18 t/s. Komfort spada, ale nie jest fatalnie.
 - **Modele 20B w MXFP4** (np. gpt-oss-20b) - to nowość 2026, kwantyzacja MXFP4 daje 4.25 bita na parametr. OpenAI projektowało ten model pod 16 GB pamięci. Działa, choć blisko sufitu.
 - **Modele 27B+ dense** - zapomnij. Q4 ważą 16+ GB, Q3 brzydko obniżają jakość.
 - **Modele MoE 30B+ totalne** - zależy od szczegółów. Qwen3-Coder-Next (80B total / 3B active) na papierze brzmi obiecująco, ale całe wagi muszą być w pamięci albo offloadowane na SSD, więc realnie nie. Mac Studio z 64+ GB to inna historia.
 
 Co z prędkością? Dla orientacji, na M4 w wariancie z 10-rdzeniowym GPU:
 
-- 3B q4 → ~80–100 t/s (instant feel)
-- 7B q4 → ~30–50 t/s (real-time chat)
-- 13B q4 → ~12–18 t/s (czytelne, ale czuć)
-- 20B MXFP4 → ~15–25 t/s (zaskakująco dobre)
+- 3B q4 → ~80-100 t/s (instant feel)
+- 7B q4 → ~30-50 t/s (real-time chat)
+- 13B q4 → ~12-18 t/s (czytelne, ale czuć)
+- 20B MXFP4 → ~15-25 t/s (zaskakująco dobre)
 
-Wnioski? 16 GB to **starter pack**, nie warsztat. Zaspokoi codzienny chat, RAG po dokumentach, lekkie embeddings, asystenta kodu na poziomie autocomplete. Do agentowego workflow'u, w którym ten sam prompt leci 50 razy w pętli, lub do batch processingu dużych zbiorów - będzie boleć. Wtedy patrzy się na Mac Studio z 64–128 GB albo cloud GPU.
+Wnioski? 16 GB to **starter pack**, nie warsztat. Zaspokoi codzienny chat, RAG po dokumentach, lekkie embeddings, asystenta kodu na poziomie autocomplete. Do agentowego workflow'u, w którym ten sam prompt leci 50 razy w pętli, lub do batch processingu dużych zbiorów - będzie boleć. Wtedy patrzy się na Mac Studio z 64-128 GB albo cloud GPU.
 
 ## LM Studio - GUI-first, sweet spot dla nietechnicznych
 
@@ -110,7 +110,7 @@ Te dwa narzędzia nie wykluczają się. Mogą działać równolegle na różnych
 
 ## Granica zdrowego rozsądku
 
-Tu sprawa jest niewdzięczna, ale trzeba ją powiedzieć: **lokalny LLM w klasie 7B–14B nie jest Claude'em ani GPT-4**. Bliżej mu do Claude'a 3 Haiku albo GPT-3.5 sprzed dwóch lat - z istotnym progiem jakości, którego nie przeskoczysz kwantyzacją ani lepszym promptem. Dla wielu zadań to wystarcza. Dla wielu - nie.
+Tu sprawa jest niewdzięczna, ale trzeba ją powiedzieć: **lokalny LLM w klasie 7B - 14B nie jest Claude'em ani GPT-4**. Bliżej mu do Claude'a 3 Haiku albo GPT-3.5 sprzed dwóch lat - z istotnym progiem jakości, którego nie przeskoczysz kwantyzacją ani lepszym promptem. Dla wielu zadań to wystarcza. Dla wielu - nie.
 
 Co realnie potrafi 7B q4 na M4 w 2026 roku:
 

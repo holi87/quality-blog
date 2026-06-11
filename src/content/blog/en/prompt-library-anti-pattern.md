@@ -38,7 +38,7 @@ After three months you see:
 - **Model drift.** Anthropic / OpenAI ship a new model version - your prompts suddenly produce different outputs because they relied on specific regularities.
 - **No transfer.** A new project = rewrite all prompts with the new project context. The work scales linearly with project count.
 - **Team divergence.** Two engineers have "their v3" of the same prompt - out of sync. A third wrote their own from scratch because *"those are stale."*
-- **No evolution.** Six months in, you're still at 3. Your industry has been at 5–6 for ages.
+- **No evolution.** Six months in, you're still at 3. Your industry has been at 5-6 for ages.
 
 ## How to break down a 200-line prompt
 
@@ -122,7 +122,7 @@ Body: customer_id, amount (>0), currency (PLN/EUR/USD), expires_at.
 Validation via Pydantic. Audit log via structlog.
 ```
 
-That's it. The model knows your style (custom instructions), knows the project (CLAUDE.md), executes the task (prompt). You're at 4–5, the library is unnecessary.
+That's it. The model knows your style (custom instructions), knows the project (CLAUDE.md), executes the task (prompt). You're at 4-5, the library is unnecessary.
 
 ## "But I have 50 different tasks, not one"
 

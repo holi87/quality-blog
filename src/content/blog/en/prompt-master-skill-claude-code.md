@@ -92,7 +92,7 @@ The skill is good at prompting grammar and typical patterns. It won't replace:
 - **Live changes to the tool** - MJ adds/removes parameters every month, the skill's knowledge has a cutoff date
 - **Your aesthetic preferences** - whether you prefer soft shadows or sharp contrasts
 
-Treat the output as 80% of the solution, not 100%. The first generated prompt will leave 1–2 things to polish manually.
+Treat the output as 80% of the solution, not 100%. The first generated prompt will leave 1-2 things to polish manually.
 
 ## Anti-patterns
 

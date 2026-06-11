@@ -12,13 +12,13 @@ We [wpisie z dnia 21 kwietnia 2026](/pl/blog/zwave-zigbee-wifi-matter/) wybrali�
 
 Nie są kosmetyczne. Wybór między **ZHA**, **Zigbee2MQTT jako addon HA** i **Z2M+MQTT na osobnym serwerze** wpływa na izolację awarii (czy update HA pada Zigbee?), powierzchnię ataku (ile procesów hardenujesz?), tempo wsparcia nowych urządzeń, i czy w ogóle możesz mieć kilka koordynatorów dla większego domu albo warsztatu.
 
-Ten wpis to porównanie trzech archetypów z perspektywy kogoś, kto już ma HA i 5–20 czujników, decyduje czy zostać przy domyślnym ZHA czy migrować, oraz z perspektywy kogoś budującego od zera. W 2026 doszedł jeszcze jeden gracz, który zmienia kalkulację: **koordynatory PoE** (np. SMLight SLZB-06) - Zigbee na kabel ethernetowy, bez USB.
+Ten wpis to porównanie trzech archetypów z perspektywy kogoś, kto już ma HA i 5-20 czujników, decyduje czy zostać przy domyślnym ZHA czy migrować, oraz z perspektywy kogoś budującego od zera. W 2026 doszedł jeszcze jeden gracz, który zmienia kalkulację: **koordynatory PoE** (np. SMLight SLZB-06) - Zigbee na kabel ethernetowy, bez USB.
 
 ## TL;DR - tabela trzech opcji
 
 | Cecha | ZHA | Z2M addon | Z2M osobny serwer |
 |---|---|---|---|
-| Setup | 5 min | 15 min | 45–60 min |
+| Setup | 5 min | 15 min | 45-60 min |
 | Wsparcie nowych urządzeń | Wolne (kwartały) | Najszybsze (tygodnie) | Najszybsze (tygodnie) |
 | Frontend Zigbee | HA UI | Z2M (mapa, OTA, klastry) | Z2M (mapa, OTA, klastry) |
 | OTA | OK | Bardzo dobre | Bardzo dobre |
@@ -70,7 +70,7 @@ Z2M co tydzień dostaje update `zigbee-herdsman` z nowymi handlerami urządzeń.
 - Sztywno jedna instancja Z2M. Multi-koordynator wymaga osobnego serwera
 - Mosquitto „bez hasła" przestaje być OK w momencie gdy chcesz, żeby Node-RED na innym Pi czytał MQTT - wtedy auth/ACL trzeba dodać
 
-**Sygnał, że to dobre dla ciebie:** 30–100 urządzeń, kupujesz nowości (najświeższe Tuya/Aqara/Sonoff), chcesz mapy mesha i OTA, ale nie chcesz utrzymywać dwóch hostów.
+**Sygnał, że to dobre dla ciebie:** 30-100 urządzeń, kupujesz nowości (najświeższe Tuya/Aqara/Sonoff), chcesz mapy mesha i OTA, ale nie chcesz utrzymywać dwóch hostów.
 
 ## Z2M + MQTT na osobnym serwerze - separation of concerns
 
@@ -98,7 +98,7 @@ HA i Z2M to dwa osobne hosty. MQTT broker zwykle na tym samym hoście co Z2M (kr
 - VLAN IoT, brak NAT do internetu (zdalne MQTT przez VPN)
 - Monitoring drugiego hosta - HA nie krzyknie tak czytelnie, jak gdyby ZHA padło
 
-**Realny koszt:** 30–60 minut konfigu MQTT + TLS + ACL + reverse proxy/monitoringu. Plus utrzymanie drugiego hosta (update Pi OS, backup).
+**Realny koszt:** 30-60 minut konfigu MQTT + TLS + ACL + reverse proxy/monitoringu. Plus utrzymanie drugiego hosta (update Pi OS, backup).
 
 ## Wiele koordynatorów - tylko z osobnym serwerem ma to sens
 
@@ -181,7 +181,7 @@ topic readwrite zigbee2mqtt/upper/#
 ## Decyzja w 30 sekund
 
 - **Wybierz ZHA jeśli**: ≤30 urządzeń, jeden koordynator, nie chcesz dotykać MQTT, lubisz HA UI, pierwsza próba
-- **Wybierz Z2M w HA jeśli**: 30–100 urządzeń, kupujesz nowości, chcesz mapy mesha i OTA, nie chcesz multi-host
+- **Wybierz Z2M w HA jeśli**: 30-100 urządzeń, kupujesz nowości, chcesz mapy mesha i OTA, nie chcesz multi-host
 - **Wybierz Z2M na osobnym serwerze jeśli**: ≥80 urządzeń lub ≥2 koordynatory, izolacja awarii ma znaczenie, masz VLAN-y, masz Pi w szufladzie, lub masz koordynator PoE i chcesz coś z nim zrobić
 
 W razie wątpliwości - **zacznij od Z2M w HA**. Migracja Z2M-addon → Z2M-osobny serwer = skopiowanie `database.db` + zmiana adresu brokera. ZHA → Z2M to re-pair większości urządzeń (zaplanuj na weekend).

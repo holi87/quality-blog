@@ -30,25 +30,25 @@ A local stack isn't *instead of* Claude or GPT-4. It's *alongside*, for tasks wh
 
 Apple Silicon has one feature that changes the math vs PCs: **unified memory**. CPU and GPU share the same RAM pool. There's no separate VRAM, no PCIe tensor copying. That's a big plus for LLMs, because model weights load once and serve directly via Metal/MLX.
 
-The downside is mundane but brutal: what you have is what you've got. 16 GB is the **total** for OS, apps and the model. After macOS, Safari, Slack and an editor you realistically have ~10–12 GB for the model. Anything that exceeds that budget will either swap to SSD and crawl, or fail to start.
+The downside is mundane but brutal: what you have is what you've got. 16 GB is the **total** for OS, apps and the model. After macOS, Safari, Slack and an editor you realistically have ~10-12 GB for the model. Anything that exceeds that budget will either swap to SSD and crawl, or fail to start.
 
 Practical memory map for 16 GB:
 
-- **3B–4B models in q4** (~2–3 GB) - fits comfortably, you have headroom for context, an embedder and a reasonable list of open apps.
-- **7B–8B models in q4** (~5–6 GB) - sweet spot. Works, leaves room for 32k–128k context, M4 hits 30–50 tokens per second.
-- **13B–14B models in q4** (~9–10 GB) - borderline. Works if you close other heavy processes. ~12–18 t/s. Comfort drops, but it's not awful.
+- **3B - 4B models in q4** (~2-3 GB) - fits comfortably, you have headroom for context, an embedder and a reasonable list of open apps.
+- **7B - 8B models in q4** (~5-6 GB) - sweet spot. Works, leaves room for 32k - 128k context, M4 hits 30-50 tokens per second.
+- **13B - 14B models in q4** (~9-10 GB) - borderline. Works if you close other heavy processes. ~12-18 t/s. Comfort drops, but it's not awful.
 - **20B models in MXFP4** (e.g. gpt-oss-20b) - this is a 2026 development; MXFP4 quantization gives 4.25 bits per parameter. OpenAI designed this model to run on 16 GB of memory. It works, though it's near the ceiling.
 - **27B+ dense models** - forget it. Q4 weighs 16+ GB, Q3 ugly-degrades quality.
 - **30B+ total MoE models** - depends on details. Qwen3-Coder-Next (80B total / 3B active) sounds promising on paper, but full weights have to live in memory or offload to SSD, so realistically - no. Mac Studio with 64+ GB is a different story.
 
 What about speed? For orientation, on M4 with the 10-core GPU variant:
 
-- 3B q4 → ~80–100 t/s (instant feel)
-- 7B q4 → ~30–50 t/s (real-time chat)
-- 13B q4 → ~12–18 t/s (readable, but you feel it)
-- 20B MXFP4 → ~15–25 t/s (surprisingly good)
+- 3B q4 → ~80-100 t/s (instant feel)
+- 7B q4 → ~30-50 t/s (real-time chat)
+- 13B q4 → ~12-18 t/s (readable, but you feel it)
+- 20B MXFP4 → ~15-25 t/s (surprisingly good)
 
-Conclusions? 16 GB is a **starter pack**, not a workshop. It satisfies daily chat, RAG over documents, light embeddings, an autocomplete-grade code assistant. For agentic workflows where the same prompt loops 50 times, or for batch processing of large datasets - it'll hurt. That's when you look at a Mac Studio with 64–128 GB or a cloud GPU.
+Conclusions? 16 GB is a **starter pack**, not a workshop. It satisfies daily chat, RAG over documents, light embeddings, an autocomplete-grade code assistant. For agentic workflows where the same prompt loops 50 times, or for batch processing of large datasets - it'll hurt. That's when you look at a Mac Studio with 64-128 GB or a cloud GPU.
 
 ## LM Studio - GUI-first, sweet spot for non-technical users
 
@@ -110,7 +110,7 @@ These two tools don't exclude each other. They can run side by side on different
 
 ## Sanity line
 
-This bit is awkward but needs saying: **a local LLM in the 7B–14B class is not Claude or GPT-4**. It's closer to Claude 3 Haiku or GPT-3.5 from two years ago - with a real quality threshold you won't jump over with quantization or a better prompt. For many tasks it's enough. For many - it isn't.
+This bit is awkward but needs saying: **a local LLM in the 7B - 14B class is not Claude or GPT-4**. It's closer to Claude 3 Haiku or GPT-3.5 from two years ago - with a real quality threshold you won't jump over with quantization or a better prompt. For many tasks it's enough. For many - it isn't.
 
 What 7B q4 on M4 in 2026 actually does:
 

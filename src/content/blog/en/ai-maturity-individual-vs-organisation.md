@@ -16,8 +16,8 @@ This article expands on it. For **managers** - how to actually measure your orga
 
 Two systems learn at different speeds:
 
-- **The individual** learns in 2–6 weeks. Custom instructions, CLAUDE.md, MCP - tools are public, tutorials are free, feedback is instant.
-- **The organisation** learns in 12–24 months. Every new stack needs security review, RBAC, data policy, training, change management, budget.
+- **The individual** learns in 2-6 weeks. Custom instructions, CLAUDE.md, MCP - tools are public, tutorials are free, feedback is instant.
+- **The organisation** learns in 12-24 months. Every new stack needs security review, RBAC, data policy, training, change management, budget.
 
 The gap is natural. The problem starts when both sides **pretend it isn't there**.
 
@@ -51,8 +51,8 @@ A rare, healthy state. The company invests in education, engineers have a voice 
 
 **Method:**
 
-1. **Sample.** Randomly pick 15–30 people across all org levels. Not volunteers - random.
-2. **Diagnosis.** Use the [30-minute protocol](/en/blog/ai-maturity-diagnosis-30-minutes/) per person. Yes, that's 7–15 hours total.
+1. **Sample.** Randomly pick 15-30 people across all org levels. Not volunteers - random.
+2. **Diagnosis.** Use the [30-minute protocol](/en/blog/ai-maturity-diagnosis-30-minutes/) per person. Yes, that's 7-15 hours total.
 3. **Distribution.** Record all levels in a sheet. Histogram. Median, not average.
 4. **Spread.** Median + min + max + p25 and p75. Spread shows whether the company is homogenous.
 
@@ -70,7 +70,7 @@ A common real-world situation. Five options, from least to most radical.
 
 Use what the company allows in maximum scope. Custom instructions in the tool you have officially. Context files in a private branch (not the prod repo). Skills locally.
 
-**Limit:** you'll get to 4–5 at work. Full 9 stays in pet projects.
+**Limit:** you'll get to 4-5 at work. Full 9 stays in pet projects.
 
 ### Option 2: be a greyhound
 
@@ -92,7 +92,7 @@ Negotiate a formal role with your manager. 20% time on adoption, measurable goal
 
 ### Option 5: change jobs
 
-Sounds radical, but in 2026 it's a real option. Level 5–6 companies actively recruit from level-2 ones. Market check is simple: if your job regularly blocks you from tools juniors at other companies are learning - it's time to leave.
+Sounds radical, but in 2026 it's a real option. Level 5-6 companies actively recruit from level-2 ones. Market check is simple: if your job regularly blocks you from tools juniors at other companies are learning - it's time to leave.
 
 **Limit:** personal decision, not tactical.
 
@@ -102,7 +102,7 @@ The other side: great infrastructure, nobody uses it.
 
 **What works:**
 
-1. **Internal champions.** Pick 1–2 people per team, give them 10% time to be "guides." Measure usage growth in their team.
+1. **Internal champions.** Pick 1-2 people per team, give them 10% time to be "guides." Measure usage growth in their team.
 2. **Buddy programs.** Pair a new user with a champion for 2 weeks. Critical metric: prompts/day before and after.
 3. **Use case library.** Specific short recordings *"how Iwona saves 45 minutes a week on X."* Not generic *"AI boosts productivity."*
 4. **Defaults.** Team-level custom instructions pre-defined. Skills visible in the UI. CLAUDE.md in every repo with a template to fill in.

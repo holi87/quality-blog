@@ -68,7 +68,7 @@ A subagent costs. Each = a new context window to fill, each = latency, each = to
 
 - You know exactly which file you want to read. Just call `Read` in the main thread
 - You're searching for a specific symbol. `grep` via Bash is faster than `Explore`
-- You're doing a short 1–2 step task. A subagent only adds overhead here
+- You're doing a short 1-2 step task. A subagent only adds overhead here
 - You need the full output to drive the next decision. The subagent returns a summary; the raw output is gone
 
 The anti-pattern I see most often: spawning a subagent for "find all .ts files." `find . -name "*.ts"` via Bash does the same thing in 10 ms instead of 30 seconds.

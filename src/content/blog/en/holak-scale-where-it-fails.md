@@ -37,11 +37,11 @@ The scale treats every step the same. *"From 1 to 2"* looks like *"from 9 to 10"
 
 In practice the value curve is heavily front-loaded:
 
-- The 1 → 4 jump: 50–70% of maximum adoption value. Cheap, fast, sufficient for most users.
+- The 1 → 4 jump: 50-70% of maximum adoption value. Cheap, fast, sufficient for most users.
 - The 4 → 8 jump: another 25%. Requires organisational discipline, much longer.
 - The 8 → 10 jump: the last 5%. Expensive, risky, sensible for a very narrow set of use cases.
 
-For 90% of teams **aiming at 4–5 yields more ROI** than aiming at 10. The scale doesn't show this.
+For 90% of teams **aiming at 4-5 yields more ROI** than aiming at 10. The scale doesn't show this.
 
 **What's missing:** a value/cost map per jump. Version 3 will have this curve as a diagram beside the scale.
 

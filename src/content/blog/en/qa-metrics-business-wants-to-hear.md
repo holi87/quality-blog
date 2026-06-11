@@ -175,7 +175,7 @@ Each of the metrics below answers one specific business question. Combined, they
       <div class="fb-chart-title">DDR vs Escaped Bugs - quarterly trend</div>
       <div class="fb-chart-sub">A classic healthy QA trend: DDR rises, escaped falls - at the same time</div>
     </div>
-    <span class="fb-chart-badge">Q1–Q4 2025</span>
+    <span class="fb-chart-badge">Q1 - Q4 2025</span>
   </div>
   <div class="fb-chart-legend">
     <span class="fb-lg"><span class="fb-ld" style="background:#2A7A3E"></span>DDR (%)</span>

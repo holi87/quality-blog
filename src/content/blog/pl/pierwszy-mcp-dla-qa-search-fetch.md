@@ -18,7 +18,7 @@ W tym wpisie pokażę, jak zacząć od najprostszego możliwego MCP dla QA - ser
 
 Zanim napiszesz pierwszą linię kodu, nazwijmy problem precyzyjnie.
 
-Evidence, które w QA chcemy mieć pod ręką, mieszka zwykle w 4–6 miejscach:
+Evidence, które w QA chcemy mieć pod ręką, mieszka zwykle w 4-6 miejscach:
 
 - **Logi aplikacyjne** (Datadog, Grafana, CloudWatch, Kibana) - tekst, zwykle sporych rozmiarów, trzeba filtrować po czasie i service.
 - **Raporty z testów** (Allure, Playwright HTML report, własne dashboardy) - struktura drzewiasta, ze screenshotami i tracami.
@@ -56,7 +56,7 @@ Dla `search` każdy wynik powinien mieć:
 - **id** - stabilny identyfikator, którym można potem zawołać `fetch`.
 - **source** - skąd pochodzi (np. `jira`, `allure`, `confluence`, `datadog`).
 - **title** - krótka nazwa (ticket, nazwa testu, tytuł strony).
-- **snippet** - 1–3 zdania kontekstu, to co widzi model zanim zdecyduje, czy pobrać pełną treść.
+- **snippet** - 1-3 zdania kontekstu, to co widzi model zanim zdecyduje, czy pobrać pełną treść.
 - **url** - link, którym człowiek może otworzyć oryginał.
 - **timestamp** - kiedy powstało / ostatnio zmienione.
 

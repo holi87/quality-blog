@@ -128,6 +128,6 @@ Jeśli jesteś na 8 i celujesz w 9 w tym kwartale:
 6. **Monitoruj tydzień** - metryka „akcji wymagających poprawki"
 7. **Skaluj obszar #2** - dopiero gdy #1 jest stabilny
 
-Przejście 8→9 to nie jeden weekend. To 6–12 tygodni z dyscypliną. Ale po pierwszym udanym przejściu kolejne idą szybciej, bo framework już istnieje.
+Przejście 8→9 to nie jeden weekend. To 6-12 tygodni z dyscypliną. Ale po pierwszym udanym przejściu kolejne idą szybciej, bo framework już istnieje.
 
 Wcześniej szkic - w [Skali Holaka](/pl/blog/skala-holaka/). Tutaj framework. W [Ocena outputu agenta](/pl/blog/ocena-outputu-agenta/) - jak weryfikować efekt, kiedy już jesteś na 9.

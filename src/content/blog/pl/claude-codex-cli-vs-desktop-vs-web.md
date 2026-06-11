@@ -70,7 +70,7 @@ Codex CLI ma analogiczny zestaw, z innym layoutem konfiguracji (`~/.codex/`) i w
 | Automatyzacja / cron        | nie                  | nie                  | tak                  |
 | Share linkiem               | tak                  | nie                  | nie                  |
 | Mobilność (telefon)         | tak                  | nie                  | nie (poza SSH)       |
-| Koszt wejścia               | minuta               | 5 minut              | 15–30 minut          |
+| Koszt wejścia               | minuta               | 5 minut              | 15-30 minut          |
 | Audyt śladu                 | historia w UI        | historia w UI        | logi, git history    |
 
 To uproszczenie - pojawiają się aktualizacje i sytuacja zmienia się szybko - ale ogólny kierunek jest stabilny od miesięcy.

@@ -28,11 +28,11 @@ Pisaliśmy go razem, bo każdy z nas widzi inną stronę tych historii. Konrad -
 
 1. Zapisz 5 powtarzających się typów pytań z ostatniego tygodnia.
 2. Zrób jeden szablon prompta dla każdego - z rolą, kontekstem, formatem.
-3. Przez tydzień używaj wyłącznie szablonów. Po tygodniu jesteś na 2–3.
+3. Przez tydzień używaj wyłącznie szablonów. Po tygodniu jesteś na 2-3.
 
 ## 2. Fetysz promptów - utknięcie na 3
 
-**Co to jest:** biblioteka „złotych promptów" w Confluence albo Notion. Każdy ma 100–300 linii. Kopiujesz z dokumentu, podstawiasz zmienne, wysyłasz.
+**Co to jest:** biblioteka „złotych promptów" w Confluence albo Notion. Każdy ma 100-300 linii. Kopiujesz z dokumentu, podstawiasz zmienne, wysyłasz.
 
 **Test:** *„Pokaż prompt, którego używasz codziennie. Skąd go kopiujesz?"* - jeśli z dokumentu, jeśli długi, jeśli czujesz dumę z jego struktury → fetysz promptów.
 
@@ -43,7 +43,7 @@ Pisaliśmy go razem, bo każdy z nas widzi inną stronę tych historii. Konrad -
 1. Wybierz prompt, którego używasz najczęściej.
 2. Wyciągnij z niego treść, która się nie zmienia (rola, styl, ograniczenia) - wrzuć do custom instructions.
 3. Wyciągnij wiedzę projektową - wrzuć do [AGENTS.md / CLAUDE.md](/pl/blog/agents-md-dla-test-automation/).
-4. Zostaw w prompcie tylko cel zadania. Powinien zmieścić się w 3–5 linijkach. Jesteś na 4+.
+4. Zostaw w prompcie tylko cel zadania. Powinien zmieścić się w 3-5 linijkach. Jesteś na 4+.
 
 ## 3. Dokumentacja-cmentarz - utknięcie na 5
 
@@ -76,7 +76,7 @@ Pisaliśmy go razem, bo każdy z nas widzi inną stronę tych historii. Konrad -
 
 Cel: <8 skilli, każdy z opisem w 1 zdaniu, każdy z owner'em.
 
-## 5. Fałszywa dojrzałość 8 - udawanie 8 z poziomu 6–7
+## 5. Fałszywa dojrzałość 8 - udawanie 8 z poziomu 6-7
 
 **Co to jest:** firma chwali się: *„mamy MCP, mamy connectory, mamy 15 integracji"*. Ale każda akcja agenta wymaga ręcznego zatwierdzenia kliknięciem. To wciąż człowiek prowadzi krok po kroku.
 
