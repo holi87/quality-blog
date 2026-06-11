@@ -421,6 +421,55 @@ Spoiler: prawie nigdy. I to, co pomijamy, jest często ważniejsze niż to, co l
         <div class="fb-s-sub">Formuła, progi, dane historyczne, sezonowość, pułapki, gotowe zdania</div>
       </div>
     </li>
+    <li class="fb-s-item fb-s-done">
+      <span class="fb-s-num">03</span>
+      <div>
+        <div class="fb-s-title"><a href="/pl/blog/escaped-bugs-problems-pelne-spektrum/">Escaped Bugs i Problems - pełne spektrum</a> <span class="fb-s-badge-done">przeczytany</span></div>
+        <div class="fb-s-sub">Taksonomia, zbieranie danych, koszt każdego typu, jak raportować</div>
+      </div>
+    </li>
+    <li class="fb-s-item fb-s-done">
+      <span class="fb-s-num">04</span>
+      <div>
+        <div class="fb-s-title"><a href="/pl/blog/issues-per-release-miernik-dojrzalosci-kodu/">Issues per Release - miernik dojrzałości kodu</a> <span class="fb-s-badge-done">przeczytany</span></div>
+        <div class="fb-s-sub">Wdrożenie od zera, związek z procesem wytwórczym, rozmowa z EM</div>
+      </div>
+    </li>
+    <li class="fb-s-item fb-s-done">
+      <span class="fb-s-num">05</span>
+      <div>
+        <div class="fb-s-title"><a href="/pl/blog/escaped-bugs-per-release-znajdz-ryzykowny-release/">Escaped Bugs per Release - znajdź ryzykowny release</a> <span class="fb-s-badge-done">przeczytany</span></div>
+        <div class="fb-s-sub">Wykrywanie skoków, framework śledztwa, działania prewencyjne</div>
+      </div>
+    </li>
+    <li class="fb-s-item">
+      <span class="fb-s-num">06</span>
+      <div>
+        <div class="fb-s-title">Number of Releases - metryka kontekstowa</div>
+        <div class="fb-s-sub">Dlaczego 3 bugi przy 2 releasach to dramat, a przy 15 to sukces</div>
+      </div>
+    </li>
+    <li class="fb-s-item">
+      <span class="fb-s-num">07</span>
+      <div>
+        <div class="fb-s-title">Release Confidence Score krok po kroku</div>
+        <div class="fb-s-sub">Trzy modele obliczania, wdrożenie, przykłady z praktyki</div>
+      </div>
+    </li>
+    <li class="fb-s-item">
+      <span class="fb-s-num">08</span>
+      <div>
+        <div class="fb-s-title">Storytelling z metrykami - jak budować narrację</div>
+        <div class="fb-s-sub">Jak zamienić tabelę liczb w argument biznesowy</div>
+      </div>
+    </li>
+    <li class="fb-s-item">
+      <span class="fb-s-num">09</span>
+      <div>
+        <div class="fb-s-title">3 antywzorce, które niszczą wiarygodność QA</div>
+        <div class="fb-s-sub">Za dużo metryk, brak kontekstu, żargon - i jak unikać</div>
+      </div>
+    </li>
   </ul>
 </div>
 
@@ -652,6 +701,9 @@ Spoiler: prawie nigdy. I to, co pomijamy, jest często ważniejsze niż to, co l
 .fb-s-current .fb-s-title { color: var(--fb-gold); }
 .fb-s-title a { color: inherit; text-decoration: none; border-bottom: 1px dashed var(--fb-border); }
 .fb-s-title a:hover { color: var(--fb-gold); }
+.fb-s-done .fb-s-num { color: var(--fb-teal); }
+.fb-s-done .fb-s-title { color: var(--fb-muted); }
+.fb-s-badge-done { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: var(--fb-teal-pale); color: var(--fb-teal); padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
 .fb-s-sub { font-size: 12px; color: var(--fb-faint); margin-top: 3px; }
 .fb-s-now { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: var(--fb-gold-pale); color: var(--fb-gold); padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
 

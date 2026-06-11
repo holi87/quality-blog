@@ -269,29 +269,29 @@ Nawet dobre dane można zaprezentować źle. Oto błędy, które najczęściej n
     <li class="fb-s-item">
       <span class="fb-s-num">02</span>
       <div>
-        <div class="fb-s-title">Defect Detection Ratio - głęboki przewodnik</div>
+        <div class="fb-s-title"><a href="/pl/blog/defect-detection-ratio-jak-mierzyc-skutecznosc/">Defect Detection Ratio - głęboki przewodnik</a> <span class="fb-s-badge-done">przeczytany</span></div>
         <div class="fb-s-sub">Formuła, interpretacja, pułapki, przykłady liczbowe z życia</div>
       </div>
     </li>
     <li class="fb-s-item">
       <span class="fb-s-num">03</span>
       <div>
-        <div class="fb-s-title">Escaped Bugs &amp; Problems - pełne spektrum</div>
+        <div class="fb-s-title"><a href="/pl/blog/escaped-bugs-problems-pelne-spektrum/">Escaped Bugs &amp; Problems - pełne spektrum</a> <span class="fb-s-badge-done">przeczytany</span></div>
         <div class="fb-s-sub">Dlaczego liczyć więcej niż tylko bugi w kodzie aplikacji</div>
       </div>
     </li>
     <li class="fb-s-item">
       <span class="fb-s-num">04</span>
       <div>
-        <div class="fb-s-title">Issues per Release - miernik dojrzałości kodu</div>
+        <div class="fb-s-title"><a href="/pl/blog/issues-per-release-miernik-dojrzalosci-kodu/">Issues per Release - miernik dojrzałości kodu</a> <span class="fb-s-badge-done">przeczytany</span></div>
         <div class="fb-s-sub">Jak ta metryka zmienia rozmowę z Engineering Managerem</div>
       </div>
     </li>
     <li class="fb-s-item">
       <span class="fb-s-num">05</span>
       <div>
-        <div class="fb-s-title">Escaped Bugs per Release - znajdź ryzykowny release</div>
-        <div class="fb-s-sub">Pinpointowanie problemów, nie tylko obserwowanie trendów</div>
+        <div class="fb-s-title"><a href="/pl/blog/escaped-bugs-per-release-znajdz-ryzykowny-release/">Escaped Bugs per Release - znajdź ryzykowny release</a> <span class="fb-s-badge-done">przeczytany</span></div>
+        <div class="fb-s-sub">Wskazywanie problemów, nie tylko obserwowanie trendów</div>
       </div>
     </li>
     <li class="fb-s-item">
@@ -502,6 +502,9 @@ Nawet dobre dane można zaprezentować źle. Oto błędy, które najczęściej n
 .fb-s-title { font-size: 14px; font-weight: 600; color: #111; }
 .fb-s-current .fb-s-title { color: var(--fb-gold); }
 .fb-s-sub { font-size: 12px; color: var(--fb-faint); margin-top: 3px; }
+.fb-s-title a { color: inherit; text-decoration: none; border-bottom: 1px dashed var(--fb-border); transition: color 0.15s; }
+.fb-s-title a:hover { color: var(--fb-gold); border-bottom-color: var(--fb-gold); }
+.fb-s-badge-done { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: var(--fb-teal-pale); color: var(--fb-teal); padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
 .fb-s-now {
   display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
   background: var(--fb-gold-pale); color: var(--fb-gold);

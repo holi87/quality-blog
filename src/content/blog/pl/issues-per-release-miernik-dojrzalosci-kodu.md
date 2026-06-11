@@ -397,10 +397,10 @@ Spoiler: skok w jednym releasie to zawsze sygnał do śledztwa. I mamy metodę, 
         <div class="fb-s-sub">Wdrożenie od zera, związek z procesem wytwórczym, rozmowa z EM</div>
       </div>
     </li>
-    <li class="fb-s-item">
+    <li class="fb-s-item fb-s-done">
       <span class="fb-s-num">05</span>
       <div>
-        <div class="fb-s-title">Escaped Bugs per Release - znajdź ryzykowny release</div>
+        <div class="fb-s-title"><a href="/pl/blog/escaped-bugs-per-release-znajdz-ryzykowny-release/">Escaped Bugs per Release - znajdź ryzykowny release</a> <span class="fb-s-badge-done">przeczytany</span></div>
         <div class="fb-s-sub">Wskazywanie problemów, nie tylko obserwowanie trendów</div>
       </div>
     </li>

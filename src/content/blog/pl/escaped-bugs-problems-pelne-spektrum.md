@@ -416,18 +416,18 @@ Spoiler: to jest metryka, która często ujawnia, że problem leży nie po stron
         <div class="fb-s-sub">Taksonomia, zbieranie danych, koszt każdego typu, jak raportować</div>
       </div>
     </li>
-    <li class="fb-s-item">
+    <li class="fb-s-item fb-s-done">
       <span class="fb-s-num">04</span>
       <div>
-        <div class="fb-s-title">Issues per Release - miernik dojrzałości kodu</div>
+        <div class="fb-s-title"><a href="/pl/blog/issues-per-release-miernik-dojrzalosci-kodu/">Issues per Release - miernik dojrzałości kodu</a> <span class="fb-s-badge-done">przeczytany</span></div>
         <div class="fb-s-sub">Jak ta metryka zmienia rozmowę z Engineering Managerem</div>
       </div>
     </li>
-    <li class="fb-s-item">
+    <li class="fb-s-item fb-s-done">
       <span class="fb-s-num">05</span>
       <div>
-        <div class="fb-s-title">Escaped Bugs per Release - znajdź ryzykowny release</div>
-        <div class="fb-s-sub">Pinpointowanie problemów, nie tylko obserwowanie trendów</div>
+        <div class="fb-s-title"><a href="/pl/blog/escaped-bugs-per-release-znajdz-ryzykowny-release/">Escaped Bugs per Release - znajdź ryzykowny release</a> <span class="fb-s-badge-done">przeczytany</span></div>
+        <div class="fb-s-sub">Wskazywanie problemów, nie tylko obserwowanie trendów</div>
       </div>
     </li>
     <li class="fb-s-item">

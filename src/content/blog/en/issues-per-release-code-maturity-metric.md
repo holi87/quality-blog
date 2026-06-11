@@ -397,10 +397,10 @@ Spoiler: a spike in a single release is always a signal to investigate. And we h
         <div class="fb-s-sub">Rollout from scratch, the link to the development process, the EM conversation</div>
       </div>
     </li>
-    <li class="fb-s-item">
+    <li class="fb-s-item fb-s-done">
       <span class="fb-s-num">05</span>
       <div>
-        <div class="fb-s-title">Escaped Bugs per Release - find the risky release</div>
+        <div class="fb-s-title"><a href="/en/blog/escaped-bugs-per-release-find-risky-release/">Escaped Bugs per Release - find the risky release</a> <span class="fb-s-badge-done">read</span></div>
         <div class="fb-s-sub">Pinpointing problems, not just watching trends</div>
       </div>
     </li>

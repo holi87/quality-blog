@@ -421,6 +421,55 @@ Spoiler: almost never. And what we leave out is often more important than what w
         <div class="fb-s-sub">Formula, thresholds, historical data, seasonality, traps, ready lines</div>
       </div>
     </li>
+    <li class="fb-s-item fb-s-done">
+      <span class="fb-s-num">03</span>
+      <div>
+        <div class="fb-s-title"><a href="/en/blog/escaped-bugs-problems-full-spectrum/">Escaped Bugs &amp; Problems - full spectrum</a> <span class="fb-s-badge-done">read</span></div>
+        <div class="fb-s-sub">Taxonomy, data collection, the cost of each type, how to report</div>
+      </div>
+    </li>
+    <li class="fb-s-item fb-s-done">
+      <span class="fb-s-num">04</span>
+      <div>
+        <div class="fb-s-title"><a href="/en/blog/issues-per-release-code-maturity-metric/">Issues per Release - a code-maturity gauge</a> <span class="fb-s-badge-done">read</span></div>
+        <div class="fb-s-sub">Rollout from scratch, the link to the development process, the EM conversation</div>
+      </div>
+    </li>
+    <li class="fb-s-item fb-s-done">
+      <span class="fb-s-num">05</span>
+      <div>
+        <div class="fb-s-title"><a href="/en/blog/escaped-bugs-per-release-find-risky-release/">Escaped Bugs per Release - find the risky release</a> <span class="fb-s-badge-done">read</span></div>
+        <div class="fb-s-sub">Spike detection, the investigation framework, preventive actions</div>
+      </div>
+    </li>
+    <li class="fb-s-item">
+      <span class="fb-s-num">06</span>
+      <div>
+        <div class="fb-s-title">Number of Releases - the context metric</div>
+        <div class="fb-s-sub">Why 3 bugs with 2 releases is a disaster, and with 15 - a success</div>
+      </div>
+    </li>
+    <li class="fb-s-item">
+      <span class="fb-s-num">07</span>
+      <div>
+        <div class="fb-s-title">Release Confidence Score step by step</div>
+        <div class="fb-s-sub">Three calculation models, rollout, concrete examples from practice</div>
+      </div>
+    </li>
+    <li class="fb-s-item">
+      <span class="fb-s-num">08</span>
+      <div>
+        <div class="fb-s-title">Storytelling with metrics - building a narrative</div>
+        <div class="fb-s-sub">How to turn a table of numbers into a business argument</div>
+      </div>
+    </li>
+    <li class="fb-s-item">
+      <span class="fb-s-num">09</span>
+      <div>
+        <div class="fb-s-title">3 anti-patterns that destroy QA credibility</div>
+        <div class="fb-s-sub">Too many metrics, no context, jargon - and how to avoid each</div>
+      </div>
+    </li>
   </ul>
 </div>
 
@@ -621,6 +670,9 @@ Spoiler: almost never. And what we leave out is often more important than what w
 .fb-s-current .fb-s-title { color: var(--fb-gold); }
 .fb-s-title a { color: inherit; text-decoration: none; border-bottom: 1px dashed var(--fb-border); }
 .fb-s-title a:hover { color: var(--fb-gold); }
+.fb-s-done .fb-s-num { color: var(--fb-teal); }
+.fb-s-done .fb-s-title { color: var(--fb-muted); }
+.fb-s-badge-done { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: var(--fb-teal-pale); color: var(--fb-teal); padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
 .fb-s-sub { font-size: 12px; color: var(--fb-faint); margin-top: 3px; }
 .fb-s-now { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: var(--fb-gold-pale); color: var(--fb-gold); padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
 

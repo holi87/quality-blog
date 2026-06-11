@@ -269,28 +269,28 @@ Even good data can be presented badly. Here are the mistakes that most often des
     <li class="fb-s-item">
       <span class="fb-s-num">02</span>
       <div>
-        <div class="fb-s-title">Defect Detection Ratio - a deep guide</div>
+        <div class="fb-s-title"><a href="/en/blog/defect-detection-ratio-measure-qa-effectiveness/">Defect Detection Ratio - a deep guide</a> <span class="fb-s-badge-done">read</span></div>
         <div class="fb-s-sub">Formula, interpretation, pitfalls, real-life numerical examples</div>
       </div>
     </li>
     <li class="fb-s-item">
       <span class="fb-s-num">03</span>
       <div>
-        <div class="fb-s-title">Escaped Bugs &amp; Problems - full spectrum</div>
+        <div class="fb-s-title"><a href="/en/blog/escaped-bugs-problems-full-spectrum/">Escaped Bugs &amp; Problems - full spectrum</a> <span class="fb-s-badge-done">read</span></div>
         <div class="fb-s-sub">Why count more than just bugs in the application code</div>
       </div>
     </li>
     <li class="fb-s-item">
       <span class="fb-s-num">04</span>
       <div>
-        <div class="fb-s-title">Issues per Release - a code-maturity gauge</div>
+        <div class="fb-s-title"><a href="/en/blog/issues-per-release-code-maturity-metric/">Issues per Release - a code-maturity gauge</a> <span class="fb-s-badge-done">read</span></div>
         <div class="fb-s-sub">How this metric reshapes the conversation with the Engineering Manager</div>
       </div>
     </li>
     <li class="fb-s-item">
       <span class="fb-s-num">05</span>
       <div>
-        <div class="fb-s-title">Escaped Bugs per Release - find the risky release</div>
+        <div class="fb-s-title"><a href="/en/blog/escaped-bugs-per-release-find-risky-release/">Escaped Bugs per Release - find the risky release</a> <span class="fb-s-badge-done">read</span></div>
         <div class="fb-s-sub">Pinpointing problems, not just watching trends</div>
       </div>
     </li>
@@ -464,6 +464,9 @@ Even good data can be presented badly. Here are the mistakes that most often des
 .fb-s-title { font-size: 14px; font-weight: 600; color: #111; }
 .fb-s-current .fb-s-title { color: var(--fb-gold); }
 .fb-s-sub { font-size: 12px; color: var(--fb-faint); margin-top: 3px; }
+.fb-s-title a { color: inherit; text-decoration: none; border-bottom: 1px dashed var(--fb-border); transition: color 0.15s; }
+.fb-s-title a:hover { color: var(--fb-gold); border-bottom-color: var(--fb-gold); }
+.fb-s-badge-done { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: var(--fb-teal-pale); color: var(--fb-teal); padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
 .fb-s-now { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: var(--fb-gold-pale); color: var(--fb-gold); padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
 
 :root[data-theme="dark"] .fb-article .fb-dp-before,
