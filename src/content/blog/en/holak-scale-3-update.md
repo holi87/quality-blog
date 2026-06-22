@@ -1,7 +1,7 @@
 ---
 title: "The Holak (and Gomulski) Scale 3.0 - fewer levels, more meaning"
 description: "An update to the AI adoption maturity model, co-created with Konrad Gomulski. Version 3.0 simplifies the scale to five levels and stops treating a level as a label for a person - it moves the diagnosis onto a specific context: a task, a team, a process or an organisation."
-date: 2026-06-22T14:00:00
+date: 2026-06-22T09:00:00
 tags: ["ai", "adoption", "strategy", "governance", "holak-scale"]
 lang: en
 readingTime: 9

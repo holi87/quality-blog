@@ -1,7 +1,7 @@
 ---
 title: "Skala Holaka (i Gomulskiego) 3.0 - mniej poziomów, więcej sensu"
 description: "Aktualizacja modelu dojrzałości adopcji AI, współtworzona z Konradem Gomulskim. Wersja 3.0 upraszcza skalę do pięciu poziomów i przestaje traktować poziom jako etykietę człowieka - przenosi diagnozę na konkretny kontekst: zadanie, zespół, proces albo organizację."
-date: 2026-06-22T14:00:00
+date: 2026-06-22T09:00:00
 tags: ["ai", "adopcja", "strategia", "governance", "holak-scale"]
 lang: pl
 readingTime: 9
