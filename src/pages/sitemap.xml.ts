@@ -94,6 +94,7 @@ export async function GET() {
   const plHomeAlternates = localizedAlternates('/pl/', '/en/');
   const blogAlternates = localizedAlternates('/pl/blog/', '/en/blog/');
   const aboutAlternates = localizedAlternates('/pl/o-projekcie/', '/en/about/');
+  const holakScaleAlternates = localizedAlternates('/pl/skala-holaka-3/', '/en/holak-scale-3/');
 
   const staticEntries: SitemapEntry[] = [
     { path: homePath('pl'), lastmod: plLatest, alternates: plHomeAlternates },
@@ -102,6 +103,8 @@ export async function GET() {
     { path: blogPath('en'), lastmod: enLatest, alternates: blogAlternates },
     { path: '/pl/o-projekcie/', alternates: aboutAlternates },
     { path: '/en/about/', alternates: aboutAlternates },
+    { path: '/pl/skala-holaka-3/', alternates: holakScaleAlternates },
+    { path: '/en/holak-scale-3/', alternates: holakScaleAlternates },
   ];
 
   const entries = [

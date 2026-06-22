@@ -14,10 +14,10 @@ const otherLocale = locale === 'pl' ? 'en' : 'pl';
 const languageSwitchHref = alternatePaths?.[otherLocale] ?? getLocalePath(otherLocale, '/');
 
 const isHome = currentPath === '/' || currentPath === '';
-const aiAdoptionSlug = locale === 'pl' ? 'skala-holaka' : 'holak-scale';
-const aiAdoptionPath = getLocalePath(locale, `/blog/${aiAdoptionSlug}/`);
-const isAiAdoption = currentPath.includes(`/blog/${aiAdoptionSlug}`);
-const isBlog = currentPath.startsWith('/blog') && !isAiAdoption;
+const aiAdoptionSlug = locale === 'pl' ? 'skala-holaka-3' : 'holak-scale-3';
+const aiAdoptionPath = getLocalePath(locale, `/${aiAdoptionSlug}/`);
+const isAiAdoption = currentPath.includes(aiAdoptionSlug);
+const isBlog = currentPath.startsWith('/blog');
 const isAbout = currentPath.includes('o-projekcie') || currentPath.includes('about');
 ---
 
