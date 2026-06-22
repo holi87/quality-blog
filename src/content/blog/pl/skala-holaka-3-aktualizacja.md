@@ -12,9 +12,9 @@ author:
 
 Skala Holaka 2.1 była potrzebna. Porządkowała drogę od prostego czatu, przez promptowanie, instrukcje, kontekst, skille, narzędzia, agentowe workflow, orkiestrację i agentic OS. Była też świadomie rozbita na dwie ścieżki: enterprise i private.
 
-Wersję 3.0 współtworzyłem z **Konradem Gomulskim**. To w dużej mierze efekt jego pytań, kontrargumentów i recenzji - dlatego od tej wersji nazywam ją **Skalą Holaka (i Gomulskiego)**. Konrad odpowiada za około dziesiątą część tej przebudowy, ale akurat za tę część, która najmocniej zmieniła sposób myślenia o modelu: odejście od poziomu jako etykiety i nacisk na kontekst.
+Tę skalę od początku tworzyłem z pomocą **Konrada Gomulskiego**. Przy wersji 3.0 Konrad zaangażował się znacznie mocniej - jego pytania, kontrargumenty i recenzje realnie zmieniły sposób myślenia o modelu, zwłaszcza odejście od poziomu jako etykiety i nacisk na kontekst. Dlatego uznaliśmy, że czas poprawić nazwę: od tej wersji to **Skala Holaka (i Gomulskiego)**.
 
-> Pełny opis modelu znajdziesz na stronie [Skala Holaka (i Gomulskiego) 3.0](/pl/skala-holaka-3/). Ten wpis tłumaczy, dlaczego powstała aktualizacja i co się zmieniło względem wersji 2.1.
+> Pełny opis modelu znajdziesz na stronie [Skala Holaka (i Gomulskiego) 3.0](/pl/skala-holaka-gomulskiego-3/). Ten wpis tłumaczy, dlaczego powstała aktualizacja i co się zmieniło względem wersji 2.1.
 
 Po wielu rozmowach, diagnozach i przykładach zobaczyliśmy jeden powtarzalny problem: skala zaczęła być traktowana zbyt dosłownie.
 
@@ -179,4 +179,4 @@ Skala mówi:
 
 I właśnie o to chodzi w wersji 3.0.
 
-Pełny model, z opisem każdego poziomu, mapą przejścia z 2.1, macierzą kontekstów i krzywą wartości i kosztu, znajdziesz na stronie [Skala Holaka (i Gomulskiego) 3.0](/pl/skala-holaka-3/).
+Pełny model, z opisem każdego poziomu, mapą przejścia z 2.1, macierzą kontekstów i krzywą wartości i kosztu, znajdziesz na stronie [Skala Holaka (i Gomulskiego) 3.0](/pl/skala-holaka-gomulskiego-3/).

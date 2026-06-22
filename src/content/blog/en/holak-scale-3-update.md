@@ -12,9 +12,9 @@ author:
 
 The Holak Scale 2.1 was needed. It mapped the road from a simple chat, through prompting, instructions, context, skills, tools, agentic workflows, orchestration and an agentic OS. It was also deliberately split into two tracks: enterprise and private.
 
-I co-created version 3.0 with **Konrad Gomulski**. It is, to a large extent, the result of his questions, counterarguments and reviews - which is why from this version on I call it the **Holak (and Gomulski) Scale**. Konrad is responsible for roughly a tenth of this rebuild, but for exactly the part that changed how I think about the model the most: dropping the level as a label and putting the weight on context.
+I have built this scale with **Konrad Gomulski's** help from the start. With version 3.0 Konrad got much more involved - his questions, counterarguments and reviews genuinely changed how I think about the model, especially dropping the level as a label and putting the weight on context. So we decided it was time to fix the name: from this version it is the **Holak (and Gomulski) Scale**.
 
-> You will find the full model on the [Holak (and Gomulski) Scale 3.0](/en/holak-scale-3/) page. This post explains why the update exists and what changed compared to version 2.1.
+> You will find the full model on the [Holak (and Gomulski) Scale 3.0](/en/holak-gomulski-scale-3/) page. This post explains why the update exists and what changed compared to version 2.1.
 
 After many conversations, diagnoses and examples we saw one recurring problem: the scale started to be taken too literally.
 
@@ -179,4 +179,4 @@ The scale says:
 
 And that is exactly what version 3.0 is about.
 
-You will find the full model - with a description of every level, the migration map from 2.1, the context matrix and the value and cost curve - on the [Holak (and Gomulski) Scale 3.0](/en/holak-scale-3/) page.
+You will find the full model - with a description of every level, the migration map from 2.1, the context matrix and the value and cost curve - on the [Holak (and Gomulski) Scale 3.0](/en/holak-gomulski-scale-3/) page.

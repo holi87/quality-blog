@@ -14,7 +14,7 @@ const otherLocale = locale === 'pl' ? 'en' : 'pl';
 const languageSwitchHref = alternatePaths?.[otherLocale] ?? getLocalePath(otherLocale, '/');
 
 const isHome = currentPath === '/' || currentPath === '';
-const aiAdoptionSlug = locale === 'pl' ? 'skala-holaka-3' : 'holak-scale-3';
+const aiAdoptionSlug = locale === 'pl' ? 'skala-holaka-gomulskiego-3' : 'holak-gomulski-scale-3';
 const aiAdoptionPath = getLocalePath(locale, `/${aiAdoptionSlug}/`);
 const isAiAdoption = currentPath.includes(aiAdoptionSlug);
 const isBlog = currentPath.startsWith('/blog');

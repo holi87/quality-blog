@@ -1,0 +1,727 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {
+  localizedAlternates,
+  organizationJsonLd,
+  websiteJsonLd,
+  breadcrumbJsonLd,
+  postAuthorJsonLd,
+  absoluteUrl,
+  homePath,
+} from '../../lib/seo';
+
+const alternatePaths = localizedAlternates('/pl/skala-holaka-gomulskiego-3/', '/en/holak-gomulski-scale-3/');
+const pagePath = '/en/holak-gomulski-scale-3/';
+const seoDescription = 'The Holak (and Gomulski) Scale 3.0 - an AI adoption maturity model simplified to five levels: resistance, basics, conscious use, advanced processes and autonomy. A level is contextual, sub-levels are unscored diagnostic gates. Co-created by Grzegorz Holak and Konrad Gomulski.';
+
+const articleJsonLd = {
+  '@type': 'TechArticle',
+  '@id': `${absoluteUrl(pagePath)}#article`,
+  headline: 'The Holak (and Gomulski) Scale 3.0 - AI Adoption Scale',
+  description: seoDescription,
+  url: absoluteUrl(pagePath),
+  mainEntityOfPage: absoluteUrl(pagePath),
+  inLanguage: 'en',
+  isAccessibleForFree: true,
+  datePublished: '2026-06-22',
+  dateModified: '2026-06-22',
+  author: postAuthorJsonLd(['GH', 'KG']),
+  publisher: { '@id': absoluteUrl('/#organization') },
+  about: [
+    { '@type': 'Thing', name: 'AI adoption' },
+    { '@type': 'Thing', name: 'AI maturity' },
+    { '@type': 'Thing', name: 'Holak Scale' },
+  ],
+};
+
+const breadcrumb = breadcrumbJsonLd([
+  { name: 'Home', path: homePath('en') },
+  { name: 'AI Adoption', path: pagePath },
+]);
+
+const levels = [
+  { n: 0, name: 'Resistance', tldr: 'AI is not used, or it is used outside conscious adoption.', h: 20, c: 'var(--fg-subtle)' },
+  { n: 1, name: 'Basics', tldr: 'A person or organisation uses AI ad hoc and understands the basic limitations.', h: 40, c: 'var(--accent-2)' },
+  { n: 2, name: 'Conscious use', tldr: 'AI is used deliberately: with context, format, iteration, instructions and quality control.', h: 60, c: 'var(--accent-3)' },
+  { n: 3, name: 'Advanced processes', tldr: 'AI works inside processes: with context, tools, automations, skills, knowledge bases and evaluation.', h: 80, c: 'var(--accent)' },
+  { n: 4, name: 'Autonomy / mature adoption', tldr: 'AI delivers limited goals end-to-end, while a human manages direction, risk and verification.', h: 100, c: 'var(--accent)' },
+];
+---
+
+<BaseLayout
+  title="The Holak (and Gomulski) Scale 3.0"
+  description={seoDescription}
+  locale="en"
+  currentPath="/holak-gomulski-scale-3"
+  canonicalPath="/en/holak-gomulski-scale-3/"
+  alternatePaths={alternatePaths}
+  jsonLd={[organizationJsonLd(), websiteJsonLd('en'), articleJsonLd, breadcrumb]}
+>
+  <article class="sh3">
+    <header class="sh3-hero">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="container sh3-hero-inner">
+        <p class="eyebrow">/ AI adoption</p>
+        <h1 class="display">The Holak <em>(and Gomulski)</em> Scale 3.0</h1>
+        <p class="subtitle">AI adoption scale - a maturity model</p>
+        <p class="lede">
+          The Holak Scale 3.0 simplifies the AI adoption model to <strong>five levels</strong>:
+          resistance, basics, conscious use, advanced processes and autonomy / mature adoption.
+          It is not a ranking of people, nor a checklist of tools. A level is a
+          <strong>state within a specific context</strong>: a task, a domain, a process, a team
+          or an organisation.
+        </p>
+        <div class="sh3-meta">
+          <span class="badge">Authors: Grzegorz Holak &amp; Konrad Gomulski</span>
+          <span class="badge badge-soft">Version 3.0</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="container sh3-body">
+      <p class="callout">
+        <strong>Where the name comes from.</strong> I have built this scale with Konrad Gomulski's
+        help from the start. With version 3.0 Konrad got much more involved - his questions,
+        counterarguments and reviews genuinely shaped this model. So we decided it was time to fix
+        the name: from this version it is the Holak (and Gomulski) Scale. The reasoning behind the
+        update is in the post <a href="/en/blog/holak-scale-3-update/">The Holak (and Gomulski) Scale 3.0 - fewer levels, more meaning</a>.
+      </p>
+
+      <h2 id="tldr">TL;DR</h2>
+      <p>Five levels instead of twelve. The biggest change: a level describes a context, not a person.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th class="num">Level</th><th>Name</th><th>In one sentence</th></tr>
+          </thead>
+          <tbody>
+            {levels.map((l) => (
+              <tr>
+                <td class="num"><span class="lvl-pill" style={`--lvl: ${l.c}`}>{l.n}</span></td>
+                <td><strong>{l.name}</strong></td>
+                <td>{l.tldr}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="chart">
+        <div class="ladder" role="img" aria-label="Stairs of five AI adoption levels from 0 (resistance) to 4 (autonomy), with rising maturity.">
+          {levels.map((l) => (
+            <div class="ladder-step">
+              <div class="step-track">
+                <div class="step-block" style={`height: ${l.h}%; --c: ${l.c}`}>
+                  <span class="step-n">{l.n}</span>
+                </div>
+              </div>
+              <span class="step-name">{l.name}</span>
+            </div>
+          ))}
+        </div>
+        <figcaption>Five maturity levels as stairs going up. Higher does not mean "morally better" - it means "more capability, more cost and more control required".</figcaption>
+      </figure>
+
+      <h2 id="why">Why version 3.0</h2>
+      <p>
+        The previous version of the Holak Scale described the detailed road of AI adoption well: from
+        a simple chat, through prompting, instructions, context, skills, tools, agentic workflows,
+        orchestration and an agentic OS. In practice that detail came at a cost. Instead of talking
+        about real changes to their work, people started arguing about level numbers. Are we at 6 or
+        at 7? Does MCP automatically grant level 8? Can an organisation be at 2 if a single person is
+        at 9?
+      </p>
+      <p>
+        Version 3.0 answers these problems through simplification. Instead of many rungs we have five
+        main levels. The detailed elements of the previous scale do not disappear, but they become
+        <strong>diagnostic sub-areas</strong>. We do not score them separately. We use them to talk
+        about the maturity of a specific process.
+      </p>
+
+      <h2 id="principle">Core principle: a level is contextual</h2>
+      <p>The same person can be:</p>
+      <div class="context-grid">
+        <div class="ctx-col">
+          <p class="ctx-head">Person</p>
+          <ul>
+            <li>level 3 in coding,</li>
+            <li>level 2 in document analysis,</li>
+            <li>level 1 in writing emails,</li>
+            <li>level 0 in working with financial data.</li>
+          </ul>
+        </div>
+        <div class="ctx-col">
+          <p class="ctx-head">Organisation</p>
+          <ul>
+            <li>level 3 in the IT team,</li>
+            <li>level 2 in QA,</li>
+            <li>level 1 in HR,</li>
+            <li>level 0 in regulated processes.</li>
+          </ul>
+        </div>
+      </div>
+      <blockquote>
+        <p>We do not ask "which level are you at?". We ask "which level is this specific area of AI use at?".</p>
+      </blockquote>
+
+      <h2 id="how-to-read">How to read the levels</h2>
+      <p>
+        Sub-levels are not scored. The point is not a 7/10 result or ticking a checklist. Each level
+        has a few maturity sub-areas. Understanding some of them lets you enter a level. Moving to the
+        next one, however, requires understanding and applying the entire level below.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Status</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Entering a level</strong></td><td>You understand the entire level below and start applying some sub-areas of the current one.</td></tr>
+            <tr><td><strong>Stable level</strong></td><td>Most sub-areas of the current level work repeatably in real tasks.</td></tr>
+            <tr><td><strong>Ready for the next</strong></td><td>All sub-areas of the current level are understood, used and proven in practice.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">The exception is level 0 - it describes the state before conscious adoption, or a conscious decision not to use AI in a given area.</p>
+
+      <h2 id="level-0">Level 0 - Resistance</h2>
+      <p>
+        AI is not used, or it is used only accidentally, quietly, without rules or against the official
+        policy. Resistance may stem from a lack of knowledge, fear, bad experiences, regulatory limits,
+        ethical reasons or the absence of a clear use case.
+      </p>
+      <p>
+        Level 0 is not an insult. Sometimes a conscious "we do not use AI in this process" is more
+        mature than uncontrolled use of AI on sensitive data.
+      </p>
+      <p class="sub-head">Sub-areas</p>
+      <ul class="tight">
+        <li><strong>No use</strong> - AI is not part of daily work or private life.</li>
+        <li><strong>Unconscious use</strong> - someone uses AI without thinking about what is allowed, what the risks are and where the data goes.</li>
+        <li><strong>Emotional resistance</strong> - the barrier is not technology, but fear, distrust or a sense of threat.</li>
+        <li><strong>Organisational resistance</strong> - no policy, owner, rules or space for safe experimentation.</li>
+        <li><strong>Conscious opt-out</strong> - the risk, cost or regulatory aspect outweighs the potential benefit.</li>
+      </ul>
+      <p class="sub-head">Exit signal</p>
+      <p>
+        You can move to level 1 when you can point to a safe AI use case and name the basic boundaries:
+        what not to paste, what not to trust without checking, when AI should not be used and who is
+        responsible for the result.
+      </p>
+      <p class="trap"><strong>Typical trap:</strong> pretending AI does not exist while people use it quietly anyway. That is not security. That is a lack of control.</p>
+
+      <h2 id="level-1">Level 1 - Basics</h2>
+      <p>
+        AI is used for simple, ad hoc tasks: a question, an answer, a summary, an email, an idea, a
+        quick explanation, a simple text transformation. The user starts to understand that AI is
+        useful, but does not yet treat it as part of a process. Many advanced users return to level 1
+        for simple tasks - the difference is that they do not stay there permanently.
+      </p>
+      <p class="sub-head">Sub-areas</p>
+      <ul class="tight">
+        <li><strong>Simple chat</strong> - a question and a useful answer.</li>
+        <li><strong>First use cases</strong> - an email, a summary, ideas, a simple translation, a document draft, an explanation of a concept.</li>
+        <li><strong>Basic verification</strong> - awareness that an answer may be wrong despite a convincing form.</li>
+        <li><strong>Basic data hygiene</strong> - personal data, company secrets, passwords, medical and financial data are not pasted thoughtlessly.</li>
+        <li><strong>Recognising limits</strong> - AI is not a search engine, a source of truth or an expert with professional liability.</li>
+      </ul>
+      <p class="trap"><strong>Typical trap:</strong> "I use AI every day, so I am advanced". You can ask simple questions every day for a year and still be at level 1.</p>
+
+      <h2 id="level-2">Level 2 - Conscious use</h2>
+      <p>
+        AI stops being treated like a magic box for typing questions. The user starts designing the
+        instruction: a goal, context, role, constraints, input, expected format and quality criteria.
+        They iterate, compare answers, correct the model and use persistent instructions. This is the
+        level where a real jump in quality appears - without building integrations, agents and complex
+        processes.
+      </p>
+      <p class="sub-head">Sub-areas</p>
+      <ul class="tight">
+        <li><strong>Goal and context</strong> - why, for whom, in which domain, with what constraints and success criteria.</li>
+        <li><strong>Response format</strong> - a table, a risk list, test cases, an action plan, a checklist, JSON, a user story, a report.</li>
+        <li><strong>Iteration and critique</strong> - improvements, variants, counterarguments, edge cases, assumption checks, risk assessment.</li>
+        <li><strong>Templates and frameworks</strong> - repeatable work patterns instead of inventing the prompt from scratch.</li>
+        <li><strong>Custom instructions</strong> - persistent preferences, style, role and standards go into settings, the profile and project instructions.</li>
+        <li><strong>Model awareness</strong> - one model for code, another for reasoning, another cheap, another local or with a large context.</li>
+        <li><strong>Cost and token hygiene</strong> - you do not pay every day for the same 200 lines of context.</li>
+      </ul>
+      <p class="trap"><strong>Typical trap:</strong> the prompt fetish. A team builds a library of 200-line "golden prompts" but still copies them by hand instead of moving the persistent context into instructions and documentation.</p>
+
+      <h2 id="level-3">Level 3 - Advanced processes</h2>
+      <p>
+        AI stops being just a conversation and becomes part of a process. Durable context, organised
+        knowledge, tools, integrations, automations, skills, evaluations and security rules appear. AI
+        reads files, analyses the repository, uses documentation, creates tasks, runs tests and
+        supports the workflow.
+      </p>
+      <p class="callout callout-tight">
+        <strong>Tools before skills.</strong> Before you build specialised skills and knowledge bases,
+        you have to understand what AI actually works with, what permissions it has and how to control
+        its actions. A skill without an understanding of tools becomes another nice prompt. A tool
+        without rules becomes a risk. A process emerges only when both layers come together.
+      </p>
+      <p class="sub-head">Sub-areas</p>
+      <ul class="tight">
+        <li><strong>Durable context</strong> - project files, documentation, ADRs, README, AGENTS.md, CLAUDE.md, a knowledge base, the repository.</li>
+        <li><strong>Advanced operational instructions</strong> - when to ask, when to act, when to escalate, how to report, when to stop.</li>
+        <li><strong>Tools, integrations and connectors</strong> - access to repositories, documents, Jira, the calendar, APIs, the test environment, CI/CD - limited and justified.</li>
+        <li><strong>Hooks and control automations</strong> - run tests, check the format, block a forbidden command, ask for approval, write a log, enforce review.</li>
+        <li><strong>Skills and repeatable capabilities</strong> - log analysis, bug triage, test generation, code review, release notes.</li>
+        <li><strong>Knowledge bases and RAG</strong> - the knowledge has an owner, a scope, freshness, sources and update rules.</li>
+        <li><strong>Evaluations</strong> - a few representative cases and an expected result show whether a prompt or skill still works after a change.</li>
+        <li><strong>Security and ownership</strong> - who is responsible, which data may be used, which actions require approval, where the log is, how to stop the process.</li>
+      </ul>
+      <p class="sub-head">Typical traps</p>
+      <ul class="tight">
+        <li><strong>Documentation graveyard</strong> - the context exists, but nobody updates it.</li>
+        <li><strong>Integrations without a process</strong> - AI has access to tools but no clear workflow.</li>
+        <li><strong>Skill bloat</strong> - a dozen skills that nobody uses or maintains.</li>
+        <li><strong>MCP as a trophy</strong> - there are connectors, but no control, metrics or real value.</li>
+      </ul>
+
+      <h2 id="level-4">Level 4 - Autonomy / mature adoption</h2>
+      <p>
+        AI delivers limited goals end-to-end. The human does not steer the model at every step - they
+        define the goal, the boundaries, the success criteria and the way to verify. AI plans, acts and
+        reports, while the human approves the outcome, checks the risks and corrects the system. This is
+        not full, unsupervised autonomy. It is mature adoption, in which autonomy is
+        <strong>limited, traceable and reversible</strong>.
+      </p>
+      <p class="sub-head">Sub-areas</p>
+      <ul class="tight">
+        <li><strong>Delegating goals, not steps</strong> - "prepare the release notes", "analyse production errors", not "do A, then B, then C".</li>
+        <li><strong>Agentic workflows</strong> - gather data, analyse, run the steps, produce the result, give the rationale and flag risks.</li>
+        <li><strong>Traceability</strong> - you can see what AI did, on what data, what decisions it made and what the cost was.</li>
+        <li><strong>Reversibility</strong> - a wrong action can be undone or its effects contained.</li>
+        <li><strong>Human in the loop where needed</strong> - approving high-risk actions: production, money, sensitive data, legal and HR decisions.</li>
+        <li><strong>Orchestration only where it makes sense</strong> - multiple roles only once a single agent reliably delivers.</li>
+        <li><strong>Agentic OS / operating model</strong> - roles, owners, metrics, costs, logs, reviews, a feedback loop and a stop procedure.</li>
+        <li><strong>Ethical and organisational maturity</strong> - impact on people, privacy, bias, compliance, the boundaries of automation and the right to refuse AI.</li>
+      </ul>
+      <p class="sub-head">Typical traps</p>
+      <ul class="tight">
+        <li><strong>The illusion of autonomy</strong> - AI works "on its own", but the human later fixes 60% of the result.</li>
+        <li><strong>Orchestrating mediocrity</strong> - many agents cooperate, but none does its own part well.</li>
+        <li><strong>An OS without a goal</strong> - a flashy platform, but it is unclear which process it actually improves.</li>
+        <li><strong>Autonomy without accountability</strong> - the agent acts, but nobody owns the consequences.</li>
+      </ul>
+
+      <h2 id="map">Migration map from v2.1 to v3.0</h2>
+      <p>The old levels were not thrown away. They were grouped into five new ones. Below is a visual map of the 12 old rungs collapsing into 5 new levels.</p>
+
+      <figure class="chart">
+        <div class="mapviz" role="img" aria-label="A map of the twelve version 2.1 levels collapsing into five version 3.0 levels.">
+          <div class="mapcol" style="--c: var(--fg-subtle)"><span class="mapcol-head">0 - Resistance</span><ul><li>0 - Resistance / no adoption</li></ul></div>
+          <div class="mapcol" style="--c: var(--accent-2)"><span class="mapcol-head">1 - Basics</span><ul><li>1 - Basic chat</li></ul></div>
+          <div class="mapcol" style="--c: var(--accent-3)"><span class="mapcol-head">2 - Conscious use</span><ul><li>2 - Conscious prompting</li><li>3 - Prompting frameworks</li><li>4 - Instructions and token hygiene</li></ul></div>
+          <div class="mapcol" style="--c: var(--accent)"><span class="mapcol-head">3 - Advanced processes</span><ul><li>5 - Project/home context</li><li>6 - Advanced instructions</li><li>8 - Tools, MCP, hooks</li><li>7 - Skills, knowledge, evaluations</li></ul></div>
+          <div class="mapcol" style="--c: var(--accent)"><span class="mapcol-head">4 - Autonomy</span><ul><li>9 - Agentic workflows</li><li>10 - Orchestration</li><li>11 - Agentic OS</li></ul></div>
+        </div>
+        <figcaption>In the level 3 group, tools (8) deliberately come before skills (7). A skill without tools is just a nice prompt.</figcaption>
+      </figure>
+
+      <h2 id="diagnostics">Minimal 3.0 diagnostics</h2>
+      <p>Instead of asking "which level are you at?", use a short diagnosis.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Question</th><th>What it checks</th></tr></thead>
+          <tbody>
+            <tr><td>What specific task did you use AI for in the last week?</td><td>Real use or a declaration.</td></tr>
+            <tr><td>What was the result and how much time, quality or risk did it really change?</td><td>Value or just activity.</td></tr>
+            <tr><td>Which data is forbidden in this use?</td><td>Hygiene and security.</td></tr>
+            <tr><td>How do you check the correctness of answers?</td><td>Verification.</td></tr>
+            <tr><td>Do you use persistent instructions, templates or context?</td><td>Level 2.</td></tr>
+            <tr><td>Where does AI get current knowledge about the project or process?</td><td>Level 3 - context.</td></tr>
+            <tr><td>Which tools can it use and with what permissions?</td><td>Level 3 - tools.</td></tr>
+            <tr><td>Is there a skill, playbook or repeatable workflow?</td><td>Level 3 - repeatability.</td></tr>
+            <tr><td>Can AI achieve a goal without being steered at every step?</td><td>Level 4.</td></tr>
+            <tr><td>What happens if AI does something wrong?</td><td>Traceability, reversibility and accountability.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="matrix">The context matrix</h2>
+      <p>Version 3.0 should be used as a matrix, not a single label. An example of a filled-in diagnosis:</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Area</th><th class="num">Level</th><th>Diagnosis</th></tr></thead>
+          <tbody>
+            <tr><td>QA</td><td class="num"><span class="lvl-pill" style="--lvl: var(--accent)">3</span></td><td>Project context, repository, test generation, partial integrations.</td></tr>
+            <tr><td>HR</td><td class="num"><span class="lvl-pill" style="--lvl: var(--accent-2)">1</span></td><td>Simple content generation, no rules or workflow.</td></tr>
+            <tr><td>Customer support</td><td class="num"><span class="lvl-pill" style="--lvl: var(--fg-subtle)">0</span></td><td>AI formally forbidden because of customer data.</td></tr>
+            <tr><td>Release management</td><td class="num"><span class="lvl-pill" style="--lvl: var(--accent)">4</span></td><td>Agentic release notes workflow with human review.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="curve">The value and cost curve</h2>
+      <p>
+        Levels do not carry equal value or equal cost. The biggest return for most people and teams
+        comes from reaching level 2. The higher you go, the faster cost and required discipline grow
+        relative to the extra value.
+      </p>
+
+      <figure class="chart chart-curve">
+        <p class="curve-note">
+          The biggest return is on the transitions 0 → 1, 1 → 2 and 2 → 3. Level 4 is for selected
+          processes, not for everything.
+        </p>
+        <svg class="linechart" viewBox="0 0 760 330" role="img" aria-label="Line chart: value rises quickly up to level 2 then flattens; cost and complexity rise fairly steadily. The biggest return is on transitions 0-1, 1-2 and 2-3.">
+          <rect class="lc-zone" x="36" y="22" width="350" height="258" rx="6"></rect>
+          <line class="lc-grid" x1="36" y1="22" x2="736" y2="22"></line>
+          <line class="lc-grid" x1="36" y1="86" x2="736" y2="86"></line>
+          <line class="lc-grid" x1="36" y1="151" x2="736" y2="151"></line>
+          <line class="lc-grid" x1="36" y1="215" x2="736" y2="215"></line>
+          <line class="lc-axis" x1="36" y1="280" x2="736" y2="280"></line>
+          <text class="lc-zone-label" x="211" y="44" text-anchor="middle">Biggest return</text>
+          <polyline class="lc-cost" points="36,275 211,224 386,165 561,101 736,37"></polyline>
+          <polyline class="lc-value" points="36,280 211,139 386,75 561,45 736,24"></polyline>
+          <g class="lc-ticks">
+            <text x="36" y="302" text-anchor="middle">0</text>
+            <text x="211" y="302" text-anchor="middle">1</text>
+            <text x="386" y="302" text-anchor="middle">2</text>
+            <text x="561" y="302" text-anchor="middle">3</text>
+            <text x="736" y="302" text-anchor="middle">4</text>
+          </g>
+        </svg>
+        <div class="legend">
+          <span class="lg lg-value">Value</span>
+          <span class="lg lg-cost">Cost and complexity</span>
+        </div>
+        <figcaption>Not everyone should go to level 4. For many people and organisations, level 2 or 3 gives the best value-to-cost ratio.</figcaption>
+      </figure>
+
+      <h2 id="principles">The key principles of the Holak (and Gomulski) Scale 3.0</h2>
+      <ol class="rules">
+        <li><strong>A level is contextual.</strong> You are not "at 3". You can be at 3 in QA, at 2 in document analysis and at 1 in communication.</li>
+        <li><strong>A lower level is not morally worse.</strong> Sometimes level 0 is a conscious decision, and level 4 would be irresponsible.</li>
+        <li><strong>You do not have to reach 4.</strong> For many people and processes, level 2 or 3 gives the best value-to-cost ratio.</li>
+        <li><strong>Tools do not mean maturity.</strong> MCP, connectors, skills and agents are means, not proof of adoption.</li>
+        <li><strong>Autonomy requires context.</strong> You cannot responsibly jump from good prompting to a self-driving agent without rules, tools, evaluations and control.</li>
+        <li><strong>The scale measures capability, not ethics.</strong> That is why mature adoption must include a separate dimension of accountability, privacy and the boundaries of automation.</li>
+        <li><strong>Evidence beats a declaration.</strong> The best test: show a concrete result from the last week and explain what AI actually improved.</li>
+      </ol>
+
+      <h2 id="sources">Sources and context</h2>
+      <p>This model was created as a simplification and rebuild of the earlier versions:</p>
+      <ul class="tight">
+        <li><a href="/en/blog/holak-scale-3-update/">The Holak (and Gomulski) Scale 3.0 - fewer levels, more meaning</a> (the update post)</li>
+        <li><a href="/en/blog/holak-scale/">The Holak Scale v2.1e - enterprise</a></li>
+        <li><a href="/en/blog/holak-scale-private/">The Holak Scale v2.1p - private</a></li>
+        <li><a href="/en/blog/holak-scale-where-it-fails/">Where the Holak Scale fails - a self-critique</a></li>
+      </ul>
+      <p class="note">Version 3.0. Co-created by Grzegorz Holak and Konrad Gomulski.</p>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .sh3 { --sh3-max: 880px; }
+
+  /* Hero */
+  .sh3-hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(48px, 7vw, 92px) clamp(28px, 4vw, 44px);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 70% 50% at 28% 38%, black 50%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 50% at 28% 38%, black 50%, transparent 100%);
+  }
+  .sh3-hero-inner { position: relative; max-width: var(--sh3-max); }
+  .sh3-hero h1 {
+    font-size: var(--step-5);
+    color: var(--fg);
+    margin-top: 8px;
+    max-width: 18ch;
+  }
+  .sh3-hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+    font-variation-settings: 'SOFT' 100, 'opsz' 144;
+  }
+  .subtitle {
+    margin-top: 10px;
+    font-size: var(--step-1);
+    color: var(--fg-subtle);
+    font-family: var(--font-display);
+    font-style: italic;
+  }
+  .lede {
+    margin-top: 22px;
+    font-size: var(--step-1);
+    color: var(--fg-muted);
+    line-height: 1.6;
+    max-width: 64ch;
+  }
+  .lede strong { color: var(--fg); }
+  .sh3-meta { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .badge {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.01em;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--accent) 12%, var(--bg-elev));
+    color: var(--fg);
+    border: 1px solid color-mix(in oklab, var(--accent) 30%, var(--border));
+  }
+  .badge-soft {
+    background: var(--bg-elev);
+    color: var(--fg-muted);
+    border-color: var(--border);
+  }
+
+  /* Body */
+  .sh3-body {
+    padding-block: clamp(32px, 5vw, 56px);
+    max-width: var(--sh3-max);
+  }
+  .sh3-body h2 {
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    color: var(--fg);
+    margin-top: 52px;
+    margin-bottom: 14px;
+    scroll-margin-top: 80px;
+  }
+  .sh3-body > p { color: var(--fg); line-height: 1.7; margin-bottom: 14px; }
+  .sh3-body ul, .sh3-body ol { margin: 4px 0 18px; padding-left: 22px; }
+  .sh3-body li { color: var(--fg); line-height: 1.62; margin-bottom: 7px; }
+  .sh3-body li strong { color: var(--fg); }
+  .sub-head {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+    margin-top: 18px !important;
+    margin-bottom: 6px !important;
+  }
+  .note { color: var(--fg-muted); font-size: 14px; }
+  .trap {
+    border-left: 3px solid var(--accent-2);
+    background: color-mix(in oklab, var(--accent-2) 7%, var(--bg-elev));
+    padding: 12px 16px;
+    border-radius: 0 10px 10px 0;
+    color: var(--fg) !important;
+    font-size: 15px;
+  }
+  ul.tight li { margin-bottom: 5px; }
+
+  .callout {
+    background: color-mix(in oklab, var(--accent) 6%, var(--bg-elev));
+    border: 1px solid color-mix(in oklab, var(--accent) 22%, var(--border));
+    border-radius: 12px;
+    padding: 16px 18px;
+    color: var(--fg) !important;
+    line-height: 1.6;
+  }
+  .callout a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .callout-tight { margin: 6px 0 14px; }
+
+  blockquote {
+    margin: 8px 0 18px;
+    padding: 16px 20px;
+    border-left: 3px solid var(--accent);
+    background: color-mix(in oklab, var(--accent) 6%, var(--bg-elev));
+    border-radius: 0 10px 10px 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--fg);
+    line-height: 1.5;
+  }
+  blockquote p { margin: 0; }
+
+  /* Tables - stronger, theme-adaptive horizontal separation */
+  .table-wrap { overflow-x: auto; margin: 8px 0 20px; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  thead th {
+    background: var(--bg-elev);
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+    padding: 11px 14px;
+    border-bottom: 1.5px solid color-mix(in oklab, var(--fg) 26%, transparent);
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 11px 14px;
+    border-bottom: 1px solid color-mix(in oklab, var(--fg) 14%, transparent);
+    color: var(--fg);
+    line-height: 1.5;
+    vertical-align: top;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: color-mix(in oklab, var(--accent) 4%, transparent); }
+  th.num, td.num { text-align: center; white-space: nowrap; }
+  .lvl-pill {
+    display: inline-grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 7px;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--bg);
+    background: var(--lvl);
+  }
+
+  /* Charts */
+  .chart {
+    margin: 22px 0 28px;
+    padding: 22px 20px 16px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+  }
+  .chart figcaption {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--fg-muted);
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  /* Ladder - staircase */
+  .ladder {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    align-items: end;
+  }
+  .ladder-step { display: flex; flex-direction: column; }
+  .step-track { height: 190px; display: flex; align-items: flex-end; }
+  .step-block {
+    width: 100%;
+    background: linear-gradient(to top, var(--c), color-mix(in oklab, var(--c) 62%, transparent));
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    box-shadow: inset 0 1.5px 0 color-mix(in oklab, #fff 30%, transparent);
+    transition: height 0.3s ease;
+  }
+  .step-n {
+    margin-top: 8px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--bg);
+  }
+  .step-name {
+    margin-top: 8px;
+    min-height: 2.7em;
+    font-size: 12px;
+    color: var(--fg-muted);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  /* Map viz */
+  .mapviz {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    align-items: start;
+  }
+  .mapcol {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--c);
+    border-radius: 10px;
+    padding: 12px 12px 6px;
+  }
+  .mapcol-head {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--fg);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .mapcol ul { list-style: none; margin: 0; padding: 0; }
+  .mapcol li {
+    font-size: 12px;
+    color: var(--fg-muted);
+    padding: 4px 0;
+    border-top: 1px solid var(--border-soft);
+    line-height: 1.35;
+    margin: 0;
+  }
+  .mapcol li:first-child { border-top: none; }
+
+  /* Curve - line chart */
+  .curve-note { color: var(--fg-muted); font-size: 13.5px; line-height: 1.55; margin: 0 0 16px; }
+  .linechart { width: 100%; height: auto; display: block; overflow: visible; }
+  .lc-value { fill: none; stroke: var(--accent-3); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+  .lc-cost { fill: none; stroke: var(--accent); stroke-width: 3; stroke-dasharray: 1 8; stroke-linecap: round; }
+  .lc-grid { stroke: color-mix(in oklab, var(--fg) 9%, transparent); stroke-width: 1; }
+  .lc-axis { stroke: color-mix(in oklab, var(--fg) 26%, transparent); stroke-width: 1.5; }
+  .lc-zone { fill: color-mix(in oklab, var(--accent-3) 10%, transparent); }
+  .lc-zone-label { fill: var(--accent-3); font-family: var(--font-mono); font-size: 12px; font-weight: 600; }
+  .lc-ticks text { fill: var(--fg-muted); font-family: var(--font-mono); font-size: 13px; }
+  .legend { display: flex; justify-content: center; gap: 22px; margin-top: 14px; }
+  .lg { font-size: 12px; color: var(--fg-muted); display: inline-flex; align-items: center; gap: 7px; }
+  .lg::before { content: ''; width: 18px; height: 3px; border-radius: 2px; }
+  .lg-value::before { background: var(--accent-3); }
+  .lg-cost::before { background: var(--accent); }
+
+  /* Context grid */
+  .context-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 8px 0 16px; }
+  .ctx-col {
+    background: var(--bg-elev);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .ctx-head { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); margin: 0 0 8px; }
+  .ctx-col ul { margin: 0; padding-left: 18px; }
+  .ctx-col li { font-size: 14px; margin-bottom: 4px; }
+
+  .rules { counter-reset: rule; list-style: none; padding-left: 0; }
+  .rules li {
+    position: relative;
+    padding: 12px 16px 12px 48px;
+    margin-bottom: 8px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    counter-increment: rule;
+  }
+  .rules li::before {
+    content: counter(rule);
+    position: absolute;
+    left: 14px;
+    top: 12px;
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+    border-radius: 7px;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  @media (max-width: 720px) {
+    .context-grid { grid-template-columns: 1fr; }
+    .mapviz { grid-template-columns: 1fr 1fr; }
+    .step-name { font-size: 10.5px; }
+    .step-track { height: 150px; }
+  }
+</style>
