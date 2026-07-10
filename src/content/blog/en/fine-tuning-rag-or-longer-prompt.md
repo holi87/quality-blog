@@ -16,7 +16,7 @@ At conferences, every model problem gets solved with fine-tuning - it sounds ser
 
 **RAG** (retrieval-augmented generation) means appending fragments of your documents to the prompt, retrieved automatically for the specific question. The model does not have to "remember" anything - it receives the right paragraphs from the knowledge base at query time.
 
-**Fine-tuning** means further training an existing model on hundreds or thousands of your examples to change its default behavior: style, format, the way it reasons in a narrow domain. The result is a new model variant that has to be maintained like any production artifact.
+**Fine-tuning** means further training an existing model on your examples to change its default behavior: style, format, or how it performs a narrow task. The required number depends on the model, provider, and task. Some services technically accept tens of examples, but stable gains often require tens or hundreds of high-quality examples plus a separate evaluation set. The result is a new model variant that has to be maintained like any production artifact.
 
 The key misunderstanding where most bad decisions start: fine-tuning is poorly suited to injecting knowledge. A model fine-tuned on your documentation does not become a reliable source of it - it can still make things up, only now it makes them up in your style and your jargon. Knowledge that needs to be recalled faithfully and with a source is a job for RAG. Fine-tuning changes behavior, not the stock of facts.
 
@@ -28,7 +28,7 @@ I walk through it with teams in this order:
 2. **Are there already so many examples and rules that the prompt is swelling beyond a few thousand tokens?** If the growing prompt still works and call volume is low - leave it; an ugly working prompt is cheaper than pretty architecture. If cost and latency hurt at high volume - consider fine-tuning as prompt compression (point 5).
 3. **Is the model missing knowledge of your data: documents, products, procedures?** Yes - that is RAG, point 4. No, the model has the knowledge but answers in the wrong style or format, or fails to stick to a narrow convention - point 5.
 4. **RAG:** start with the minimal variant - good keyword search plus appending the retrieved fragments to the prompt. A vector database, embeddings, and query rewriting are the second stage, needed only when the simple variant measurably falls short (see the post on evals - without a golden set you will not find out whether it falls short).
-5. **Fine-tuning:** you enter here only if you have at minimum several hundred verified input-output examples, the problem is stable over time, and prompt and RAG measurably fail to close the quality gap or do so too expensively at your volume. Fewer than three "yes" answers - go back to points 1-4.
+5. **Fine-tuning:** you enter here only when you have enough verified examples for the selected model, the problem is stable over time, and prompt and RAG measurably fail to close the quality gap or do so too expensively at your volume. Start with the provider's recommended minimum, measure on a separate evaluation set, and only then expand the data. Fewer than three "yes" answers - go back to points 1-4.
 
 ## The bill: cost, time, risk
 
@@ -38,7 +38,7 @@ I walk through it with teams in this order:
 | Upfront cost | ~0 | days of work + search infrastructure | data preparation (the biggest cost) + training |
 | Running cost | more tokens per call | index maintenance + tokens for appended context | hosting/pricing for the fine-tuned model + retraining |
 | Knowledge update | edit the prompt, minutes | add a document to the index, minutes | new training run, days |
-| Required data | 3-10 examples | documents you already have | hundreds to thousands of clean input-output pairs |
+| Required data | 3-10 examples | documents you already have | usually tens to hundreds of clean pairs, depending on model and task |
 | Required skills | anyone on the team | a developer + search basics | someone who understands evals and data preparation |
 | Main risk | instruction dilution in a long prompt | bad retrieval = confidently wrong answers | regressions after a base model change, overfitting |
 | Reversibility of the decision | full | high | low - an investment in a specific model |
@@ -75,4 +75,4 @@ That is the typical course of events. Teams without an ML department usually hav
 
 ## Summary
 
-The order of attempts is fixed: first a solid prompt with examples (hours, zero risk), then RAG when the model lacks your knowledge (days, moderate risk concentrated in retrieval), finally fine-tuning - when you have hundreds of clean examples, a stable problem, and measurable proof that the cheaper approaches are not enough. Fine-tuning changes a model's behavior, not its stock of facts, so it never answers knowledge gaps. And every decision in this tree requires a golden eval set - without measurement you are not choosing an architecture, you are listening to marketing. Before you plan a training run, spend an hour on a prompt with five examples and measure the difference: it is the cheapest experiment in all of AI.
+The order of attempts is fixed: first a solid prompt with examples (hours, low reversal cost), then RAG when the model lacks your knowledge (days, risk concentrated mainly in retrieval), finally fine-tuning - when you have enough clean examples, a stable problem, and measurable proof that cheaper approaches are not enough. Fine-tuning can affect model knowledge too, but it is a poor source for fresh, faithfully retrieved, citable facts; RAG fits that need better. Every decision in this tree requires a golden eval set - without measurement you are not choosing an architecture, you are listening to marketing. Before you plan a training run, spend an hour on a prompt with five examples and measure the difference: it is the cheapest experiment in all of AI.

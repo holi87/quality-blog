@@ -36,7 +36,7 @@ One temperature for the entire house wastes energy in both directions: the bedro
 | Living room with kitchen | 21.0 | 18.5 | 14:00-22:30 |
 | Hallway | 18.5 | 18.5 | no window, constant temperature |
 
-TRVs implement zones physically: every radiator has its own valve and its own target, so the boiler heats the water and each room draws exactly as much as it needs. One architectural detail matters: with valves on all radiators, the boiler needs a demand signal. If every valve is closed and the main thermostat hangs in an already-warm living room, the boiler will heat a circuit nobody is drawing from. Two practical fixes exist: put the main thermostat in the coolest, longest-heated zone, or add an automation that requests heat whenever any TRV reports an open valve.
+TRVs implement zones physically, but the hydraulic design must not depend on Home Assistant entities alone. With valves on all radiators, the source needs a correct demand signal, minimum flow, and protection against running into closed valves. Depending on the installation, this may require a radiator without a TRV, an automatic bypass valve, a buffer, or another manufacturer-approved design. A thermostat in the coolest room or automation reading TRV positions does not replace an installer and the boiler or heat pump's own safeguards.
 
 Zones don't make sense everywhere. An open-plan living room with a kitchen and a staircase is one zone regardless of how many radiators it has - air mixes faster than the valves can differentiate, and two different targets in the same air end with one radiator doing the work of both. Underfloor heating, in turn, tolerates time-based zones poorly: with hours of inertia, the comfort window would have to start in the middle of the night for the morning to be warm. It is better served by a constant low target and weather compensation on the source side.
 
@@ -66,13 +66,13 @@ automation:
               temperature: 18.0
 ```
 
-How much does a night setback actually save? The honest answer: it depends on insulation and the heat source. In buildings with average insulation, the working assumption is that each degree of setback held for a large part of the day is worth on the order of a few percent of heating energy - and my measurements from previous seasons roughly confirm that. But in a well-insulated house with a heat pump, a deep night setback can yield less than nothing: the building loses heat slowly anyway, and the morning catch-up forces the pump to run at higher flow temperatures, which means worse efficiency. There, a shallow setback of one or two degrees works better - or none at all. The practical rule: the greater the inertia and the better the insulation, the shallower the setback.
+How much does a night setback save? It depends on insulation, weather, duration, and heat source, so a universal percentage per degree would mislead. In a well-insulated house with a heat pump, a deep setback may reduce efficiency during recovery. Start with a small change or none and compare weather-normalized consumption rather than two consecutive days.
 
 ## Presence instead of fixed hours
 
 The schedule describes the week as it should be; presence corrects the week as it actually is. Three automations do most of the work here. First: **empty house, everything to setback**. When the person count in the home zone drops to zero for longer than half an hour, every zone gets its setback temperature, regardless of what the schedule says at that moment. The half-hour delay matters - a trip to the shop should not cool the house down.
 
-Second: **raising before the return**. Warming a room takes anywhere from tens of minutes to a couple of hours, so waiting for the front door to open means a cold evening. The fix is a commute zone: an extra zone in Home Assistant with a radius corresponding to twenty or thirty minutes of travel time. Any household member entering that zone restores the schedule, and the house starts catching up before you turn the key in the lock. For per-room presence - the office heats only when I'm actually working in it - I use the sensors I covered in the post on [presence sensors](/en/blog/presence-sensors-2026-pir-mmwave-bluetooth/).
+Second: **raising before the return**. Measure warm-up time for the room and weather. A commute zone can restore the schedule earlier, but geolocation can be delayed or wrong, so do not use it as the only freeze safeguard or proof of presence. I use the [presence sensors described separately](/en/blog/presence-sensors-2026-pir-mmwave-bluetooth/) with a safe behavior for missing data.
 
 Third: **an open window turns the radiator down**. A contact sensor on the window, a two-minute delay so a brief tilt doesn't trigger anything, and the valve switches off until the window closes. Some TRVs have their own open-window detection based on a sudden temperature drop, but an external sensor is faster and doesn't produce false reactions from an ordinary draught.
 
@@ -97,24 +97,22 @@ Third: **an open window turns the radiator down**. A contact sensor on the windo
         to: "off"
         for: "00:01:00"
     actions:
-      - action: climate.set_hvac_mode
-        target:
-          entity_id: climate.bedroom
-        data:
-          hvac_mode: heat
+      - action: script.restore_bedroom_heating
 ```
+
+The restore script must remember the mode and target from before the window opened and re-check the schedule. Do not hardcode `heat`, because that can start heating that a person or another safeguard had already disabled.
 
 ## Calibration: the TRV's built-in sensor lies
 
-A thermostatic valve measures temperature where it is mounted: ten centimetres from a hot radiator, often in a niche or behind a curtain. In practice it reads two or three degrees higher than the middle of the room, so it closes the valve too early and the room never reaches its target. This is the most common reason people are disappointed with TRVs in their first season - and the easiest one to fix.
+A thermostatic valve measures temperature at the radiator, often in a niche or behind a curtain, so its reading may differ from the occupied part of the room. The direction and size of the error depend on mounting and airflow - it is not always two or three degrees or always an over-reading.
 
-The reference point should be an external temperature sensor: Zigbee, on an internal wall, at roughly one and a half metres height, away from the radiator, the window and any electronics. From there you have two paths. The simpler one is the **calibration offset**: most valves expose, for example via Zigbee2MQTT, a number entity that corrects the reading; you compare the valve's reading against the sensor after half an hour of stable heating and enter the difference with the opposite sign. The more precise one is an automation that periodically updates that offset from the current difference - then the calibration keeps up with changes in weather, curtains and furniture. The important part is to update rarely, every five or ten minutes and only on a real change, because every correction wakes the valve and eats the battery.
+A separate sensor in a representative location, away from heat sources, windows, and electronics, can be the reference. Some TRVs expose a calibration offset, but not every device does and its range varies. Check the manual and compare readings after stabilization. Frequently rewriting the offset can increase network traffic, battery use, and control instability; use dynamic correction only after testing, with rate and change limits.
 
 ## Costs and tariffs: close the feedback loop
 
 A schedule without measurement is guesswork. The minimum worth having before the season: consumption metering at the source - pulses from the gas meter, or energy measurement on the pump and the heaters - plus temperature history per zone. I described how to put that together in the post on [energy monitoring in Home Assistant](/en/blog/energy-monitoring-home-assistant/); here it's enough to say that without this data you cannot answer whether the night setback in your house does anything at all, or which zones heat the longest.
 
-Tariffs enter the picture with electric heating. A heat pump with a dynamic or time-of-use tariff is a natural pairing: an automation raises the target by a degree or two during cheap hours and lets the house drift down slightly during expensive ones - the building then works as a thermal store. Hourly price integrations, for European markets Nord Pool among others, expose the price as a sensor, and the automation compares it against a threshold or the day's median. And a counterexample, to avoid overcomplicating things: a gas boiler on a flat tariff gains nothing from any of these tricks - there, a plain schedule and well-set zones do all the work.
+Tariffs enter the picture with electric heating, but shifting a heat pump does not always reduce cost or energy. Raising the target may lower efficiency and comfort, while dynamic prices may use intervals shorter than an hour. Simulate the complete bill and adjust the curve or target only within manufacturer guidance, measuring the result.
 
 ## A September dry run
 
@@ -126,9 +124,9 @@ The list of typical first-season mistakes - I have made every one of them in my 
 
 - **Uncalibrated valves** - rooms consistently two degrees below target, household members turning dials blindly, and the schedule loses its meaning. Calibrate before the season, not during it.
 - **The schedule fighting manual changes** - someone raises the temperature on the dial, and ten minutes later the automation reverts it. Add a toggle helper acting as a manual mode that suspends the zone's automations for a few hours after a manual change.
-- **No airing mode** - a radiator running at full tilt under an open window. Contact sensors in heated zones are an obligation, not an accessory.
+- **No airing mode** - a radiator may run under an open window. A contact sensor is one option, but resume logic must remember the previous mode and respect source safeguards.
 - **Stuck valves** - the TRV reports open while the valve physically stays shut. Before the season, cycle every valve a few times from fully open to fully closed.
-- **All zones starting at the same hour** - the boiler gets a demand spike at 6:00 and runs flat out instead of modulating. Stagger the comfort window starts by fifteen or twenty minutes.
+- **All zones starting at the same hour** - this may increase peak demand, but behavior depends on source control and modulation. Stagger starts only when measurements show a problem and comfort is preserved.
 
 ## Summary
 

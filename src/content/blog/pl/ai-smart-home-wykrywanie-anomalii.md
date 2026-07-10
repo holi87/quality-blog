@@ -8,7 +8,7 @@ readingTime: 9
 author: [JS, GH]
 ---
 
-Sztywny próg "temperatura powyżej 28 stopni" wykryje pożar, ale nie wykryje lodówki, która umiera powoli, ani pompy, która chodzi o 20% dłużej niż miesiąc temu. W tej części pokazujemy, jak nauczyć dom rozpoznawania odchyleń od własnej normy - od prostych statystyk w Home Assistant po cykliczną analizę danych modelem językowym.
+Sztywny próg wykryje przekroczenie ustalonej temperatury, ale nie wykryje lodówki, która umiera powoli, ani pompy, która chodzi o 20% dłużej niż miesiąc temu. Pożar wykrywa certyfikowany, autonomiczny czujnik dymu lub temperatury - próg 28 stopni z sensora pokojowego nie jest zabezpieczeniem pożarowym. W tej części pokazujemy, jak nauczyć dom rozpoznawania odchyleń od własnej normy - od prostych statystyk w Home Assistant po cykliczną analizę danych modelem językowym.
 
 ## Czego nie widzi sztywny próg
 
@@ -50,7 +50,7 @@ Warunek wejścia na ten poziom jest jeden: pomiar. Gniazdko z pomiarem energii z
 
 Drugi poziom to reguły, które łączą dwa sygnały i odrobinę wiedzy o fizyce domu. Klasyk: otwarte okno kontra ogrzewanie. Żaden pojedynczy próg tego nie złapie, ale reguła "głowica termostatyczna grzeje na 100%, a temperatura w pokoju spada o ponad 1,5 stopnia w 20 minut" łapie to bezbłędnie - i przy okazji wykryje też okno uchylone przez dziecko, o którym kontaktron nic nie wie, bo go tam nie ma.
 
-Podobnie bojler: jeśli czas nagrzania wody od 40 do 55 stopni wydłużył się z 50 do 70 minut przy tej samej mocy grzałki, to niemal na pewno kamień na grzałce. Dom nie musi rozumieć chemii - wystarczy, że porówna bieżący czas grzania ze swoją historią i zauważy trend wzrostowy utrzymany przez kilka tygodni.
+Podobnie bojler: jeśli czas nagrzania wody od 40 do 55 stopni wydłużył się z 50 do 70 minut przy tej samej mocy grzałki i porównywalnych warunkach, to sygnał do diagnostyki. Przyczyną może być kamień na grzałce, ale też inna temperatura wody na wejściu, większy pobór ciepłej wody, błąd czujnika albo problem z grzałką. Dom nie musi rozstrzygać chemii - wystarczy, że porówna bieżący czas grzania ze swoją historią i zgłosi trend wzrostowy utrzymany przez kilka tygodni.
 
 ## Wzorce obecności: anomalia to nie zawsze awaria
 
@@ -64,7 +64,7 @@ Tu zaczyna się warstwa AI (głos Grzegorza). Model językowy nie powinien oglą
 
 Prompt powinien wymuszać konkret: porównaj bieżący tydzień z poprzednimi czterema, wypisz maksymalnie trzy obserwacje, każdą z liczbą i możliwym wyjaśnieniem, nie zgaduj przyczyn, których nie widać w danych. Wynik trafia jako powiadomienie albo wpis na panelu, o którym pisaliśmy w [części o dashboardach](/pl/blog/ai-smart-home-dashboardy/).
 
-Przykład z naszego tygodniowego raportu: "Zużycie czuwania nocnego wzrosło z 95 W do 128 W od 12 dni. Bojler: czas grzania stabilny. Lodówka: w normie. Sugestia: coś zostało włączone na stałe około 1 lipca - sprawdź gniazdka w gabinecie i garażu". Winowajcą okazała się zapomniana stacja lutownicza. 33 W przez pół roku to około 70 zł i jedno realne ryzyko pożarowe mniej - a żadna reguła progowa tego nie widziała, bo 128 W to nadal bardzo mało.
+Przykład z naszego tygodniowego raportu: "Zużycie czuwania nocnego wzrosło z 95 W do 128 W od 12 dni. Bojler: czas grzania stabilny. Lodówka: w normie. Sugestia: coś zostało włączone na stałe około 1 lipca - sprawdź gniazdka w gabinecie i garażu". Winowajcą okazała się zapomniana stacja lutownicza. Stałe 33 W przez pół roku to około 145 kWh; koszt policz według własnej pełnej stawki za energię. Żadna reguła progowa tego nie widziała, bo 128 W to nadal bardzo mało.
 
 Przewaga modelu nad regułami z poziomów 1-2 jest dokładnie tam, gdzie reguł nie napisaliśmy. Model dostaje cały obraz i potrafi zauważyć, że pralka chodziła w nocy, czego nigdy wcześniej nie robiła, albo że zużycie czuwania domu wzrosło o 30 W od zeszłego tygodnia - czyli coś zostało włączone i zapomniane. Reguła wykrywa to, co przewidzieliśmy. Model bywa dobry w tym, czego nie przewidzieliśmy.
 

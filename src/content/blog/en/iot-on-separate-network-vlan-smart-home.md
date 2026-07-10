@@ -30,7 +30,7 @@ The most common question: where to put Home Assistant? There are two schools. Th
 
 ## Firewall rules in plain language
 
-The whole philosophy boils down to three directional principles. First: from the trusted network to IoT, everything is allowed - you're supposed to see the cameras and the plugs, you are the host here. Second: from IoT to the trusted network, nothing is allowed, except explicitly listed exceptions. Third: replies to connections you initiated yourself always come back - firewalls call this established/related traffic, and this rule must be enabled, otherwise nothing will work.
+Start with a default block between zones and add only the required flows in both directions. The trusted network does not need every port on every IoT device - usually specific addresses and services are enough. A stateful firewall permits replies belonging to valid established or related connections, but exact states and rule order depend on the platform.
 
 The exceptions, i.e. what to let through from the IoT network toward the trusted one, form a short list:
 
@@ -42,13 +42,13 @@ The exceptions, i.e. what to let through from the IoT network toward the trusted
 | NTP | 123/UDP | IoT → internet or a local time server | Devices without a correct clock can get weirdly sick |
 | mDNS | 5353/UDP | between networks via a repeater | Device discovery - a separate section on this below |
 
-Note the direction: most Home Assistant integrations work the opposite way from what people assume. It's HA that connects to the device (to the camera over RTSP, to an ESPHome device on port 6053, to a Shelly over HTTP), and traffic from the trusted network to IoT is allowed by default. That's why the exception list in the other direction is so short. A separate decision: should IoT have internet access at all. Cameras you operate locally can be cut off completely - that's the highest level of hygiene. Devices dependent on the manufacturer's cloud unfortunately have to reach the outside world, or they stop working.
+Check the direction of each integration: sometimes Home Assistant connects to a device, while in other designs the device publishes to a broker or cloud. Do not assume a universal "trusted to IoT - allow all" rule. Limit internet access to documented device needs; total isolation may stop updates, time synchronization, or cloud features.
 
 ## mDNS and discovery - the most common trap
 
 After the first VLAN configuration almost everyone hits the same wall: Home Assistant stops discovering new devices and the phone can't see the Chromecast. The reason: discovery relies on mDNS, i.e. messages broadcast within a single network - by their nature they don't cross VLAN boundaries.
 
-The solution is an mDNS repeater, a service on the router that carries these messages between designated networks. UniFi has a plain toggle for this in the network settings, OpenWrt handles it with the umdns or avahi package, and Mikrotik's RouterOS has a built-in repeater since version 7.16. You enable it between the trusted network and IoT, and discovery comes back to life, while the firewall rules keep policing the actual traffic.
+A selective mDNS repeater or proxy can solve discovery. UniFi can limit which services are forwarded, while RouterOS requires multicast-capable interfaces and, with a strict firewall, an explicit UDP 5353 input rule; its current repeater supports IPv4 only. Discovering a service does not open its data port, so separate firewall rules are still required.
 
 > The cheapest smart home security component is not another gadget, but a firewall rule: from IoT to the rest of the house, nothing gets through by default.
 
@@ -81,8 +81,8 @@ This is where the tester in me speaks up: configuration without verification is 
 
 The most common mistakes found at this stage: firewall rules in the wrong order (a blocking rule above an allowing rule, which therefore never fires), forgotten management devices in the wrong network (an access point that lost contact with its controller) and cut-off updates - if you blocked the IoT network's internet entirely, some devices will stop receiving security patches, which can be worse than controlled network access. This test session is worth repeating after every major router firmware update.
 
-Thread and Matter devices play by their own rules - they communicate through border routers, and forcing them into Wi-Fi segmentation can do more harm than good. Zigbee sensors aren't in your IP network at all, so segmentation doesn't apply to them - which is, by the way, a quiet argument for Zigbee when choosing new devices.
+Thread is an IPv6 network, and a border router routes it into the home IP network and potentially the internet. A Thread device is not Wi-Fi, but border routers and Matter controllers still belong in the firewall model. Zigbee does not natively carry the sensor's IP traffic, yet its coordinator, broker, and Home Assistant server remain networked components that need protection.
 
 ## Summary
 
-Network segmentation is a one-off evening or two of work, zero money if you own the hardware, and a lasting reduction of the biggest risk in a smart home: cheap, unpatched devices lose the physical ability to get at your data. The model to remember: three networks (trusted, IoT, guests), three directional principles (trusted to IoT - everything, IoT to trusted - explicit exceptions only, replies always come back) and an mDNS repeater so that discovery survives. Start with the cameras and plugs, leave multimedia for the end. If you have a router with VLAN support, you no longer have an excuse - and if you don't, it's a better investment in your home's security than another camera.
+Network segmentation can limit lateral movement, but it does not remove every risk and it needs maintenance and testing. Remember separate zones, default deny, explicit least-privilege flows, and selective discovery forwarding only where required. Start by inventorying camera and plug traffic, then deploy rules in reversible stages.

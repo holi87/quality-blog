@@ -65,7 +65,7 @@ In practice, a good agent works a bit like a junior teammate with a well-describ
 
 ---
 
-## 3. Five maturity levels: from prompt to agent team
+## 3. Six maturity levels: from prompt to agent team
 
 Building agents does not have to start with APIs, containers, webhooks, and integrations with internal systems. It is better to begin at a simple level and only then increase automation.
 

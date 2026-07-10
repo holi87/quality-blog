@@ -20,13 +20,13 @@ So the QA task is not "eliminate the variability" but "confine it to the places 
 
 ## Most of the application is still ordinary code
 
-Before you touch non-determinism, measure how much of it there actually is. A typical "AI-powered" application is roughly eighty percent plain, deterministic code: parsing user input, request routing, permissions, integrations with external systems, assembling the prompt from a template and data, validating and transforming the model's response, error handling, retries, rate limits. You test that code exactly the way you always have - with one change: you replace the model with a mock.
+Before you touch non-determinism, measure how much of it there actually is. The share of conventional code depends on the architecture; there is no universal eighty-percent figure. Parsing, routing, permissions, integrations, prompt assembly, validation, error handling, and limits can still be tested deterministically by replacing the model with a controlled mock.
 
 The mock returns recorded responses: a correct one, broken JSON, a refusal, a response over the length limit, a timeout, a 429 error. That lets you check the entire edge-case handling deterministically: does the application survive an unclosed bracket in the response, does a refusal leak to the user as a blank screen, does a retry duplicate a write operation. In my experience most defects in LLM applications live exactly here - in the code around the model, not in the model itself. The island of non-determinism is small; the mistake is letting it flood your thinking about the whole test plan.
 
 ## The contract at the model boundary
 
-The first line of tests that touch the real model does not judge content at all. It judges structure. If the model is supposed to return JSON, the schema of that JSON is a contract: required fields, types, numeric ranges, allowed enum values, length limits. The content of a field may differ on every call - the structure must be identical every time. These are still one hundred percent deterministic assertions:
+The first line of tests that touch the real model judges structure. If the model is supposed to return JSON, its schema is a contract: required fields, types, ranges, enum values, and limits. The validator assertion is deterministic, but the model can violate the contract - so the application must reject or safely handle invalid structure instead of assuming it is always identical.
 
 ```json
 {
@@ -52,11 +52,11 @@ This is a frame of thinking borrowed from property-based testing: instead of one
 
 ## Evaluation sets and pass rates
 
-A single run of a test against a non-deterministic system tells you almost nothing: it passes today, fails tomorrow, and both results are "correct". The unit of measurement stops being the test and becomes the evaluation - a set of test cases run in full, with a passing threshold instead of a demand for perfection. Fifty to a few hundred cases, each with an input and evaluation criteria, and the result is a pass rate: ninety-five percent instead of one hundred.
+A single run can detect a concrete failure, but it cannot estimate failure frequency or stability. Use an evaluation set and repetitions where needed. Choose sample size and threshold from risk, expected failure rate, and required statistical uncertainty; there is no universal fifty-to-hundreds range or default ninety-five-percent target.
 
-Repeatable runs are part of the deal. Since a single call is random, a case worth measuring gets run several times - three to five repetitions per case is a reasonable start - and you look at the stability of the result, not at a single shot. A case that passes five runs out of five is stable; one that passes three out of five is the most interesting material for analysis, because it shows the limit of what the prompt can do. It also matters that consecutive runs of the whole evaluation are comparable with each other: the same set, the same parameters, the model version recorded in the report. Without that hygiene you cannot tell a regression after a prompt change from ordinary noise.
+Repetitions help estimate variability, but three to five calls are only a cheap reconnaissance, not proof of stability. Choose repetitions for the decision and report a confidence interval, or at least successes over total trials. Record the set, parameters, model version, and date for comparability.
 
-The threshold itself is a business decision, not a technical one. For summaries of internal notes ninety percent may be fine; for answers that touch payments, a threshold below ninety-nine simply means scheduled incidents. The most important part, though, is process discipline: every change to the prompt, the model or the parameters goes through an evaluation before merging, exactly the way a code change goes through tests. The prompt is versioned in the repository, its diff gets reviewed, and the evaluation result is part of that review. Without this, a "minor prompt tweak" on Friday afternoon is a regression you will learn about from customers. I described how to assemble such a process from scratch in the post on [prompt evals for regular people](/en/blog/prompt-evals-for-regular-people/), and where to get cases when production data is off limits in the post on [synthetic test data](/en/blog/synthetic-test-data-with-llm/).
+The threshold follows risk and failure cost. Neither ninety nor ninety-nine percent is universally safe; financial operations need deterministic validation and a human handling path for critical criteria, not only an average model score. Every prompt, model, or parameter change should run through an appropriate evaluation, with the prompt, configuration, and results versioned and reviewed.
 
 The case set is alive. Every bug reported from production becomes a new evaluation case, exactly the way a code defect becomes a regression test. After a year, that set is the most valuable quality artifact in the project - more valuable than the prompt itself, because a prompt can be rewritten from scratch and a case set with history cannot.
 

@@ -22,13 +22,13 @@ Every notification in my house must have one of three layers assigned before the
 
 | Layer | Criterion | Channel | Examples |
 | --- | --- | --- | --- |
-| Alarm | Requires action now; cost of missing it is high | Critical notification - breaks through mute, rings, wakes you up | Water leak, smoke, carbon monoxide, gate open at night, burglar alarm |
+| Alarm | Requires action now; cost of missing it is high | High-priority notification configured and tested on that phone | Water leak, smoke, carbon monoxide, gate open at night, burglar alarm |
 | Info | Useful to know today; action optional | A regular silent push to the phone | Laundry finished, package at the door, guest on the way, low sensor battery |
 | Journal | Might be useful someday; no action | Only an entry in the HA logbook, zero pushes | Sensor came back online, automation executed, door opened during the day |
 
 The qualifying test is brutally simple: what happens if I see this notification tomorrow? If nothing - it's journal. If I lose a bit of convenience - info. If I lose money, health or a sense of security - alarm. In my house six events qualify for the alarm layer. Six, not sixty - and that's exactly why, when the phone rings with the alarm sound, everyone knows it's not a drill.
 
-Technically: the Home Assistant mobile app supports critical notifications on iOS and notification channels with different priorities on Android. You send the alarm layer with the highest priority and the critical flag, the info layer as a regular push, and the journal layer is handled by the logbook entry service - without touching the phone.
+Technically, the Home Assistant mobile app supports critical notifications on iOS and channels, priorities, and alarm streams on Android. Behavior depends on the operating system, permissions, channel settings, and focus mode, so do not assume it will bypass every mute state automatically. Configure and test the alarm layer on every phone; an autonomous smoke or carbon monoxide alarm must still alert locally without Home Assistant.
 
 The info layer has one more useful variant: the **morning summary**. Instead of sending every piece of information immediately, some of it can be collected and delivered once a day in a single message: the forecast, sensor battery levels, what the house did overnight, whether there are outstanding matters like the basement window open since yesterday. One message at 7:30 replaces six to eight individual notifications for me, and it reads better than all of them separately.
 
@@ -71,7 +71,7 @@ The alarm layer has one more duty: not to let itself be missed. The escalation p
               entity_id: media_player.home_speakers
 ```
 
-In practice: a leak sensor wakes my phone with a critical notification; if I don't acknowledge within three minutes, the notification goes to the second phone, and the speakers throughout the house start speaking. The third level (after further minutes of silence) is closing the water shut-off valve - the house stops asking and starts acting. Reserve escalation exclusively for the alarm layer; an escalating laundry notification is a short road to a divorce from the technology.
+In practice, a leak sensor sends an alert to my phone; without acknowledgement it goes to a second phone and the speakers. Add automatic valve closure only after testing false alerts, the valve itself, and the effects of isolation on heating, irrigation, or fire protection. Reserve escalation for genuinely urgent events.
 
 > Every notification that doesn't change your behaviour teaches you to ignore all the others - including the one that will someday be truly important.
 
@@ -93,7 +93,7 @@ A **wall tablet** with a dashboard is a good place for an intermediate layer: pe
 
 ## The audit and the promotion rule
 
-A notification strategy is not a one-off project - it degrades with every new automation. Two mechanisms keep it in check. First: a **quarterly audit**. Review the notification history from the last week (the mobile app keeps it) and ask two questions about each one: did I do anything in response to it, and would I want to receive it again. Two "no"s mean a demotion one layer down, or deletion. Second: the **promotion rule for new automations** - every new automation starts with its notification in the journal layer. Promotion to a silent push must be earned: if within two weeks you never once looked at the logbook thinking "shame I didn't get that on my phone", the notification stays where it is. This one habit reverses the default direction: instead of fighting growing spam, you consciously let individual notifications move up.
+A notification strategy is not a one-off project - it degrades with every new automation. The first control is a quarterly audit of your own sent-message log or the operating-system history where available. The app does not guarantee one complete archive of every notification on every platform. For each message, ask whether it led to action and whether you want it again. The second control is a promotion rule: a new automation starts in the journal and moves higher only when evidence shows that the notification is useful.
 
 ## Summary
 

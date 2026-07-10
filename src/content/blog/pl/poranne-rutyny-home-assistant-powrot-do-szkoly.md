@@ -12,7 +12,7 @@ Wrzesień to największy reset rytmu w kalendarzu domu. Po dwóch miesiącach, w
 
 ## Budzenie światłem zamiast dźwiękiem
 
-Dźwiękowy alarm wyrywa z dowolnej fazy snu w pół sekundy i stawia organizm w stan alarmowy - stąd to nieprzyjemne uczucie, że serce bije szybciej, zanim jeszcze otworzysz oczy. Światło działa inaczej: stopniowo rosnąca jasność w sypialni przez 15-30 minut przed budzikiem przesuwa sen w stronę płytszych faz, więc dzwonek - jeśli w ogóle jeszcze potrzebny - zastaje człowieka przy powierzchni, a nie na dnie. To ten sam mechanizm, który sprzedają dedykowane lampy do budzenia, tylko że w Home Assistant budujesz go z żarówki, którą już masz w sypialni. U nas po dwóch tygodniach symulacji świtu dzieci zaczęły schodzić na śniadanie przed budzikiem, co wcześniej nie zdarzało się nigdy.
+Głośny alarm może być nieprzyjemny, a stopniowo rosnące światło przed pobudką dla części osób jest łagodniejszym sygnałem i pomaga ustabilizować poranny rytm. Nie gwarantuje jednak obudzenia w konkretnej fazie snu ani nie zastępuje leczenia zaburzeń snu. To mechanizm stosowany w lampach do budzenia, który w Home Assistant można odtworzyć żarówką z regulacją jasności. U nas po dwóch tygodniach symulacji świtu dzieci zaczęły schodzić na śniadanie przed budzikiem - to obserwacja z naszego domu, nie obietnica takiego samego efektu u każdego.
 
 Minimalna wersja to jedna automatyzacja i żarówka z regulacją jasności oraz barwy światła:
 
@@ -39,11 +39,11 @@ actions:
 
 Dwie uwagi z praktyki. Po pierwsze, nie każda żarówka renderuje dwudziestominutowe przejście płynnie - część robi widoczne skoki jasności, część ignoruje tak długie wartości. Jeśli twoja się krztusi, zamień pojedyncze wywołanie na skrypt, który co minutę podnosi jasność o kilka procent; efekt ten sam, a sterowanie zostaje po stronie Home Assistant. Po drugie, rolety. Otwieranie ich etapami działa świetnie na przełomie sierpnia i września, kiedy o 6:30 za oknem jest już jasno: najpierw 30 procent razem ze świtem z żarówki, pełne otwarcie dopiero po potwierdzonym wstaniu. Zimą kolejność się odwraca - całą robotę robi lampa, a rolety czekają na prawdziwy wschód słońca.
 
-Dzieciom skracam przejście do kwadransa i kończę na niższej jasności - dziecięcy sen jest głębszy, a zbyt ostre światło o 6:30 potrafi obudzić w gorszym humorze niż budzik. Nastolatek dostaje dodatkowo drugą fazę: jeśli dziesięć minut po osiągnięciu pełnej jasności czujnik obecności nadal widzi go w łóżku, dopiero wtedy odzywa się dźwięk. Światło jako reguła, dźwięk jako wyjątek - nie odwrotnie.
+Dzieciom skracam przejście do kwadransa i kończę na niższej jasności, bo tak jest u nas akceptowane. Reakcja na światło jest indywidualna, więc jasność i czas dobieraj obserwacją, a nie założeniem o głębokości snu. Nastolatek dostaje dodatkowo drugą fazę: jeśli dziesięć minut po osiągnięciu pełnej jasności czujnik obecności nadal widzi go w łóżku, dopiero wtedy odzywa się dźwięk. Światło jako reguła, dźwięk jako wyjątek - nie odwrotnie.
 
 ## Alarm z telefonu, nie sztywna godzina
 
-Wersja z godziną wpisaną na sztywno psuje się pierwszego dnia, w którym budzik dzwoni o innej porze: wycieczka szkolna o 6:00, wolne w pracy, wcześniejszy pociąg. Aplikacja towarzysząca (companion app) Home Assistant na Androidzie wystawia czujnik następnego alarmu - encję, która zawsze zna godzinę najbliższego budzika ustawionego w telefonie. Zamiast synchronizować automatyzacje z kalendarzem rodziny wystarczy podpiąć wyzwalacz czasowy z ujemnym przesunięciem:
+Wersja z godziną wpisaną na sztywno psuje się pierwszego dnia, w którym budzik dzwoni o innej porze: wycieczka szkolna o 6:00, wolne w pracy, wcześniejszy pociąg. Aplikacja towarzysząca (companion app) Home Assistant na Androidzie może wystawić włączony przez użytkownika czujnik następnego alarmu. Android zwraca najbliższy zaplanowany alarm także z innych aplikacji, dlatego warto ustawić listę dozwolonych pakietów i obsłużyć stan `unavailable`. Zamiast synchronizować automatyzacje z kalendarzem rodziny można podpiąć wyzwalacz czasowy z ujemnym przesunięciem:
 
 ```yaml
 triggers:
@@ -57,7 +57,7 @@ conditions:
     state: "on"
 ```
 
-Warunek na czujniku dni roboczych załatwia rozróżnienie dnia szkolnego od weekendu - integracja Workday zna polskie święta, więc 11 listopada dom nikogo nie zerwie z łóżka. Na iOS czujnika następnego alarmu nie ma; obejściem jest pomocnicza encja z godziną pobudki ustawiana wieczorem ręcznie albo skrótem systemowym. Mniej eleganckie, ale działa, a przy okazji wymusza wieczorną decyzję „o której jutro wstaję", która sama w sobie porządkuje rytm.
+Warunek na czujniku dni roboczych odróżnia dni robocze od weekendów i świąt dopiero po skonfigurowaniu kraju oraz wykluczeń. Nie jest to kalendarz szkolny, więc 11 listopada obsłuży konfiguracja dla Polski, ale ferie i dni dyrektorskie trzeba dodać osobno. Na iOS czujnika następnego alarmu nie ma; obejściem jest pomocnicza encja z godziną pobudki ustawiana wieczorem ręcznie albo skrótem systemowym.
 
 Warunek dnia roboczego nie zna za to ferii ani dni wolnych od zajęć w konkretnej szkole. Do tego służy lokalny kalendarz w Home Assistant: zakładam w nim całodniowe wydarzenia na ferie i dni dyrektorskie, a sekwencja dzieci sprawdza przed startem, czy taki dzień właśnie nie trwa. Rutyna dorosłych działa wtedy normalnie, dziecięca śpi razem z dziećmi.
 
@@ -67,7 +67,7 @@ Druga faza poranka nie powinna startować z zegara, tylko ze zdarzenia: pierwszy
 
 ## Osobna ścieżka dla każdego domownika
 
-Wspólna rutyna dla całej rodziny rozpada się na pierwszej różnicy: ja wychodzę o 7:10, dzieci o 7:40, a osoba pracująca zdalnie nie musi wychodzić wcale. Zamiast jednej sekwencji dla wszystkich - wykrywanie, kto już wstał, i osobna ścieżka dla każdego. Najprostszy sygnał wstania to telefon zdjęty z ładowarki: aplikacja towarzysząca wystawia czujnik ładowania, a nastolatek sięga po telefon w ciągu minuty od otwarcia oczu, więc to zaskakująco niezawodny wskaźnik. Dokładniejszy sygnał daje obecność per pokój - czujnik ruchu w sypialni dziecka albo czujnik obecności, który odróżnia puste łóżko od śpiącego w nim człowieka.
+Wspólna rutyna dla całej rodziny rozpada się na pierwszej różnicy: ja wychodzę o 7:10, dzieci o 7:40, a osoba pracująca zdalnie nie musi wychodzić wcale. Zamiast jednej sekwencji dla wszystkich - wykrywanie, kto już wstał, i osobna ścieżka dla każdego. Prosty sygnał wstania to telefon zdjęty z ładowarki: aplikacja towarzysząca wystawia czujnik ładowania. W naszym domu jest użyteczny, ale nie dowodzi, że dana osoba wstała - telefon może zostać zdjęty wcześniej, później albo przez kogoś innego - więc krytycznych działań nie należy opierać wyłącznie na nim. Dokładniejszy sygnał daje obecność per pokój, choć każdy czujnik też może się pomylić.
 
 Rutyna dzieci różni się od rutyny dorosłych treścią i tonem. U dzieci: światło w pokoju startuje po ich własnym świcie, głośnik mówi jedno krótkie zdanie o pogodzie i pierwszej lekcji, a piętnaście minut przed wyjściem lampka w przedpokoju zmienia kolor na żółty - sygnał „buty i plecak", którego nie trzeba wykrzykiwać przez pół domu. U dorosłych: ekspres i podsumowanie dnia zamiast komunikatów wychowawczych. Kluczowe jest, żeby fazy były niezależne - moje wcześniejsze wyjście nie może gasić świateł dzieciom, które dopiero jedzą śniadanie.
 
@@ -114,4 +114,4 @@ Miarą sukcesu porannej rutyny nie jest liczba automatyzacji, tylko liczba decyz
 
 ## Podsumowanie
 
-Powrót do szkolnego rytmu nie wymaga heroizmu, tylko zdjęcia z poranka tarcia w kilku przewidywalnych miejscach. Budzenie światłem zamiast dźwięku, bo łagodne przejście przez fazy snu robi więcej niż głośniejszy dzwonek. Sekwencja sterowana zdarzeniami - alarm z telefonu, pierwszy ruch w kuchni - zamiast sztywnych godzin, które psują się przy pierwszym odstępstwie. Osobne ścieżki dla dzieci i dorosłych z wykrywaniem, kto już wstał. Jedna porcja porannej informacji zamiast strumienia powiadomień, jedna automatyzacja wyjścia zamiast dziesięciu czynności i wieczór, który przygotowuje poranek, zanim ktokolwiek zaśnie. A nad wszystkim zasada nadrzędna: dom ma się dopasować do rodziny, nie odwrotnie. Najlepsza poranna automatyzacja to ta, o której we wrześniu nikt już nie pamięta - bo po prostu działa.
+Powrót do szkolnego rytmu nie wymaga heroizmu, tylko zdjęcia z poranka tarcia w kilku przewidywalnych miejscach. Stopniowe światło może być łagodniejszą, indywidualnie dostrojoną wskazówką, ale nie obietnicą sterowania fazami snu. Dalej są: sekwencja sterowana zdarzeniami zamiast sztywnych godzin, osobne ścieżki dla dzieci i dorosłych, jedna porcja porannej informacji, jedna automatyzacja wyjścia i wieczorne przygotowanie. A nad wszystkim zasada nadrzędna: dom ma się dopasować do rodziny, nie odwrotnie.

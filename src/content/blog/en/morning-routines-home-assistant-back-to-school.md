@@ -12,7 +12,7 @@ September is the biggest rhythm reset in a household's calendar. After two month
 
 ## Waking with light instead of sound
 
-An audible alarm yanks you out of whatever sleep phase you're in within half a second and puts the body into alert mode - hence that unpleasant sensation of your heart beating faster before your eyes are even open. Light works differently: brightness rising gradually in the bedroom over the 15-30 minutes before the alarm nudges sleep towards its shallower phases, so the ringtone - if it's still needed at all - finds you near the surface rather than at the bottom. It's the same mechanism that dedicated wake-up lamps sell, except in Home Assistant you build it out of a bulb you already have in the bedroom. At our place, after two weeks of dawn simulation the kids started coming down to breakfast before their alarms went off, which had previously never happened.
+A loud alarm can be unpleasant, while gradually increasing light before wake-up is a gentler cue for some people and may help stabilize a morning rhythm. It does not guarantee waking in a particular sleep stage or replace treatment for a sleep disorder. It is the approach used by wake-up lamps, and Home Assistant can reproduce it with a dimmable bulb. At our place, after two weeks of dawn simulation the kids started coming down before their alarms - an observation from our home, not a promised result for everyone.
 
 The minimal version is one automation and a bulb with adjustable brightness and colour temperature:
 
@@ -41,7 +41,7 @@ Two notes from practice. First, not every bulb renders a twenty-minute transitio
 
 ## The phone's alarm, not a hardcoded hour
 
-The hardcoded-time version breaks on the first day the alarm rings at a different hour: a school trip at 6:00, a day off work, an earlier train. The Home Assistant companion app on Android exposes a next-alarm sensor - an entity that always knows the time of the nearest alarm set on the phone. Instead of syncing automations with the family calendar, you attach a time trigger with a negative offset:
+The hardcoded-time version breaks on the first day the alarm rings at a different hour: a school trip at 6:00, a day off work, an earlier train. The Home Assistant companion app on Android can expose a next-alarm sensor after the user enables it. Android may report a scheduled alarm from another app, so configure the package allow list and handle the `unavailable` state. Instead of syncing automations with the family calendar, you can attach a time trigger with a negative offset:
 
 ```yaml
 triggers:
@@ -55,13 +55,13 @@ conditions:
     state: "on"
 ```
 
-A condition on the workday sensor takes care of distinguishing a school day from the weekend - the Workday integration knows public holidays, so on a bank holiday the house drags nobody out of bed. On iOS there is no next-alarm sensor; the workaround is a helper entity holding the wake-up time, set in the evening by hand or via a system shortcut. Less elegant, but it works, and as a side effect it forces the evening decision "what time am I getting up tomorrow", which by itself puts order into the rhythm.
+A condition on the Workday sensor distinguishes working days from weekends and public holidays only after the country and exclusions are configured. It is not a school calendar, so local school breaks and exceptional days still need a separate calendar. On iOS there is no next-alarm sensor; the workaround is a helper entity holding the wake-up time, set in the evening by hand or via a system shortcut.
 
 The second phase of the morning shouldn't start from a clock but from an event: the first movement in the kitchen. A motion sensor by the entrance triggers the counter light, the kettle's smart plug and a quiet radio station - but only once someone has actually made it there. The difference is fundamental: an event-driven house reacts to what is really happening, while a schedule-driven house performs a show for empty rooms on the day everyone overslept. I tie each next step of the routine to the event that precedes it, not to the hour when it was supposed to happen.
 
 ## A separate path for each person
 
-A shared routine for the whole family falls apart at the first difference: I leave at 7:10, the kids at 7:40, and the person working from home doesn't have to leave at all. So instead of one sequence for everyone - detection of who is already up, and a separate path per person. The simplest wake signal is a phone taken off its charger: the companion app exposes a charging sensor, and a teenager reaches for the phone within a minute of opening their eyes, which makes it a surprisingly reliable indicator. A more precise signal comes from per-room presence - a motion sensor in a child's bedroom, or a presence sensor that can tell an empty bed from a person still sleeping in it.
+A shared routine for the whole family falls apart at the first difference: I leave at 7:10, the kids at 7:40, and the person working from home doesn't have to leave at all. So instead of one sequence for everyone - detection of who is already up, and a separate path per person. A simple wake signal is a phone taken off its charger: the companion app exposes a charging sensor. It is useful in our home but does not prove that a person is awake - the phone may be removed earlier, later, or by somebody else - so do not make safety-critical actions depend on it alone. Per-room presence may be a stronger signal, although every sensor can still be wrong.
 
 The kids' routine differs from the adults' in content and tone. For the kids: the light in their room starts after their own simulated dawn, the speaker says one short sentence about the weather and the first lesson, and fifteen minutes before departure the hallway lamp turns yellow - the "shoes and backpack" signal that nobody has to shout across the house. For the adults: the coffee machine and a briefing of the day instead of parenting announcements. The crucial part is that the phases stay independent - my earlier departure must not switch the lights off on kids who are still eating breakfast.
 
@@ -106,4 +106,4 @@ The measure of a morning routine's success is not the number of automations but 
 
 ## Summary
 
-Getting back into the school rhythm doesn't take heroics, just removing friction from a few predictable spots in the morning. Waking with light instead of sound, because a gentle glide through the sleep phases does more than a louder ringtone. An event-driven sequence - the phone's alarm, the first movement in the kitchen - instead of rigid times that break at the first deviation. Separate paths for kids and adults, with detection of who is already up. One serving of morning information instead of a stream of notifications, one leaving automation instead of ten chores, and an evening that prepares the morning before anyone falls asleep. And above it all, the overriding rule: the house adapts to the family, not the other way round. The best morning automation is the one nobody remembers exists by mid-September - because it simply works.
+Getting back into the school rhythm doesn't take heroics, just removing friction from a few predictable spots. Gradual light can be a gentler, individually tuned cue, but not a promise to control sleep stages. Then come an event-driven sequence instead of rigid times, separate paths for children and adults, one serving of morning information, one leaving automation, and evening preparation. Above all, the house adapts to the family, not the other way around.

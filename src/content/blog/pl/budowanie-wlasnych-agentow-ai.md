@@ -65,7 +65,7 @@ W praktyce dobry agent działa trochę jak junior, któremu dobrze opisaliśmy z
 
 ---
 
-## 3. Pięć poziomów dojrzałości: od promptu do zespołu agentów
+## 3. Sześć poziomów dojrzałości: od promptu do zespołu agentów
 
 Budowanie agentów nie musi zaczynać się od API, kontenerów, webhooków i integracji z firmowymi systemami. Lepiej zacząć od prostego poziomu i dopiero potem zwiększać automatyzację.
 

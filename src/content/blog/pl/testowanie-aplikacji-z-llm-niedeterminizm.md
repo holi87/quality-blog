@@ -20,7 +20,7 @@ Zadanie QA nie brzmi więc "wyeliminować zmienność", tylko "ograniczyć ją d
 
 ## Większość aplikacji to nadal zwykły kod
 
-Zanim dotkniesz niedeterminizmu, policz, ile go naprawdę jest. Typowa aplikacja "z AI" to w około osiemdziesięciu procentach zwyczajny, deterministyczny kod: parsowanie wejścia użytkownika, routing żądań, uprawnienia, integracje z systemami zewnętrznymi, składanie promptu z szablonu i danych, walidacja i transformacja odpowiedzi modelu, obsługa błędów, ponawianie wywołań, limity. Ten kod testuje się dokładnie tak, jak testowało się go zawsze - z jedną zmianą: model podmieniamy na atrapę (mock).
+Zanim dotkniesz niedeterminizmu, policz, ile go naprawdę jest. Udział zwykłego kodu zależy od architektury i nie ma uniwersalnej wartości osiemdziesięciu procent. Parsowanie, routing, uprawnienia, integracje, składanie promptu, walidację, obsługę błędów i limity nadal można testować deterministycznie, zastępując model kontrolowaną atrapą.
 
 Atrapa zwraca nagrane odpowiedzi: poprawną, uszkodzony JSON, odmowę modelu, odpowiedź przekraczającą limit długości, przekroczenie czasu, błąd 429. Dzięki temu deterministycznie sprawdzisz całą obsługę przypadków brzegowych: czy aplikacja przeżyje niedomknięty nawias w odpowiedzi, czy odmowa nie wycieknie do użytkownika jako pusty ekran, czy ponawianie nie zdubluje operacji zapisu. Z mojego doświadczenia większość defektów w aplikacjach z LLM siedzi właśnie tu - w kodzie wokół modelu, nie w samym modelu. Wyspa niedeterminizmu jest mała; błąd polega na tym, że pozwalamy jej zalać myślenie o całym planie testów.
 
@@ -28,7 +28,7 @@ Osobną kategorią jest samo składanie promptu. Szablon promptu z wstrzykiwanym
 
 ## Kontrakt na granicy modelu
 
-Pierwsza linia testów, które dotykają prawdziwego modelu, w ogóle nie ocenia treści. Ocenia strukturę. Jeśli model ma zwracać JSON, to schemat tego JSON-a jest kontraktem: wymagane pola, typy, zakresy liczbowe, dopuszczalne wartości wyliczeniowe, limity długości. Treść pola bywa inna przy każdym wywołaniu - struktura ma być identyczna zawsze. To są nadal stuprocentowo deterministyczne asercje:
+Pierwsza linia testów, które dotykają prawdziwego modelu, ocenia strukturę. Jeśli model ma zwracać JSON, schemat jest kontraktem: wymagane pola, typy, zakresy, wartości wyliczeniowe i limity. Asercja walidatora jest deterministyczna, ale odpowiedź modelu może naruszyć kontrakt - dlatego aplikacja musi odrzucić albo bezpiecznie obsłużyć niepoprawną strukturę zamiast zakładać, że zawsze będzie identyczna.
 
 ```json
 {
@@ -56,11 +56,11 @@ To jest rama myślenia zapożyczona z testowania opartego na własnościach (pro
 
 ## Ewaluacje na zbiorach i odsetek zaliczeń
 
-Pojedynczy przebieg testu na niedeterministycznym systemie nie mówi prawie nic: dziś przeszedł, jutro nie przejdzie i oba wyniki są "poprawne". Jednostką pomiaru przestaje być test, a staje się ewaluacja - zbiór przypadków testowych uruchamiany w całości, z progiem zaliczenia zamiast wymogu perfekcji. Pięćdziesiąt do kilkuset przypadków, każdy z wejściem i kryteriami oceny, a wynikiem jest odsetek zaliczeń (pass-rate): dziewięćdziesiąt pięć procent zamiast stu.
+Pojedynczy przebieg może wykryć konkretną awarię, ale nie oszacuje częstości błędów ani stabilności. Do tego służy ewaluacja na reprezentatywnym zbiorze i, gdy to potrzebne, powtórzenia. Liczebność próby oraz próg dobierz do ryzyka, oczekiwanej częstości błędów i wymaganej niepewności statystycznej - nie istnieje uniwersalny przedział od pięćdziesięciu do kilkuset przypadków ani domyślne dziewięćdziesiąt pięć procent.
 
-Do tego dochodzi powtarzalność uruchomień. Skoro pojedyncze wywołanie jest losowe, przypadek wart pomiaru uruchamiasz kilka razy - trzy do pięciu powtórzeń na przypadek to rozsądny początek - i patrzysz na stabilność wyniku, nie na pojedynczy strzał. Przypadek, który zalicza pięć przebiegów na pięć, jest stabilny; taki, który zalicza trzy na pięć, to najciekawszy materiał do analizy, bo pokazuje granicę możliwości promptu. Ważne, żeby kolejne uruchomienia całej ewaluacji były porównywalne między sobą: ten sam zbiór, te same parametry, ta sama wersja modelu odnotowana w raporcie. Bez tej higieny nie odróżnisz regresji po zmianie promptu od zwykłego szumu.
+Powtórzenia pomagają oszacować zmienność, ale trzy do pięciu wywołań to tylko tani rekonesans, nie dowód stabilności. Liczbę powtórzeń dobierz do decyzji i raportuj wynik z przedziałem ufności albo co najmniej licznikiem sukcesów i całkowitej liczby prób. Dla porównywalności zapisuj zbiór, parametry, wersję modelu i datę uruchomienia.
 
-Sam próg to decyzja biznesowa, nie techniczna. Przy podsumowaniach wewnętrznych notatek dziewięćdziesiąt procent bywa w porządku; przy odpowiedziach dotyczących płatności próg poniżej dziewięćdziesięciu dziewięciu oznacza po prostu zaplanowane incydenty. Najważniejsza jest jednak dyscyplina procesu: każda zmiana promptu, modelu albo parametrów przechodzi przez ewaluację przed scaleniem, dokładnie tak jak zmiana kodu przechodzi przez testy. Prompt jest wersjonowany w repozytorium, jego diff podlega przeglądowi, a wynik ewaluacji jest częścią tego przeglądu. Bez tego "drobna poprawka promptu" w piątek po południu jest regresją, o której dowiesz się od klientów. Jak poskładać taki proces od zera, opisałem w tekście o [ewaluacjach promptów dla zwykłych ludzi](/pl/blog/ewaluacje-promptow-dla-zwyklych-ludzi/), a skąd wziąć przypadki, gdy danych produkcyjnych użyć nie wolno - w tekście o [syntetycznych danych testowych](/pl/blog/syntetyczne-dane-testowe-z-llm/).
+Próg wynika z ryzyka i kosztu błędu. Ani dziewięćdziesiąt, ani dziewięćdziesiąt dziewięć procent nie jest uniwersalnie bezpieczne; dla operacji finansowych kryteria krytyczne potrzebują twardej walidacji i ścieżki obsługi przez człowieka, nie tylko średniego wyniku modelu. Każda zmiana promptu, modelu lub parametrów powinna przejść odpowiednią ewaluację, a prompt, konfiguracja i wyniki muszą być wersjonowane oraz przeglądane.
 
 Zbiór przypadków żyje. Każdy błąd zgłoszony z produkcji staje się nowym przypadkiem ewaluacji, dokładnie tak jak defekt w kodzie staje się testem regresji. Po roku taki zbiór jest najcenniejszym artefaktem jakości w projekcie - cenniejszym niż sam prompt, bo prompt można napisać od nowa, a zbioru przypadków z historią nie.
 

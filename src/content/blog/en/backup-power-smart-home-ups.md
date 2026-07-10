@@ -35,7 +35,7 @@ One fundamental note about smoke and carbon monoxide detectors: they should be a
 
 The first step is measurement, not a catalogue. Put the strip with the router, switch and server on an energy-monitoring plug and read the real load after a few days. The typical result is a surprise: a mini PC running Home Assistant, the ISP's router and a switch together often draw 30-60 W - roughly one old incandescent bulb. People buy units picked by gut feeling for kilowatt loads, and then use them to sustain equipment drawing a few percent of the rated capacity.
 
-The second step is runtime arithmetic. Simplified: battery energy in watt-hours divided by the load in watts, multiplied by conversion efficiency (realistically count on 80-85 percent). A battery holding 100 Wh at a 40 W load gives you around two hours - not the five minutes from the spec table, because the table describes full load. Watch the units while you're at it: UPS capacity stated in VA is not the same as watts; at the typical power factor of 0.6-0.7, a "650 VA" unit really delivers about 400-450 W. At our loads that's an enormous margin anyway, but it pays to understand what you're buying. The practical conclusion: for a smart home, a small UPS with a decent battery beats a powerful unit whose capacity you'll never use and whose own idle draw will eat part of your runtime.
+The second step is estimating runtime. Dividing nominal watt-hours by watts gives only an upper approximation. Inverter losses, the UPS's own draw, cutoff voltage, temperature, battery age, and discharge characteristics all reduce the result. Start with the manufacturer's runtime curve for the actual load, then measure your own setup. Watch the units: VA is apparent power and W is real power. Do not convert a "650 VA" model with a universal 0.6-0.7 factor; read its separate watt limit from the label or documentation. The practical conclusion is to size a UPS for measured load and required runtime, not for VA alone.
 
 The third topic is the shape of the output voltage. Cheaper units generate a stepped approximation of a sine wave when on battery. Switching power supplies in small network gear usually tolerate it, but supplies with active power factor correction - typical in servers and NAS boxes - can hum, overheat or shut down at the worst possible moment on a stepped waveform. If you're only sustaining a router and a mini PC, you'll live with the approximation; if a NAS or a more serious server hangs off the same UPS, pay the extra for pure sine. As for topology: a line-interactive unit is entirely sufficient at home, and double conversion (the "online" class) is purchase cost plus constant self-consumption without a visible benefit at this scale.
 
@@ -52,8 +52,8 @@ automation:
   - alias: "UPS - switched to battery"
     triggers:
       - trigger: state
-        entity_id: sensor.ups_status
-        to: "OB DISCHRG"
+        entity_id: sensor.ups_charging_status
+        to: "discharging"
     actions:
       - action: notify.mobile_app_phone_gh
         data:
@@ -76,13 +76,13 @@ The second automation is a clean server shutdown before the battery runs out. Th
         below: 25
     conditions:
       - condition: state
-        entity_id: sensor.ups_status
-        state: "OB DISCHRG"
+        entity_id: sensor.ups_charging_status
+        state: "discharging"
     actions:
       - action: hassio.host_shutdown
 ```
 
-The `hassio.host_shutdown` action applies to Home Assistant OS; in a container install the same effect comes from a script on the host triggered over MQTT or SSH. Independently of the automation, leave NUT's own built-in mechanism enabled - the one that shuts the host down when the UPS reports a critical battery level. It's the second line of defence for the day the automation doesn't fire for whatever reason.
+The `hassio.host_shutdown` action applies to Home Assistant OS; in a container install the same effect comes from a script on the host triggered over MQTT or SSH. The Home Assistant NUT integration mainly reads data and does not by itself guarantee host shutdown. A second line of defence can be a correctly configured `upsmon` with a shutdown command on the host. Configure and test it explicitly rather than assuming an add-on enabled it automatically.
 
 > A UPS doesn't buy you an evening of normal life - it buys you fifteen minutes in which the house gets to say what's happening and lie down cleanly.
 
@@ -106,7 +106,7 @@ That leaves the last and least obvious trap: everything came back, but in the wr
 
 ## Test it before it has to work
 
-Everything above is a hypothesis until you run the test. Warn the household, flip the main breaker and start the clock. Don't simulate the outage by pulling the UPS plug from the wall - that only tests the UPS. The breaker tests the whole house at once: together with the Zigbee routers, the bulbs, and that one device nobody remembered was plugged in outside the protected strip. The checklist:
+Everything above is a hypothesis until you run the test. Start with a safe protected-path test: warn the household, disconnect the UPS input from mains, and verify the notification, runtime, shutdown, and server recovery. That intentionally tests the UPS and the equipment it is meant to protect. Run a whole-house outage test separately only when it will not cut power to medical devices, alarms, heating, pumps, or other critical loads. Do not open the distribution board or perform electrical work; involve an electrician if you are unsure. The expanded test also covers Zigbee routers, bulbs, and devices outside the protected strip. The checklist:
 
 - **Outage notification:** did it reach the phone, and how many seconds after the breaker went down.
 - **Runtime:** how many minutes the network and server really last; compare against your watts-and-watt-hours calculation.

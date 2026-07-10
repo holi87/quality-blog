@@ -18,7 +18,7 @@ Poziom drugi: **pomiar na obwodzie**. Moduł Shelly z pomiarem mocy montowany za
 
 Poziom trzeci: **licznik główny**. Trójfazowy miernik (na przykład Shelly Pro 3EM) w rozdzielnicy mierzy zużycie całego domu z dokładnością co sekundę. To najdroższy element (400-600 złotych z montażem), ale spina całość: suma z licznika minus zmierzone obwody pokazuje, ile prądu znika w „reszcie", której jeszcze nie zidentyfikowałeś.
 
-Wszystkie trzy poziomy łączą się z Home Assistant lokalnie - Shelly po Wi-Fi, wtyczki Zigbee przez koordynator. Warunek techniczny: sensor musi raportować energię w kWh (klasa pomiaru energii, wartość narastająca), nie samą chwilową moc w watach. Urządzenia z tej listy robią to poprawnie z pudełka.
+Wszystkie trzy poziomy łączą się z Home Assistant lokalnie - Shelly po Wi-Fi, wtyczki Zigbee przez koordynator. Najprościej użyć sensora energii w kWh z właściwą klasą urządzenia i stanem narastającym. Home Assistant potrafi też przyjąć do panelu zgodny sensor chwilowej mocy w W lub kW; jeśli potrzebujesz energii z samej mocy, możesz utworzyć sensor całkujący metodą sumy Riemanna. Zawsze sprawdź encje konkretnego modelu, bo nie każda wtyczka raportuje oba pomiary poprawnie.
 
 ## Panel energii w pół godziny
 
@@ -56,7 +56,7 @@ Sensowne alerty to takie, które prowadzą do działania. Trzy wzorce, które u 
 
 Konkretne progi, od których warto zacząć (potem dostroisz do swojego domu): lodówka - moc powyżej 50 W nieprzerwanie przez dwie godziny oznacza alarm; pralka - koniec cyklu to spadek poniżej 5 W na pięć minut, ale dopiero po tym, jak wcześniej przekroczyła 10 W (inaczej powiadomienie przyjdzie też po samym włączeniu zasilania); budżet dzienny - średnia z ostatnich trzydziestu dni razy 1,3. Próg ustawiony za nisko generuje szum i uczy ignorowania, próg za wysoko nigdy nie zadziała - lepiej zacząć luźno i zacieśniać co tydzień, niż odwrotnie.
 
-Największe pieniądze leżą jednak w przeniesieniu bojlera na taryfę nocną. W taryfie dwustrefowej prąd w nocy kosztuje w okolicach 0,75 zł/kWh zamiast 1,15 zł. Automatyzacja jest banalna:
+Największy potencjał może leżeć w przeniesieniu bojlera do tańszej strefy. Godziny i pełne stawki zależą od operatora, sprzedawcy i taryfy; porównuj cenę energii razem ze zmiennym składnikiem dystrybucji, podatkami i ewentualnie wyższą stawką w drogiej strefie. Poniższe godziny są wyłącznie przykładem - wpisz okna z własnej umowy:
 
 ```yaml
 automation:
@@ -74,18 +74,18 @@ automation:
           entity_id: switch.bojler
 ```
 
-Do tego wyłącznik bezpieczeństwa: jeśli temperatura wody spadnie w dzień poniżej progu komfortu, bojler i tak się włączy. Oszczędność dla DemoDom: 2190 kWh rocznie razy 0,40 zł różnicy to około 876 złotych. Drugi ruch to listwa albo wtyczka odcinająca strefę rozrywki w nocy i podczas nieobecności - z 60 W czuwania realnie da się wyciąć połowę, czyli kolejne ~290 złotych rocznie.
+Do tego wyłącznik bezpieczeństwa: jeśli temperatura wody spadnie w dzień poniżej progu komfortu, bojler i tak się włączy. Proste `2190 kWh × różnica stawki` jest tylko teoretycznym maksimum, bo nie całe zużycie da się przesunąć, straty postojowe mogą wzrosnąć, a droższa strefa i składniki stałe zmieniają wynik całego domu. Drugi ruch to listwa albo wtyczka odcinająca odbiorniki, które producent dopuszcza do twardego wyłączenia. Stałe 30 W usunięte przez cały rok to 263 kWh; wartość oszczędności zależy od pełnej stawki, a nie od samej ceny energii czynnej.
 
 ## Czy to się zwraca - uczciwy rachunek
 
 Koszt strony pomiarowej dla DemoDom: miernik do rozdzielnicy z montażem 550 zł, trzy wtyczki z pomiarem 270 zł, moduł do bojlera z montażem 250 zł. Razem 1070 złotych jednorazowo, zakładając że serwer Home Assistant już masz.
 
-Oszczędności roczne: bojler na taryfie nocnej ~876 zł (wymaga zmiany taryfy u sprzedawcy - to wniosek, nie remont), przycięte tryby czuwania ~290 zł, do tego trudniejsze do policzenia drobiazgi: wykryta przed śmiercią lodówka, świadome decyzje zakupowe, pranie i zmywanie w tańszych godzinach. Licząc tylko dwie twarde pozycje: **1166 złotych rocznie, zwrot z inwestycji w jedenaście miesięcy**.
+Rachunek DemoDom pokazuje sufit, nie obietnicę: przy założonej różnicy 0,40 zł/kWh pełne przesunięcie bojlera dałoby 876 zł, a wycięcie 30 W czuwania przy stawce 1,15 zł/kWh około 302 zł. Realny wynik policz z dwóch symulowanych rocznych rachunków dla całego profilu zużycia, z godzinami stref, dystrybucją i częścią energii, której nie przesuniesz. Dopiero tę różnicę podziel przez koszt sprzętu; bez takiego porównania nie da się uczciwie obiecać zwrotu w jedenaście miesięcy.
 
-Uczciwe zastrzeżenie: ten rachunek stoi na bojlerze elektrycznym. Jeśli grzejesz wodę gazem, największa dźwignia znika i zwrot wydłuża się do trzech, czterech lat - wciąż dodatni, ale już nie spektakularny. Wtedy zaczynałbym od samych wtyczek za ~270 zł i polowania na tryby czuwania, a miernik główny dokupił dopiero, gdy pierwsze odkrycia się zwrócą.
+Uczciwe zastrzeżenie: ten rachunek stoi na bojlerze elektrycznym. Jeśli grzejesz wodę gazem, największa dźwignia znika, a zakup może zwracać się znacznie dłużej albo nie zwrócić się wcale. Wtedy zaczynałbym od samych wtyczek za ~270 zł i polowania na tryby czuwania, a miernik główny dokupił dopiero, gdy pomiary pokażą realny potencjał oszczędności.
 
-Rachunek zmienia się też na plus w dwóch sytuacjach. Z fotowoltaiką pomiar przestaje być oszczędzaniem, a staje się zarządzaniem: automatyzacje przesuwające bojler, pranie i ładowanie na godziny produkcji potrafią podnieść autokonsumpcję o kilkanaście punktów procentowych. A przy taryfach dynamicznych, rozliczanych według cen giełdowych godzina po godzinie, monitoring i automatyzacja przestają być hobby - bez nich taka taryfa to ruletka, z nimi bywa najtańszą opcją na rynku.
+Rachunek może poprawić fotowoltaika, bo przesunięcie odbiorów na czas produkcji zwiększa autokonsumpcję, ale skala zależy od profilu domu, mocy instalacji i magazynu. Przy taryfach dynamicznych ceny zmieniają się w blokach czasu określonych w umowie i na rynku - w 2026 nie zawsze są to pełne godziny - a automatyzacja pomaga reagować na te zmiany. Nie gwarantuje jednak, że taryfa dynamiczna będzie najtańsza po doliczeniu dystrybucji i całego profilu zużycia.
 
 ## Podsumowanie
 
-Monitoring energii to ta część smart home, która zamiast wydawać pieniądze, je odzyskuje. Ścieżka: zacznij od dwóch, trzech wtyczek z pomiarem i tygodnia pomiarów podejrzanych, dodaj panel energii z ceną prądu w złotych, potem miernik główny i pomiar największego odbiornika. Alerty ustawiaj tylko tam, gdzie prowadzą do działania, a największych pieniędzy szukaj w przesunięciu grzania wody na tanią taryfę i w wycięciu trybów czuwania. W realistycznym domu z bojlerem elektrycznym całość zwraca się w okolicach roku. Eksperyment na start: wepnij dziś wieczorem wtyczkę z pomiarem w najstarsze urządzenie AGD w domu i sprawdź za tydzień, czy nie utrzymujesz właśnie małej elektrowni.
+Monitoring energii może odzyskiwać pieniądze, ale sam pomiar nie tworzy oszczędności. Ścieżka: zacznij od dwóch, trzech wtyczek z pomiarem i tygodnia pomiarów podejrzanych, dodaj panel energii z ceną prądu w złotych, potem miernik główny i pomiar największego odbiornika. Alerty ustawiaj tylko tam, gdzie prowadzą do działania, a największych pieniędzy szukaj w przesunięciu grzania wody na tanią taryfę i w wycięciu trybów czuwania. Okres zwrotu policz z własnych pomiarów i pełnej taryfy - może wynieść miesiące, lata albo nie wystąpić. Eksperyment na start: wepnij dziś wieczorem wtyczkę z pomiarem w najstarsze urządzenie AGD w domu i sprawdź za tydzień, czy nie utrzymujesz właśnie małej elektrowni.

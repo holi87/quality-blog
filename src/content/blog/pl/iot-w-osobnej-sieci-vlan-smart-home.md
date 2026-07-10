@@ -30,7 +30,7 @@ Najczęstsze pytanie: gdzie postawić Home Assistant? Są dwie szkoły. Pierwsza
 
 ## Reguły zapory po ludzku
 
-Cała filozofia sprowadza się do trzech zasad kierunkowych. Po pierwsze: z sieci zaufanej do IoT wolno wszystko - ty masz widzieć kamery i wtyczki, to ty jesteś gospodarzem. Po drugie: z IoT do sieci zaufanej nie wolno nic, poza jawnie wymienionymi wyjątkami. Po trzecie: odpowiedzi na połączenia, które sam zainicjowałeś, zawsze wracają - zapory nazywają to ruchem ustanowionym i powiązanym (established/related) i ta reguła musi być włączona, inaczej nic nie zadziała.
+Zacznij od domyślnej blokady między strefami i dodawaj tylko potrzebne przepływy w obu kierunkach. Sieć zaufana nie musi mieć dostępu do każdego portu każdego urządzenia IoT - zwykle wystarczą konkretne adresy i usługi. Zapora stanowa przepuszcza odpowiedzi należące do prawidłowo ustanowionych lub powiązanych połączeń, ale dokładne stany i kolejność reguł zależą od platformy.
 
 Wyjątki, czyli co przepuścić z sieci IoT w stronę zaufanej, to krótka lista:
 
@@ -42,13 +42,13 @@ Wyjątki, czyli co przepuścić z sieci IoT w stronę zaufanej, to krótka lista
 | NTP | 123/UDP | IoT → internet lub lokalny serwer czasu | Urządzenia bez poprawnego zegara potrafią dziwnie chorować |
 | mDNS | 5353/UDP | między sieciami przez powtarzacz | Wykrywanie urządzeń - o tym osobna sekcja niżej |
 
-Zwróć uwagę na kierunek: większość integracji Home Assistant działa odwrotnie, niż ludzie zakładają. To HA łączy się z urządzeniem (z kamerą po RTSP, z urządzeniem ESPHome na port 6053, z Shelly po HTTP), a ruch z sieci zaufanej do IoT jest dozwolony domyślnie. Dlatego lista wyjątków w drugą stronę jest tak krótka. Osobna decyzja: czy IoT ma mieć dostęp do internetu. Kamery, które obsługujesz lokalnie, możesz odciąć całkowicie - to najwyższy poziom higieny. Urządzenia zależne od chmury producenta muszą niestety wychodzić na świat, inaczej przestaną działać.
+Zwróć uwagę na kierunek konkretnej integracji: czasem Home Assistant łączy się z urządzeniem, a czasem urządzenie publikuje do brokera lub chmury. Nie zakładaj więc uniwersalnej reguły „zaufana do IoT - wszystko". Dostęp do internetu ograniczaj według udokumentowanych potrzeb urządzenia; pełne odcięcie może zatrzymać aktualizacje, synchronizację czasu albo funkcje chmurowe.
 
 ## mDNS i wykrywanie - najczęstsza pułapka
 
 Po pierwszej konfiguracji VLAN-ów prawie każdy trafia na ten sam mur: Home Assistant przestaje wykrywać nowe urządzenia, a telefon nie widzi Chromecasta. Powód: wykrywanie opiera się na mDNS, czyli komunikatach rozgłaszanych w obrębie jednej sieci - one z natury nie przechodzą między VLAN-ami.
 
-Rozwiązaniem jest powtarzacz mDNS (mDNS repeater), usługa na routerze, która przenosi te komunikaty między wskazanymi sieciami. UniFi ma do tego zwykły przełącznik w ustawieniach sieci, OpenWrt załatwia to pakietem umdns lub avahi, a RouterOS Mikrotika ma wbudowany powtarzacz od wersji 7.16. Włączasz go między siecią zaufaną a IoT i wykrywanie wraca do życia, podczas gdy reguły zapory dalej pilnują właściwego ruchu.
+Rozwiązaniem może być selektywny powtarzacz lub pełnomocnik mDNS. UniFi pozwala ograniczyć przekazywane usługi, a RouterOS wymaga interfejsów obsługujących multicast i jawnego dopuszczenia UDP 5353 w łańcuchu wejściowym przy ścisłej zaporze; jego obecna funkcja powtarzania obsługuje tylko IPv4. Samo wykrycie usługi nie otwiera portu danych, więc nadal potrzebujesz osobnych reguł dla właściwego ruchu.
 
 > Najtańszy element bezpieczeństwa smart home to nie kolejny gadżet, tylko reguła zapory: z IoT do reszty domu domyślnie nie przechodzi nic.
 
@@ -81,8 +81,8 @@ Tu odzywa się we mnie tester: konfiguracja bez weryfikacji to hipoteza. Po wdro
 
 Najczęstsze błędy znajdowane na tym etapie: reguły zapory w złej kolejności (reguła blokująca nad regułą zezwalającą, która przez to nigdy nie działa), zapomniane urządzenia zarządzające w złej sieci (punkt dostępowy, który stracił kontakt z kontrolerem) i odcięte aktualizacje - jeśli zablokowałeś IoT internet w całości, część urządzeń przestanie dostawać poprawki bezpieczeństwa, co bywa gorsze niż kontrolowany dostęp do sieci. Tę sesję testową warto powtórzyć po każdej większej aktualizacji oprogramowania routera.
 
-Urządzenia Thread i Matter rządzą się własnymi prawami - komunikują się przez routery brzegowe i wciskanie ich na siłę w segmentację Wi-Fi potrafi przynieść więcej szkody niż pożytku. Czujniki Zigbee w ogóle nie są w twojej sieci IP, więc segmentacja ich nie dotyczy - i to jest, nawiasem mówiąc, cichy argument za Zigbee przy wyborze nowych urządzeń.
+Thread jest siecią IPv6, a router brzegowy routuje ją do domowej sieci IP i potencjalnie internetu. Nie jest to urządzenie Wi-Fi, ale nadal trzeba uwzględnić je w modelu zapory, routerów brzegowych i kontrolerów Matter. Zigbee nie przenosi natywnie ruchu IP czujnika, lecz jego koordynator, broker i serwer Home Assistant pozostają elementami sieci, które trzeba zabezpieczyć.
 
 ## Podsumowanie
 
-Segmentacja sieci to jednorazowy wieczór albo dwa pracy, zero złotych przy posiadanym sprzęcie i trwała redukcja największego ryzyka w smart home: tanie, niełatane urządzenia tracą fizyczną możliwość dobrania się do twoich danych. Model do zapamiętania: trzy sieci (zaufana, IoT, goście), trzy zasady kierunkowe (zaufana do IoT - wszystko, IoT do zaufanej - tylko jawne wyjątki, odpowiedzi zawsze wracają) i powtarzacz mDNS, żeby wykrywanie przeżyło. Zacznij od kamer i wtyczek, zostaw multimedia na koniec. Jeśli masz router z obsługą VLAN-ów, nie masz już wymówki - a jeśli nie masz, to lepsza inwestycja w bezpieczeństwo domu niż kolejna kamera.
+Segmentacja może ograniczyć ruch boczny, ale nie usuwa wszystkich ryzyk i wymaga utrzymania oraz testów. Model do zapamiętania: osobne strefy, domyślna blokada, jawne przepływy o najmniejszych potrzebnych uprawnieniach i selektywne przekazywanie wykrywania tylko tam, gdzie jest potrzebne. Zacznij od inwentaryzacji przepływów kamer i wtyczek, a potem wdrażaj reguły etapami z możliwością wycofania.

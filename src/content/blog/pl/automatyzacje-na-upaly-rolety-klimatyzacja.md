@@ -78,7 +78,7 @@ Procent zamknięcia dobieraj do funkcji pomieszczenia. Sypialnia i pokoje nieuż
 
 ## Klimatyzacja i wentylacja z głową
 
-Klimatyzacja w tym układzie jest ostatnią linią obrony, nie pierwszą - ale kiedy już ma zadziałać, niech zadziała wcześnie. Czekanie, aż temperatura przekroczy próg komfortu, to powtórka błędu z roletami: sprężarka dostaje do usunięcia całe nagromadzone ciepło naraz, w najgorętszej porze dnia, przy najwyższym obciążeniu sieci. Zamiast tego w dzień z aktywnym trybem upału włączam chłodzenie już przed południem, gdy w salonie jest ledwie dwadzieścia cztery i pół stopnia, przez `climate.set_temperature` z trybem chłodzenia i celem dwadzieścia cztery. Utrzymanie niskiej temperatury kosztuje mniej niż zbijanie wysokiej, bo sprężarka pracuje z niską mocą zamiast zrywami na pełnej. Jeśli masz taryfę strefową, przesuń to wstępne schłodzenie na godziny tańszej strefy - schłodzenie domu o jeden stopień więcej przed południem to magazyn chłodu w ścianach, z którego korzystasz w drogim szczycie popołudniowym.
+Klimatyzacja w tym układzie jest ostatnią linią obrony, nie pierwszą. Wstępne chłodzenie może przesunąć pobór na tańsze godziny i ograniczyć moc potrzebną w szczycie, ale nie gwarantuje mniejszego zużycia energii - zbyt niska nastawa może je zwiększyć. U mnie punktem startowym jest chłodzenie przed południem, lecz temperaturę, czas i opłacalność trzeba dobrać do bezwładności budynku, sprawności urządzenia i pełnej taryfy. Nie omijaj własnej automatyki klimatyzatora ani minimalnych czasów pracy określonych przez producenta.
 
 Druga połowa tej sekcji kosztuje zero złotych za kilowatogodzinę: nocne przewietrzanie. Po upalnym dniu powietrze na zewnątrz robi się wieczorem chłodniejsze niż w domu - i to jest jedyny moment doby, kiedy otwarte okna chłodzą zamiast grzać. Automatyzacja pilnuje różnicy temperatur i daje znać, gdy przewietrzanie zaczyna mieć sens:
 
@@ -100,7 +100,7 @@ actions:
       message: "Na dworze o 2 stopnie chłodniej niż w salonie - pora otworzyć okna."
 ```
 
-Delta dwóch stopni to minimum, przy którym przeciąg realnie wychładza; przy mniejszej różnicy wymiana powietrza jest kosmetyczna. Jeśli masz rekuperację z obejściem wymiennika (bypass), tę samą logikę realizujesz bez otwierania czegokolwiek: przy odpowiedniej delcie wentylacja przechodzi na obejście i przez całą noc pompuje chłód do środka. Domknięciem jest poranna automatyzacja lustrzana: gdy temperatura zewnętrzna zrówna się z wewnętrzną, telefon przypomina o zamknięciu okien, a tryb upału opuszcza rolety wschodniej fasady. Noc zrzuciła ciepło, rano zatrzaskujemy je na zewnątrz.
+Różnica dwóch stopni jest moim progiem startowym, nie prawem fizyki. Efekt zależy od przepływu powietrza, wiatru, wilgotności i masy termicznej budynku, więc próg należy zmierzyć u siebie. Przy rekuperacji z obejściem wymiennika sprawdź instrukcję centrali: obejście nie jest aktywnym chłodzeniem i nie każda jednostka zapewni wystarczający przepływ. Rano zamknij okna, gdy powietrze na zewnątrz przestaje być chłodniejsze.
 
 ## Człowiek kontra automat
 
@@ -108,25 +108,25 @@ Najszybszy sposób, żeby domownicy znienawidzili tryb upału: roleta podniesion
 
 Wzorzec jest prosty: pomocniczy licznik czasu (encja timer) na każdą fasadę. Automatyzacja nasłuchuje zmian stanu rolety; jeśli zmiana nastąpiła, a żadna automatyzacja rolet nie działała w ostatniej minucie, uznaje ją za ręczną i startuje licznik na cztery godziny. Wszystkie automatyzacje danej fasady mają warunek: działaj tylko, gdy licznik nie biegnie. Po czterech godzinach system wraca do pilnowania fasady, bez pretensji i bez pamięci. Cztery godziny to u mnie kompromis: dość długo, żeby nadpisanie miało sens, dość krótko, żeby zapomniana roleta nie grzała pokoju do wieczora.
 
-Druga klasyczna kolizja człowieka z automatem: otwarte okno przy pracującej klimatyzacji. Czujniki otwarcia na oknach chłodzonych pomieszczeń plus prosta reguła: okno otwarte dłużej niż trzy minuty wyłącza chłodzenie w tym pokoju i wysyła powiadomienie z pytaniem, czy przywrócić je po zamknięciu. Trzy minuty zwłoki są ważne - krótkie otwarcie, żeby coś podać przez okno, nie powinno wywoływać żadnej reakcji. Po zamknięciu okna klimatyzacja wraca sama. Bez tej reguły płacisz za chłodzenie ogrodu, a sprężarka pracuje bez przerwy na pełnej mocy.
+Druga klasyczna kolizja człowieka z automatem to otwarte okno przy pracującej klimatyzacji. Po kilku minutach można wstrzymać chłodzenie, ale po zamknięciu przywracaj je tylko wtedy, gdy przed otwarciem było aktywne i nadal istnieje zapotrzebowanie. Zachowaj wymagane przez producenta czasy postoju sprężarki; proste wyłączenie i natychmiastowe wznowienie może powodować zbyt częste przełączanie.
 
 ## Komfort kontra koszt energii
 
 Warto policzyć, o co toczy się gra. Klimatyzator w moim salonie pobiera podczas aktywnego chłodzenia średnio około 0,8 kW. Dzień reagowania po fakcie - start o piętnastej, praca prawie ciągła do dwudziestej trzeciej - to w porywach 6 kWh na jedno pomieszczenie. Dzień z pełnym trybem upału, czyli rolety od rana, nocne przewietrzanie i krótkie wstępne schłodzenie przed południem, zamyka się w okolicach 1,5-2 kWh, a temperatura w szczycie jest niższa, nie wyższa. Te liczby zobaczysz u siebie dopiero, gdy mierzysz - jak to poskładać, opisałem w tekście o [monitoringu energii w Home Assistant](/pl/blog/monitoring-energii-home-assistant/). Bez pomiaru dyskusja o kosztach chłodzenia to zgadywanie.
 
-Z tych samych pomiarów wynika wniosek, który początkowo mnie zaskoczył: przez większość polskiego lata klimatyzacja jest w ogóle zbędna. Przy maksimach do trzydziestu stopni i nocach poniżej dwudziestu same rolety plus porządne nocne przewietrzanie trzymają dom poniżej dwudziestu sześciu. Sprężarka wchodzi do gry dopiero przy kilkudniowych falach upałów, gdy noce przestają chłodzić i dom nie ma kiedy oddać ciepła. To odwrócenie domyślnej intuicji: klimatyzacja nie jest planem na lato, jest planem na wyjątki.
+Z moich pomiarów wynika, że w tym konkretnym domu przez dużą część lata wystarczają rolety i nocne przewietrzanie. Nie da się tego uogólnić na wszystkie polskie mieszkania i domy: wynik zależy od izolacji, przeszkleń, piętra, orientacji, zysków wewnętrznych, wilgotności i potrzeb zdrowotnych mieszkańców.
 
 > Najtańsza kilowatogodzina chłodzenia to ta, której nie musiałeś wyprodukować, bo ciepło nigdy nie weszło do środka.
 
-Progi komfortu ustawiaj świadomie, bo każdy stopień w dół kosztuje nieproporcjonalnie dużo: utrzymywanie dwudziestu dwóch stopni przy trzydziestu pięciu na zewnątrz potrafi podwoić zużycie względem dwudziestu pięciu. Mój kompromis: dwadzieścia pięć w pomieszczeniach dziennych, dwadzieścia cztery w sypialni na godzinę przed snem. Jeśli chcesz pójść dalej i oddać dobieranie progów oraz godzin pracy algorytmom, punkt wyjścia znajdziesz w tekście o [optymalizacji energii z pomocą AI](/pl/blog/ai-smart-home-optymalizacja-energii/).
+Niższa nastawa zwykle zwiększa obciążenie chłodnicze, ale nie ma uniwersalnego przelicznika ani gwarancji podwojenia zużycia między 25 a 22 stopniami. Mój kompromis to dwadzieścia pięć stopni w pomieszczeniach dziennych i dwadzieścia cztery w sypialni przed snem; własne progi dobierz do komfortu, zdrowia, wilgotności i pomiarów energii.
 
 ## Typowe błędy
 
 Kilka grabi, na które nadepnąłem sam albo widziałem u innych - wszystkie do uniknięcia jedną poprawką.
 
 - **Automatyzacje wojujące ze sobą.** Tryb upału opuszcza roletę, a starsza automatyzacja "podnieś przy dużej jasności" podnosi ją z powrotem. Objaw: rolety jeżdżą w tę i z powrotem co kilka minut, silniki się grzeją, domownicy pukają się w czoło. Lekarstwo: w sezonie upałów jedna automatyzacja jest właścicielem urządzenia - wszystkie pozostałe dostają warunek wykluczający na `input_boolean.tryb_upalu`.
-- **Progi bez histerezy.** Włącz chłodzenie powyżej 25,0, wyłącz poniżej 25,0 - sprężarka cyka co kilka minut, co skraca jej życie i niczego nie chłodzi. Między progiem włączenia a wyłączenia zostaw co najmniej półtora stopnia, a w wyzwalaczu numerycznym dodaj parametr `for`, żeby chwilowy przeciąg nie przełączał trybów.
-- **Ignorowanie prognozy.** Automatyzacje reagujące wyłącznie na bieżącą temperaturę startują systematycznie za późno, bo temperatura wewnątrz rośnie z opóźnieniem względem słońca. Prognoza to jedyny sygnał, który wyprzedza fizykę - dlatego tryb upału włącza się wieczorem dnia poprzedniego, a nie w południe dnia gorącego.
+- **Progi bez histerezy.** Nie steruj sprężarką z jednego ostrego progu. Korzystaj z termostatu urządzenia, histerezy i minimalnych czasów pracy oraz postoju zalecanych przez producenta; półtora stopnia nie jest uniwersalną wartością dla każdego systemu.
+- **Ignorowanie prognozy.** Prognoza jest jednym z sygnałów wyprzedzających, obok pozycji słońca i harmonogramu. Jest obarczona błędem, więc połącz ją z bieżącą temperaturą i nasłonecznieniem zamiast traktować jako pewnik.
 - **Jeden próg dla całego domu.** Poddasze nagrzewa się szybciej i mocniej niż parter, pokój z oknem zachodnim później, ale gwałtowniej niż wschodni. Progi i harmonogramy ustawiaj per pomieszczenie, inaczej automatyzacja będzie jednocześnie za czuła na parterze i za leniwa na górze.
 - **Zamykanie rolet w pochmurny upał.** Prognoza mówi "trzydzieści stopni", rolety zjeżdżają, a przez cały dzień wisi gruba warstwa chmur - dom stoi ciemny bez żadnego zysku. Warunek na czujnik natężenia światła albo zachmurzenie z integracji pogodowej załatwia sprawę jedną linijką.
 

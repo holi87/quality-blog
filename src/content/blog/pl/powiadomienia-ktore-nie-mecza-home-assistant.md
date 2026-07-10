@@ -22,13 +22,13 @@ Każde powiadomienie w moim domu musi mieć przypisaną jedną z trzech warstw, 
 
 | Warstwa | Kryterium | Kanał | Przykłady |
 | --- | --- | --- | --- |
-| Alarm | Wymaga działania teraz; koszt przegapienia wysoki | Powiadomienie krytyczne - przebija wyciszenie, dzwoni, budzi | Zalanie, dym, czad, brama otwarta w nocy, alarm włamaniowy |
+| Alarm | Wymaga działania teraz; koszt przegapienia wysoki | Powiadomienie o wysokim priorytecie, skonfigurowane i przetestowane na danym telefonie | Zalanie, dym, czad, brama otwarta w nocy, alarm włamaniowy |
 | Informacja | Przyda się wiedzieć dziś; działanie opcjonalne | Zwykły cichy push na telefon | Pranie skończone, paczka u drzwi, gość w drodze, niska bateria czujnika |
 | Dziennik | Może się przydać kiedyś; działania brak | Tylko wpis w dzienniku HA, zero pushy | Czujnik wrócił do sieci, automatyzacja wykonana, drzwi otwarte w dzień |
 
 Test kwalifikacyjny jest brutalnie prosty: co się stanie, jeśli zobaczę to powiadomienie jutro? Jeśli nic - to dziennik. Jeśli stracę trochę wygody - informacja. Jeśli stracę pieniądze, zdrowie albo poczucie bezpieczeństwa - alarm. W moim domu na warstwę alarmową kwalifikuje się sześć zdarzeń. Sześć, nie sześćdziesiąt - i właśnie dlatego, kiedy telefon zadzwoni dźwiękiem alarmu, wszyscy wiedzą, że to nie ćwiczenia.
 
-Technicznie: aplikacja mobilna Home Assistant wspiera powiadomienia krytyczne na iOS i kanały powiadomień o różnych priorytetach na Androidzie. Warstwę alarmową wysyłasz z najwyższym priorytetem i flagą krytyczną, informacyjną jako zwykły push, a dziennik załatwia usługa wpisu do dziennika zdarzeń - bez ruszania telefonu.
+Technicznie: aplikacja mobilna Home Assistant wspiera powiadomienia krytyczne na iOS, a na Androidzie kanały, priorytety i strumień alarmowy. Zachowanie zależy od systemu, uprawnień, ustawień kanału i trybu skupienia, więc nie zakładaj automatycznego przebicia każdego wyciszenia. Warstwę alarmową skonfiguruj i przetestuj na każdym telefonie; autonomiczna czujka dymu lub czadu nadal musi alarmować lokalnie bez Home Assistant.
 
 Warstwa informacyjna ma jeszcze jeden przydatny wariant: **podsumowanie poranne**. Zamiast wysyłać każdą informację natychmiast, część z nich można zbierać i dostarczać raz dziennie w jednej wiadomości: prognoza, stan baterii czujników, co dom zrobił w nocy, czy są zaległe sprawy w rodzaju otwartego od wczoraj okna w piwnicy. Jedna wiadomość o 7:30 zastępuje u mnie sześć do ośmiu pojedynczych powiadomień, a czyta się ją lepiej niż wszystkie z osobna.
 
@@ -71,7 +71,7 @@ Warstwa alarmowa ma jeszcze jeden obowiązek: nie dać się przegapić. Wzorzec 
               entity_id: media_player.glosniki_dom
 ```
 
-W praktyce: czujnik zalania budzi mój telefon powiadomieniem krytycznym; jeśli w trzy minuty nie potwierdzę, powiadomienie idzie na drugi telefon, a głośniki w całym domu zaczynają mówić. Trzeci poziom (po kolejnych minutach ciszy) to zamknięcie elektrozaworu wody - dom przestaje pytać i zaczyna działać. Eskalację rezerwuj wyłącznie dla warstwy alarmowej; eskalujące powiadomienie o praniu to prosta droga do rozwodu z technologią.
+W praktyce: czujnik zalania uruchamia powiadomienie na mój telefon; jeśli go nie potwierdzę, informacja idzie na drugi telefon i głośniki. Automatyczne zamknięcie zaworu wolno dodać dopiero po przetestowaniu fałszywych alarmów, samego zaworu i skutków odcięcia dla ogrzewania, podlewania lub ochrony przeciwpożarowej. Eskalację rezerwuj dla zdarzeń naprawdę pilnych.
 
 > Każde powiadomienie, które nie zmienia twojego zachowania, uczy cię ignorować wszystkie pozostałe - łącznie z tym jednym, które kiedyś będzie naprawdę ważne.
 
@@ -93,7 +93,7 @@ Telefon to domyślny, ale nie jedyny kanał - i część powiadomień w ogóle n
 
 ## Audyt i reguła awansu
 
-Strategia powiadomień nie jest projektem jednorazowym - degraduje się z każdą nową automatyzacją. Dwa mechanizmy trzymają ją w ryzach. Pierwszy: **kwartalny audyt**. Przejrzyj historię powiadomień z ostatniego tygodnia (aplikacja mobilna ją przechowuje) i dla każdego zadaj dwa pytania: czy zrobiłem coś w reakcji na nie i czy chciałbym dostać je ponownie. Dwa razy „nie" oznacza degradację o warstwę w dół albo kasację. Drugi: **reguła awansu dla nowych automatyzacji** - każda nowa automatyzacja zaczyna z powiadomieniem w warstwie dziennika. Awans do cichego pusha musi zasłużyć: jeśli w ciągu dwóch tygodni ani razu nie zajrzałeś do dziennika z myślą „szkoda, że tego nie dostałem na telefon", powiadomienie zostaje tam, gdzie jest. Ten jeden nawyk odwraca domyślny kierunek: zamiast walczyć z rosnącym spamem, świadomie wpuszczasz pojedyncze powiadomienia wyżej.
+Strategia powiadomień nie jest projektem jednorazowym - degraduje się z każdą nową automatyzacją. Pierwszy mechanizm to kwartalny audyt własnego dziennika wysłanych komunikatów albo historii systemowej telefonu, jeśli jest dostępna. Aplikacja nie gwarantuje jednego kompletnego archiwum wszystkich powiadomień na każdej platformie. Dla każdego komunikatu zapytaj, czy wywołał działanie i czy chcesz dostać go ponownie. Drugi mechanizm to reguła awansu: nowa automatyzacja zaczyna od wpisu w dzienniku, a wyższy poziom dostaje dopiero wtedy, gdy dane pokazują jego użyteczność.
 
 ## Podsumowanie
 

@@ -24,7 +24,7 @@ It is worth understanding exactly why a session "gets dumber", because each mech
 
 **Instruction dilution.** Your key instruction competes for the model's attention with everything else in the window. When the instruction "return the result in JSON format" is 20 words against 2 thousand tokens of context, it is followed almost always. The same 20 words against 150 thousand tokens - no longer. In my experience, the first symptom of dilution is precisely the loss of format requirements and naming conventions: the model still solves the task, but it stops solving it your way.
 
-**Cost and time.** In token-billed models, every subsequent answer in a long session is more expensive, because the model processes the entire history from scratch every time. A session that has grown to 100 thousand tokens pays that tax on every sentence of yours - including when you ask about a trifle. Latency grows too. You pay more for worse answers: the worst tariff I know.
+**Cost and time.** A long history still enters the context of every subsequent call. Prompt caching can reduce the price and processing time of an unchanged prefix, but it does not remove that text from the context window or restore attention consumed by noise. Without such caching, a 100-thousand-token session bills that large input again on each answer; with caching, the cost is lower but depends on pricing and cache hits. Latency may grow as well.
 
 ## What you really spend tokens on
 
@@ -45,7 +45,7 @@ My alarm threshold is roughly 60-70% window occupancy. Above that line I do not 
 
 ## Habit 2: one session, one task
 
-The cheapest technique on the list: a clean start. New feature - new session. New problem to debug - new session. The project's permanent context (conventions, architecture, commands) should live in a CLAUDE.md file or its equivalent, where it loads automatically and costs once, rather than being dragged manually from conversation to conversation.
+The cheapest technique on the list: a clean start. New feature - new session. New problem to debug - new session. The project's permanent context (conventions, architecture, commands) should live in a CLAUDE.md file or its equivalent, where it loads automatically instead of being reconstructed by hand. It still occupies context in subsequent calls, so that file should also stay short and purposeful.
 
 The resistance to a clean start is usually emotional: "we have already settled so much, a shame to lose it". That is the sunk-cost trap. If the decisions are worth keeping - they deserve to be written to a file, not to drift in the chat history, where they will end up lost in the middle anyway. After forcing this rule on myself, my sessions shortened by half on average, and the number of "wait, we agreed otherwise" replies dropped noticeably.
 

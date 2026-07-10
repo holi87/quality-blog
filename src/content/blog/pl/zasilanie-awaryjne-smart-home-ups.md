@@ -35,7 +35,7 @@ Jedna uwaga zasadnicza o czujnikach dymu i czadu: powinny być autonomiczne, czy
 
 Pierwszy krok to pomiar, nie katalog. Podepnij listwę z routerem, switchem i serwerem do gniazdka z pomiarem energii i odczytaj realne obciążenie po kilku dniach. Typowy wynik zaskakuje: mini komputer z Home Assistant, router operatora i switch to razem często 30-60 W, czyli tyle, co jedna mocniejsza żarówka sprzed dekady. Ludzie kupują jednostki dobrane "na oko" pod kilowatowe obciążenia, a potem podtrzymują nimi sprzęt, który pobiera kilka procent ich mocy znamionowej.
 
-Drugi krok to arytmetyka czasu podtrzymania. W uproszczeniu: energia akumulatora w watogodzinach podzielona przez pobór mocy w watach, pomnożona przez sprawność przetwarzania (licz realnie 80-85 procent). Akumulator o energii 100 Wh przy obciążeniu 40 W da w okolicach dwóch godzin - a nie pięciu minut z tabelki, bo tabelka opisuje pełne obciążenie. Uważaj przy tym na jednostki: moc UPS podawana w VA to nie to samo co waty; przy typowym współczynniku mocy 0,6-0,7 jednostka "650 VA" oddaje realnie około 400-450 W. Przy naszych obciążeniach to i tak ogromny zapas, ale warto rozumieć, co się kupuje. Wniosek praktyczny: dla smart home lepszy jest mały UPS z rozsądnym akumulatorem niż potężna jednostka, której mocy nigdy nie użyjesz, a której pobór własny zje część czasu podtrzymania.
+Drugi krok to oszacowanie czasu podtrzymania. Dzielenie nominalnych watogodzin przez waty daje tylko górne przybliżenie: rzeczywisty wynik obniżają straty przetwornicy, pobór własny UPS-a, próg odcięcia, temperatura, wiek akumulatora i charakterystyka rozładowania. Dlatego zacznij od wykresu czasu pracy producenta dla konkretnego obciążenia, a potem zmierz własny zestaw. Uważaj przy tym na jednostki: VA to moc pozorna, a W to moc czynna. Nie przeliczaj modelu "650 VA" stałym współczynnikiem 0,6-0,7 - odczytaj z tabliczki lub dokumentacji osobny limit w watach. Wniosek praktyczny: dla smart home lepszy jest UPS dobrany do realnego obciążenia i wymaganego czasu niż potężna jednostka wybrana wyłącznie po VA.
 
 Trzeci temat to kształt napięcia na wyjściu. Tańsze jednostki generują na baterii schodkową aproksymację sinusoidy. Zasilacze impulsowe w drobnej elektronice sieciowej zwykle to znoszą, ale zasilacze z aktywną korekcją współczynnika mocy - typowe w serwerach i urządzeniach NAS - potrafią przy schodkowym przebiegu buczeć, grzać się albo w najgorszym momencie się wyłączyć. Jeśli podtrzymujesz tylko router i mini komputer, przeżyjesz z aproksymacją; jeśli na tym samym UPS wisi NAS albo poważniejszy serwer, dopłać do czystej sinusoidy. Co do topologii: jednostka liniowo-interaktywna w domu w zupełności wystarcza, a podwójna konwersja (klasa "online") to koszt zakupu i stały pobór własny bez wyraźnej korzyści przy tej skali.
 
@@ -52,8 +52,8 @@ automation:
   - alias: "UPS - przejście na baterię"
     triggers:
       - trigger: state
-        entity_id: sensor.ups_status
-        to: "OB DISCHRG"
+        entity_id: sensor.ups_charging_status
+        to: "discharging"
     actions:
       - action: notify.mobile_app_telefon_gh
         data:
@@ -76,13 +76,13 @@ Druga automatyzacja to czyste zamknięcie serwera, zanim akumulator padnie. Baza
         below: 25
     conditions:
       - condition: state
-        entity_id: sensor.ups_status
-        state: "OB DISCHRG"
+        entity_id: sensor.ups_charging_status
+        state: "discharging"
     actions:
       - action: hassio.host_shutdown
 ```
 
-Akcja `hassio.host_shutdown` dotyczy Home Assistant OS; w instalacji kontenerowej ten sam efekt daje skrypt na hoście wywołany po MQTT albo przez SSH. Niezależnie od automatyzacji zostaw włączony wbudowany mechanizm NUT, który sam zamyka hosta przy krytycznym poziomie baterii - to druga linia obrony na wypadek, gdyby automatyzacja z jakiegoś powodu nie zadziałała.
+Akcja `hassio.host_shutdown` dotyczy Home Assistant OS; w instalacji kontenerowej ten sam efekt daje skrypt na hoście wywołany po MQTT albo przez SSH. Sama integracja NUT w Home Assistant głównie odczytuje dane i nie gwarantuje zamknięcia hosta. Drugą linią obrony może być poprawnie skonfigurowany `upsmon` z komendą zamknięcia na systemie gospodarza - skonfiguruj go jawnie i przetestuj, zamiast zakładać, że dodatek zrobił to automatycznie.
 
 > UPS nie kupuje ci wieczoru normalnego życia - kupuje ci kwadrans, w którym dom zdąży powiedzieć, co się dzieje, i czysto się położyć.
 
@@ -106,7 +106,7 @@ Została pułapka ostatnia i najmniej oczywista: wszystko wstało, ale w złym s
 
 ## Test odporności: wyłącz bezpiecznik i patrz
 
-Wszystko powyżej to hipotezy, dopóki nie zrobisz testu. Zapowiedz domownikom, wyłącz główny bezpiecznik i mierz czas. Nie symuluj awarii wyciągnięciem wtyczki UPS-a z gniazdka - tak testujesz tylko UPS. Bezpiecznik testuje cały dom naraz: razem z routerami Zigbee, żarówkami i tym jednym urządzeniem, o którym nikt nie pamiętał, że stoi poza listwą podtrzymywaną. Lista rzeczy do sprawdzenia:
+Wszystko powyżej to hipotezy, dopóki nie zrobisz testu. Zacznij od bezpiecznej próby chronionego toru: zapowiedz domownikom, odłącz wejście UPS-a od sieci i sprawdź powiadomienie, czas pracy, zamknięcie oraz powrót serwera. To celowo testuje UPS i urządzenia, które ma chronić. Pełny test zaniku całego domu rób osobno tylko wtedy, gdy nie odcina urządzeń medycznych, alarmów, ogrzewania, pomp ani innych krytycznych odbiorników. Nie otwieraj rozdzielnicy ani nie wykonuj prac elektrycznych; jeśli nie masz pewności, zaproś elektryka. Taki test rozszerzony pokazuje także zachowanie routerów Zigbee, żarówek i urządzeń poza listwą podtrzymywaną. Lista rzeczy do sprawdzenia:
 
 - **Powiadomienie o awarii:** czy przyszło na telefon i po ilu sekundach od wyłączenia bezpiecznika.
 - **Czas podtrzymania:** ile minut realnie trzyma sieć z serwerem; porównaj z wyliczeniem z watów i watogodzin.

@@ -8,19 +8,19 @@ readingTime: 9
 author: [JS, GH]
 ---
 
-Monitoring z analizą AI nie musi oznaczać wysyłania obrazu z twojego ogrodu do chmury producenta kamery. Lokalny stos - Frigate do detekcji, LLM Vision do opisu zdarzeń, Home Assistant do powiadomień - daje monitoring, który mówi "kurier zostawił paczkę" zamiast "wykryto ruch", a nagrania nigdy nie opuszczają domu. W tej części składamy go w całość i rysujemy granice, których kamera przekraczać nie powinna.
+Monitoring z analizą AI nie musi oznaczać wysyłania obrazu z twojego ogrodu do chmury producenta kamery. Frigate do detekcji, lokalny model wizyjny do opisu zdarzeń i Home Assistant do powiadomień mogą dać monitoring, który mówi "kurier zostawił paczkę" zamiast "wykryto ruch". Nagrania nie opuszczają domu tylko wtedy, gdy również opis obrazu działa lokalnie i konfiguracja nie wysyła migawek do usług chmurowych. W tej części składamy ten wariant w całość i rysujemy granice, których kamera przekraczać nie powinna.
 
 ## Frigate: oczy, które nie wysyłają niczego na zewnątrz
 
-W [pierwszej części serii](/pl/blog/ai-smart-home-llm-vision/) pokazaliśmy, jak model wizyjny interpretuje obraz. Tutaj domykamy architekturę od strony źródła. Frigate to lokalny rejestrator z detekcją obiektów: czyta strumienie z kamer, rozpoznaje osoby, samochody, zwierzęta i paczki, nagrywa zdarzenia i wystawia wszystko do Home Assistant. Cały proces dzieje się na twoim sprzęcie.
+W [pierwszej części serii](/pl/blog/ai-smart-home-llm-vision/) pokazaliśmy, jak model wizyjny interpretuje obraz. Tutaj domykamy architekturę od strony źródła. Frigate to lokalny rejestrator z detekcją obiektów: czyta strumienie z kamer, rozpoznaje obiekty obsługiwane przez wybrany model, nagrywa zdarzenia i wystawia je do Home Assistant. Domyślnie śledzona jest osoba; samochody, zwierzęta i inne klasy trzeba skonfigurować, a etykieta `package` wymaga modelu Frigate+ lub innego modelu, który ją obsługuje. Sam proces detekcji dzieje się na twoim sprzęcie.
 
-Warunek sensownej pracy to akcelerator do detekcji. Na samym procesorze Frigate obsłuży jedną, dwie kamery i zje przy tym pół serwera. Z akceleratorem Coral za ok. 300 zł albo z układem graficznym Intela i OpenVINO ten sam serwer przeanalizuje kilka strumieni bez wysiłku. To najlepiej wydane pieniądze w całym projekcie - tania detekcja na brzegu sprawia, że droższa analiza modelem wizyjnym uruchamia się tylko wtedy, gdy jest co analizować.
+Do większej instalacji warto dobrać sprzętowy detektor. Frigate ma detektor procesorowy, ale dokumentacja go nie rekomenduje; na zgodnym procesorze Intela wydajniejszy bywa OpenVINO, a inną opcją jest Coral. Liczba obsługiwanych kamer zależy od rozdzielczości strumienia detekcyjnego, liczby klatek, modelu i konkretnego sprzętu, więc nie da się uczciwie obiecać jej na podstawie samej nazwy akceleratora. Tania detekcja na brzegu sprawia, że droższa analiza modelem wizyjnym uruchamia się tylko wtedy, gdy jest co analizować.
 
-## Strefy i maski: kamera patrzy tylko tam, gdzie trzeba
+## Strefy i maski: właściwe alerty to nie maska prywatności
 
-Najwięcej jakości w monitoringu daje nie lepszy model, tylko dobre wykadrowanie problemu. Frigate pozwala narysować na obrazie strefy i maski. Strefa "podjazd" i strefa "furtka" to różne zdarzenia o różnej wadze. Maska na chodnik i ulicę sprawia, że przechodnie i przejeżdżające auta w ogóle nie istnieją dla systemu - ani dla detekcji, ani dla nagrań zdarzeń.
+Najwięcej jakości w monitoringu daje nie lepszy model, tylko dobre wykadrowanie problemu. Frigate pozwala narysować na obrazie strefy oraz maski ruchu i obiektów. Strefa "podjazd" i strefa "furtka" to różne zdarzenia o różnej wadze. Jeśli nie chcesz alertów lub zdarzeń z chodnika, zdefiniuj strefę na własnej posesji i ustaw ją jako wymaganą dla przeglądu. Maska ruchu nie ukrywa pikseli, nie wycina obszaru z nagrania i nie gwarantuje, że obiekt nie zostanie wykryty. Do ochrony prywatności potrzebujesz właściwego kadru albo trwałej maski prywatności nałożonej przez kamerę lub tor wideo.
 
-To nie tylko kwestia spokoju, ale i prywatności sąsiadów. Kamera skierowana na własną posesję, z maską na fragment cudzej przestrzeni w kadrze, to standard, który warto przyjąć zanim ktokolwiek o niego poprosi. Dobre powiadomienie zaczyna się od dobrze zdefiniowanego "gdzie": "osoba w strefie furtki dłużej niż 10 sekund" to zupełnie inny sygnał niż "osoba gdziekolwiek w kadrze".
+To nie tylko kwestia spokoju, ale i prywatności sąsiadów. Standardem powinien być kadr ograniczony do własnej posesji; programowa maska detekcji nie zastępuje fizycznego wykadrowania ani maski prywatności w obrazie. Dobre powiadomienie zaczyna się od dobrze zdefiniowanego "gdzie": "osoba w strefie furtki dłużej niż 10 sekund" to zupełnie inny sygnał niż "osoba gdziekolwiek w kadrze".
 
 ## Od "wykryto ruch" do "kurier zostawił paczkę"
 

@@ -20,15 +20,15 @@ Ten problem ma dwa uczciwe rozwiązania. Pierwsze: wydłużanie czasu podtrzyman
 
 **PIR** to weteran: tani, natychmiastowy, oszczędny. Działa na baterii latami, reaguje w ułamku sekundy i kosztuje od 40 złotych. Słabość zasadnicza jedna, za to fundamentalna: bezruch oznacza brak detekcji.
 
-**mmWave** to radar milimetrowy - czujnik emituje fale radiowe i analizuje odbicia, wykrywając nawet ruch klatki piersiowej przy oddychaniu. Człowiek śpiący w łóżku jest dla niego obecny. Cena za tę magię: zasilanie sieciowe (radar bierze za dużo prądu na baterię), wyższy koszt (150-400 złotych) i skłonność do fałszywych alarmów, bo poruszająca się firanka, wiatrak albo monstera na przeciągu też odbijają fale.
+**mmWave** to radar milimetrowy - czujnik emituje fale radiowe i analizuje odbicia. Dobrze wykrywa drobny ruch nieruchomo siedzącej osoby, a wybrane modele i tryby są projektowane także do wykrywania oddechu. Nie każdy czujnik mmWave niezawodnie wykryje człowieka śpiącego pod kołdrą. Cena za tę czułość: zwykle zasilanie sieciowe, wyższy koszt (150-400 złotych) i skłonność do fałszywych alarmów, bo poruszająca się firanka, wiatrak albo monstera na przeciągu też odbijają fale.
 
 **Śledzenie bluetooth** odpowiada na inne pytanie. PIR i mmWave mówią, że „ktoś" jest w pokoju; śledzenie sygnału opaski, telefonu albo zegarka mówi, że to konkretnie ty. Stawiasz w pokojach odbiorniki (najtaniej: moduły ESP32 z oprogramowaniem ESPresense albo zwykłe urządzenia ESPHome działające jako pośredniki bluetooth plus integracja Bermuda w HA), a system na podstawie siły sygnału szacuje, w którym pomieszczeniu jest dane urządzenie. To nie jest wykrywanie obecności do gaszenia świateł - opóźnienia idą w dziesiątki sekund - ale do scen personalnych nie ma lepszego narzędzia.
 
-Dwie uwagi praktyczne do warstwy bluetooth. Telefony z iOS losują adresy sprzętowe, więc samego iPhone'a nie wyśledzisz - śledzi się sygnał nadawany przez aplikację Home Assistant albo tani brelok czy opaskę o stałym identyfikatorze. I licz się z kalibracją: siła sygnału zależy od ścian, mebli i tego, w której kieszeni nosisz telefon, więc pierwsze dni to strojenie progów per pokój. Jeden odbiornik na pomieszczenie, w którym personalizacja ma sens, w zupełności wystarcza.
+Dwie uwagi praktyczne do warstwy bluetooth. Telefony losują adresy BLE, więc nie można polegać na zwykłym adresie sprzętowym. Na Androidzie aplikacja Home Assistant może nadawać iBeacon, a iPhone może być rozpoznawany przez integrację Private BLE Device na podstawie klucza IRK; alternatywą jest brelok lub opaska o stałym identyfikatorze. I licz się z kalibracją: siła sygnału zależy od ścian, mebli i tego, w której kieszeni nosisz telefon, więc pierwsze dni to strojenie progów per pokój. Jeden odbiornik na pomieszczenie, w którym personalizacja ma sens, jest dobrym punktem startowym, nie gwarancją dokładności.
 
 | Kryterium | PIR | mmWave | Bluetooth |
 | --- | --- | --- | --- |
-| Wykrywa bezruch | Nie | Tak, łącznie z oddechem | Tak (obecność urządzenia) |
+| Wykrywa bezruch | Nie | Tak; oddech tylko w odpowiednich modelach i warunkach | Tak (obecność urządzenia) |
 | Czas reakcji | Poniżej sekundy | 1-3 sekundy | 10-60 sekund |
 | Fałszywe alarmy | Rzadkie (zwierzęta, słońce) | Częste bez strojenia (firanki, wiatraki, rośliny) | Rzadkie, za to dryf między pokojami |
 | Rozpoznaje kto | Nie | Nie | Tak |
@@ -46,7 +46,7 @@ Prywatność zasługuje na zdanie więcej. Żadna z tych technologii nie rejestr
 
 **Salon z kotem: mmWave ze strefami albo świadomy kompromis.** Marketingowa „odporność na zwierzęta" w czujnikach PIR oznacza zwykle obniżoną czułość poniżej pewnej wysokości - z kotem chodzącym po oparciach kanapy działa to słabo. Czujnik mmWave ze strefami (FP2 jest tu mocny) pozwala wyciąć podłogę i drapak ze strefy detekcji i zostawić kanapę z fotelami. Zadziała w dziewięciu przypadkach na dziesięć; ten dziesiąty to kot śpiący dokładnie na twoim miejscu na kanapie - tego żadna technologia nie odróżni od człowieka po samym odbiciu radarowym.
 
-**Sypialnia: mmWave z funkcją wykrywania oddechu.** Automatyzacje „dom śpi" przestają wymagać ręcznego przełącznika, bo czujnik wie, że łóżko jest zajęte. Dwa ostrzeżenia: wiatrak przy łóżku to generator fałszywych obecności pierwszej klasy, a czujnik powinien patrzeć na łóżko, nie na okno. Alternatywa bez radaru: czujnik nacisku pod materacem - tańszy i zero fałszywych alarmów, za to wykrywa tylko łóżko.
+**Sypialnia: specjalizowany mmWave albo czujnik nacisku.** Radar z trybem oddechu może pomóc ocenić zajęcie łóżka, ale wynik zależy od modelu, montażu, pościeli i ruchu powietrza - nie traktuj go jako urządzenia medycznego ani jedynego sygnału bezpieczeństwa. Wiatrak przy łóżku to generator fałszywych obecności pierwszej klasy, a czujnik powinien patrzeć na łóżko, nie na okno. Czujnik nacisku pod materacem mierzy zajęcie bardziej bezpośrednio, lecz też wymaga kalibracji i może zareagować na zwierzę, bagaż albo przesunięcie ciężaru.
 
 **Korytarz i schody: zwykły PIR.** Nikt nie stoi nieruchomo na schodach. Tu liczy się tylko szybkość reakcji i cena - PIR za 50 złotych (Sonoff SNZB-03P, Aqara P1) robi robotę, a bateria starcza na rok z okładem. Wydawanie tu pieniędzy na mmWave to przepalanie budżetu.
 

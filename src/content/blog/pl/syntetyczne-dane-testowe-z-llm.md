@@ -8,13 +8,13 @@ readingTime: 9
 author: GH
 ---
 
-Kopiowanie danych produkcyjnych do środowisk testowych to bomba zegarowa pod RODO: prawdziwe nazwiska, adresy i numery PESEL lądują w bazach o słabszych zabezpieczeniach, dostępnych dla pół firmy i podwykonawców. LLM daje realną alternatywę - dane statystycznie podobne do produkcji i całkowicie zmyślone. Ale "poproś model o tysiąc klientów" to przepis na dane, które wyglądają dobrze i nie nadają się do niczego. W tym wpisie pokazuję, jak zrobić to porządnie: od kontraktu danych, przez walidację spójności, po przypadki brzegowe na żądanie - i trzy pułapki, w które wpada prawie każdy.
+Kopiowanie danych produkcyjnych do środowisk testowych to bomba zegarowa pod RODO: prawdziwe nazwiska, adresy i numery PESEL lądują w bazach o słabszych zabezpieczeniach, dostępnych dla pół firmy i podwykonawców. LLM może pomóc stworzyć alternatywę - dane sztuczne, które odwzorowują potrzebne własności bez kopiowania rekordów. Sama etykieta „syntetyczne" nie dowodzi jednak anonimowości: trzeba ocenić możliwość wyodrębnienia osoby, powiązania danych i wnioskowania o niej. Ale "poproś model o tysiąc klientów" to przepis na dane, które wyglądają dobrze i nie nadają się do niczego. W tym wpisie pokazuję, jak zrobić to porządnie: od kontraktu danych, przez walidację spójności, po przypadki brzegowe na żądanie - i trzy pułapki, w które wpada prawie każdy.
 
 ## Dlaczego kopia produkcji to bomba zegarowa
 
 Argument prawny jest znany: dane osobowe w środowisku testowym to nadal dane osobowe, ze wszystkimi obowiązkami - podstawą przetwarzania, ograniczeniem dostępu, retencją, zgłaszaniem naruszeń. Środowiska testowe niemal z definicji mają szersze grono dostępu i słabsze monitorowanie, więc wyciek stamtąd jest bardziej prawdopodobny, a tłumaczenie przed urzędem trudniejsze.
 
-Ale jest też argument inżynierski, o którym mówi się rzadziej: kopia produkcji to złe dane testowe. Zawiera miliony rekordów przeciętnych i ani jednego skrajnego, którego akurat potrzebujesz. Anonimizacja, robiona porządnie, niszczy rozkłady i relacje; robiona po łebkach - nie anonimizuje. Widziałem oba warianty: zbiór tak wymaskowany, że testy raportów przestały mieć sens, i zbiór "zanonimizowany" podmianą imion, w którym numery telefonów i adresy zostały oryginalne. Synteza danych nie jest więc tylko unikiem przed RODO. Jest okazją, żeby dane testowe wreszcie projektować, zamiast dziedziczyć.
+Ale jest też argument inżynierski, o którym mówi się rzadziej: kopia produkcji bywa słabym zbiorem testowym. Zawiera wiele rekordów przeciętnych, a potrzebne przypadki skrajne giną w masie. Dobrze dobrana anonimizacja może zachować część rozkładów i relacji, choć zwykle kosztuje użyteczność; zrobiona po łebkach pozostawia możliwość identyfikacji. Widziałem oba warianty: zbiór tak wymaskowany, że testy raportów przestały mieć sens, i zbiór "zanonimizowany" podmianą imion, w którym numery telefonów i adresy zostały oryginalne. Synteza danych jest okazją, żeby dane testowe projektować, zamiast dziedziczyć, ale nie zwalnia z oceny ochrony danych.
 
 ## Kontrakt najpierw, generowanie potem
 
@@ -22,7 +22,7 @@ Pierwsza zasada: model nie wymyśla struktury danych, tylko wypełnia strukturę
 
 Prompt generujący dostaje trzy rzeczy: kontrakt, reguły biznesowe i parametry rozkładu ("80 procent klientów indywidualnych, 20 procent firmowych; wiek od 18 do 95 z medianą 42"). Wyjście ma być w formacie maszynowym - JSON lub CSV - nigdy w prozie. Dla dużych wolumenów lepszy jest wariant pośredni: model nie generuje miliona rekordów (to drogie i wolne), tylko generuje skrypt generatora w Pythonie zgodny z kontraktem, a skrypt produkuje dane lokalnie. LLM projektuje różnorodność, kod zapewnia skalę.
 
-Skąd model ma wiedzieć, jak wyglądają realistyczne rozkłady, skoro nie pokazujemy mu produkcji? Z dwóch legalnych źródeł. Pierwsze to statystyki zagregowane: rozkład wieku, proporcje typów klientów, histogram wartości zamówień - liczby policzone zapytaniem na produkcji przez osobę z dostępem, bez ani jednego rekordu osobowego w wyniku. Drugie to wiedza dziedzinowa zespołu: "klienci firmowi zamawiają rzadziej, ale pięciokrotnie drożej", "szczyt rejestracji jest w styczniu". Oba źródła mieszczą się w promptcie i żadne nie wynosi danych osobowych poza systemy produkcyjne.
+Skąd model ma wiedzieć, jak wyglądają realistyczne rozkłady, skoro nie pokazujemy mu produkcji? Z dwóch źródeł. Pierwsze to statystyki zagregowane: rozkład wieku, proporcje typów klientów, histogram wartości zamówień. Agregat nie staje się automatycznie anonimowy - małe grupy, rzadkie kombinacje i dokładne wartości mogą pozwalać na wyodrębnienie lub wnioskowanie. Przed wysłaniem do zewnętrznego modelu stosuj minimalną liczebność grup, zaokrąglanie lub szum, przegląd prywatności i zasady poufności firmy. Drugie źródło to wiedza dziedzinowa zespołu. Do promptu nie trafiają surowe rekordy, a każdy agregat przechodzi ocenę ryzyka.
 
 ## Walidacja spójności, czyli nieufność jako proces
 
@@ -33,7 +33,7 @@ Wygenerowane dane traktuję jak każdy inny niesprawdzony materiał: nie wchodz�
 - **Sumy kontrolne i reguły pochodne:** PESEL z poprawną cyfrą kontrolną, NIP z poprawną sumą ważoną, kwota brutto równa netto plus VAT, suma pozycji równa wartości zamówienia.
 - **Rozkłady:** czy zadane proporcje są z grubsza trzymane - jeśli prosiłem o 20 procent firm, a dostałem 3 procent, generacja wraca do poprawki.
 
-Uwaga praktyczna do numerów identyfikacyjnych: modele potrafią wygenerować PESEL wyglądający poprawnie, ale z błędną cyfrą kontrolną - albo, co gorsza, z poprawną, czyli potencjalnie należący do żywej osoby. Dlatego identyfikatory liczy kod walidatora, nie model: data i płeć z rekordu, seria losowa, cyfra kontrolna z algorytmu. Model dostarcza człowieka, kod dostarcza numer.
+Uwaga praktyczna do numerów identyfikacyjnych: modele potrafią wygenerować PESEL wyglądający poprawnie, a poprawna suma kontrolna nie gwarantuje, że numer nie należy do prawdziwej osoby. Najbezpieczniej używać własnych identyfikatorów testowych i nie dopuszczać ich do systemów zewnętrznych. Jeśli testujesz sam algorytm PESEL, generuj przypadki deterministycznie w kodzie, oznaczaj zbiór jako testowy i nie łącz numerów z realistycznym kompletem danych osoby. Model nie powinien tworzyć takich identyfikatorów.
 
 ## Przypadki brzegowe na żądanie - tu LLM naprawdę błyszczy
 
@@ -62,7 +62,7 @@ Pierwsza: **monotonia**. Model proszony o tysiąc rekordów bez parametrów rozk
 
 Druga: **wzorce, których model unika**. Modele mają wyuczone nawyki: zaokrąglają kwoty, preferują popularne imiona, unikają dat sprzed swojej wiedzy, omijają wartości kulturowo niezręczne. W efekcie syntetyczna populacja ma dziury dokładnie tam, gdzie produkcja je wypełnia. Tę pułapkę łapie się porównaniem rozkładów syntetycznych z produkcyjnymi - na poziomie statystyk, nie rekordów, więc bez wynoszenia danych osobowych.
 
-Trzecia: **przypadkowe podobieństwo do prawdziwych osób**. Wygenerowany "Tomasz Wiśniewski, ul. Polna 7, Radom" prawie na pewno gdzieś istnieje. Dopóki to zbieg okoliczności na poziomie pojedynczych pól, ryzyko jest akademickie - ale nie wolno modelowi pokazywać prawdziwych rekordów jako wzorców do naśladowania, bo wtedy podobieństwo przestaje być przypadkowe i robi się z tego pseudonimizacja na skróty. Do modelu idą wyłącznie statystyki i schematy, nigdy surowe rekordy produkcyjne.
+Trzecia: **przypadkowe podobieństwo do prawdziwych osób**. Wygenerowany "Tomasz Wiśniewski, ul. Polna 7, Radom" może odpowiadać realnej osobie. Nie zakładaj, że ryzyko jest wyłącznie teoretyczne: używaj jawnie fikcyjnych domen i adresów, unikaj kompletnych realistycznych tożsamości, blokuj wysyłkę wiadomości i płatności oraz testuj możliwość powiązania rekordów. Modelowi nie wolno pokazywać prawdziwych rekordów jako wzorców do naśladowania. Do modelu trafiają tylko ocenione pod kątem prywatności agregaty i schematy, nigdy surowe rekordy produkcyjne.
 
 > Syntetyczne dane nie są kopią produkcji bez ryzyka. Są osobnym produktem inżynierskim z własnym kontraktem, własną walidacją i własnymi trybami awarii - i dopiero traktowane w ten sposób stają się bezpieczniejsze i lepsze od kopii.
 

@@ -14,11 +14,11 @@ An e2e test failed on CI at three in the morning. By eight, a pull request is wa
 
 Most failed attempts at automating test repair die on the same thing: the agent gets too little context. An error message like `TimeoutError: locator.click: Timeout 30000ms exceeded` on its own tells you next to nothing. Based on that alone, the agent guesses - and a guessing agent is worse than no agent at all.
 
-On failure, Playwright produces three artifacts that together give the agent a real shot at a correct diagnosis:
+On failure, Playwright can collect three kinds of evidence when the relevant artifacts are explicitly enabled in configuration:
 
 - **Trace** - the full sequence of test actions with DOM snapshots before and after every step. This is the most valuable source: the agent sees how the page actually looked at the moment of failure, not how it was supposed to look.
 - **Screenshot** from the moment of failure - cheap to analyze and often enough to tell "the element did not load" apart from "the element is there, but covered by a cookie consent banner".
-- **DOM context** - a snapshot of the element tree. The agent compares the selector from the test against the actual page structure and sees whether the element changed attributes, disappeared, or merely moved.
+- **DOM context** - element-tree snapshots stored in the trace. The agent compares the selector from the test against the actual page structure and sees whether the element changed attributes, disappeared, or merely moved.
 
 On top of that I add two things from outside the Playwright report: the diff of application changes since the last green run, and the history of that specific test from the last two weeks. The first lets you tie the failure to a code change; the second distinguishes a fresh regression from a test that has been flaking for ages.
 
@@ -61,7 +61,7 @@ The "application regression" classification deserves its own sentence: in that c
 
 In my workflow the agent has no write access to the main branch and no right to approve its own PR. This is not temporary caution for the rollout period - it is a permanent design element. The reason is simple: a failed e2e test is a signal. Automatically "fixing" the test without understanding the signal is muting the fire alarm because it beeped at night.
 
-> A red test has exactly two possible causes: the application broke, or the test went stale. The agent can tell one from the other in roughly eighty percent of cases. The entire value of the human in this workflow lives in the remaining twenty.
+> A red test is a signal, not a diagnosis. Its cause may be an application regression, a broken or stale test, test data, the environment, or genuine flakiness. In my workflow the agent classifies roughly eighty percent of cases correctly. The entire value of the human in this workflow lives in the remaining twenty.
 
 Reviewing a PR from the agent usually takes me five minutes, because a good diagnosis in the description does most of the work. I check three things: whether the cause classification matches the application diff, whether the fix changes the test rather than its meaning, and whether the agent has not loosened any assertions.
 

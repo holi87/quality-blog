@@ -12,13 +12,13 @@ Sales materials for test automation tools have been promising the same thing for
 
 ## What automatic locator repair can really do
 
-The core of every self-healing solution is the same, and it does not require an LLM at all. For each element, the tool remembers not one selector but a whole fingerprint: the identifier, classes, attributes, text, position in the DOM tree, neighbors, sometimes appearance. When the primary selector stops finding the element, the tool searches the current DOM for the candidate most similar to the remembered fingerprint. If the similarity crosses a threshold - it swaps the selector and keeps going.
+Classic locator healing does not require an LLM. For each element, the tool remembers not one selector but a whole fingerprint: identifier, classes, attributes, text, DOM position, neighbors, and sometimes appearance. When the primary selector fails, the tool searches the current DOM for the closest candidate and swaps the selector above a threshold. This is not the only modern architecture, however: Playwright's agentic healer runs the test, inspects the current UI, proposes a patch, and retries until the test passes or guardrails stop the loop.
 
 This works, and works well, in a narrow class of situations: the element exists, serves the same function, and only its technical identity has changed. The "Buy now" button got a new CSS class after a style refactoring, a form moved one container deeper, a framework-generated identifier changed its suffix. In projects with generated identifiers this can be a double-digit percentage of all test failures - and those repairs are genuinely worthless for a human to do, so automating them is pure profit.
 
 The LLM layer adds semantic matching on top: "the element that used to be called 'Save' is now called 'Keep changes', but plays the same role". This extends the mechanism's reach, but it also extends the error surface - more on that in a moment.
 
-While we are at it, the vocabulary deserves demystifying. "AI self-healing tests" in most products means exactly the similarity ranking described above, with an optional language layer - there is no understanding of the application, the requirements, or the change history in there. That is not an accusation; similarity ranking is solid, predictable engineering. The accusation starts when the sales brochure describes this mechanism with the words "understands the intent of your tests", because that is precisely the one thing the mechanism does not do.
+While we are at it, the vocabulary deserves demystifying. In many classic products, "AI self-healing tests" means the similarity ranking described above, perhaps with a language layer. Newer agentic tools can explore the UI and repository, but they still do not know change intent unless they receive requirements, a diff, and history. Similarity ranking is solid engineering. Marketing begins when any of these mechanisms is said to "understand test intent" without showing where that intent comes from.
 
 ## Where the mechanism quietly masks regressions
 
@@ -32,12 +32,12 @@ The fundamental problem: the repair mechanism sees only the DOM, not the intent.
 
 ## The tool vendor versus your own agent with repository access
 
-There is a fundamental, structural difference between self-healing in a commercial tool and a workflow where your own agent fixes tests in the repository. It is not about model quality - it is about the available context and about who approves.
+The fundamental difference is not commercial product versus in-house code. It is runtime-only healing versus an agent that has repository context, requirements, and human review. A vendor product may fall into either group. This is not about brand or model quality - it is about available context and who approves.
 
-| Dimension | Vendor tool | Own agent with the repository |
+| Dimension | Runtime-only healing | Agent with repository and change context |
 |---|---|---|
 | Decision context | DOM before and after, element fingerprint | DOM plus the application code diff, commit history, ticket description, project conventions |
-| Distinguishing intentional/accidental | Impossible - no access to change intent | Possible - the agent points to the commit that changed the element, and its description |
+| Distinguishing intentional/accidental | Unreliable without requirements and change history | Can be justified - the agent cites the commit, task, and evidence, but a human still verifies |
 | Moment of repair | In flight, during test execution | After the run, as a change proposal for review |
 | Human approval | Usually optional, off by default | Built in - the repair is a PR, someone has to click |
 | Audit trail | An entry in the tool's panel, outside the repository | Full history in the repository: who, what, why |

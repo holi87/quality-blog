@@ -12,7 +12,7 @@ Każdy, kto pracuje z agentem dłużej niż godzinę, zna ten moment: model, kt�
 
 ## Okno kontekstu to budżet, nie pojemnik
 
-Okno kontekstu - czyli wszystko, co model "widzi" w danym momencie: instrukcje systemowe, historię rozmowy, wklejone pliki, wyniki narzędzi - ma twardy limit liczony w tokenach. Token to jednostka tekstu, w polszczyźnie średnio pół słowa. Okno na 200 tysięcy tokenów brzmi jak nieskończoność, ale arytmetyka jest brutalna: jeden większy plik źródłowy to 5-15 tysięcy tokenów, zrzut logów z nieudanego potoku CI/CD potrafi zjeść 40 tysięcy, a wynik `git diff` po większym refaktorze - kolejne 20.
+Okno kontekstu - czyli wszystko, co model "widzi" w danym momencie: instrukcje systemowe, historię rozmowy, wklejone pliki, wyniki narzędzi - ma twardy limit liczony w tokenach. Token to fragment tekstu, a relacja tokenów do słów zależy od języka i tokenizera modelu; polski zwykle zużywa więcej tokenów niż angielski dla tekstu o podobnej długości. Okno na 200 tysięcy tokenów brzmi jak nieskończoność, ale arytmetyka jest brutalna: jeden większy plik źródłowy to 5-15 tysięcy tokenów, zrzut logów z nieudanego potoku CI/CD potrafi zjeść 40 tysięcy, a wynik `git diff` po większym refaktorze - kolejne 20.
 
 Problem w tym, że większość ludzi traktuje okno jak pojemnik: "mieści się, więc wrzucam". A powinno się je traktować jak budżet: każdy token wydany na szum to token, którego zabraknie na sygnał. I - co gorsze - szum nie jest neutralny. On aktywnie psuje odpowiedzi, zanim jeszcze skończy się miejsce.
 
@@ -24,7 +24,7 @@ Warto rozumieć, dlaczego dokładnie sesja "głupieje", bo każdy mechanizm ma i
 
 **Rozcieńczenie instrukcji.** Twoje kluczowe polecenie konkuruje o uwagę modelu ze wszystkim innym w oknie. Kiedy instrukcja "zwracaj wynik w formacie JSON" stanowi 20 słów na 2 tysiące tokenów kontekstu, jest przestrzegana niemal zawsze. Te same 20 słów na 150 tysięcy tokenów - już nie. Z mojego doświadczenia pierwszym objawem rozcieńczenia jest właśnie gubienie wymagań formatu i konwencji nazewniczych: model dalej rozwiązuje zadanie, ale przestaje go rozwiązywać po twojemu.
 
-**Koszt i czas.** W modelach rozliczanych za tokeny każda kolejna odpowiedź w długiej sesji jest droższa, bo model za każdym razem przetwarza całą historię od nowa. Sesja, która urosła do 100 tysięcy tokenów, płaci ten haracz przy każdym twoim zdaniu - również wtedy, gdy pytasz o drobiazg. Rosną też opóźnienia. Płacisz więcej za gorsze odpowiedzi: to najgorsza taryfa, jaką znam.
+**Koszt i czas.** Długa historia nadal wchodzi do kontekstu każdego kolejnego wywołania. Pamięć podręczna promptu może obniżyć cenę i czas przetwarzania niezmienionego prefiksu, ale nie usuwa go z okna kontekstu ani nie przywraca uwagi zajętej przez szum. Bez takiej pamięci podręcznej sesja o 100 tysiącach tokenów nalicza ten duży wkład przy każdej kolejnej odpowiedzi; z nią koszt jest mniejszy, lecz zależy od cennika i trafień w pamięć. Rosnąć może też opóźnienie.
 
 ## Na co naprawdę wydajesz tokeny
 
@@ -45,7 +45,7 @@ Mój próg alarmowy to mniej więcej 60-70% zajętości okna. Powyżej tej grani
 
 ## Nawyk 2: jedna sesja, jedno zadanie
 
-Najtańsza technika na liście: czysty start. Nowa funkcja - nowa sesja. Nowy problem do debugowania - nowa sesja. Stały kontekst projektu (konwencje, architektura, polecenia) powinien mieszkać w pliku CLAUDE.md albo jego odpowiedniku, gdzie ładuje się automatycznie i kosztuje raz, a nie być przeciągany ręcznie z rozmowy do rozmowy.
+Najtańsza technika na liście: czysty start. Nowa funkcja - nowa sesja. Nowy problem do debugowania - nowa sesja. Stały kontekst projektu (konwencje, architektura, polecenia) powinien mieszkać w pliku CLAUDE.md albo jego odpowiedniku, gdzie ładuje się automatycznie i nie trzeba go ręcznie odtwarzać. Nadal zajmuje miejsce w kontekście kolejnych wywołań, więc taki plik też powinien być krótki i celowy.
 
 Opór przed czystym startem jest zwykle emocjonalny: "tyle już ustaliliśmy, szkoda tracić". To pułapka utopionych kosztów. Jeśli ustalenia są warte zachowania - zasługują na zapis w pliku, nie na dryfowanie w historii czatu, gdzie i tak trafią do zgubionego środka. Po wymuszeniu na sobie tej reguły moje sesje skróciły się średnio o połowę, a liczba odpowiedzi "wróć, przecież ustaliliśmy inaczej" spadła wyraźnie.
 

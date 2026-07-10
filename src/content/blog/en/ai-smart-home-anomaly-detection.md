@@ -8,7 +8,7 @@ readingTime: 9
 author: [JS, GH]
 ---
 
-A fixed threshold like "temperature above 28 degrees" will detect a fire, but it will not detect a fridge that is dying slowly, or a pump that runs 20% longer than a month ago. In this part, we show how to teach the home to recognize deviations from its own baseline - from simple statistics in Home Assistant to periodic data analysis with a language model.
+A fixed threshold will detect a chosen temperature being exceeded, but it will not detect a fridge that is dying slowly or a pump that runs 20% longer than a month ago. Fire must be detected by a certified, autonomous smoke or heat alarm - a 28-degree threshold on a room sensor is not fire protection. In this part, we show how to teach the home to recognize deviations from its own baseline - from simple statistics in Home Assistant to periodic data analysis with a language model.
 
 ## What a fixed threshold cannot see
 
@@ -50,7 +50,7 @@ There is one entry requirement for this level: measurement. An energy-monitoring
 
 The second level is rules that combine two signals and a bit of knowledge about the physics of the house. The classic: an open window versus heating. No single threshold will catch it, but the rule "the thermostatic valve is heating at 100% and the room temperature drops by more than 1.5 degrees in 20 minutes" catches it flawlessly - and along the way it also detects a window tilted open by a kid, which the contact sensor knows nothing about, because there is no contact sensor on it.
 
-Likewise the water heater: if the time to heat water from 40 to 55 degrees has stretched from 50 to 70 minutes at the same heater power, it is almost certainly limescale on the heating element. The home does not have to understand chemistry - it is enough that it compares the current heating time against its own history and notices an upward trend sustained over several weeks.
+Likewise the water heater: if the time to heat water from 40 to 55 degrees has stretched from 50 to 70 minutes at the same heater power and under comparable conditions, that is a signal to investigate. The cause may be limescale, but it may also be colder inlet water, hot-water use during the cycle, a sensor error, or a heater fault. The home does not need to decide the chemistry - it only needs to compare the current heating time against its history and flag a sustained upward trend.
 
 ## Presence patterns: an anomaly is not always a failure
 
@@ -64,7 +64,7 @@ This is where the AI layer begins (Grzegorz speaking). A language model should n
 
 The prompt should force specifics: compare the current week with the previous four, list at most three observations, each with a number and a possible explanation, do not guess at causes that are not visible in the data. The result lands as a notification or an entry on the dashboard we wrote about in the [part about dashboards](/en/blog/ai-smart-home-dashboards/).
 
-An example from our weekly report: "Night standby consumption has risen from 95 W to 128 W for 12 days. Water heater: heating time stable. Fridge: within norm. Suggestion: something was switched on permanently around July 1 - check the outlets in the office and the garage". The culprit turned out to be a forgotten soldering station. 33 W for half a year is roughly 20 euros and one real fire risk fewer - and no threshold rule saw it, because 128 W is still very little.
+An example from our weekly report: "Night standby consumption has risen from 95 W to 128 W for 12 days. Water heater: heating time stable. Fridge: within norm. Suggestion: something was switched on permanently around July 1 - check the outlets in the office and the garage". The culprit turned out to be a forgotten soldering station. A constant 33 W for half a year is about 145 kWh; calculate the cost using your own all-in electricity rate. No threshold rule saw it, because 128 W is still very little.
 
 The model's advantage over the rules from levels 1-2 is exactly where we did not write the rules. The model gets the whole picture and can notice that the washing machine ran at night, which it had never done before, or that the home's standby consumption rose by 30 W since last week - meaning something was switched on and forgotten. A rule detects what we anticipated. The model can be good at what we did not anticipate.
 

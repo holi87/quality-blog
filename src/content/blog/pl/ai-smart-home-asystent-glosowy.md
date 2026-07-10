@@ -22,7 +22,7 @@ Lokalny asystent odwraca ten układ. Dźwięk nie opuszcza domu, historia komend
 
 Home Assistant ma wbudowaną warstwę Assist, która spina cały potok przetwarzania głosu. Warto rozumieć go jako pięć ogniw, bo każde można wymienić niezależnie:
 
-1. **Słowo wybudzające** (wake word) - urządzenie nasłuchuje frazy typu "Hej Nabu". W praktyce robi to openWakeWord na serwerze albo microWakeWord bezpośrednio na układzie ESP32-S3.
+1. **Słowo wybudzające** (wake word) - urządzenie nasłuchuje frazy typu "Okay Nabu". W praktyce robi to openWakeWord na serwerze albo microWakeWord bezpośrednio na układzie ESP32-S3.
 2. **Zamiana mowy na tekst** - nagrany fragment trafia do modelu Whisper (w wariancie faster-whisper), który zwraca tekst komendy.
 3. **Rozpoznanie intencji** - Home Assistant próbuje dopasować tekst do wbudowanych komend: włącz, wyłącz, ustaw temperaturę, uruchom scenę.
 4. **LLM jako ścieżka rozszerzona** - jeśli wbudowane intencje nie pasują, pytanie przejmuje model językowy, np. lokalny model przez Ollama.
@@ -32,7 +32,7 @@ Komunikacja między ogniwami idzie przez protokół Wyoming, więc Whisper i Pip
 
 ## Czym dom słucha: satelity głosowe
 
-Mikrofon w laptopie nie wystarczy - asystent potrzebuje uszu w pomieszczeniach. U Julii sprawdziły się dwa podejścia. Pierwsze to Home Assistant Voice Preview Edition, oficjalne urządzenie z dwoma mikrofonami i sprzętowym przetwarzaniem dźwięku, które za około 250 zł daje najlepszy stosunek jakości do wysiłku. Drugie to samodzielnie wgrany ESPHome na tanich płytkach z ESP32-S3, od kulki M5Stack ATOM Echo za kilkadziesiąt złotych po zestawy z ekranem.
+Mikrofon w laptopie nie wystarczy - asystent potrzebuje uszu w pomieszczeniach. U Julii sprawdziły się dwa podejścia. Pierwsze to Home Assistant Voice Preview Edition, oficjalne urządzenie z dwoma mikrofonami i sprzętowym przetwarzaniem dźwięku. Sugerowana cena producenta to 59 euro z podatkiem w UE, ale cena w złotych zależy od sklepu i regionu. Drugie to samodzielnie wgrany ESPHome na tanich płytkach z ESP32-S3, od kulki M5Stack ATOM Echo za kilkadziesiąt złotych po zestawy z ekranem.
 
 Różnica jest słyszalna dosłownie. Tani satelita z jednym mikrofonem łapie komendy z metra, w ciszy. Voice Preview Edition rozumie polecenia z drugiego końca kuchni, przy włączonym okapie. Jeżeli planujesz jeden punkt nasłuchu na pomieszczenie, nie oszczędzaj na mikrofonach - to najczęstsze źródło frustracji, a nie model językowy.
 
@@ -40,7 +40,7 @@ Różnica jest słyszalna dosłownie. Tani satelita z jednym mikrofonem łapie k
 
 Whisper jest dziś standardem lokalnego rozpoznawania mowy i dobrze radzi sobie z polskim, ale rozmiar modelu ma znaczenie. Wariant tiny potrafi z "zgaś światło w salonie" zrobić "zgaś światło w salonie" albo gorzej, wariant small jest już przyzwoity, a medium rozumie nawet niedbałą wymowę przy radiu grającym w tle.
 
-Koszt rośnie razem z jakością. Na Raspberry Pi 4 sensownie działa tylko tiny albo base, z czasem przetwarzania 1-2 sekundy na krótką komendę. Mini komputer klasy N100 obsłuży small w okolicach sekundy. Model medium bez karty graficznej robi się zauważalnie wolny. Nasza rekomendacja dla polskiego: small jako minimum, medium jeśli sprzęt pozwala.
+Koszt rośnie razem z jakością. Home Assistant rekomenduje co najmniej procesor klasy Intel N100 dla lokalnego Whisper Base, a języki z mniejszą ilością danych treningowych mogą wymagać modelu Small lub Large i wyraźnie mocniejszego sprzętu. Czasy zależą od modelu, długości nagrania, procesora i wybranego zaplecza, więc przed zakupem sprzętu zmierz je na własnych komendach. Nasza praktyczna rekomendacja dla polskiego: zacznij od Small i przejdź na większy model tylko wtedy, gdy pomiar jakości to uzasadnia.
 
 ## Mózg: najpierw intencje, potem LLM
 
@@ -83,8 +83,8 @@ Największa słabość też jest konkretna: rozmowa wieloetapowa. "Włącz świa
 
 Wymagania zależą od tego, gdzie postawisz granicę ambicji. Trzy realistyczne progi:
 
-- **Raspberry Pi 4/5** - Whisper tiny/base, Piper, wbudowane intencje. Działa, komendy na encjach chodzą sprawnie, ale bez LLM. Dobry start za małe pieniądze.
-- **Mini komputer klasy N100, 16 GB RAM** - Whisper small w ok. sekundę, mały LLM 3-4 mld parametrów na procesorze z czasem odpowiedzi 8-15 sekund. Do komend świetnie, do rozmowy cierpliwość wymagana.
+- **Raspberry Pi 4/5** - Piper i wbudowane intencje, a Whisper tylko w małych wariantach i z opóźnieniem zależnym od języka. Dobry start do prostych komend, nie do swobodnej rozmowy z LLM.
+- **Mini komputer klasy N100, 16 GB RAM** - rozsądny punkt startowy dla Whisper Base; Small może być potrzebny dla polskiego, ale trzeba zaakceptować większe opóźnienie albo użyć mocniejszego sprzętu. Mały LLM na samym procesorze nadal wymaga cierpliwości.
 - **Komputer z kartą graficzną 8-12 GB VRAM** - Whisper medium plus model 7-8 mld parametrów, pierwsza odpowiedź w 2-4 sekundy. To poziom, przy którym lokalny asystent przestaje być ciekawostką, a zaczyna być narzędziem.
 
 Do tego satelity: jeden punkt nasłuchu na pomieszczenie, w którym faktycznie wydajesz komendy. U nas wystarczyły trzy: kuchnia, salon, sypialnia.

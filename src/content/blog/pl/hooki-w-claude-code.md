@@ -14,7 +14,7 @@ Skill agent może pominąć, instrukcję z CLAUDE.md potrafi zgubić w czterdzie
 
 Wszystko, co do tej pory opisywałem na blogu - prompty, skille, serwery MCP, subagenci - ma jedną wspólną cechę: o użyciu decyduje model. Możesz napisać w CLAUDE.md wielkimi literami "ZAWSZE uruchamiaj testy przed commitem" i przez dwadzieścia sesji będzie działać. W dwudziestej pierwszej agent będzie miał długi kontekst, instrukcja rozmyje się wśród trzystu innych linii i commit pójdzie bez testów. Nie dlatego, że model jest złośliwy. Dlatego, że instrukcja w promptcie to statystyczna sugestia, nie twarda reguła.
 
-Hook odwraca tę relację. To skrypt albo polecenie powłoki, które środowisko agenta uruchamia samo, w ściśle określonym momencie cyklu pracy: przed wywołaniem narzędzia, po nim, na starcie sesji, przy zakończeniu odpowiedzi. Model nie wie, że hook istnieje, dopóki ten go nie zablokuje. Nie może go pominąć, bo nie on go wywołuje.
+Hook odwraca tę relację. To skrypt albo polecenie powłoki, które środowisko agenta uruchamia samo, w ściśle określonym momencie cyklu pracy: przed wywołaniem narzędzia, po nim, na starcie sesji, przy zakończeniu odpowiedzi. Model może poznać konfigurację hooków, ale nie decyduje o ich uruchomieniu, więc nie może ich po prostu pominąć.
 
 U mnie ta różnica przekłada się na prostą zasadę projektową: wszystko, co jest polityką zespołu albo zasadą bezpieczeństwa, idzie do hooka. Wszystko, co jest wiedzą i sposobem pracy, idzie do skilli i CLAUDE.md. Polityka musi być deterministyczna. Wiedza może być probabilistyczna.
 
@@ -27,19 +27,19 @@ Claude Code ma kilka punktów zaczepienia, ale w praktyce 90% wartości dają cz
 - **Stop** - uruchamiany, gdy agent uznaje, że skończył odpowiedź. Idealny moment na kontrolę jakości całości: czy testy przechodzą, czy w drzewie roboczym nie zostały niezacommitowane pliki, czy agent nie zostawił TODO w kodzie.
 - **SessionStart** - uruchamiany na początku sesji. Nie blokuje niczego, za to wstrzykuje kontekst: aktualny stan gałęzi, listę otwartych zgłoszeń, przypomnienie konwencji. Tańsza i pewniejsza alternatywa dla wklejania tego samego ręcznie.
 
-Konfiguracja mieszka w pliku `settings.json` (w repo: `.claude/settings.json`, globalnie: `~/.claude/settings.json`). Każdy hook to para: wzorzec dopasowania narzędzia plus polecenie do uruchomienia. Hook w repo wersjonuje się razem z kodem, więc cały zespół dostaje te same bramki po zwykłym `git pull`.
+Konfiguracja mieszka w pliku `settings.json` (w repo: `.claude/settings.json`, globalnie: `~/.claude/settings.json`). Każdy hook to zdarzenie, opcjonalny wzorzec dopasowania i jeden lub więcej handlerów. Hook w repo wersjonuje się razem z kodem, ale Claude Code uruchamia hooki projektowe dopiero w zaufanym projekcie - samo `git pull` nie powinno oznaczać ślepego wykonania nowego skryptu.
 
 ## Kod wyjścia jako mechanizm blokady
 
-Cała siła hooków siedzi w jednym, bardzo uniksowym mechanizmie: kodzie wyjścia (exit code) skryptu. Hook dostaje na standardowe wejście JSON z opisem akcji i kończy się jednym z trzech wyników:
+W hookach poleceń ważnym mechanizmem jest kod wyjścia skryptu. Hook dostaje na standardowe wejście JSON z opisem zdarzenia, ale skutek kodu zależy od rodzaju zdarzenia:
 
-- **Kod 0** - przepuść. Akcja idzie dalej, agent niczego nie zauważa.
-- **Kod 2** - zablokuj. Akcja nie zostaje wykonana, a to, co skrypt wypisał na standardowe wyjście błędów, wraca do agenta jako informacja zwrotna. Model czyta powód blokady i koryguje plan.
-- **Inny kod** - błąd niefatalny. Środowisko pokaże ostrzeżenie, ale akcji nie zatrzyma.
+- **Kod 0** - hook zakończył się poprawnie. Bez jawnej decyzji w JSON nie zatwierdza automatycznie narzędzia, tylko pozostawia zwykły przepływ uprawnień.
+- **Kod 2** - błąd blokujący. W `PreToolUse` zatrzymuje planowane wywołanie, a tekst z wyjścia błędów wraca do agenta jako informacja zwrotna. Dla zdarzeń, które następują po akcji, nie cofnie już wykonanego narzędzia.
+- **Inny kod** - błąd niefatalny. Środowisko pokaże ostrzeżenie, ale nie traktuje go jak blokady.
 
-Ten drugi punkt jest kluczowy i często niedoceniany. Blokada nie jest ślepą ścianą - to komunikat. Jeśli skrypt wypisze "commit zablokowany: testy nie były uruchomione w tej sesji, odpal najpierw npm test", agent w następnym kroku zrobi dokładnie to. Dobrze napisany hook nie tylko pilnuje reguły, ale uczy model, jak ją spełnić.
+Ten drugi punkt jest kluczowy i często niedoceniany. Blokada `PreToolUse` nie jest ślepą ścianą - to komunikat. Jeśli skrypt wypisze "commit zablokowany: testy nie były uruchomione w tej sesji, odpal najpierw npm test", agent dostaje konkretną wskazówkę do korekty planu. Dobrze napisany hook nie tylko pilnuje reguły, ale pokazuje modelowi, jak ją spełnić.
 
-> Prompt to prośba, skill to oferta, MCP to możliwość. Hook to jedyna warstwa, w której słowo "zawsze" znaczy zawsze.
+> Prompt to prośba, skill to procedura, MCP to możliwość. Hook może być twardą bramką, jeśli właściwe zdarzenie i decyzja blokująca są poprawnie skonfigurowane.
 
 ## Przykład 1: blokada commitów bez testów
 
@@ -116,4 +116,4 @@ I jedna rzecz, o której łatwo zapomnieć: hooki uruchamiają kod na twojej mas
 
 ## Podsumowanie
 
-Hooki to deterministyczna warstwa pracy z agentem: środowisko uruchamia je samo, a kod wyjścia 2 pozwala mechanicznie zablokować akcję i jednocześnie podpowiedzieć modelowi, jak spełnić regułę. Cztery typy pokrywają większość potrzeb - PreToolUse do bramek, PostToolUse do sprzątania, Stop do kontroli końcowej, SessionStart do dokarmiania kontekstem. Zacznij od trzech klasyków: blokady commitów bez testów, lintu po edycji i strażnika sekretów. Polityka do hooka, wiedza do skilla, integracje do MCP - i nie więcej niż kilka bramek na repo, żeby agent dalej miał czym oddychać. Jeden wieczór konfiguracji zwraca się przy pierwszym zablokowanym wypadku.
+Hooki to deterministyczna warstwa pracy z agentem: środowisko uruchamia je samo, a blokujący wynik `PreToolUse` pozwala zatrzymać akcję i jednocześnie podpowiedzieć modelowi, jak spełnić regułę. Cztery typy pokrywają większość potrzeb - PreToolUse do bramek, PostToolUse do sprzątania, Stop do kontroli końcowej, SessionStart do dokarmiania kontekstem. Zacznij od trzech klasyków: blokady commitów bez testów, lintu po edycji i strażnika sekretów. Polityka do hooka, wiedza do skilla, integracje do MCP - i nie więcej niż kilka bramek na repo, żeby agent dalej miał czym oddychać. Jeden wieczór konfiguracji zwraca się przy pierwszym zablokowanym wypadku.

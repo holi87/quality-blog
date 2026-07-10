@@ -12,13 +12,13 @@ Materiały sprzedażowe narzędzi do automatyzacji testów obiecują od dwóch l
 
 ## Co naprawdę potrafi automatyczna naprawa lokatorów
 
-Rdzeń każdego samonaprawiającego się rozwiązania jest taki sam i wcale nie wymaga LLM. Narzędzie zapamiętuje dla każdego elementu nie jeden selektor, ale cały odcisk: identyfikator, klasy, atrybuty, tekst, pozycję w drzewie DOM, sąsiadów, czasem wygląd. Gdy główny selektor przestaje znajdować element, narzędzie szuka w aktualnym DOM kandydata najbardziej podobnego do zapamiętanego odcisku. Jeśli podobieństwo przekracza próg - podmienia selektor i jedzie dalej.
+Klasyczne samonaprawianie lokatorów nie wymaga LLM. Narzędzie zapamiętuje dla elementu nie jeden selektor, ale cały odcisk: identyfikator, klasy, atrybuty, tekst, pozycję w drzewie DOM, sąsiadów, czasem wygląd. Gdy główny selektor przestaje znajdować element, narzędzie szuka w aktualnym DOM kandydata najbardziej podobnego do zapamiętanego odcisku. Jeśli podobieństwo przekracza próg - podmienia selektor i jedzie dalej. Nie jest to jednak jedyna współczesna architektura: agentowy healer Playwrighta uruchamia test, ogląda bieżący interfejs, proponuje poprawkę i ponawia próbę do chwili sukcesu albo zadziałania ograniczeń.
 
 To działa, i to działa dobrze, w wąskiej klasie sytuacji: element istnieje, pełni tę samą funkcję, zmieniła się tylko jego techniczna tożsamość. Przycisk "Kup teraz" dostał nową klasę CSS po refaktoryzacji stylów, formularz przeniesiono o jeden kontener głębiej, identyfikator generowany przez framework zmienił sufiks. W projektach z generowanymi identyfikatorami to bywa kilkanaście procent wszystkich awarii testów - i te naprawy są autentycznie bezwartościowe dla człowieka, więc ich automatyzacja to czysty zysk.
 
 Warstwa LLM dokłada do tego dopasowanie semantyczne: "element, który wcześniej nazywał się 'Zapisz', teraz nazywa się 'Zachowaj zmiany', ale pełni tę samą rolę". To rozszerza zasięg mechanizmu, ale też rozszerza pole błędu - o czym za chwilę.
 
-Warto przy okazji odczarować słownictwo. "AI samonaprawiające testy" w większości produktów oznacza dokładnie opisany wyżej ranking podobieństwa z ewentualną nakładką językową - nie ma tam rozumienia aplikacji, wymagań ani historii zmian. To nie zarzut; ranking podobieństwa to porządna, przewidywalna inżynieria. Zarzut zaczyna się wtedy, gdy folder sprzedażowy opisuje ten mechanizm słowami "rozumie intencję twoich testów", bo dokładnie tej jednej rzeczy mechanizm nie robi.
+Warto przy okazji odczarować słownictwo. W wielu klasycznych produktach "AI samonaprawiające testy" oznacza opisany wyżej ranking podobieństwa z ewentualną nakładką językową. Nowsze narzędzia agentowe potrafią eksplorować interfejs i repozytorium, ale nadal nie znają intencji zmiany, jeśli nie dostaną wymagań, diffa i historii. Ranking podobieństwa to porządna, przewidywalna inżynieria; marketing zaczyna się wtedy, gdy dowolny z tych mechanizmów opisuje się słowami "rozumie intencję twoich testów" bez pokazania, skąd tę intencję bierze.
 
 ## Gdzie mechanizm cicho maskuje regresje
 
@@ -32,12 +32,12 @@ Problem fundamentalny: mechanizm naprawy widzi tylko DOM, a nie intencję. Nie w
 
 ## Dostawca narzędzia kontra własny agent z dostępem do repozytorium
 
-Jest zasadnicza, strukturalna różnica między samonaprawianiem w narzędziu komercyjnym a przepływem, w którym własny agent naprawia testy w repozytorium. Nie chodzi o jakość modeli - chodzi o dostępny kontekst i o to, kto zatwierdza.
+Zasadnicza różnica nie przebiega między produktem komercyjnym a własnym kodem, tylko między naprawą działającą wyłącznie na podstawie przebiegu a agentem, który dostał repozytorium, wymagania i kontrolę człowieka. Produkt dostawcy może należeć do obu grup. Nie chodzi o markę ani samą jakość modelu - chodzi o dostępny kontekst i o to, kto zatwierdza.
 
-| Wymiar | Narzędzie dostawcy | Własny agent z repozytorium |
+| Wymiar | Naprawa tylko w czasie wykonania | Agent z repozytorium i kontekstem zmiany |
 |---|---|---|
 | Kontekst decyzji | DOM przed i po, odcisk elementu | DOM plus diff kodu aplikacji, historia commitów, opis zadania, konwencje projektu |
-| Rozróżnienie celowe/przypadkowe | Niemożliwe - brak dostępu do intencji zmian | Możliwe - agent wskazuje commit, który zmienił element, i jego opis |
+| Rozróżnienie celowe/przypadkowe | Niewiarygodne bez wymagań i historii zmiany | Możliwe do uzasadnienia - agent wskazuje commit, zadanie i dowody, ale człowiek nadal weryfikuje |
 | Moment naprawy | W locie, podczas wykonania testu | Po przebiegu, jako propozycja zmiany do przeglądu |
 | Zatwierdzenie człowieka | Zwykle opcjonalne, domyślnie wyłączone | Wbudowane - naprawa to PR, ktoś musi kliknąć |
 | Ślad audytowy | Wpis w panelu narzędzia, poza repozytorium | Pełna historia w repozytorium: kto, co, dlaczego |

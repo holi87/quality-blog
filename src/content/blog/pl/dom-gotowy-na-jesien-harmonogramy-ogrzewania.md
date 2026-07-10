@@ -36,7 +36,7 @@ Jedna temperatura na cały dom to marnotrawstwo w obie strony: sypialnia przegrz
 | Salon z kuchnią | 21.0 | 18.5 | 14:00-22:30 |
 | Przedpokój | 18.5 | 18.5 | bez okna, temperatura stała |
 
-Głowice TRV realizują strefy fizycznie: każdy grzejnik ma własny zawór i własną nastawę, więc kocioł grzeje wodę, a pomieszczenia biorą z niej tyle, ile potrzebują. Ważny szczegół architektury: przy głowicach na wszystkich grzejnikach kocioł potrzebuje sygnału zapotrzebowania. Jeśli wszystkie zawory są zamknięte, a termostat główny wisi w nagrzanym salonie, kocioł będzie grzał obieg bez odbioru. Praktyczne rozwiązania są dwa: termostat główny w najchłodniejszej, najdłużej grzanej strefie albo automatyzacja, która żąda grzania, gdy którakolwiek głowica raportuje otwarty zawór.
+Głowice TRV realizują strefy fizycznie, ale nie wolno projektować hydrauliki wyłącznie na podstawie encji w Home Assistant. Przy głowicach na wszystkich grzejnikach źródło potrzebuje poprawnego sygnału zapotrzebowania, zapewnionego przepływu minimalnego i ochrony przed pracą przy zamkniętych zaworach. Zależnie od instalacji służy do tego grzejnik bez głowicy, automatyczny zawór różnicowy, bufor albo rozwiązanie przewidziane przez producenta. Sam termostat w najchłodniejszym pokoju lub automatyzacja odczytująca pozycje TRV nie zastępują projektu instalatora i zabezpieczeń kotła lub pompy.
 
 Strefy nie wszędzie mają sens. Otwarta przestrzeń salonu z kuchnią i schodami to jedna strefa niezależnie od liczby grzejników - powietrze miesza się szybciej, niż głowice są w stanie różnicować, a dwie różne nastawy w tym samym powietrzu kończą się tak, że jeden grzejnik pracuje za oba. Podłogówka z kolei słabo znosi strefy czasowe: przy kilkugodzinnej bezwładności okno komfortu musiałoby zaczynać się w środku nocy, żeby rano było ciepło. Dla niej lepsza jest stała, niska nastawa i korekta pogodowa po stronie źródła.
 
@@ -66,13 +66,13 @@ automation:
               temperature: 18.0
 ```
 
-Ile realnie daje obniżanie nocne? Uczciwa odpowiedź: to zależy od izolacji i źródła ciepła. W budynkach o przeciętnej izolacji przyjmuje się, że każdy stopień obniżenia utrzymywany przez znaczną część doby to rząd kilku procent mniej energii na ogrzewanie - i moje pomiary z poprzednich sezonów z grubsza to potwierdzają. Ale w dobrze ocieplonym domu z pompą ciepła głębokie nocne obniżenie potrafi dać mniej niż nic: budynek i tak wolno traci ciepło, a poranne nadrabianie zmusza pompę do pracy na wyższych temperaturach zasilania, czyli z gorszą sprawnością. Tam lepiej działa płytkie obniżenie o jeden, dwa stopnie - albo żadne. Zasada praktyczna: im większa bezwładność i lepsza izolacja, tym płytsze obniżenia.
+Ile realnie daje obniżanie nocne? To zależy od izolacji, pogody, czasu obniżenia i źródła ciepła, więc uniwersalny procent na stopień byłby mylący. W dobrze ocieplonym domu z pompą ciepła głębokie obniżenie może pogorszyć sprawność podczas nadrabiania. Zacznij od małej zmiany albo żadnej i porównaj zużycie w podobnych warunkach pogodowych, nie tylko w dwóch kolejnych dniach.
 
 ## Obecność zamiast sztywnych godzin
 
 Harmonogram opisuje tydzień, jaki powinien być; obecność koryguje tydzień, jaki jest. Trzy automatyzacje robią tu większość roboty. Pierwsza: **dom pusty, wszystko na obniżoną**. Gdy liczba osób w strefie domowej spada do zera na dłużej niż pół godziny, wszystkie strefy dostają temperaturę obniżoną, niezależnie od tego, co w tej chwili mówi harmonogram. Pół godziny zwłoki jest ważne - wyjście do sklepu nie powinno wychładzać domu.
 
-Druga: **podnoszenie przed powrotem**. Nagrzanie pokoju trwa od kilkudziesięciu minut do paru godzin, więc czekanie z grzaniem na otwarcie drzwi oznacza zimny wieczór. Rozwiązaniem jest strefa dojazdu: dodatkowa strefa w Home Assistant o promieniu odpowiadającym dwudziestu, trzydziestu minutom drogi do domu. Wejście któregokolwiek z domowników do tej strefy przywraca harmonogram i dom zaczyna nadganiać, zanim przekręcisz klucz w zamku. Do obecności per pomieszczenie - biuro grzeje tylko wtedy, gdy naprawdę w nim pracuję - używam czujników, które opisałem w tekście o [czujnikach obecności](/pl/blog/czujniki-obecnosci-2026-pir-mmwave-bluetooth/).
+Druga: **podnoszenie przed powrotem**. Czas nagrzania trzeba zmierzyć dla danego pokoju i pogody. Strefa dojazdu może przywrócić harmonogram wcześniej, ale geolokalizacja bywa opóźniona lub błędna, więc nie traktuj jej jako jedynego zabezpieczenia przed zamarzaniem ani jako dowodu obecności. Do obecności per pomieszczenie używam czujników opisanych w tekście o [czujnikach obecności](/pl/blog/czujniki-obecnosci-2026-pir-mmwave-bluetooth/), również z bezpiecznym zachowaniem na wypadek braku danych.
 
 Trzecia: **otwarte okno przykręca grzejnik**. Czujnik otwarcia na oknie, dwie minuty zwłoki, żeby krótkie uchylenie nie wywoływało reakcji, i głowica przechodzi w tryb wyłączony do czasu zamknięcia. Część głowic ma własną detekcję otwartego okna po gwałtownym spadku temperatury, ale zewnętrzny czujnik jest szybszy i nie generuje fałszywych reakcji przy zwykłym przeciągu.
 
@@ -97,24 +97,22 @@ Trzecia: **otwarte okno przykręca grzejnik**. Czujnik otwarcia na oknie, dwie m
         to: "off"
         for: "00:01:00"
     actions:
-      - action: climate.set_hvac_mode
-        target:
-          entity_id: climate.sypialnia
-        data:
-          hvac_mode: heat
+      - action: script.przywroc_ogrzewanie_sypialnia
 ```
+
+Skrypt przywracający musi pamiętać tryb i nastawę sprzed otwarcia okna oraz ponownie sprawdzić harmonogram. Nie wpisuj na sztywno `heat`, bo możesz uruchomić grzanie, które wcześniej było wyłączone ręcznie albo przez inne zabezpieczenie.
 
 ## Kalibracja: wbudowany czujnik głowicy kłamie
 
-Głowica termostatyczna mierzy temperaturę tam, gdzie jest zamontowana: dziesięć centymetrów od rozgrzanego grzejnika, często we wnęce albo za zasłoną. W praktyce pokazuje o dwa, trzy stopnie więcej niż środek pokoju, więc zamyka zawór za wcześnie i pomieszczenie nigdy nie dochodzi do nastawy. To najczęstsza przyczyna rozczarowania głowicami w pierwszym sezonie - i zarazem najłatwiejsza do naprawienia.
+Głowica termostatyczna mierzy temperaturę przy grzejniku, często we wnęce albo za zasłoną, więc odczyt może różnić się od temperatury w używanej części pokoju. Kierunek i wielkość błędu zależą od montażu i przepływu powietrza - nie zawsze są to dwa lub trzy stopnie ani zawsze zawyżenie.
 
-Punktem odniesienia powinien być zewnętrzny czujnik temperatury: Zigbee, na wewnętrznej ścianie, na wysokości około półtora metra, z dala od grzejnika, okna i elektroniki. Dalej są dwie drogi. Prostsza to **przesunięcie kalibracji**: większość głowic wystawia, na przykład przez Zigbee2MQTT, encję number z korektą odczytu; porównujesz wskazanie głowicy z czujnikiem po pół godzinie stabilnego grzania i wpisujesz różnicę ze znakiem przeciwnym. Dokładniejsza to automatyzacja, która okresowo aktualizuje to przesunięcie na podstawie bieżącej różnicy - wtedy kalibracja nadąża za zmianami pogody, zasłon i mebli. Ważne, żeby aktualizować rzadko, co pięć, dziesięć minut i tylko przy realnej zmianie, bo każda korekta budzi głowicę i zjada baterię.
+Punktem odniesienia może być osobny czujnik temperatury umieszczony w reprezentatywnym miejscu, z dala od źródeł ciepła, okna i elektroniki. Część modeli TRV wystawia korektę odczytu, ale nie robi tego każda głowica i zakres zależy od urządzenia. Najpierw sprawdź instrukcję i porównaj odczyty po stabilizacji. Częste dynamiczne przepisywanie korekty może zwiększać ruch w sieci, zużycie baterii i niestabilność regulacji; stosuj je tylko po testach, z ograniczeniem częstotliwości i zmian.
 
 ## Koszty i taryfy: zamknij sprzężenie zwrotne
 
 Harmonogram bez pomiaru to zgadywanie. Minimum, które warto mieć przed sezonem: pomiar zużycia źródła - impulsy z gazomierza albo pomiar energii pompy i grzejników - oraz historia temperatur per strefa. Jak to poskładać, opisałem w tekście o [monitoringu energii w Home Assistant](/pl/blog/monitoring-energii-home-assistant/); tutaj wystarczy powiedzieć, że bez tych danych nie odpowiesz na pytanie, czy obniżenie nocne w twoim domu w ogóle działa, ani które strefy grzeją najdłużej.
 
-Taryfy wchodzą do gry przy ogrzewaniu elektrycznym. Pompa ciepła z taryfą dynamiczną albo strefową to naturalna para: automatyzacja podnosi nastawę o stopień, dwa w godzinach taniej energii i pozwala domowi lekko przestygnąć w drogich - budynek pracuje wtedy jak magazyn ciepła. Integracje cen godzinowych, dla rynków europejskich choćby Nord Pool, wystawiają cenę jako sensor, a automatyzacja porównuje ją z progiem albo z medianą doby. I kontrprzykład, żeby nie przekombinować: kocioł gazowy w taryfie stałej nie skorzysta z żadnej z tych sztuczek - tam całą robotę robią zwykły harmonogram i dobrze ustawione strefy.
+Taryfy wchodzą do gry przy ogrzewaniu elektrycznym, ale przesunięcie pracy pompy ciepła nie zawsze obniża koszt ani zużycie. Podniesienie nastawy może pogorszyć współczynnik efektywności i komfort, a ceny dynamiczne mogą mieć bloki krótsze niż godzina. Symuluj pełny rachunek i zmieniaj krzywą lub nastawę tylko w zakresie dopuszczonym przez producenta, z pomiarem efektu.
 
 ## Test na sucho we wrześniu
 
@@ -126,9 +124,9 @@ Lista typowych błędów pierwszego sezonu - wszystkie przerabiałem na własnym
 
 - **Głowice bez kalibracji** - pokoje stabilnie o dwa stopnie chłodniejsze niż nastawa, domownicy podkręcają na ślepo i harmonogram traci sens. Kalibruj przed sezonem, nie w jego trakcie.
 - **Harmonogram walczący z ręcznymi zmianami** - ktoś podnosi temperaturę pokrętłem, a automatyzacja po dziesięciu minutach ją cofa. Wprowadź pomocnika logicznego w roli trybu ręcznego, który wstrzymuje automatyzacje strefy na kilka godzin po ręcznej zmianie.
-- **Brak trybu wietrzenia** - grzejnik grzeje pełną mocą pod otwartym oknem. Czujniki otwarcia w strefach grzanych to obowiązek, nie dodatek.
+- **Brak trybu wietrzenia** - grzejnik może grzać przy otwartym oknie. Czujnik otwarcia jest jedną z metod, ale logika wznowienia musi pamiętać poprzedni tryb i respektować zabezpieczenia źródła.
 - **Zapieczone zawory** - głowica raportuje otwarcie, a zawór fizycznie stoi. Przed sezonem przegoń każdy zawór kilka razy od pełnego otwarcia do pełnego zamknięcia.
-- **Wszystkie strefy startują o tej samej godzinie** - kocioł dostaje szpilkę zapotrzebowania o 6:00 i pracuje na pełnej mocy zamiast modulować. Rozsuń początki okien komfortu o piętnaście, dwadzieścia minut.
+- **Wszystkie strefy startują o tej samej godzinie** - mogą zwiększyć chwilowe zapotrzebowanie, ale zachowanie zależy od regulacji i modulacji źródła. Rozsuwaj starty tylko wtedy, gdy pomiary pokazują problem i nie pogarsza to komfortu.
 
 ## Podsumowanie
 

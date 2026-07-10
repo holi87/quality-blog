@@ -20,15 +20,15 @@ This problem has two honest solutions. The first: extending the hold time, which
 
 **PIR** is the veteran: cheap, instant, frugal. It runs on a battery for years, reacts in a fraction of a second and costs from 40 zlotys. One fundamental weakness, but a defining one: stillness means no detection.
 
-**mmWave** is millimetre-wave radar - the sensor emits radio waves and analyses the reflections, detecting even the movement of a chest while breathing. A person sleeping in bed is present to it. The price of this magic: mains power (radar draws too much current for a battery), higher cost (150-400 zlotys) and a tendency toward false alarms, because a moving curtain, a fan or a monstera in a draught also reflect the waves.
+**mmWave** is millimetre-wave radar - the sensor emits radio waves and analyses reflections. It is good at detecting small movements from a seated person, while selected models and modes are designed to detect breathing as well. Not every mmWave sensor will reliably detect a person sleeping under bedding. The price of that sensitivity is usually mains power, higher cost (150-400 zlotys), and a tendency toward false alarms because a moving curtain, fan, or plant in a draught also reflects waves.
 
 **Bluetooth tracking** answers a different question. PIR and mmWave say that "someone" is in the room; tracking the signal of a band, a phone or a watch says that it's specifically you. You place receivers in rooms (cheapest: ESP32 modules running ESPresense, or plain ESPHome devices acting as bluetooth proxies plus the Bermuda integration in HA), and the system estimates from signal strength which room a given device is in. This is not presence detection for switching lights off - latencies run into tens of seconds - but for personal scenes there is no better tool.
 
-Two practical notes on the bluetooth layer. iOS phones randomize their hardware addresses, so you can't track an iPhone itself - you track the signal broadcast by the Home Assistant app, or a cheap keyfob or band with a fixed identifier. And expect calibration: signal strength depends on walls, furniture and which pocket you carry your phone in, so the first days are spent tuning thresholds per room. One receiver per room where personalization makes sense is entirely enough.
+Two practical notes on the bluetooth layer. Phones randomize BLE addresses, so you cannot rely on a normal hardware address. On Android, the Home Assistant app can transmit an iBeacon; an iPhone can be resolved through the Private BLE Device integration using its IRK. A keyfob or band with a stable identifier is another option. Expect calibration: signal strength depends on walls, furniture, and which pocket holds the phone. One receiver per room where personalization matters is a useful starting point, not an accuracy guarantee.
 
 | Criterion | PIR | mmWave | Bluetooth |
 | --- | --- | --- | --- |
-| Detects stillness | No | Yes, including breathing | Yes (device presence) |
+| Detects stillness | No | Yes; breathing only with suitable models and conditions | Yes (device presence) |
 | Reaction time | Under a second | 1-3 seconds | 10-60 seconds |
 | False alarms | Rare (pets, sunlight) | Frequent without tuning (curtains, fans, plants) | Rare, but drifts between rooms |
 | Recognizes who | No | No | Yes |
@@ -46,7 +46,7 @@ Privacy deserves an extra sentence. None of these technologies records images, a
 
 **Living room with a cat: mmWave with zones, or a conscious compromise.** The marketing "pet immunity" in PIR sensors usually means reduced sensitivity below a certain height - with a cat walking along the back of the sofa it works poorly. An mmWave sensor with zones (the FP2 is strong here) lets you cut the floor and the scratching post out of the detection zone and keep the sofa and armchairs. It will work nine times out of ten; the tenth is a cat sleeping exactly in your spot on the sofa - no technology will tell that apart from a human based on the radar reflection alone.
 
-**Bedroom: mmWave with breathing detection.** The "house is asleep" automations stop requiring a manual switch, because the sensor knows the bed is occupied. Two warnings: a fan by the bed is a first-class generator of false presence, and the sensor should look at the bed, not at the window. A radar-free alternative: a pressure sensor under the mattress - cheaper and with zero false alarms, but it only detects the bed.
+**Bedroom: specialized mmWave or a pressure sensor.** Radar with a breathing mode can help estimate bed occupancy, but results depend on the model, mounting, bedding, and air movement. Do not treat it as a medical device or a sole safety signal. A fan by the bed is a first-class source of false presence, and the sensor should face the bed rather than the window. A pressure sensor measures occupancy more directly, but it also needs calibration and may react to a pet, luggage, or shifted weight.
 
 **Hallway and stairs: a plain PIR.** Nobody stands motionless on the stairs. Here only reaction speed and price matter - a 50-zloty PIR (Sonoff SNZB-03P, Aqara P1) does the job, and the battery lasts well over a year. Spending money on mmWave here is burning the budget.
 

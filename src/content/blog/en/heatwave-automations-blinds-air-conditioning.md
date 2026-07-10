@@ -78,7 +78,7 @@ Match the closing percentage to the room's function. Bedrooms and rooms unused d
 
 ## Air conditioning and ventilation with a plan
 
-In this setup air conditioning is the last line of defence, not the first - but when it does act, let it act early. Waiting until the temperature crosses the comfort threshold repeats the blinds mistake: the compressor gets the whole accumulated heat load at once, at the hottest time of day, at peak grid load. Instead, on a day with heat mode active I start cooling before noon, when the living room is at a mere twenty-four and a half degrees, via `climate.set_temperature` with cooling mode and a target of twenty-four. Holding a low temperature costs less than beating down a high one, because the compressor runs steadily at low power instead of in bursts at full. If you're on a time-of-use tariff, shift this pre-cooling into the cheaper window - cooling the house one extra degree before noon builds a store of cold in the walls that you spend during the expensive afternoon peak.
+In this setup air conditioning is the last line of defence, not the first. Pre-cooling may shift demand into a cheaper window and reduce peak power, but it does not guarantee lower energy use - an unnecessarily low target can increase it. I start before noon in my home, but temperature, timing, and economics must be tuned to the building's inertia, equipment efficiency, and full tariff. Do not bypass the unit's own controls or manufacturer-specified minimum run and rest times.
 
 The other half of this section costs zero per kilowatt-hour: night ventilation. After a hot day, the outside air becomes cooler than the house in the evening - and that is the only time of day when open windows cool instead of heat. An automation watches the temperature difference and speaks up when ventilating starts to make sense:
 
@@ -100,7 +100,7 @@ actions:
       message: "It's 2 degrees cooler outside than in the living room - time to open the windows."
 ```
 
-A two-degree delta is the minimum at which a draught genuinely cools; below that, the air exchange is cosmetic. If you have a heat recovery ventilation unit with a summer bypass, the same logic works without opening anything: at the right delta the ventilation switches to bypass and pumps cool air in all night. The closing move is the mirror automation in the morning: once the outdoor temperature catches up with the indoor one, the phone reminds you to shut the windows, and heat mode drops the east facade's blinds. The night dumped the heat; in the morning we lock it outside.
+A two-degree difference is my starting threshold, not a law of physics. The effect depends on airflow, wind, humidity, and thermal mass, so measure it in your home. With heat recovery ventilation, check the unit's instructions: summer bypass is not active cooling and may not provide enough airflow. Close the windows in the morning when outdoor air is no longer cooler.
 
 ## Human versus automation
 
@@ -108,25 +108,25 @@ The fastest way to make your household hate heat mode: a blind raised by hand, b
 
 The pattern is simple: a helper timer entity per facade. An automation listens for blind state changes; if a change happened and no blind automation ran within the last minute, it counts as manual and starts the timer for four hours. Every automation for that facade carries the condition: act only while the timer is idle. After four hours the system quietly resumes guarding the facade, with no grudge and no memory. Four hours is my compromise: long enough for the override to mean something, short enough that a forgotten blind doesn't bake the room until evening.
 
-The second classic human-versus-machine collision: an open window next to running air conditioning. Contact sensors on the windows of cooled rooms, plus one plain rule: a window open for longer than three minutes switches off cooling in that room and sends a notification asking whether to restore it after closing. The three-minute delay matters - a brief opening to hand something through the window should trigger no reaction at all. When the window closes, the cooling comes back on its own. Without this rule you pay to cool the garden while the compressor runs flat out without a break.
+The second classic collision is an open window next to running air conditioning. Cooling can pause after a few minutes, but after closing it should resume only if it was active before and demand still exists. Preserve the manufacturer's required compressor rest time; a simple off-then-on rule can cause excessive cycling.
 
 ## Comfort versus energy cost
 
 It's worth putting numbers on the stakes. The air conditioner in my living room draws about 0.8 kW on average while actively cooling. A reactive day - starting at 3 p.m., running almost continuously until 11 p.m. - peaks at 6 kWh for a single room. A day with full heat mode, meaning blinds from the morning, night ventilation and a short pre-cool before noon, closes at around 1.5-2 kWh, and the peak temperature is lower, not higher. You'll only see these numbers for your own house once you measure them - I described how to assemble that in the post on [energy monitoring in Home Assistant](/en/blog/energy-monitoring-home-assistant/). Without measurement, any discussion of cooling costs is guesswork.
 
-The same measurements led me to a conclusion that initially surprised me: for most of a Central European summer, the air conditioning is simply unnecessary. With maximums up to thirty degrees and nights below twenty, blinds alone plus proper night ventilation keep the house under twenty-six. The compressor only enters the game during multi-day heatwaves, when the nights stop cooling and the house never gets a chance to shed its heat. That inverts the default intuition: air conditioning is not the plan for summer, it's the plan for the exceptions.
+My measurements show that in this particular house, blinds and night ventilation are enough for much of the summer. That cannot be generalized to every Central European home: insulation, glazing, floor level, orientation, internal gains, humidity, and residents' health needs all change the result.
 
 > The cheapest kilowatt-hour of cooling is the one you never had to produce, because the heat never got inside.
 
-Set your comfort thresholds deliberately, because every extra degree downward costs disproportionately much: holding twenty-two degrees against thirty-five outside can double the consumption compared to holding twenty-five. My compromise: twenty-five in the daytime rooms, twenty-four in the bedroom for the hour before sleep. If you want to go further and hand the thresholds and schedules over to algorithms, a starting point is in the post on [AI-driven energy optimization](/en/blog/ai-smart-home-energy-optimization/).
+A lower target generally increases cooling load, but there is no universal conversion or guarantee that 22 degrees doubles consumption compared with 25. My compromise is 25 in daytime rooms and 24 in the bedroom before sleep; tune your thresholds to comfort, health, humidity, and measured energy use.
 
 ## Common mistakes
 
 A few rakes I've stepped on myself or watched others step on - all avoidable with a single fix.
 
 - **Automations at war with each other.** Heat mode lowers a blind, and an older "raise on high brightness" automation raises it back. Symptom: blinds shuttling up and down every few minutes, motors overheating, household members tapping their foreheads. Cure: during the heat season one automation owns the device - every other one gets an excluding condition on `input_boolean.heat_mode`.
-- **Thresholds without hysteresis.** Cool above 25.0, stop below 25.0 - the compressor cycles every few minutes, which shortens its life and cools nothing. Leave at least a degree and a half between the on and off thresholds, and add the `for` parameter to the numeric trigger so a momentary draught doesn't flip modes.
-- **Ignoring the forecast.** Automations that react only to the current temperature start systematically too late, because the indoor temperature lags the sun. The forecast is the only signal that runs ahead of physics - which is why heat mode arms on the evening of the previous day, not at noon of the hot one.
+- **Thresholds without hysteresis.** Do not drive a compressor from one sharp threshold. Use the unit's thermostat, hysteresis, and manufacturer-recommended minimum run and rest times; 1.5 degrees is not universal for every system.
+- **Ignoring the forecast.** Forecast is one leading signal, alongside sun position and schedule. It has errors, so combine it with current temperature and irradiance instead of treating it as certain.
 - **One threshold for the whole house.** The attic heats up faster and harder than the ground floor; a west-facing room heats later but more violently than an east-facing one. Set thresholds and schedules per room, otherwise the automation will be simultaneously too jumpy downstairs and too lazy upstairs.
 - **Closing the blinds on an overcast hot day.** The forecast says thirty degrees, the blinds roll down, and a thick cloud deck hangs there all day - the house stands dark for zero gain. A condition on an illuminance sensor, or on cloud coverage from the weather integration, fixes this in one line.
 

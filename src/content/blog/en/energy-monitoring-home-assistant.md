@@ -18,7 +18,7 @@ Level two: **circuit-level measurement**. A Shelly module with power metering in
 
 Level three: **the main meter**. A three-phase meter (for example the Shelly Pro 3EM) in the distribution board measures the whole house's consumption with per-second precision. It's the most expensive element (400-600 zlotys with installation), but it ties everything together: the meter total minus the measured circuits shows how much electricity disappears into the "rest" you haven't identified yet.
 
-All three levels connect to Home Assistant locally - Shelly over Wi-Fi, Zigbee plugs through the coordinator. The technical requirement: the sensor must report energy in kWh (energy device class, a cumulative total), not just instantaneous power in watts. The devices on this list do it correctly out of the box.
+All three levels connect to Home Assistant locally - Shelly over Wi-Fi, Zigbee plugs through the coordinator. The simplest input is an energy sensor in kWh with the correct device class and cumulative state. Home Assistant can also accept a compatible instantaneous power sensor in W or kW on the Energy dashboard. When energy is needed from power alone, create a Riemann-sum integral sensor. Always check the entities of the exact model because not every plug reports both measurements correctly.
 
 ## The energy dashboard in half an hour
 
@@ -56,7 +56,7 @@ Sensible alerts are the ones that lead to action. Three patterns that have staye
 
 Concrete thresholds to start from (you'll tune them to your home later): fridge - power above 50 W continuously for two hours means an alarm; washing machine - end of cycle is a drop below 5 W for five minutes, but only after it previously exceeded 10 W (otherwise the notification also fires right after you merely switch the power on); daily budget - the average of the last thirty days times 1.3. A threshold set too low generates noise and teaches you to ignore it, a threshold set too high never fires - better to start loose and tighten weekly than the other way around.
 
-The biggest money, however, lies in moving the water heater to the night tariff. On a two-zone tariff, electricity at night costs around 0.75 zł/kWh instead of 1.15 zł. The automation is trivial:
+The largest opportunity may be moving the water heater into the cheaper tariff zone. Hours and all-in rates depend on the network operator, supplier, and contract. Compare energy price together with variable distribution charges, tax, and any higher rate in the expensive zone. The hours below are only an example - replace them with the windows in your own agreement:
 
 ```yaml
 automation:
@@ -74,18 +74,18 @@ automation:
           entity_id: switch.water_heater
 ```
 
-Plus a safety override: if the water temperature drops below the comfort threshold during the day, the heater turns on anyway. The saving for DemoDom: 2190 kWh a year times a 0.40 zł difference is about 876 zlotys. The second move is a power strip or plug cutting off the entertainment zone at night and during absences - out of 60 W of standby you can realistically cut half, which is another ~290 zlotys a year.
+Add a safety override so the heater can run when water drops below the comfort threshold. The simple `2190 kWh × rate difference` is only a theoretical ceiling: not all consumption can move, standing losses may rise, and the expensive zone and fixed charges affect the whole-home result. A second move is cutting only devices whose manufacturers permit hard power-off. Removing a constant 30 W for a full year saves 263 kWh; its monetary value depends on the all-in rate, not just the energy component.
 
 ## Does it pay off - an honest calculation
 
 The cost of the measurement side for DemoDom: a distribution board meter with installation 550 zł, three metering plugs 270 zł, a water heater module with installation 250 zł. A total of 1070 zlotys one-off, assuming you already have a Home Assistant server.
 
-Annual savings: the water heater on the night tariff ~876 zł (requires a tariff change with your provider - that's a form to submit, not a renovation), trimmed standby modes ~290 zł, plus harder-to-quantify extras: a fridge caught before it died, informed purchasing decisions, washing and dishwashing in cheaper hours. Counting only the two hard line items: **1166 zlotys a year, return on investment in eleven months**.
+The DemoDom calculation shows a ceiling, not a promise. At an assumed 0.40 zł/kWh difference, shifting every water-heater kilowatt-hour would be worth 876 zł, while removing a constant 30 W at 1.15 zł/kWh would be about 302 zł. Calculate the real result by simulating two full annual bills for the complete load profile, including tariff windows, distribution, and energy that cannot move. Only then divide the difference by equipment cost; without that comparison, an eleven-month payback cannot be claimed honestly.
 
-An honest caveat: this calculation rests on the electric water heater. If you heat water with gas, the biggest lever disappears and the payback stretches to three or four years - still positive, but no longer spectacular. In that case I'd start with just the plugs for ~270 zł and a hunt for standby modes, and buy the main meter only once the first discoveries have paid for themselves.
+An honest caveat: this calculation rests on the electric water heater. If you heat water with gas, the biggest lever disappears, and the purchase may take much longer to pay back or may never pay back. In that case I'd start with just the plugs for ~270 zł and a hunt for standby modes, and buy the main meter only if measurements show a real savings opportunity.
 
-The math also improves in two situations. With solar panels, measurement stops being about saving and becomes about management: automations shifting the water heater, laundry and charging into production hours can raise self-consumption by a dozen or more percentage points. And with dynamic tariffs, billed at hourly exchange prices, monitoring and automation stop being a hobby - without them such a tariff is roulette, with them it can be the cheapest option on the market.
+Solar may improve the result because shifting loads into production increases self-consumption, but the scale depends on the home's load profile, array size, and storage. With dynamic tariffs, prices change in the time blocks defined by the contract and market - in 2026 these are not always whole hours - and automation helps react to them. It does not guarantee that a dynamic tariff is cheapest once distribution and the full load profile are included.
 
 ## Summary
 
-Energy monitoring is the part of the smart home that recovers money instead of spending it. The path: start with two or three metering plugs and a week of measuring suspects, add the energy dashboard with the electricity price in real currency, then the main meter and measurement of the biggest consumer. Set alerts only where they lead to action, and look for the biggest money in shifting water heating to the cheap tariff and cutting standby modes. In a realistic home with an electric water heater, the whole thing pays for itself in about a year. A starter experiment: plug a metering plug into the oldest appliance in your house tonight and check in a week whether you're not running a small power plant.
+Energy monitoring can recover money, but measurement alone does not create savings. The path: start with two or three metering plugs and a week of measuring suspects, add the energy dashboard with the electricity price in real currency, then the main meter and measurement of the biggest consumer. Set alerts only where they lead to action, and look for the biggest money in shifting water heating to the cheap tariff and cutting standby modes. Calculate payback from your own measurements and full tariff - it may take months, years, or never happen. A starter experiment: plug a metering plug into the oldest appliance in your house tonight and check in a week whether you're not running a small power plant.

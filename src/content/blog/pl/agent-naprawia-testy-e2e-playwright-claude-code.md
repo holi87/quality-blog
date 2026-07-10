@@ -14,11 +14,11 @@ Test e2e padł na CI o trzeciej w nocy. O ósmej rano w repozytorium czeka pull 
 
 Większość nieudanych prób automatyzacji naprawy testów pada na tym samym: agent dostaje za mało kontekstu. Sam komunikat błędu w stylu `TimeoutError: locator.click: Timeout 30000ms exceeded` mówi tyle, co nic. Na jego podstawie agent zgaduje - a zgadujący agent jest gorszy niż brak agenta.
 
-Playwright generuje przy porażce trzy artefakty, które razem dają agentowi prawdziwą szansę na poprawną diagnozę:
+Playwright może zebrać przy porażce trzy rodzaje materiału, jeśli jawnie włączysz odpowiednie artefakty w konfiguracji:
 
 - **Trace** (zapis przebiegu) - pełna sekwencja akcji testu z migawkami DOM przed i po każdym kroku. To najcenniejsze źródło: agent widzi, jak strona wyglądała w momencie awarii, a nie jak powinna wyglądać.
 - **Zrzut ekranu** z chwili porażki - tani w analizie i często wystarczający, żeby odróżnić "element się nie załadował" od "element jest, ale przykryty banerem zgody na ciasteczka".
-- **Kontekst DOM** - migawka drzewa elementów. Agent porównuje selektor z testu z faktyczną strukturą strony i widzi, czy element zmienił atrybuty, zniknął, czy tylko się przesunął.
+- **Kontekst DOM** - migawki drzewa elementów zapisane w trace. Agent porównuje selektor z testu z faktyczną strukturą strony i widzi, czy element zmienił atrybuty, zniknął, czy tylko się przesunął.
 
 Do tego dokładam dwie rzeczy spoza raportu Playwright: diff zmian w aplikacji od ostatniego zielonego przebiegu oraz historię tego konkretnego testu z ostatnich dwóch tygodni. Pierwsza pozwala powiązać awarię ze zmianą w kodzie, druga odróżnia świeżą regresję od testu, który sypie się od dawna.
 
@@ -61,7 +61,7 @@ Klasyfikacja "regresja aplikacji" zasługuje na osobne zdanie: w tym przypadku a
 
 W moim przepływie agent nie ma prawa zapisu do głównej gałęzi i nie ma prawa zatwierdzenia własnego PR. To nie jest tymczasowa ostrożność na okres wdrożenia - to stały element projektu. Powód jest prosty: test e2e, który padł, to sygnał. Automatyczne "naprawienie" testu bez zrozumienia sygnału to wyciszenie alarmu przeciwpożarowego, bo piszczał w nocy.
 
-> Czerwony test ma dokładnie dwie możliwe przyczyny: zepsuła się aplikacja albo zdezaktualizował się test. Agent potrafi odróżnić jedno od drugiego w jakichś osiemdziesięciu procentach przypadków. Cała wartość człowieka w tym przepływie mieści się w pozostałych dwudziestu.
+> Czerwony test jest sygnałem, nie diagnozą. Przyczyną może być regresja aplikacji, błąd lub nieaktualność testu, dane testowe, środowisko albo rzeczywista niestabilność. Agent potrafi u mnie poprawnie sklasyfikować około osiemdziesięciu procent przypadków. Cała wartość człowieka w tym przepływie mieści się w pozostałych dwudziestu.
 
 Przegląd PR od agenta zajmuje mi zwykle pięć minut, bo dobra diagnoza w opisie robi większość roboty. Sprawdzam trzy rzeczy: czy klasyfikacja przyczyny zgadza się z diffem aplikacji, czy poprawka zmienia test a nie jego sens, i czy agent nie poluzował asercji.
 

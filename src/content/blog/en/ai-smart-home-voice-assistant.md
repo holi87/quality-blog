@@ -22,7 +22,7 @@ A local assistant flips that arrangement. The audio never leaves the house, the 
 
 Home Assistant has a built-in Assist layer that ties the entire voice processing pipeline together. It is worth understanding it as five links, because each one can be swapped out independently:
 
-1. **Wake word** - the device listens for a phrase like "Hey Nabu". In practice this is handled by openWakeWord on the server or by microWakeWord directly on an ESP32-S3 chip.
+1. **Wake word** - the device listens for a phrase like "Okay Nabu". In practice this is handled by openWakeWord on the server or by microWakeWord directly on an ESP32-S3 chip.
 2. **Speech to text** - the recorded fragment goes to a Whisper model (the faster-whisper variant), which returns the command as text.
 3. **Intent recognition** - Home Assistant tries to match the text against built-in commands: turn on, turn off, set the temperature, run a scene.
 4. **LLM as the extended path** - if the built-in intents do not match, the question is taken over by a language model, for example a local model via Ollama.
@@ -40,7 +40,7 @@ The difference is audible, literally. A cheap satellite with a single microphone
 
 Whisper is today's standard for local speech recognition and handles Polish well, but model size matters. The tiny variant can turn "turn off the living room light" into something barely recognizable, the small variant is already decent, and medium understands even sloppy pronunciation with a radio playing in the background.
 
-Cost grows together with quality. On a Raspberry Pi 4, only tiny or base make sense, with a processing time of 1-2 seconds for a short command. A mini PC in the N100 class handles small in about a second. The medium model without a graphics card becomes noticeably slow. Our recommendation for Polish: small as the minimum, medium if the hardware allows it.
+Cost grows together with quality. Home Assistant recommends at least an Intel N100-class processor for local Whisper Base, while languages with less training data may need Small or Large and substantially stronger hardware. Latency depends on the model, recording length, processor, and backend, so benchmark your own commands before buying hardware. Our practical recommendation for Polish is to start with Small and move to a larger model only when measured quality justifies it.
 
 ## The brain: intents first, then the LLM
 
@@ -83,8 +83,8 @@ The biggest weakness is also concrete: multi-turn conversation. "Turn on the liv
 
 Requirements depend on where you draw the line of ambition. Three realistic tiers:
 
-- **Raspberry Pi 4/5** - Whisper tiny/base, Piper, built-in intents. It works, entity commands run smoothly, but no LLM. A good start for little money.
-- **Mini PC in the N100 class, 16 GB RAM** - Whisper small in about a second, a small LLM with 3-4 billion parameters on the CPU with a response time of 8-15 seconds. Great for commands, patience required for conversation.
+- **Raspberry Pi 4/5** - Piper and built-in intents, with Whisper limited to small variants and latency that depends heavily on language. A good start for simple commands, not free-form LLM conversation.
+- **Mini PC in the N100 class, 16 GB RAM** - a reasonable starting point for Whisper Base. Polish may need Small, which means more latency or stronger hardware. A small LLM running only on the CPU still requires patience.
 - **A computer with a graphics card with 8-12 GB VRAM** - Whisper medium plus a 7-8 billion parameter model, first response in 2-4 seconds. This is the level at which a local assistant stops being a curiosity and starts being a tool.
 
 Plus satellites: one listening point per room where you actually give commands. Three were enough for us: kitchen, living room, bedroom.

@@ -16,7 +16,7 @@ Na konferencjach każdy problem z modelem rozwiązuje się dostrajaniem (fine-tu
 
 **RAG** (generowanie wspomagane wyszukiwaniem) to doklejanie do promptu fragmentów twoich dokumentów, wyszukanych automatycznie pod konkretne pytanie. Model nie musi niczego "pamiętać" - dostaje właściwe akapity z bazy wiedzy w momencie zapytania.
 
-**Dostrajanie (fine-tuning)** to dalsze trenowanie istniejącego modelu na setkach lub tysiącach twoich przykładów, żeby zmienić jego domyślne zachowanie: styl, format, sposób rozumowania w wąskiej domenie. Powstaje nowy wariant modelu, który trzeba utrzymywać jak każdy artefakt produkcyjny.
+**Dostrajanie (fine-tuning)** to dalsze trenowanie istniejącego modelu na twoich przykładach, żeby zmienić jego domyślne zachowanie: styl, format lub sposób wykonywania wąskiego zadania. Liczba przykładów zależy od modelu, dostawcy i trudności - niektóre usługi technicznie przyjmują dziesiątki, ale stabilny wynik często wymaga dziesiątek lub setek wysokiej jakości przykładów i osobnego zbioru ewaluacyjnego. Powstaje nowy wariant modelu, który trzeba utrzymywać jak każdy artefakt produkcyjny.
 
 Kluczowe nieporozumienie, od którego zaczyna się większość złych decyzji: dostrajanie kiepsko nadaje się do wstrzykiwania wiedzy. Model dostrojony na twojej dokumentacji nie staje się jej wiarygodnym źródłem - dalej potrafi zmyślać, tylko teraz zmyśla w twoim stylu i twoim żargonem. Wiedza, która ma być przywoływana wiernie i ze źródłem, to zadanie dla RAG. Dostrajanie zmienia zachowanie, nie zasób faktów.
 
@@ -28,7 +28,7 @@ Przechodzę przez nie z zespołami w tej kolejności:
 2. **Czy przykładów i reguł jest już tyle, że prompt puchnie ponad kilka tysięcy tokenów?** Jeśli rosnący prompt wciąż działa, a wywołań jest mało - zostaw, brzydki działający prompt jest tańszy niż ładna architektura. Jeśli koszt i opóźnienia bolą przy dużym wolumenie - rozważ dostrajanie jako kompresję promptu (punkt 5).
 3. **Czy modelowi brakuje wiedzy o twoich danych: dokumentach, produktach, procedurach?** Tak - to RAG, punkt 4. Nie, model ma wiedzę, ale odpowiada w złym stylu, formacie albo nie trzyma się wąskiej konwencji - punkt 5.
 4. **RAG:** zacznij od wariantu minimalnego - dobre wyszukiwanie po słowach kluczowych plus doklejanie znalezionych fragmentów do promptu. Baza wektorowa, embeddingi i przepisywanie zapytań to drugi etap, potrzebny dopiero gdy prosty wariant mierzalnie nie wystarcza (patrz wpis o ewaluacjach - bez złotego zestawu nie dowiesz się, czy nie wystarcza).
-5. **Dostrajanie:** wchodzisz tu tylko jeśli masz minimum kilkaset zweryfikowanych przykładów wejście-wyjście, problem jest stabilny w czasie, a prompt i RAG mierzalnie nie domykają jakości albo robią to za drogo przy twoim wolumenie. Mniej niż trzy "tak" - wróć do punktów 1-4.
+5. **Dostrajanie:** wchodzisz tu tylko wtedy, gdy masz wystarczająco dużo zweryfikowanych przykładów dla wybranego modelu, problem jest stabilny w czasie, a prompt i RAG mierzalnie nie domykają jakości albo robią to za drogo przy twoim wolumenie. Zacznij od minimalnego zbioru rekomendowanego przez dostawcę, zmierz wynik na osobnej ewaluacji i dopiero wtedy zwiększaj dane. Mniej niż trzy "tak" - wróć do punktów 1-4.
 
 ## Rachunek: koszt, czas, ryzyko
 
@@ -38,7 +38,7 @@ Przechodzę przez nie z zespołami w tej kolejności:
 | Koszt startowy | ~0 | dni pracy + infrastruktura wyszukiwania | przygotowanie danych (największy koszt) + trening |
 | Koszt bieżący | więcej tokenów na wywołanie | utrzymanie indeksu + tokeny na doklejony kontekst | hosting/stawka za model dostrojony + retreningi |
 | Aktualizacja wiedzy | edycja promptu, minuty | dodanie dokumentu do indeksu, minuty | nowy trening, dni |
-| Wymagane dane | 3-10 przykładów | dokumenty, które już masz | setki-tysiące czystych par wejście-wyjście |
+| Wymagane dane | 3-10 przykładów | dokumenty, które już masz | zwykle dziesiątki-setki czystych par, zależnie od modelu i zadania |
 | Wymagane kompetencje | każdy w zespole | programista + podstawy wyszukiwania | ktoś, kto rozumie ewaluacje i przygotowanie danych |
 | Główne ryzyko | rozcieńczenie instrukcji w długim promptcie | złe wyszukiwanie = pewne siebie złe odpowiedzi | regresje po zmianie modelu bazowego, przeuczenie |
 | Odwracalność decyzji | pełna | duża | mała - inwestycja w konkretny model |
@@ -75,4 +75,4 @@ To jest typowy przebieg. Zespoły bez działu ML mają zwykle problemy z wiedzą
 
 ## Podsumowanie
 
-Kolejność prób jest stała: najpierw porządny prompt z przykładami (godziny, zero ryzyka), potem RAG, gdy modelowi brakuje twojej wiedzy (dni, umiarkowane ryzyko skupione w wyszukiwaniu), na końcu dostrajanie - gdy masz setki czystych przykładów, stabilny problem i mierzalny dowód, że tańsze podejścia nie wystarczają. Dostrajanie zmienia zachowanie modelu, nie jego zasób faktów, więc na braki wiedzy nie odpowiada nigdy. A każda decyzja w tym drzewie wymaga złotego zestawu ewaluacyjnego - bez pomiaru nie wybierasz architektury, tylko słuchasz marketingu. Zanim zaplanujesz trening, poświęć godzinę na prompt z pięcioma przykładami i zmierz różnicę: to najtańszy eksperyment w całym AI.
+Kolejność prób jest stała: najpierw porządny prompt z przykładami (godziny, mały koszt odwrócenia), potem RAG, gdy modelowi brakuje twojej wiedzy (dni, ryzyko skupione głównie w wyszukiwaniu), na końcu dostrajanie - gdy masz wystarczający zbiór czystych przykładów, stabilny problem i mierzalny dowód, że tańsze podejścia nie wystarczają. Dostrajanie może wpłynąć także na wiedzę modelu, ale nie jest dobrym źródłem świeżych, wiernie przywoływanych i cytowalnych faktów; do tego lepiej pasuje RAG. Każda decyzja w tym drzewie wymaga złotego zestawu ewaluacyjnego - bez pomiaru nie wybierasz architektury, tylko słuchasz marketingu. Zanim zaplanujesz trening, poświęć godzinę na prompt z pięcioma przykładami i zmierz różnicę: to najtańszy eksperyment w całym AI.

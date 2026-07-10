@@ -20,7 +20,7 @@ Three things break when one agent does everything.
 
 **Adversarial review.** The most important one. An agent doesn't catch its own bugs, for the same reason a developer doesn't spot the typo in their own code: it looks at its work through the very assumptions that produced it. If the agent misread a requirement, the same misreading sits in the code, in the tests, and in the "self-check" at the end. A reviewer needs fresh context, a different goal and a different prompt - only then does review mean anything.
 
-There is a fourth, purely technical argument: a restricted toolset as a safety net. The security reviewer in my teams is read-only - it physically cannot "helpfully fix" the code it's judging. Narrow role plus narrow tools equals a smaller blast radius.
+There is a fourth argument: restricted tools and an explicit role contract reduce the blast radius. In the current configuration reviewers also have Bash, so "read-only" is a prompt rule, not a physical write barrier. Strong isolation requires operating-system or sandbox permissions, not the prompt alone.
 
 ## Hephaestus: the forge that ships
 
@@ -35,7 +35,7 @@ Here's how the goal "add a reporting module with PDF export" flows through the t
 5. **Build.** Maximus takes the backend, Lucius the frontend and UI, Tiberius the database schema and migrations, Appius the CI/CD, infrastructure, deployments and the commit/PR mechanics. When a feature cuts through every layer and needs a single owner, Fabricius steps in and delivers a full vertical slice, database to screen.
 6. **Testing and the gate.** Fabius automates the tests, Boethius designs test cases with formal techniques (equivalence classes, boundary values), Catiline does manual and exploratory testing like a hostile user, Mercury measures performance, and Cassius runs a security review against STRIDE and OWASP - read-only again. Seneca ties it together with a QA strategy and a GO/NO-GO verdict, and Severus, the most distrustful agent on the roster, performs an adversarial review of every non-trivial diff right before merge: approve or block.
 
-Around that flow sits the support crew: Cato owns the backlog and guards priorities and scope, Cicero writes documentation verified against the actual code, Regulus turns processes into concrete, tickable checklists, and Tacitus condenses long logs and test output into a short signal before it reaches a developer.
+Around that flow sits the support crew: Cato for backlog and scope, Cicero for documentation, Regulus for checklists, Tacitus for log condensation, and Numa for Scrum ceremonies, impediments, and delivery risks.
 
 | Area | Agents | Responsibility |
 |---|---|---|
@@ -45,10 +45,10 @@ Around that flow sits the support crew: Cato owns the backlog and guards priorit
 | Architecture | Vitruvius | System design, ADRs, non-functional requirements |
 | Plan | Agrippa | Task breakdown, definition of done, coding standards |
 | Build | Maximus, Lucius, Tiberius, Appius, Fabricius | Backend, frontend, database and migrations, CI/CD and deploys, full vertical slices |
-| Testing | Fabius, Boethius, Catiline, Mercury, Cassius | Test automation, formal test design, exploratory testing, performance, security review (STRIDE, OWASP; read-only) |
-| Gate and support | Seneca, Severus, Cato, Cicero, Regulus, Tacitus | QA strategy and GO/NO-GO, adversarial pre-merge gate, backlog, docs, checklists, log condensation |
+| Testing | Fabius, Boethius, Catiline, Mercury, Cassius | Automation, test design, exploration, performance, security; reviewer roles have a no-edit contract |
+| Gate and support | Seneca, Severus, Cato, Cicero, Regulus, Tacitus, Numa | QA strategy and GO/NO-GO, pre-merge gate, backlog, docs, checklists, logs, ceremonies and risks |
 
-Each role is a single file in `.claude/agents/` - a few dozen lines, not a treatise. Janus's skeleton, for example:
+Role sources are maintained in `hephaestus/claude/agents/` and as `*.toml` plus `*.md` pairs under `hephaestus/codex/`; a Claude Code installation may expose them in `.claude/agents/`. This distinguishes the source repository from the installed location. Janus's skeleton, for example:
 
 ```markdown
 ---
@@ -77,8 +77,10 @@ Then the hunt starts, in parallel, one hunter per surface:
 - **Lynceus** - presentation and visuals: layout, number and date formats, sorting, legibility.
 - **Antigone** - accessibility against WCAG: keyboard, contrast, screen-reader semantics.
 - **Atalanta** - API: contracts, validation, data integrity.
+- **Proteus** - multi-protocol API: GraphQL, gRPC, WebSocket and asynchronous messaging.
 - **Perseus** - security against STRIDE and OWASP: access control, injection, data exposure.
 - **Hermes** - performance: payload sizes, cache headers, N+1 queries, latency under load.
+- **Tyche** - resilience and chaos: controlled failures and failure-behavior oracles.
 - **Charon** - the database; activated conditionally, only when recon confirms direct DB access.
 - **Ariadne** - deep journeys and business rules: she arranges her own preconditions (creates accounts, seeds data) to reach the states that breadth-first hunters never touch.
 
@@ -90,11 +92,11 @@ Finally, control and synthesis. Tiresias - white-box, static source analysis - r
 |---|---|---|
 | Entry point | Odysseus | Engagement mode, crew selection, deliverable contract |
 | Recon and strategy | Kalchas, Metis | System map (stack, API, roles, data); TEST-STRATEGY.md with coverage grid |
-| Bug hunters | Orion, Lynceus, Antigone, Atalanta, Perseus, Hermes, Charon, Ariadne | Functional UI, presentation, WCAG accessibility, API, STRIDE/OWASP security, performance, database (conditional), deep business journeys |
-| Baseline paths | Penelope, Theseus | Canonical UI and API journeys as the regression baseline |
+| Bug hunters | Orion, Lynceus, Antigone, Atalanta, Proteus, Perseus, Hermes, Tyche, Charon, Ariadne | UI, accessibility, API and protocols, security, performance, resilience, database and deep journeys |
+| Baseline paths | Penelope, Theseus, Pistis | Canonical UI and API journeys plus consumer contracts |
 | Automation | Atlas, Daidalos, Talos, Nike, Mnemosyne, Aegis | Shared harness and run-tests.sh; UI (Playwright), API, performance, database, security regression |
 | Source analysis | Tiresias | White-box; only with source-code access |
-| Control and reporting | Aristarchus, Minos, Kleio | Test-code review (read-only, last), bug triage and deduplication, QA report and acceptance checklist |
+| Control and reporting | Aristarchus, Asklepios, Minos, Kleio | Test-code review, brownfield suite sanitation, triage and QA reporting |
 
 After a full audit, the output looks like this:
 

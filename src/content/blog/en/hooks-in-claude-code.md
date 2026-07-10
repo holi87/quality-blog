@@ -14,7 +14,7 @@ An agent can skip a skill, it can lose a CLAUDE.md instruction by step forty of 
 
 Everything I have described on this blog so far - prompts, skills, MCP servers, subagents - shares one trait: the model decides whether to use it. You can write "ALWAYS run tests before committing" in CLAUDE.md in capital letters and it will work for twenty sessions. In the twenty-first, the agent will have a long context, the instruction will blur among three hundred other lines, and the commit will go out without tests. Not because the model is malicious. Because an instruction in a prompt is a statistical suggestion, not a hard rule.
 
-A hook flips that relationship. It is a script or shell command that the agent's environment runs by itself, at a strictly defined moment in the work cycle: before a tool call, after it, at session start, when a response finishes. The model does not know the hook exists until it blocks it. It cannot skip it, because it is not the one invoking it.
+A hook flips that relationship. It is a script or shell command that the agent's environment runs by itself, at a strictly defined moment in the work cycle: before a tool call, after it, at session start, when a response finishes. The model may know that hooks are configured, but it does not decide whether they run, so it cannot simply skip them.
 
 For me, this difference translates into a simple design rule: everything that is team policy or a security rule goes into a hook. Everything that is knowledge and a way of working goes into skills and CLAUDE.md. Policy must be deterministic. Knowledge can be probabilistic.
 
@@ -27,19 +27,19 @@ Claude Code has several attachment points, but in practice four of them deliver 
 - **Stop** - runs when the agent decides it has finished its response. The ideal moment for a quality check of the whole: do the tests pass, are there uncommitted files left in the working tree, did the agent leave a TODO in the code.
 - **SessionStart** - runs at the beginning of a session. It blocks nothing; instead it injects context: the current branch state, the list of open issues, a reminder of conventions. A cheaper and more reliable alternative to pasting the same thing in by hand.
 
-The configuration lives in `settings.json` (in the repo: `.claude/settings.json`, globally: `~/.claude/settings.json`). Each hook is a pair: a tool-matching pattern plus a command to run. A hook in the repo is versioned together with the code, so the whole team gets the same gates after a plain `git pull`.
+The configuration lives in `settings.json` (in the repo: `.claude/settings.json`, globally: `~/.claude/settings.json`). Each hook consists of an event, an optional matcher, and one or more handlers. A hook in the repo is versioned with the code, but Claude Code runs project hooks only in a trusted project - a plain `git pull` should not mean blindly executing a new script.
 
 ## The exit code as the blocking mechanism
 
-The entire power of hooks sits in one very Unix-like mechanism: the script's exit code. The hook receives JSON describing the action on standard input and finishes with one of three outcomes:
+For command hooks, the script's exit code is an important mechanism. The hook receives JSON describing the event on standard input, but the effect of an exit code depends on the event type:
 
-- **Code 0** - let it through. The action proceeds, the agent notices nothing.
-- **Code 2** - block. The action is not executed, and whatever the script printed to standard error goes back to the agent as feedback. The model reads the reason for the block and corrects its plan.
-- **Any other code** - a non-fatal error. The environment shows a warning, but the action is not stopped.
+- **Code 0** - the hook completed successfully. Without an explicit JSON decision, it does not automatically approve the tool; the normal permission flow still applies.
+- **Code 2** - a blocking error. For `PreToolUse` it stops the planned call and returns standard error to the agent as feedback. For events that run after an action, it cannot undo the tool that already ran.
+- **Any other code** - a non-fatal error. The environment shows a warning but does not treat it as a block.
 
-That second point is crucial and often underrated. A block is not a blind wall - it is a message. If the script prints "commit blocked: tests were not run in this session, run npm test first", the agent will do exactly that in the next step. A well-written hook does not just enforce a rule; it teaches the model how to satisfy it.
+That second point is crucial and often underrated. A `PreToolUse` block is not a blind wall - it is a message. If the script prints "commit blocked: tests were not run in this session, run npm test first", the agent gets a concrete instruction for correcting its plan. A well-written hook does not just enforce a rule; it shows the model how to satisfy it.
 
-> A prompt is a request, a skill is an offer, MCP is a possibility. A hook is the only layer where the word "always" actually means always.
+> A prompt is a request, a skill is a procedure, MCP is a capability. A hook can be a hard gate when the right event and blocking decision are configured correctly.
 
 ## Example 1: blocking commits without tests
 
@@ -116,4 +116,4 @@ And one thing that is easy to forget: hooks run code on your machine with your p
 
 ## Summary
 
-Hooks are the deterministic layer of working with an agent: the environment runs them by itself, and exit code 2 lets you mechanically block an action while simultaneously telling the model how to satisfy the rule. Four types cover most needs - PreToolUse for gates, PostToolUse for cleanup, Stop for the final check, SessionStart for feeding context. Start with the three classics: blocking commits without tests, lint after edits, and the secrets guard. Policy goes to a hook, knowledge to a skill, integrations to MCP - and no more than a few gates per repo, so the agent still has room to breathe. One evening of configuration pays for itself at the first blocked accident.
+Hooks are the deterministic layer of working with an agent: the environment runs them by itself, and a blocking `PreToolUse` result lets you stop an action while simultaneously telling the model how to satisfy the rule. Four types cover most needs - PreToolUse for gates, PostToolUse for cleanup, Stop for the final check, SessionStart for feeding context. Start with the three classics: blocking commits without tests, lint after edits, and the secrets guard. Policy goes to a hook, knowledge to a skill, integrations to MCP - and no more than a few gates per repo, so the agent still has room to breathe. One evening of configuration pays for itself at the first blocked accident.

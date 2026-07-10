@@ -8,19 +8,19 @@ readingTime: 9
 author: [JS, GH]
 ---
 
-Monitoring with AI analysis does not have to mean sending footage of your garden to the camera manufacturer's cloud. A local stack - Frigate for detection, LLM Vision for event descriptions, Home Assistant for notifications - gives you monitoring that says "the courier left a package" instead of "motion detected", with recordings that never leave the house. In this part, we put it all together and draw the boundaries a camera should not cross.
+Monitoring with AI analysis does not have to mean sending footage of your garden to the camera manufacturer's cloud. Frigate for detection, a local vision model for event descriptions, and Home Assistant for notifications can give you monitoring that says "the courier left a package" instead of "motion detected". Recordings stay inside the house only when image description is also local and the configuration does not send snapshots to cloud services. In this part, we assemble that version and draw the boundaries a camera should not cross.
 
 ## Frigate: eyes that send nothing outside
 
-In the [first part of the series](/en/blog/ai-smart-home-llm-vision/), we showed how a vision model interprets images. Here we close the architecture from the source side. Frigate is a local recorder with object detection: it reads camera streams, recognizes people, cars, animals, and packages, records events, and exposes everything to Home Assistant. The whole process happens on your hardware.
+In the [first part of the series](/en/blog/ai-smart-home-llm-vision/), we showed how a vision model interprets images. Here we close the architecture from the source side. Frigate is a local recorder with object detection: it reads camera streams, recognizes objects supported by the selected model, records events, and exposes them to Home Assistant. Only `person` is tracked by default; cars, animals, and other classes must be configured, while the `package` label requires a Frigate+ model or another model that supports it. Detection itself happens on your hardware.
 
-The condition for sensible operation is an accelerator for detection. On the CPU alone, Frigate will handle one or two cameras and eat half the server doing it. With a Coral accelerator for about 60 euros, or with an Intel GPU and OpenVINO, the same server analyzes several streams effortlessly. It is the best-spent money in the whole project - cheap detection at the edge means the more expensive vision model analysis only kicks in when there is something worth analyzing.
+For a larger installation, choose an appropriate hardware detector. Frigate provides a CPU detector but does not recommend it; OpenVINO is often more efficient on compatible Intel hardware, and Coral is another option. Camera capacity depends on detect-stream resolution, frame rate, model, and the exact hardware, so it cannot be promised from the accelerator name alone. Cheap detection at the edge means the more expensive vision-model analysis runs only when there is something worth analyzing.
 
-## Zones and masks: the camera looks only where it should
+## Zones and masks: relevant alerts are not a privacy mask
 
-The biggest quality gain in monitoring comes not from a better model, but from framing the problem well. Frigate lets you draw zones and masks on the image. The "driveway" zone and the "gate" zone are different events with different weights. A mask over the sidewalk and the street means pedestrians and passing cars simply do not exist for the system - not for detection and not for event recordings.
+The biggest quality gain in monitoring comes not from a better model, but from framing the problem well. Frigate lets you draw zones, motion masks, and object-filter masks on the image. The "driveway" zone and the "gate" zone are different events with different weights. If you do not want alerts or review items from the sidewalk, define a zone on your own property and require it for review. A motion mask does not hide pixels, remove an area from recordings, or guarantee that an object will not be detected. Privacy requires correct camera framing or a persistent privacy mask applied by the camera or video pipeline.
 
-This is not only a matter of peace of mind, but also of the neighbors' privacy. A camera aimed at your own property, with a mask over the fragment of someone else's space in the frame, is a standard worth adopting before anyone asks for it. A good notification starts with a well-defined "where": "a person in the gate zone for more than 10 seconds" is a completely different signal than "a person anywhere in the frame".
+This is not only a matter of peace of mind, but also of the neighbors' privacy. The standard should be framing limited to your own property; a detection mask is not a substitute for physical framing or an image privacy mask. A good notification starts with a well-defined "where": "a person in the gate zone for more than 10 seconds" is a completely different signal than "a person anywhere in the frame".
 
 ## From "motion detected" to "the courier left a package"
 

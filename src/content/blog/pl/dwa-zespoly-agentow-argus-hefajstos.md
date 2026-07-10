@@ -20,7 +20,7 @@ Trzy rzeczy psują się, gdy jeden agent robi wszystko.
 
 **Adwersarialność.** Punkt najważniejszy. Agent nie łapie własnych błędów - z tego samego powodu, z którego programista nie widzi literówki we własnym kodzie: patrzy na swoje dzieło przez te same założenia, którymi je stworzył. Jeśli agent źle zrozumiał wymaganie, to samo złe zrozumienie siedzi i w kodzie, i w testach, i w "samokontroli" na końcu. Recenzent musi mieć świeży kontekst, inny cel i inny prompt - dopiero wtedy przegląd cokolwiek znaczy.
 
-Jest jeszcze czwarty argument, czysto techniczny: ograniczony zestaw narzędzi jako zabezpieczenie. Agent od przeglądu bezpieczeństwa w moich zespołach ma dostęp wyłącznie do odczytu - fizycznie nie może "przy okazji poprawić" kodu, który ocenia. Wąska rola plus wąskie narzędzia to mniejsze pole do szkód.
+Jest jeszcze czwarty argument: ograniczenia narzędzi i jawny kontrakt roli zmniejszają pole do szkód. W obecnej konfiguracji recenzenci mają także Bash, więc „tylko odczyt" jest regułą promptu, a nie fizyczną blokadą zapisu. Mocna izolacja wymaga uprawnień systemowych lub piaskownicy, nie samej instrukcji.
 
 ## Hephaestus: kuźnia, która dowozi
 
@@ -35,7 +35,7 @@ Tak wygląda przepływ celu "dodaj do aplikacji moduł raportów z eksportem do 
 5. **Budowa.** Maximus bierze backend, Lucius frontend i interfejs użytkownika, Tiberius schemat bazy danych i migracje, Appius CI/CD, infrastrukturę, wdrożenia oraz mechanikę commitów i pull requestów (zgłoszeń zmian do przeglądu). Gdy funkcjonalność przecina wszystkie warstwy i potrzebny jest jeden właściciel, wchodzi Fabricius i dostarcza pełny pionowy wycinek: od bazy po ekran.
 6. **Testy i bramka.** Fabius automatyzuje testy, Boethius projektuje przypadki technikami formalnymi (klasy równoważności, wartości brzegowe), Catiline testuje ręcznie i eksploracyjnie jak złośliwy użytkownik, Mercury mierzy wydajność, a Cassius robi przegląd bezpieczeństwa według STRIDE i OWASP - znów wyłącznie w trybie odczytu. Seneca spina całość strategią QA i werdyktem GO/NO-GO, a Severus, najbardziej nieufny agent w składzie, wykonuje adwersarialny przegląd każdej nietrywialnej zmiany tuż przed scaleniem: zatwierdza albo blokuje.
 
-Wokół tego przepływu pracuje zaplecze: Cato jest właścicielem backlogu (rejestru prac) i pilnuje priorytetów oraz zakresu, Cicero pisze dokumentację weryfikowaną względem faktycznego kodu, Regulus zamienia procesy w konkretne, odhaczalne listy kontrolne, a Tacitus kondensuje długie logi i wyniki testów do krótkiego sygnału, zanim trafią do programisty.
+Wokół tego przepływu pracuje zaplecze: Cato pilnuje backlogu, Cicero dokumentacji, Regulus list kontrolnych, Tacitus kondensacji logów, a Numa ceremonii Scrum, przeszkód i ryzyk dostarczenia.
 
 | Obszar | Agenci | Odpowiedzialność |
 |---|---|---|
@@ -45,10 +45,10 @@ Wokół tego przepływu pracuje zaplecze: Cato jest właścicielem backlogu (rej
 | Architektura | Vitruvius | Projekt systemu, ADR, wymagania niefunkcjonalne |
 | Plan | Agrippa | Podział na zadania, definicja ukończenia, standardy kodowania |
 | Budowa | Maximus, Lucius, Tiberius, Appius, Fabricius | Backend, frontend, baza danych i migracje, CI/CD i wdrożenia, pełne pionowe wycinki |
-| Testy | Fabius, Boethius, Catiline, Mercury, Cassius | Automatyzacja, projekt przypadków technikami formalnymi, testy eksploracyjne, wydajność, przegląd bezpieczeństwa (STRIDE, OWASP; tylko odczyt) |
-| Bramka i zaplecze | Seneca, Severus, Cato, Cicero, Regulus, Tacitus | Strategia QA i GO/NO-GO, adwersarialna bramka przed scaleniem, backlog, dokumentacja, listy kontrolne, kondensacja logów |
+| Testy | Fabius, Boethius, Catiline, Mercury, Cassius | Automatyzacja, projekt przypadków, eksploracja, wydajność, bezpieczeństwo; role recenzenckie mają kontrakt bez edycji |
+| Bramka i zaplecze | Seneca, Severus, Cato, Cicero, Regulus, Tacitus, Numa | Strategia QA i GO/NO-GO, bramka przed scaleniem, backlog, dokumentacja, listy kontrolne, logi, ceremonie i ryzyka |
 
-Każda rola to jeden plik w `.claude/agents/` - kilkadziesiąt linii, nie traktat. Dla przykładu szkielet Janusa:
+Źródła ról są utrzymywane w `hephaestus/claude/agents/` oraz jako pary `*.toml` i `*.md` w `hephaestus/codex/`; instalacja Claude Code może wystawiać je w `.claude/agents/`. To rozróżnia repozytorium źródłowe od katalogu instalacyjnego. Dla przykładu szkielet Janusa:
 
 ```markdown
 ---
@@ -77,8 +77,10 @@ Potem rusza polowanie, równolegle, po powierzchniach:
 - **Lynceus** - prezentacja i wizualia: układ, formaty liczb i dat, sortowanie, czytelność.
 - **Antigone** - dostępność według WCAG: klawiatura, kontrast, semantyka dla czytników ekranu.
 - **Atalanta** - API: kontrakty, walidacja, spójność danych.
+- **Proteus** - API wieloprotokołowe: GraphQL, gRPC, WebSocket i komunikacja asynchroniczna.
 - **Perseus** - bezpieczeństwo według STRIDE i OWASP: kontrola dostępu, wstrzyknięcia, wycieki danych.
 - **Hermes** - wydajność: rozmiary odpowiedzi, nagłówki pamięci podręcznej, zapytania N+1, opóźnienia pod obciążeniem.
+- **Tyche** - odporność i chaos: kontrolowane awarie oraz wyrocznie zachowania przy błędach.
 - **Charon** - baza danych; aktywowany warunkowo, tylko gdy rozpoznanie potwierdzi bezpośredni dostęp do bazy.
 - **Ariadne** - głębokie ścieżki i reguły biznesowe: sama aranżuje warunki wstępne (zakłada konta, tworzy dane), żeby dotrzeć do stanów, których łowcy szerokości nigdy nie zobaczą.
 
@@ -90,11 +92,11 @@ Na końcu wchodzi kontrola i synteza. Tiresias - biała skrzynka, statyczna anal
 |---|---|---|
 | Wejście | Odysseus | Tryb zaangażowania, dobór ekipy, kontrakt na wyniki |
 | Rozpoznanie i strategia | Kalchas, Metis | Mapa systemu (stos, API, role, dane); TEST-STRATEGY.md z siatką pokrycia |
-| Łowcy błędów | Orion, Lynceus, Antigone, Atalanta, Perseus, Hermes, Charon, Ariadne | UI funkcjonalne, prezentacja, dostępność WCAG, API, bezpieczeństwo STRIDE/OWASP, wydajność, baza danych (warunkowo), głębokie ścieżki biznesowe |
-| Ścieżki bazowe | Penelope, Theseus | Kanoniczne ścieżki UI i API jako linia bazowa regresji |
+| Łowcy błędów | Orion, Lynceus, Antigone, Atalanta, Proteus, Perseus, Hermes, Tyche, Charon, Ariadne | UI, dostępność, API i protokoły, bezpieczeństwo, wydajność, odporność, baza danych i głębokie ścieżki |
+| Ścieżki bazowe | Penelope, Theseus, Pistis | Kanoniczne ścieżki UI i API oraz kontrakty konsumenckie |
 | Automatyzacja | Atlas, Daidalos, Talos, Nike, Mnemosyne, Aegis | Wspólny szkielet i run-tests.sh; testy UI (Playwright), API, wydajności, bazy danych, regresja bezpieczeństwa |
 | Analiza źródeł | Tiresias | Biała skrzynka; tylko przy dostępie do kodu źródłowego |
-| Kontrola i raport | Aristarchus, Minos, Kleio | Przegląd kodu testów (tylko odczyt, na końcu), triage i deduplikacja błędów, raport QA i lista kontrolna akceptacji |
+| Kontrola i raport | Aristarchus, Asklepios, Minos, Kleio | Przegląd kodu testów, stabilizacja istniejącego zestawu, triaż i raport QA |
 
 Struktura wyników po pełnym audycie wygląda tak:
 

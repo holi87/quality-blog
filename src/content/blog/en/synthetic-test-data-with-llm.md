@@ -8,13 +8,13 @@ readingTime: 9
 author: GH
 ---
 
-Copying production data into test environments is a ticking GDPR bomb: real names, addresses, and national ID numbers land in databases with weaker safeguards, accessible to half the company and its subcontractors. An LLM offers a real alternative - data statistically similar to production and entirely made up. But "ask the model for a thousand customers" is a recipe for data that looks good and is useless for anything. In this post I show how to do it properly: from a data contract, through consistency validation, to edge cases on demand - and the three traps almost everyone falls into.
+Copying production data into test environments is a ticking GDPR bomb: real names, addresses, and national ID numbers land in databases with weaker safeguards, accessible to half the company and its subcontractors. An LLM can help create an alternative - artificial data that preserves needed properties without copying records. The label "synthetic" does not by itself prove anonymity, however. You still need to assess singling out, linkability, and inference risk. But "ask the model for a thousand customers" is a recipe for data that looks good and is useless for anything. In this post I show how to do it properly: from a data contract, through consistency validation, to edge cases on demand - and the three traps almost everyone falls into.
 
 ## Why a production copy is a ticking bomb
 
 The legal argument is well known: personal data in a test environment is still personal data, with all the obligations - a processing basis, access restrictions, retention, breach notifications. Test environments almost by definition have a wider circle of access and weaker monitoring, so a leak from there is more likely, and explaining it to the regulator is harder.
 
-But there is also an engineering argument that gets discussed less often: a production copy is bad test data. It contains millions of average records and not a single extreme one - the one you happen to need. Anonymization done properly destroys distributions and relationships; done sloppily - it does not anonymize. I have seen both variants: a dataset so heavily masked that report tests stopped making sense, and a dataset "anonymized" by swapping first names, in which the phone numbers and addresses stayed original. Data synthesis is therefore not just a dodge around GDPR. It is an opportunity to finally design test data instead of inheriting it.
+There is also an engineering argument that gets discussed less often: a production copy can be a poor test set. It contains many average records while needed edge cases disappear in the mass. A well-chosen anonymization method can preserve some distributions and relationships, though usually with a utility cost; a sloppy one leaves people identifiable. I have seen both variants: a dataset so heavily masked that report tests stopped making sense, and a dataset "anonymized" by swapping first names while phone numbers and addresses stayed original. Synthesis is an opportunity to design test data instead of inheriting it, but it does not remove the need for a data-protection assessment.
 
 ## Contract first, generation second
 
@@ -22,7 +22,7 @@ The first principle: the model does not invent the data structure, it fills in a
 
 The generating prompt gets three things: the contract, the business rules, and distribution parameters ("80 percent individual customers, 20 percent business; age 18 to 95 with a median of 42"). The output must be in a machine format - JSON or CSV - never in prose. For large volumes, an indirect variant works better: the model does not generate a million records (that is expensive and slow), it generates a Python generator script conforming to the contract, and the script produces the data locally. The LLM designs the variety, the code provides the scale.
 
-How is the model supposed to know what realistic distributions look like if we do not show it production? From two legitimate sources. The first is aggregated statistics: the age distribution, the proportions of customer types, a histogram of order values - numbers computed by a query on production run by someone with access, with not a single personal record in the result. The second is the team's domain knowledge: "business customers order less often, but five times bigger", "registrations peak in January". Both sources fit in the prompt, and neither carries personal data outside the production systems.
+How is the model supposed to know what realistic distributions look like if we do not show it production? One source is aggregated statistics: age distributions, customer-type proportions, and order-value histograms. An aggregate is not automatically anonymous: small groups, rare combinations, and exact values can enable singling out or inference. Before sending it to an external model, apply minimum group sizes, rounding or noise, a privacy review, and company confidentiality rules. The second source is the team's domain knowledge. Raw records never enter the prompt, and every aggregate is assessed for privacy risk.
 
 ## Consistency validation, or distrust as a process
 
@@ -33,7 +33,7 @@ I treat generated data like any other unverified material: it does not enter an 
 - **Checksums and derived rules:** a national ID with a correct check digit, a tax ID with a correct weighted sum, the gross amount equal to net plus VAT, the sum of line items equal to the order value.
 - **Distributions:** whether the requested proportions roughly hold - if I asked for 20 percent companies and got 3 percent, the generation goes back for a redo.
 
-A practical note on identification numbers: models can generate a national ID that looks correct but has a wrong check digit - or, worse, a correct one, meaning it potentially belongs to a living person. That is why identifiers are computed by validator code, not the model: the date and sex from the record, a random series, the check digit from the algorithm. The model supplies the person, the code supplies the number.
+A practical note on identification numbers: models can generate a national ID that looks correct, while a valid checksum does not prove the number belongs to nobody. Prefer your own test identifiers and prevent them from reaching external systems. If you are testing the PESEL algorithm itself, generate deterministic cases in code, label the set as test-only, and do not combine the numbers with a realistic full identity. The model should not generate such identifiers.
 
 ## Edge cases on demand - where the LLM truly shines
 
@@ -62,7 +62,7 @@ First: **monotony**. A model asked for a thousand records without distribution p
 
 Second: **patterns the model avoids**. Models have learned habits: they round amounts, prefer popular names, avoid dates from before their knowledge, steer clear of culturally awkward values. As a result, the synthetic population has holes exactly where production fills them. You catch this trap by comparing synthetic distributions against production ones - at the level of statistics, not records, so without carrying personal data anywhere.
 
-Third: **accidental similarity to real people**. A generated "Tomasz Wiśniewski, 7 Polna Street, Radom" almost certainly exists somewhere. As long as it is a coincidence at the level of individual fields, the risk is academic - but you must never show the model real records as templates to imitate, because then the similarity stops being accidental and turns into pseudonymization on the cheap. Only statistics and schemas go to the model, never raw production records.
+Third: **accidental similarity to real people**. A generated "Tomasz Wiśniewski, 7 Polna Street, Radom" may match a real person. Do not assume that risk is merely academic. Use clearly fictional domains and addresses, avoid complete realistic identities, block email and payment side effects, and test linkability. Never show the model real records as templates. Only privacy-reviewed aggregates and schemas go to the model, never raw production records.
 
 > Synthetic data is not a risk-free copy of production. It is a separate engineering product with its own contract, its own validation, and its own failure modes - and only treated that way does it become both safer and better than the copy.
 
