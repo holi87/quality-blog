@@ -1,7 +1,7 @@
 ---
 title: "Argus i Hephaestus: dwa zespoły agentów AI, jeden buduje, drugi kontroluje"
 description: "Jak zbudowałem w Claude Code dwa zespoły wyspecjalizowanych subagentów: Hephaestus dostarcza oprogramowanie, Argus poluje na błędy. Role, koordynatorzy, współpraca i pułapki orkiestracji."
-date: 2026-09-02
+date: 2026-07-21
 tags: ["ai", "agenci", "claude-code", "orkiestracja", "subagenci"]
 lang: pl
 readingTime: 15
