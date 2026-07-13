@@ -8,7 +8,7 @@ readingTime: 15
 author: GH
 ---
 
-Przez pierwsze miesiące pracy z Claude Code jeden agent w jednym oknie załatwiał wszystko. Aż przestał. Przy zadaniach typu "nowa funkcjonalność od wymagań po wdrożenie" albo "pełny audyt jakości aplikacji" pojedynczy agent gubił kontekst, mieszał rolę architekta z rolą testera i - co najgorsze - sam wystawiał sobie laurkę za własny kod. Dlatego zbudowałem dwa zespoły wyspecjalizowanych subagentów: Hephaestusa, który buduje, i Argusa, który patrzy mu na ręce. W tym wpisie pokazuję, jak te zespoły są zorganizowane, jak współpracują i kiedy taka orkiestracja ma sens, a kiedy jest przerostem formy nad treścią.
+Przez pierwsze miesiące pracy z Claude Code jeden agent w jednym oknie załatwiał wszystko. Aż przestał. Przy zadaniach typu "nowa funkcjonalność od wymagań po wdrożenie" albo "pełny audyt jakości aplikacji" pojedynczy agent gubił kontekst, mieszał rolę architekta z rolą testera i - co najgorsze - sam wystawiał sobie laurkę za własny kod. Dlatego zbudowałem dwa zespoły wyspecjalizowanych subagentów: Hephaestusa, który buduje, i Argusa, który patrzy mu na ręce. Oba są publiczne - mieszkają w repozytorium [holak-teams](https://github.com/holi87/holak-teams), które jest jednocześnie marketplace'em pluginów Claude Code, więc wszystko, co opisuję niżej, można zainstalować i obejrzeć w źródłach. W tym wpisie pokazuję, jak te zespoły są zorganizowane, jak współpracują i kiedy taka orkiestracja ma sens, a kiedy jest przerostem formy nad treścią.
 
 ## Dlaczego zespół zamiast jednego agenta
 
@@ -20,11 +20,11 @@ Trzy rzeczy psują się, gdy jeden agent robi wszystko.
 
 **Adwersarialność.** Punkt najważniejszy. Agent nie łapie własnych błędów - z tego samego powodu, z którego programista nie widzi literówki we własnym kodzie: patrzy na swoje dzieło przez te same założenia, którymi je stworzył. Jeśli agent źle zrozumiał wymaganie, to samo złe zrozumienie siedzi i w kodzie, i w testach, i w "samokontroli" na końcu. Recenzent musi mieć świeży kontekst, inny cel i inny prompt - dopiero wtedy przegląd cokolwiek znaczy.
 
-Jest jeszcze czwarty argument: ograniczenia narzędzi i jawny kontrakt roli zmniejszają pole do szkód. W obecnej konfiguracji recenzenci mają także Bash, więc „tylko odczyt" jest regułą promptu, a nie fizyczną blokadą zapisu. Mocna izolacja wymaga uprawnień systemowych lub piaskownicy, nie samej instrukcji.
+Jest jeszcze czwarty argument: ograniczenia narzędzi i jawny kontrakt roli zmniejszają pole do szkód. W Hephaestusie „tylko odczyt" recenzentów to wciąż reguła promptu, bo mają także Bash - mocna izolacja wymaga uprawnień systemowych lub piaskownicy, nie samej instrukcji. Argus idzie o krok dalej: wtyczka instaluje hook, który fizycznie blokuje modyfikację testowanej aplikacji, oraz autoryzację ryzykownych akcji w modelu „domyślnie odmawiaj" - nieznane, przejściowe i produkcyjne środowiska pozostają tylko do odczytu, a dowody przechodzą przez redakcję danych wrażliwych, zanim trafią do raportu.
 
 ## Hephaestus: kuźnia, która dowozi
 
-Hephaestus wziął nazwę od Hefajstosa, boga-kowala. Zadanie zespołu jest jedno: wykuć działające oprogramowanie. Technicznie to zestaw subagentów Claude Code - każdy ma własny prompt systemowy, wąski zakres odpowiedzialności i ograniczony zestaw narzędzi. Punkt wejścia też jest jeden: **Marcus**, lider zespołu. To z nim rozmawiam. Marcus dekomponuje cel, dobiera skład pod to konkretne zadanie, produkuje plan delegacji, a na końcu syntezuje wyniki i raportuje.
+Hephaestus wziął nazwę od Hefajstosa, boga-kowala. Zadanie zespołu jest jedno: wykuć działające oprogramowanie. Technicznie to 22 subagentów Claude Code o rzymskich imionach - każdy ma własny prompt systemowy, wąski zakres odpowiedzialności, ograniczony zestaw narzędzi i przypisany model: koordynator i najbardziej krytyczni recenzenci działają na Opusie, budowniczowie na Sonnecie, lekkie role zaplecza na Haiku. Punkt wejścia też jest jeden: **Marcus**, lider zespołu. To z nim rozmawiam. Marcus dekomponuje cel, dobiera skład pod to konkretne zadanie, produkuje plan delegacji, a na końcu syntezuje wyniki i raportuje. Układ jest gwiaździsty: agenci nie rozmawiają ze sobą, wszystko przechodzi przez Marcusa. Do tego dochodzą kontrakty wykonania - każdy roboczy agent kończy ustaloną kopertą wyniku ze statusem COMPLETE, PARTIAL, BLOCKED albo UNVERIFIED i dowodami, każdy plan kodowania kończy się bramką realnego uruchomienia, nieudana naprawa po dwóch cyklach eskaluje do mocniejszego modelu albo do Codex, a operacje destrukcyjne wymagają mojego jawnego potwierdzenia.
 
 Tak wygląda przepływ celu "dodaj do aplikacji moduł raportów z eksportem do PDF":
 
@@ -48,13 +48,22 @@ Wokół tego przepływu pracuje zaplecze: Cato pilnuje backlogu, Cicero dokument
 | Testy | Fabius, Boethius, Catiline, Mercury, Cassius | Automatyzacja, projekt przypadków, eksploracja, wydajność, bezpieczeństwo; role recenzenckie mają kontrakt bez edycji |
 | Bramka i zaplecze | Seneca, Severus, Cato, Cicero, Regulus, Tacitus, Numa | Strategia QA i GO/NO-GO, bramka przed scaleniem, backlog, dokumentacja, listy kontrolne, logi, ceremonie i ryzyka |
 
-Źródła ról są utrzymywane w `hephaestus/claude/agents/` oraz jako pary `*.toml` i `*.md` w `hephaestus/codex/`; instalacja Claude Code może wystawiać je w `.claude/agents/`. To rozróżnia repozytorium źródłowe od katalogu instalacyjnego. Dla przykładu szkielet Janusa:
+Całe repo `holak-teams` jest marketplace'em pluginów Claude Code, więc zespoły instaluje się trzema komendami:
+
+```text
+/plugin marketplace add holi87/holak-teams
+/plugin install hephaestus@holak-teams
+/plugin install argus@holak-teams
+```
+
+Źródła ról są utrzymywane jako płaska lista definicji w `hephaestus/claude/agents/` (korzeniem wtyczki jest katalog `claude/`), a warianty dla Codex jako pary `*.toml` i `*.md` w `hephaestus/codex/` - te same nazwy, te same role, dwa środowiska uruchomieniowe. Dla przykładu szkielet Janusa:
 
 ```markdown
 ---
 name: janus
 description: Weryfikacja gotowości środowiska przed startem zespołu.
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, LS, Bash
+model: sonnet
 ---
 Jesteś Janusem, strażnikiem wejścia. Sprawdzasz serwery MCP,
 narzędzia CLI, uwierzytelnienie i zależności pod konkretny cel.
@@ -65,9 +74,9 @@ oraz dokładną komendę naprawczą dla każdej wykrytej luki.
 
 ## Argus: sto oczu na jakość
 
-Argus to w mitologii stuoki strażnik - ten, który widzi wszystko naraz. Trudno o lepszą nazwę dla zespołu QA. O ile Hephaestus jest zbudowany wokół cyklu dostarczania, Argus jest zbudowany wokół powierzchni, na których psuje się jakość: każda istotna powierzchnia aplikacji ma swojego dedykowanego łowcę.
+Argus to w mitologii stuoki strażnik - ten, który widzi wszystko naraz. Trudno o lepszą nazwę dla zespołu QA. O ile Hephaestus jest zbudowany wokół cyklu dostarczania, Argus - 27 ról o greckich imionach - jest zbudowany wokół powierzchni, na których psuje się jakość: każda istotna powierzchnia aplikacji ma swojego dedykowanego łowcę.
 
-Punktem wejścia jest **Odysseus**. Nie zaczyna od wysyłania agentów - zaczyna od decyzji, ile zaangażowania jest warte to konkretne zadanie. Tryby sięgają od szybkiego rekonesansu, przez polowanie na błędy na wybranych powierzchniach, po pełny audyt z automatyzacją regresji. Wybór trybu to w praktyce wybór kosztu - wrócę do tego przy pułapkach.
+Punktem wejścia w Claude Code jest komenda **`/argus:run`** - orkiestracja zostaje w głównym wątku rozmowy, a polityką sterującą jest **Odysseus** (w wariancie Codex to on jest bezpośrednim punktem wejścia). Zaangażowanie nie zaczyna się od wysyłania agentów, tylko od wyboru jednego z czterech trybów: **A** - pełny audyt QA ze strategią, testami przez jeden skrypt uruchomieniowy i raportem zbiorczym, **B** - głębokie polowanie na błędy z rejestrem znalezisk, ale bez budowy frameworka, **C** - budowa zestawu testów od zera, **D** - rozszerzenie istniejącego zestawu w miejscu, bez stawiania konkurencyjnego szkieletu. Wybór trybu to w praktyce wybór kosztu - wrócę do tego przy pułapkach.
 
 Zanim ktokolwiek zacznie polować, pracuje dwójka analityków. Kalchas robi rozpoznanie: mapuje stos technologiczny, punkty końcowe API (endpointy), role użytkowników i dane. Metis na tej podstawie pisze strategię testów do pliku TEST-STRATEGY.md z jawną siatką pokrycia: co testujemy, czym, w jakiej kolejności i dlaczego. Ta siatka jest później twardym kryterium odbioru - na końcu każda komórka musi być wypełniona albo jawnie uzasadniona jako pominięta.
 
@@ -109,10 +118,13 @@ solution/
 bugs/
   ORI-001-formularz.md  # jeden plik = jeden błąd, prefiks łowcy
   PER-003-idor.md
+  BUG-LEDGER.md         # Minos: zdeduplikowany rejestr po triażu
 tests/
   ui/  api/  perf/  security/
 run-tests.sh            # Atlas: jedno wejście do całej regresji
 ```
+
+Automatyzacja nie startuje od pustego katalogu: wtyczka wozi ze sobą gotowe szablony frameworków testowych (TypeScript z Playwright, Java, Python), a każdy z nich implementuje te same cztery tryby uruchomień i oddaje wynik w jednym wspólnym formacie raportu. Dzięki temu zbiorczy wynik regresji wygląda tak samo niezależnie od stosu technologicznego projektu.
 
 ## Jak grają razem
 
@@ -131,7 +143,7 @@ Kluczowe są dwie własności tego styku. Po pierwsze **jeden raport**: choć pr
 
 ## Czego się nauczyłem: pułapki
 
-**Koszt tokenów jest realny.** Pełny skład Argusa na średniej wielkości aplikacji potrafi zużyć wielokrotność tego, co jedna porządna sesja z pojedynczym agentem. Równoległość skraca czas zegarowy, ale mnoży koszty - ośmiu łowców czyta tę samą aplikację osiem razy. Dlatego tryby zaangażowania Odysseusa to nie ozdoba, tylko mechanizm kontroli wydatków: na co dzień używam trybów ograniczonych, a pełny audyt uruchamiam przed ważnymi wydaniami.
+**Koszt tokenów jest realny.** Pełny skład Argusa na średniej wielkości aplikacji potrafi zużyć wielokrotność tego, co jedna porządna sesja z pojedynczym agentem. Równoległość skraca czas zegarowy, ale mnoży koszty - ośmiu łowców czyta tę samą aplikację osiem razy. Dlatego cztery tryby zaangażowania to nie ozdoba, tylko mechanizm kontroli wydatków: na co dzień używam trybów ograniczonych, a pełny audyt (tryb A) uruchamiam przed ważnymi wydaniami.
 
 **Teatr orkiestracji.** Największe ryzyko nie jest techniczne. Łatwo zbudować zespół, który wygląda imponująco i produkuje imponująco wyglądające artefakty, których nikt nie czyta. Test jest prosty: jeśli wynik danej roli nigdy nie zmienia żadnej decyzji, rola jest dekoracją. Kilka ról wyciąłem właśnie po tym teście. Pisałem o tym sceptycznie we wpisie o [orkiestracji wieloagentowej](/pl/blog/orkiestracja-wieloagentowa-kiedy-jeden-agent/) i podtrzymuję tamtą tezę: zespół agentów trzeba umieć uzasadnić, a nie tylko zbudować.
 
@@ -139,11 +151,11 @@ Kluczowe są dwie własności tego styku. Po pierwsze **jeden raport**: choć pr
 
 **Koordynator to najsłabsze ogniwo.** Marcus i Odysseus decydują o wszystkim: złej dekompozycji celu nie uratują najlepsi specjaliści, bo każdy z nich rzetelnie wykona niewłaściwe zadanie. Prompty koordynatorów są w obu zespołach najdłuższe i najczęściej poprawiane - i tak powinno być.
 
-**Role dryfują.** Po kilku tygodniach Orion i Lynceus zaczęli raportować te same błędy - granica między "funkcjonalne" a "prezentacja" okazała się zbyt miękka. Trzeba było wpisać ją wprost do obu promptów, razem z regułą rozstrzygania sporów. Zespół agentów wymaga pielęgnacji jak zespół ludzi, tylko psuje się szybciej i szybciej daje się naprawić.
+**Role dryfują.** Po kilku tygodniach Orion i Lynceus zaczęli raportować te same błędy - granica między "funkcjonalne" a "prezentacja" okazała się zbyt miękka. Trzeba było wpisać ją wprost do obu promptów, razem z regułą rozstrzygania sporów. Zespół agentów wymaga pielęgnacji jak zespół ludzi, tylko psuje się szybciej i szybciej daje się naprawić. Pomaga prosty układ pamięci zespołu: trwałe lekcje rzemiosła destyluję do promptu roli, konwencje konkretnego projektu lądują w jego AGENTS.md, a stan bieżącego przebiegu Marcus notuje w lekkim logu. Agenci sami zgłaszają wnioski na końcu zadania, ale do promptu roli awansuję je ręcznie i po weryfikacji - reguła wyniesiona z jednego stosu technologicznego potrafi wprowadzać w błąd w innym, a aktualny kod zawsze bije zapamiętaną regułę.
 
 ## Jak zacząć budować własny zespół
 
-Nie zaczynaj od czterdziestu ról. Mój przepis na start:
+Nie zaczynaj od pięćdziesięciu ról. Mój przepis na start:
 
 1. **Dwie, trzy role.** Budowniczy, recenzent i koordynator wystarczą. To już daje najcenniejszą własność całego wzorca: recenzenta ze świeżym kontekstem, który nie zna założeń autora.
 2. **Wąskie prompty.** Każda rola dostaje: kim jest, co robi, czego **nie** robi i w jakim formacie oddaje wynik. Sekcja "czego nie robisz" jest ważniejsza, niż się wydaje - to ona zapobiega dryfowi.
@@ -151,7 +163,7 @@ Nie zaczynaj od czterdziestu ról. Mój przepis na start:
 4. **Jeden koordynator, jeden artefakt zbiorczy.** Rozmawiasz z jednym agentem, a wyniki zlewają się w jedno miejsce: raport, rejestr błędów, plan. Jeśli musisz ręcznie sklejać wyniki pięciu agentów, orkiestracja nie działa.
 5. **Mierz, czy to działa.** Czy zespół znajduje problemy, których pojedynczy agent nie znajdował? Czy wyniki zmieniają decyzje? Jeśli nie - wróć do jednego agenta i nie żałuj.
 
-Jak krok po kroku powstaje pojedynczy subagent - plik, prompt, narzędzia, test - opisałem w [przykładzie własnego subagenta](/pl/blog/wlasny-subagent-claude-code-przyklad/). Zespół to konsekwentne powtórzenie tego wzorca plus koordynator, który umie delegować.
+Jak krok po kroku powstaje pojedynczy subagent - plik, prompt, narzędzia, test - opisałem w [przykładzie własnego subagenta](/pl/blog/wlasny-subagent-claude-code-przyklad/). Zespół to konsekwentne powtórzenie tego wzorca plus koordynator, który umie delegować. A jeśli wolisz zacząć od działającego przykładu: oba zespoły, razem z kontraktami ról, hookami i szablonami frameworków, leżą w repozytorium [holak-teams](https://github.com/holi87/holak-teams) gotowe do instalacji jako wtyczki.
 
 ## Podsumowanie
 

@@ -8,7 +8,7 @@ readingTime: 15
 author: GH
 ---
 
-For my first months with Claude Code, one agent in one window handled everything. Then it stopped being enough. On tasks like "new feature from requirements to deployment" or "full quality audit of the app", a single agent kept losing context, mixed the architect's hat with the tester's hat and - worst of all - graded its own homework. So I built two teams of specialized subagents: Hephaestus, which builds, and Argus, which looks over its shoulder. This post shows how the teams are organized, how they work together, and when this kind of orchestration earns its keep - and when it's pure ceremony.
+For my first months with Claude Code, one agent in one window handled everything. Then it stopped being enough. On tasks like "new feature from requirements to deployment" or "full quality audit of the app", a single agent kept losing context, mixed the architect's hat with the tester's hat and - worst of all - graded its own homework. So I built two teams of specialized subagents: Hephaestus, which builds, and Argus, which looks over its shoulder. Both are public - they live in the [holak-teams](https://github.com/holi87/holak-teams) repository, which doubles as a Claude Code plugin marketplace, so everything described below can be installed and inspected in source. This post shows how the teams are organized, how they work together, and when this kind of orchestration earns its keep - and when it's pure ceremony.
 
 ## Why a team instead of a single agent
 
@@ -20,11 +20,11 @@ Three things break when one agent does everything.
 
 **Adversarial review.** The most important one. An agent doesn't catch its own bugs, for the same reason a developer doesn't spot the typo in their own code: it looks at its work through the very assumptions that produced it. If the agent misread a requirement, the same misreading sits in the code, in the tests, and in the "self-check" at the end. A reviewer needs fresh context, a different goal and a different prompt - only then does review mean anything.
 
-There is a fourth argument: restricted tools and an explicit role contract reduce the blast radius. In the current configuration reviewers also have Bash, so "read-only" is a prompt rule, not a physical write barrier. Strong isolation requires operating-system or sandbox permissions, not the prompt alone.
+There is a fourth argument: restricted tools and an explicit role contract reduce the blast radius. In Hephaestus, the reviewers' "read-only" is still a prompt rule, because they also have Bash - strong isolation requires operating-system or sandbox permissions, not the prompt alone. Argus goes a step further: the plugin installs a hook that physically blocks modification of the application under test, plus deny-by-default authorization of risky actions - unknown, staging and production-like targets stay read-only, and evidence passes through sensitive-data redaction before it reaches a report.
 
 ## Hephaestus: the forge that ships
 
-Hephaestus takes its name from the smith god. The team has one job: forge working software. Technically it's a set of Claude Code subagents, each with its own system prompt, a narrow scope of responsibility and a restricted set of tools. There is exactly one entry point: **Marcus**, the team lead. He's the one I talk to. Marcus decomposes the goal, picks the lineup for that specific job, produces a delegation plan, then synthesizes the results and reports back.
+Hephaestus takes its name from the smith god. The team has one job: forge working software. Technically it's 22 Claude Code subagents with Roman names, each with its own system prompt, a narrow scope of responsibility, a restricted set of tools and an assigned model: the coordinator and the most critical reviewers run on Opus, the builders on Sonnet, the light support roles on Haiku. There is exactly one entry point: **Marcus**, the team lead. He's the one I talk to. Marcus decomposes the goal, picks the lineup for that specific job, produces a delegation plan, then synthesizes the results and reports back. The topology is hub-and-spoke: agents never talk to each other, everything flows through Marcus. On top of that sit execution contracts - every worker ends with a fixed RESULT envelope carrying a COMPLETE, PARTIAL, BLOCKED or UNVERIFIED status plus evidence, every coding plan ends with a gate where someone actually runs the thing, a failed repair escalates after two cycles to a stronger model or to Codex, and destructive operations require my explicit confirmation.
 
 Here's how the goal "add a reporting module with PDF export" flows through the team:
 
@@ -48,13 +48,22 @@ Around that flow sits the support crew: Cato for backlog and scope, Cicero for d
 | Testing | Fabius, Boethius, Catiline, Mercury, Cassius | Automation, test design, exploration, performance, security; reviewer roles have a no-edit contract |
 | Gate and support | Seneca, Severus, Cato, Cicero, Regulus, Tacitus, Numa | QA strategy and GO/NO-GO, pre-merge gate, backlog, docs, checklists, logs, ceremonies and risks |
 
-Role sources are maintained in `hephaestus/claude/agents/` and as `*.toml` plus `*.md` pairs under `hephaestus/codex/`; a Claude Code installation may expose them in `.claude/agents/`. This distinguishes the source repository from the installed location. Janus's skeleton, for example:
+The whole `holak-teams` repo is a Claude Code plugin marketplace, so installing the teams takes three commands:
+
+```text
+/plugin marketplace add holi87/holak-teams
+/plugin install hephaestus@holak-teams
+/plugin install argus@holak-teams
+```
+
+Role sources are maintained as a flat list of definitions in `hephaestus/claude/agents/` (the plugin root is the `claude/` directory), with Codex variants as `*.toml` plus `*.md` pairs under `hephaestus/codex/` - same names, same roles, two runtimes. Janus's skeleton, for example:
 
 ```markdown
 ---
 name: janus
 description: Verify the environment is ready before the team builds.
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, LS, Bash
+model: sonnet
 ---
 You are Janus, the gatekeeper. You check MCP servers, CLI tools,
 auth and dependencies against the specific goal at hand.
@@ -65,9 +74,9 @@ plus the exact remediation command for every gap found.
 
 ## Argus: a hundred eyes on quality
 
-In mythology Argus is the hundred-eyed watchman - the one who sees everything at once. Hard to find a better name for a QA team. Where Hephaestus is organized around the delivery cycle, Argus is organized around the surfaces where quality breaks: every significant surface of the application has its own dedicated hunter.
+In mythology Argus is the hundred-eyed watchman - the one who sees everything at once. Hard to find a better name for a QA team. Where Hephaestus is organized around the delivery cycle, Argus - 27 roles with Greek names - is organized around the surfaces where quality breaks: every significant surface of the application has its own dedicated hunter.
 
-The entry point is **Odysseus**. He doesn't start by dispatching agents - he starts by deciding how much engagement this particular job deserves. The modes range from a quick reconnaissance, through bug hunting on selected surfaces, to a full audit with regression automation. Picking a mode is really picking a cost - more on that in the pitfalls section.
+The Claude Code entry point is the **`/argus:run`** command - orchestration stays in the main conversation thread, with **Odysseus** as the governing policy (in the Codex variant he is the direct entry point). An engagement doesn't start by dispatching agents - it starts by picking one of four modes: **A** - a full QA audit with strategy, tests behind a single runner and an aggregate report, **B** - a deep bug hunt with a ledger of findings but no framework build, **C** - a greenfield test suite built from scratch, **D** - a brownfield extension of the existing suite in place, never scaffolding a competing harness. Picking a mode is really picking a cost - more on that in the pitfalls section.
 
 Before anyone hunts, two analysts do the groundwork. Kalchas runs reconnaissance: he maps the stack, the API endpoints, the user roles and the data. Metis then writes the test strategy into TEST-STRATEGY.md with an explicit coverage grid: what we test, with what, in which order, and why. That grid later becomes a hard acceptance criterion - at the end, every cell must be either filled or explicitly justified as skipped.
 
@@ -109,10 +118,13 @@ solution/
 bugs/
   ORI-001-form.md       # one file = one bug, hunter's prefix
   PER-003-idor.md
+  BUG-LEDGER.md         # Minos: the deduplicated post-triage ledger
 tests/
   ui/  api/  perf/  security/
 run-tests.sh            # Atlas: single entry to the whole regression
 ```
+
+Automation doesn't start from an empty directory either: the plugin ships ready-made test framework templates (TypeScript with Playwright, Java, Python), and each implements the same four runner modes and emits its result in one shared report format. The aggregate regression result looks the same regardless of the project's stack.
 
 ## How they play together
 
@@ -131,7 +143,7 @@ Two properties of that seam matter most. First, **one report**: a dozen-plus rol
 
 ## What I've learned: the pitfalls
 
-**Token cost is real.** A full Argus lineup on a mid-sized app can burn a multiple of what one solid single-agent session costs. Parallelism shortens wall-clock time but multiplies spend - eight hunters read the same application eight times. That's why Odysseus's engagement modes aren't decoration, they're cost control: day to day I run the limited modes, and I save the full audit for the releases that matter.
+**Token cost is real.** A full Argus lineup on a mid-sized app can burn a multiple of what one solid single-agent session costs. Parallelism shortens wall-clock time but multiplies spend - eight hunters read the same application eight times. That's why the four engagement modes aren't decoration, they're cost control: day to day I run the limited modes, and I save the full audit (mode A) for the releases that matter.
 
 **Orchestration theater.** The biggest risk isn't technical. It's easy to build a team that looks impressive and produces impressive-looking artifacts that nobody reads. The test is simple: if a role's output never changes a decision, that role is decoration. I cut several roles on exactly that test. I've written skeptically about this in [multi-agent orchestration](/en/blog/multi-agent-orchestration-when-one-agent-is-enough/), and I stand by it: an agent team has to be justified, not just built.
 
@@ -139,11 +151,11 @@ Two properties of that seam matter most. First, **one report**: a dozen-plus rol
 
 **The coordinator is the weakest link.** Marcus and Odysseus decide everything: no specialist can save a bad decomposition, because each of them will faithfully execute the wrong task. The coordinator prompts are the longest and the most frequently revised files in both teams - and that's how it should be.
 
-**Roles drift.** After a few weeks, Orion and Lynceus started reporting the same bugs - the line between "functional" and "presentation" turned out to be too soft. I had to write the boundary explicitly into both prompts, along with a tie-breaking rule. An agent team needs the same maintenance as a human team; it just breaks faster and gets fixed faster.
+**Roles drift.** After a few weeks, Orion and Lynceus started reporting the same bugs - the line between "functional" and "presentation" turned out to be too soft. I had to write the boundary explicitly into both prompts, along with a tie-breaking rule. An agent team needs the same maintenance as a human team; it just breaks faster and gets fixed faster. A simple team-memory layout helps: durable craft lessons get distilled into the role's prompt, a specific project's conventions land in its AGENTS.md, and Marcus keeps the current run's state in a lightweight log. Agents emit lessons at the end of a task, but promotion into a role prompt is manual and verified - a rule learned on one stack can mislead on another, and the current code always beats a remembered rule.
 
 ## How to start building your own team
 
-Don't start with forty roles. My starter recipe:
+Don't start with fifty roles. My starter recipe:
 
 1. **Two or three roles.** A builder, a reviewer and a coordinator are enough. That already buys you the most valuable property of the whole pattern: a reviewer with fresh context who doesn't know the author's assumptions.
 2. **Narrow prompts.** Every role gets: who it is, what it does, what it does **not** do, and the exact output format. The "what you don't do" section matters more than it looks - it's what prevents drift.
@@ -151,7 +163,7 @@ Don't start with forty roles. My starter recipe:
 4. **One coordinator, one aggregate artifact.** You talk to a single agent, and results converge into one place: a report, a bug ledger, a plan. If you're manually stitching together the outputs of five agents, the orchestration isn't working.
 5. **Measure whether it works.** Does the team find problems a single agent didn't? Do the outputs change decisions? If not, go back to one agent and don't look back.
 
-I walked through building a single subagent step by step - the file, the prompt, the tools, the test - in [a custom subagent example](/en/blog/custom-subagent-claude-code-example/). A team is that pattern applied consistently, plus a coordinator that knows how to delegate.
+I walked through building a single subagent step by step - the file, the prompt, the tools, the test - in [a custom subagent example](/en/blog/custom-subagent-claude-code-example/). A team is that pattern applied consistently, plus a coordinator that knows how to delegate. And if you'd rather start from a working example: both teams, along with the role contracts, hooks and framework templates, live in the [holak-teams](https://github.com/holi87/holak-teams) repository, ready to install as plugins.
 
 ## The bottom line
 
