@@ -4,6 +4,7 @@ const translations = {
       home: 'Strona główna',
       blog: 'Blog',
       aiAdoption: 'Adopcja AI',
+      aiAgents: 'Agenci AI',
       about: 'O projekcie',
     },
     hero: {
@@ -33,6 +34,7 @@ const translations = {
       home: 'Home',
       blog: 'Blog',
       aiAdoption: 'AI Adoption',
+      aiAgents: 'AI Agents',
       about: 'About',
     },
     hero: {

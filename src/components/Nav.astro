@@ -40,6 +40,9 @@ const isAbout = currentPath.includes('o-projekcie') || currentPath.includes('abo
       <a href={aiAdoptionPath} class:list={[{ active: isAiAdoption }]}>
         <span>{strings.nav.aiAdoption}</span>
       </a>
+      <a href="https://github.com/holi87/holak-teams" target="_blank" rel="noopener noreferrer">
+        <span>{strings.nav.aiAgents}</span>
+      </a>
       <a href={getLocalePath(locale, locale === 'pl' ? '/o-projekcie/' : '/about/')} class:list={[{ active: isAbout }]}>
         <span>{strings.nav.about}</span>
       </a>
